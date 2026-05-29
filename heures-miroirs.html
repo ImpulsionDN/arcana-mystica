@@ -284,6 +284,8 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:.85;transform:scale(1.05)}
 }
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.85;transform:scale(1.05)}}
 </style>
 </head>
 <body>
@@ -325,7 +327,6 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
   </ul>
   <button class="nav-cta" onclick="openModal('Consultation Privée','Séraphine vous reçoit en tchat privé','29')">Consulter</button>
 </nav>
-
 <div class="page">
   <div class="section">
     <div class="section-hd">
@@ -336,7 +337,10 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
         ✦ &nbsp; SERVICE 100% GRATUIT &nbsp; ✦
       </div>
     </div>
-    <div class="miroir-tabs"><button class="miroir-tab active" id="tabM" onclick="switchTab('miroir')">Heures miroirs</button><button class="miroir-tab" id="tabI" onclick="switchTab('inverse')">Heures inversées</button></div>
+    <div class="miroir-tabs" style="margin-bottom:1.8rem">
+      <button class="miroir-tab active" id="tabM" onclick="switchTab('miroir')">Heures miroirs</button>
+      <button class="miroir-tab" id="tabI" onclick="switchTab('inverse')">Heures inversées</button>
+    </div>
     <div id="gridM"><div class="heures-grid" id="mGrid"></div></div>
     <div id="gridI" style="display:none"><div class="heures-grid" id="iGrid"></div></div>
     <div class="miroir-display" id="mDisplay">
@@ -346,9 +350,6 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
       <div class="md-sep"></div>
       <div class="md-text" id="mdText"></div>
       <div class="md-ange" id="mdAnge"></div>
-      <div style="text-align:center;margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--bordor)">
-        <button class="btn btn-gold" onclick="alert('Ce service est entièrement gratuit. Explorez toutes les heures miroirs !')">Voir toutes les heures miroirs</button>
-      </div>
     </div>
   </div>
 </div>
@@ -402,168 +403,11 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
     </div>
   </div>
 </div>
-<script>
-function openModal(name,desc,price){
-  document.getElementById("modalTitle").textContent=name;
-  document.getElementById("modalSub").textContent=desc;
-  document.getElementById("sumSvc").textContent=name;
-  document.getElementById("sumPrice").textContent=price+" €";
-  document.getElementById("sumTotal").textContent=price+" €";
-  document.getElementById("btnAmt").textContent=price+" €";
-  document.getElementById("payForm").style.display="block";
-  document.getElementById("paySuccess").classList.remove("show");
-  ["payName","payEmail","payCard","payExp","payCvv"].forEach(function(id){var el=document.getElementById(id);if(el)el.value="";});
-  document.getElementById("modalOverlay").classList.add("open");
-}
-function closeModal(){document.getElementById("modalOverlay").classList.remove("open");}
-function selPay(m){
-  ["cb","pp","ap"].forEach(function(p){document.getElementById("pm-"+p).classList.toggle("active",p===m);});
-  var cf=document.getElementById("cbFields");if(cf)cf.style.display=m==="cb"?"block":"none";
-}
-function fmtCard(el){var v=el.value.replace(/\D/g,"").substring(0,16);el.value=v.replace(/(\d{4})(?=\d)/g,"$1 ");}
-function fmtExp(el){var v=el.value.replace(/\D/g,"").substring(0,4);if(v.length>2)v=v.substring(0,2)+"/"+v.substring(2);el.value=v;}
-function doPay(){
-  var n=document.getElementById("payName").value.trim();
-  var e=document.getElementById("payEmail").value.trim();
-  if(!n||!e){alert("Veuillez remplir votre nom et votre e-mail.");return;}
-  if(!e.includes("@")){alert("E-mail invalide.");return;}
-  var btn=document.querySelector(".btn-pay");
-  btn.textContent="⏳ Traitement…";btn.disabled=true;
-  setTimeout(function(){
-    document.getElementById("payForm").style.display="none";
-    document.getElementById("paySuccess").classList.add("show");
-    document.getElementById("sucName").textContent=n.split(" ")[0];
-    document.getElementById("sucEmail").textContent=e;
-    btn.textContent="Confirmer";btn.disabled=false;
-  },2000);
-}
-
-// ============================================================
-// HEURES MIROIRS + HEURES INVERSÉES — données complètes
-// ============================================================
-var HEURES_MIROIRS = {
-  // ===== HEURES MIROIRS (chiffres identiques) =====
-  "00h00":{type:"miroir",heure:"00h00",message:"Le commencement absolu, l'infini",ange:"Vehuhiah",
-    texte:"<p>L'heure 00h00 est une heure miroir d'une puissance exceptionnelle, symbolisant l'infini et le recommencement absolu. Vous vous trouvez au seuil entre deux jours, entre deux mondes. C'est un signal fort de l'univers : un nouveau cycle commence pour vous.</p><p>Les pensées que vous avez à cet instant précis ont une puissance particulière. L'univers vous invite à faire table rase et à définir clairement ce que vous désirez créer dans votre vie. Concentrez-vous sur le positif et émettez vos intentions les plus profondes.</p>"},
-  "01h01":{type:"miroir",heure:"01h01",message:"Force intérieure et nouveau départ",ange:"Jeliel",
-    texte:"<p>01h01 annonce qu'une nouvelle énergie entre dans votre vie. Les anges vous encouragent à aller de l'avant avec confiance et détermination. Vos pensées actuelles ont le pouvoir direct de créer votre réalité.</p><p>Si vous traversez une période difficile, sachez que des changements positifs sont imminents. Le chiffre 1 répété est un signe de leadership et d'indépendance — faites confiance à votre force intérieure.</p>"},
-  "02h02":{type:"miroir",heure:"02h02",message:"Harmonie et relations importantes",ange:"Sitael",
-    texte:"<p>L'heure 02h02 vous parle de vos relations et de l'harmonie dans votre vie. Une personne importante pourrait entrer dans votre vie, ou une relation existante va évoluer de manière significative dans un sens positif.</p><p>Le 2 répété symbolise la dualité, le partenariat et la diplomatie. Les anges vous invitent à cultiver la paix et la douceur dans tous vos échanges.</p>"},
-  "03h03":{type:"miroir",heure:"03h03",message:"Créativité et expression de soi",ange:"Elemiah",
-    texte:"<p>03h03 est l'heure des artistes et des créateurs. L'univers vous encourage à exprimer votre créativité et à partager vos dons avec le monde. Quelque chose de nouveau et de beau est en train d'éclore en vous.</p><p>Le 3 est le chiffre de la communication et de l'expression. C'est le moment idéal pour entreprendre un projet créatif ou simplement laisser votre imagination s'exprimer librement.</p>"},
-  "04h04":{type:"miroir",heure:"04h04",message:"Stabilité et construction solide",ange:"Mahasiah",
-    texte:"<p>L'heure 04h04 vous parle de fondations et de stabilité. Si vous avez des projets en cours, continuez à travailler avec persévérance. Les bases que vous posez aujourd'hui seront solides et durables.</p><p>Le 4 répété est l'énergie du bâtisseur. Les anges vous rappellent que la patience est une vertu — construisez étape par étape, sans précipitation.</p>"},
-  "05h05":{type:"miroir",heure:"05h05",message:"Changement et liberté",ange:"Lelahel",
-    texte:"<p>05h05 annonce des changements importants dans votre vie. Ces changements sont positifs même s'ils peuvent déstabiliser temporairement. L'univers vous invite à embrasser la nouveauté avec ouverture et confiance.</p><p>Le 5 est le chiffre de la liberté et de l'aventure. Osez sortir de votre zone de confort — la liberté que vous cherchez est à votre portée.</p>"},
-  "06h06":{type:"miroir",heure:"06h06",message:"Amour, famille et responsabilité",ange:"Achaiah",
-    texte:"<p>L'heure 06h06 est l'heure de l'amour et de la famille. Elle vous invite à vous concentrer sur vos proches et à renforcer les liens affectifs. La sécurité émotionnelle est au cœur de votre bien-être.</p><p>Si vous traversez des tensions familiales, cette heure est un signe que la réconciliation est possible et souhaitée par les forces célestes.</p>"},
-  "07h07":{type:"miroir",heure:"07h07",message:"Chance et éveil spirituel",ange:"Cahethel",
-    texte:"<p>07h07 est considérée comme l'une des heures miroirs les plus chargées spirituellement. Elle annonce une période de chance et d'éveil spirituel profond. Votre intuition est particulièrement aiguisée en ce moment.</p><p>Le 7 est le chiffre de la sagesse et de la spiritualité. Fiez-vous à vos pressentiments et à votre voix intérieure — les anges sont proches de vous.</p>"},
-  "08h08":{type:"miroir",heure:"08h08",message:"Abondance et prospérité",ange:"Haziel",
-    texte:"<p>08h08 est l'heure de l'abondance et de la prospérité matérielle. Elle annonce des opportunités financières et des développements positifs dans votre vie professionnelle. Le cycle de l'abondance s'ouvre pour vous.</p><p>Le 8 couché est le symbole de l'infini. Restez focusé sur vos objectifs et continuez à agir avec détermination — la prospérité est sur votre chemin.</p>"},
-  "09h09":{type:"miroir",heure:"09h09",message:"Fin de cycle et générosité",ange:"Aladiah",
-    texte:"<p>L'heure 09h09 marque la fin d'un cycle important. Quelque chose touche à sa fin pour laisser place à quelque chose de nouveau et de meilleur. Acceptez ce passage avec grâce et gratitude.</p><p>Le 9 est le chiffre de l'humanisme et de la compassion. Cette heure vous invite à vous tourner vers les autres et à exercer votre générosité naturelle.</p>"},
-  "10h10":{type:"miroir",heure:"10h10",message:"Accomplissement et potentiel infini",ange:"Lauviah",
-    texte:"<p>10h10 est l'heure du potentiel infini. Elle annonce que tout ce que vous touchez peut se transformer positivement. C'est le moment idéal pour lancer de nouveaux projets ou prendre des décisions importantes.</p><p>Vos pensées positives se matérialisent rapidement en ce moment. Concentrez votre énergie sur ce que vous désirez vraiment créer dans votre vie.</p>"},
-  "11h11":{type:"miroir",heure:"11h11",message:"Portail spirituel — intuition divine",ange:"Hahaiah",
-    texte:"<p>11h11 est l'heure miroir par excellence, la plus connue et la plus puissante. Elle représente un portail spirituel, une connexion directe avec les forces célestes. Lorsque vous voyez 11h11, l'univers vous dit clairement : il vous entend.</p><p>C'est un signe fort que vos anges gardiens sont présents à vos côtés. Vos pensées et vos intentions ont une puissance décuplée. Utilisez ce moment sacré pour émettre vos intentions les plus positives et les plus sincères.</p>"},
-  "12h12":{type:"miroir",heure:"12h12",message:"Harmonie parfaite et équilibre",ange:"Iezalel",
-    texte:"<p>12h12 symbolise l'harmonie et l'équilibre parfaits. Elle vous invite à rétablir l'équilibre dans les domaines de votre vie qui en manquent. Midi et minuit, les deux extrêmes du temps se rejoignent.</p><p>C'est le moment de réconcilier les aspects opposés de votre personnalité et de trouver une voie harmonieuse entre vos différentes aspirations.</p>"},
-  "13h13":{type:"miroir",heure:"13h13",message:"Transformation et renaissance",ange:"Mebahel",
-    texte:"<p>13h13 est une heure de transformation profonde. Associée au chiffre 13, symbole du changement et de la renaissance, elle vous annonce qu'une métamorphose est en cours dans votre vie.</p><p>Ne craignez pas ce changement. Ce qui se termine était nécessaire pour que quelque chose de plus beau et de plus aligné avec votre véritable nature puisse naître.</p>"},
-  "14h14":{type:"miroir",heure:"14h14",message:"Stabilité et ancrage dans le présent",ange:"Hariel",
-    texte:"<p>14h14 vous invite à vous ancrer dans le moment présent. L'énergie du 14 apporte la stabilité et vous rappelle l'importance des fondations solides dans tous les domaines de votre vie.</p><p>Vérifiez que vos bases sont bien solides, que ce soit dans votre vie affective, professionnelle ou matérielle. La solidité intérieure est votre meilleure protection.</p>"},
-  "15h15":{type:"miroir",heure:"15h15",message:"Libération et épanouissement authentique",ange:"Hekamiah",
-    texte:"<p>L'heure 15h15 est celle de l'épanouissement et de la liberté d'être soi-même. Elle vous encourage à vous exprimer authentiquement et à vous libérer des contraintes qui limitent votre développement personnel.</p><p>Vos anges vous soutiennent pleinement dans votre quête de liberté et d'authenticité. Cessez de vous conformer aux attentes des autres et vivez votre vérité.</p>"},
-  "16h16":{type:"miroir",heure:"16h16",message:"Amour et engagement responsable",ange:"Lauviah II",
-    texte:"<p>16h16 est l'heure de l'amour responsable et de l'engagement sincère. Elle vous invite à prendre soin de ceux que vous aimez avec plus d'attention et de tendresse. Les liens affectifs méritent d'être cultivés quotidiennement.</p><p>Si vous êtes en couple, c'est un signe de renforcement du lien. Si vous êtes célibataire, une rencontre significative et durable est possible dans les prochaines semaines.</p>"},
-  "17h17":{type:"miroir",heure:"17h17",message:"Dépassez les obstacles que vous vous imposez",ange:"Caliel",
-    texte:"<p>17h17 est reliée à l'archétype de l'Étoile — symbole de protection, d'espoir et d'optimisme. C'est un message fort : vous êtes guidé(e) et protégé(e) par des forces bienveillantes bien plus grandes que vous.</p><p>Cette heure vous invite à dépasser les limites que vous vous imposez vous-même. La plupart de vos obstacles sont intérieurs. Faites confiance à votre étoile et avancez avec courage.</p>"},
-  "18h18":{type:"miroir",heure:"18h18",message:"Abondance intérieure et extérieure",ange:"Leuviah",
-    texte:"<p>18h18 annonce une période d'abondance sur tous les plans. Que ce soit sur le plan matériel, affectif ou spirituel, les énergies sont favorables à la prospérité et à l'épanouissement de toutes vos facultés.</p><p>Restez ouvert(e) aux opportunités qui se présentent et accueillez l'abondance avec gratitude sincère. La gratitude multiplie les bienfaits.</p>"},
-  "19h19":{type:"miroir",heure:"19h19",message:"Fin d'un cycle, commencement d'un autre",ange:"Pahaliah",
-    texte:"<p>19h19 marque la fin d'un cycle et le commencement lumineux d'un autre. Quelque chose s'achève pour laisser place à du nouveau et de plus prometteur. Cette transition est nécessaire et profondément bénéfique.</p><p>Faites confiance au processus de la vie. Ce qui se ferme laissera entrer davantage de lumière et d'opportunités dans votre existence.</p>"},
-  "20h20":{type:"miroir",heure:"20h20",message:"Prise de conscience et jugement éclairé",ange:"Nelkhael",
-    texte:"<p>20h20 vous invite à prendre du recul et à évaluer votre situation avec lucidité et bienveillance envers vous-même. C'est le moment de faire le point, de comprendre ce qui fonctionne et ce qui doit évoluer.</p><p>Cette heure favorise la prise de décision éclairée et la mise en place de nouveaux projets mûrement réfléchis. Votre jugement est fiable en ce moment.</p>"},
-  "21h21":{type:"miroir",heure:"21h21",message:"L'univers vous est favorable",ange:"Yeiayel",
-    texte:"<p>21h21 est un signe clair que l'univers est pleinement en votre faveur. Les énergies cosmiques s'alignent pour vous soutenir dans vos projets et vos désirs les plus profonds. Vous êtes sur le bon chemin.</p><p>Continuez à avancer avec confiance et sérénité. Les obstacles qui se présentent ne sont que temporaires et font partie du voyage vers votre destinée.</p>"},
-  "22h22":{type:"miroir",heure:"22h22",message:"Maître bâtisseur — ambition et vision",ange:"Melahel",
-    texte:"<p>22h22 est une heure miroir très puissante associée au Nombre Maître 22. Elle vous invite à penser grand et à construire quelque chose de durable et de significatif — pour votre vie et pour ceux qui vous entourent.</p><p>Vos ambitions sont légitimes et pleinement réalisables. Continuez à construire votre vision avec détermination, sagesse et persévérance.</p>"},
-  "23h23":{type:"miroir",heure:"23h23",message:"Transformation spirituelle et lâcher-prise",ange:"Haheuiah",
-    texte:"<p>23h23 est une heure de transformation spirituelle profonde. Elle marque la fin de la journée et vous invite à faire le bilan, à lâcher prise sur ce qui ne sert plus votre évolution et votre bonheur.</p><p>Un nouveau vous est en train d'émerger. Accueillez cette transformation avec gratitude et confiance absolue en la sagesse de votre chemin de vie.</p>"},
-
-  // ===== HEURES INVERSÉES (lecture symétrique) =====
-  "10h01":{type:"inverse",heure:"10h01",message:"Retour aux sources et introspection",ange:"Achaiah",
-    texte:"<p>L'heure inversée 10h01 est un miroir temporel qui vous invite à regarder vers vos origines et vos fondements. Ce que vous avez vécu dans le passé contient les clés de votre avenir. Un retour aux sources s'impose.</p><p>Cette heure symétrique symbolise la réflexion — comme un miroir qui vous renvoie votre image. Qui êtes-vous vraiment, au-delà des rôles que vous jouez ? La réponse est en vous.</p>"},
-  "12h21":{type:"inverse",heure:"12h21",message:"Équilibre parfait entre donner et recevoir",ange:"Iezalel",
-    texte:"<p>12h21 est une heure inversée d'une grande harmonie symbolique. Elle vous parle de l'équilibre entre ce que vous donnez et ce que vous recevez. Y a-t-il un déséquilibre dans vos relations ou dans votre énergie vitale ?</p><p>L'univers vous invite à rééquilibrer les flux d'énergie dans votre vie. Apprenez à recevoir avec autant de grâce que vous donnez.</p>"},
-  "13h31":{type:"inverse",heure:"13h31",message:"Transformation intérieure accélérée",ange:"Mebahel",
-    texte:"<p>L'heure inversée 13h31 amplifie l'énergie transformatrice du 13. Une métamorphose profonde est en cours dans votre vie intérieure. Ce processus peut sembler déstabilisant mais il est absolument nécessaire à votre évolution.</p><p>Le miroir du temps vous invite à accepter les changements avec sérénité. Ce qui se transforme en vous émergera bientôt sous une forme plus lumineuse et plus authentique.</p>"},
-  "14h41":{type:"inverse",heure:"14h41",message:"Fondations solides pour un avenir durable",ange:"Hariel",
-    texte:"<p>14h41 vous parle de ce que vous construisez pour l'avenir. Les fondations que vous posez aujourd'hui détermineront la solidité de votre vie dans les années à venir. Investissez du temps et de l'énergie dans ce qui est vraiment important.</p><p>Cette heure symétrique vous rappelle que les constructions durables demandent du temps et de la patience. Ne précipitez pas ce qui mérite d'être bâti solidement.</p>"},
-  "15h51":{type:"inverse",heure:"15h51",message:"Liberté retrouvée après les épreuves",ange:"Hekamiah",
-    texte:"<p>L'heure inversée 15h51 annonce une libération prochaine après une période d'épreuves ou de contraintes. Vous avez traversé une phase difficile qui touche à sa fin. La liberté que vous cherchez est à portée de main.</p><p>L'univers vous confirme que vos efforts ont été vus et reconnus. Une nouvelle phase de légèreté et d'épanouissement s'ouvre devant vous.</p>"},
-  "20h02":{type:"inverse",heure:"20h02",message:"Vision et intuition renforcées",ange:"Nelkhael",
-    texte:"<p>20h02 est une heure inversée qui renforce votre capacité à voir au-delà des apparences. Votre intuition est particulièrement fiable en ce moment — faites-lui confiance même si votre mental résiste.</p><p>Cette heure vous invite à regarder votre situation sous un angle différent. Ce que vous percevez comme un obstacle cache peut-être une opportunité déguisée.</p>"},
-  "21h12":{type:"inverse",heure:"21h12",message:"Harmonie entre raison et intuition",ange:"Yeiayel",
-    texte:"<p>L'heure inversée 21h12 vous invite à réconcilier votre raison et votre intuition. Trop souvent, nous faisons primer l'une sur l'autre. La sagesse réside dans l'équilibre entre ces deux facultés complémentaires.</p><p>Dans la décision que vous devez prendre, écoutez à la fois votre tête et votre cœur. La réponse juste est celle qui satisfait les deux.</p>"},
-  "23h32":{type:"inverse",heure:"23h32",message:"Message des profondeurs de la nuit",ange:"Haheuiah",
-    texte:"<p>23h32, heure de la nuit profonde, vous transmet un message des couches les plus profondes de votre inconscient. Quelque chose cherche à remonter à la surface de votre conscience — une vérité, un désir longtemps refoulé.</p><p>Accordez-vous un moment de silence et d'écoute intérieure. Ce message nocturne peut changer votre vision de vous-même et de votre chemin de vie.</p>"},
-  "01h10":{type:"inverse",heure:"01h10",message:"Nouveau départ après une longue nuit",ange:"Jeliel",
-    texte:"<p>L'heure inversée 01h10 symbolise le nouveau départ après une période sombre ou difficile. Comme l'aube qui commence à pointer dans la nuit, une lumière nouvelle entre dans votre vie.</p><p>Les efforts que vous avez fournis durant cette période difficile vont bientôt porter leurs fruits. La persévérance est récompensée — continuez à avancer.</p>"},
-  "02h20":{type:"inverse",heure:"02h20",message:"Relations et réciprocité",ange:"Sitael",
-    texte:"<p>02h20, heure inversée de la dualité, vous parle de réciprocité dans vos relations. Y a-t-il quelqu'un dans votre entourage envers qui vous n'exprimez pas suffisamment votre affection ou votre reconnaissance ?</p><p>L'univers vous invite à rééquilibrer vos échanges affectifs. L'amour et l'amitié se nourrissent de réciprocité et d'attention mutuelle.</p>"},
-  "03h30":{type:"inverse",heure:"03h30",message:"Éveil créatif à l'heure des songes",ange:"Elemiah",
-    texte:"<p>03h30, l'heure mystérieuse du milieu de la nuit. Cette heure inversée est associée à l'éveil créatif et aux messages qui viennent de votre subconscient à travers les rêves. Notez ce que vous venez de rêver.</p><p>Les créateurs, artistes et visionnaires ressentent souvent un éveil particulier à cette heure. Si une idée vous est venue, ne la laissez pas s'échapper — notez-la immédiatement.</p>"},
-  "04h40":{type:"inverse",heure:"04h40",message:"Travail nocturne de l'âme",ange:"Mahasiah",
-    texte:"<p>04h40 est l'heure où l'âme travaille en profondeur, loin du bruit du monde. Cette heure inversée vous invite à honorer le travail invisible que vous accomplissez sur vous-même, même quand vous ne le voyez pas.</p><p>Votre évolution intérieure se poursuit même dans le silence et l'obscurité. Faites confiance au processus — vous progressez bien plus que vous ne le pensez.</p>"},
-};
-
-
-function initHeuresMiroirs(){
-  var m=Object.entries(HEURES_MIROIRS).filter(function(e){return e[1].type==='miroir';});
-  var inv=Object.entries(HEURES_MIROIRS).filter(function(e){return e[1].type==='inverse';});
-  function mk(h,data,gridId){
-    var btn=document.createElement('button');btn.className='heure-btn';btn.setAttribute('data-heure',h);
-    btn.innerHTML='<span class="hb-t">'+data.heure+'</span><span class="hb-a">'+data.ange+'</span>';
-    btn.onclick=function(){afficherMiroir(h);};
-    document.getElementById(gridId).appendChild(btn);
-  }
-  m.forEach(function(e){mk(e[0],e[1],'mGrid');});
-  inv.forEach(function(e){mk(e[0],e[1],'iGrid');});
-}
-function switchTab(t){
-  document.getElementById('tabM').classList.toggle('active',t==='miroir');
-  document.getElementById('tabI').classList.toggle('active',t==='inverse');
-  document.getElementById('gridM').style.display=t==='miroir'?'block':'none';
-  document.getElementById('gridI').style.display=t==='inverse'?'block':'none';
-  document.getElementById('mDisplay').classList.remove('show');
-}
-function afficherMiroir(h){
-  var data=HEURES_MIROIRS[h];if(!data)return;
-  document.querySelectorAll('.heure-btn').forEach(function(b){b.classList.remove('sel');});
-  document.querySelector('[data-heure="'+h+'"]').classList.add('sel');
-  document.getElementById('mdTime').textContent=data.heure;
-  document.getElementById('mdBadge').innerHTML=data.type==='miroir'?'<span class="badge-m">Heure miroir</span>':'<span class="badge-i">Heure inversée</span>';
-  document.getElementById('mdMsg').textContent=data.message;
-  document.getElementById('mdText').innerHTML=data.texte;
-  document.getElementById('mdAnge').innerHTML='Ange associé : <strong>'+data.ange+'</strong>';
-  var d=document.getElementById('mDisplay');d.classList.add('show');
-  d.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-document.addEventListener('DOMContentLoaded',initHeuresMiroirs);
-</script>
-
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" 
   style="position:fixed;bottom:2rem;right:2rem;z-index:200;width:44px;height:44px;
   background:var(--or2);color:#fff;border:none;cursor:pointer;font-size:1.1rem;
   display:none;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(154,122,42,.3);transition:all .3s">↑</button>
-<script>
-var btt=document.getElementById('backToTop');
-window.addEventListener('scroll',function(){
-  btt.style.display=window.scrollY>300?'flex':'none';
-});
-</script>
+  box-shadow:0 4px 16px rgba(154,122,42,.3)">↑</button>
+<script src="main.js"></script>
 </body>
 </html>
