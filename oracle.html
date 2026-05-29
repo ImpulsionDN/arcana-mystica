@@ -141,7 +141,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;ali
 .md-ange strong{color:var(--or2);font-style:normal;font-weight:400}
 
 /* VOYANTS */
-.voyants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--bordor)}
+.voyants-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bordor);max-width:100%}
+@media(max-width:900px){.voyants-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.voyants-grid{grid-template-columns:1fr}}
 .voyant-card{background:var(--card);transition:background .3s;cursor:pointer}
 .voyant-card:hover{background:var(--bg2)}
 .v-photo{display:flex;justify-content:center;padding:2rem 2rem 1rem;position:relative}
