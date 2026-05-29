@@ -6,262 +6,273 @@
 <title>Oracle Arcana — Arcana Mystica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --noir:#0a0906;--noir2:#131210;--noir3:#1e1c19;
-  --ivoire:#f5f0e8;--ivoire2:#ede7d9;
-  --or:#b8962e;--or2:#d4aa44;--or3:#f0c860;
-  --txt:#f0ebe0;--txt2:#c8bfa8;--txt3:#8a7f6a;
-  --T:0.4s cubic-bezier(.25,.46,.45,.94);
+  --bg:    #faf6ef;
+  --bg2:   #f3ede2;
+  --bg3:   #ece4d5;
+  --card:  #ffffff;
+  --or:    #9a7a2a;
+  --or2:   #b8962e;
+  --or3:   #d4aa44;
+  --or-pal:#f5e9c8;
+  --bordor:rgba(154,122,42,.25);
+  --txt:   #1a1410;
+  --txt2:  #3d3020;
+  --txt3:  #7a6a50;
+  --txt4:  #a89878;
+  --mauve: #5c3d7a;
+  --mauve2:#7a5a9a;
+  --mauve-pal:#f0e8f8;
+  --T: 0.35s cubic-bezier(.25,.46,.45,.94);
 }
 html{scroll-behavior:smooth}
-body{background:var(--noir);color:var(--txt);font-family:'Lato',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body{background:var(--bg);color:var(--txt);font-family:'Lato',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
 h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.1}
-.eyebrow{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--or)}
+.eyebrow{font-family:'Lato',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--or2)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(10,9,6,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,150,46,.12)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;letter-spacing:.08em;color:var(--txt);text-decoration:none;display:flex;align-items:center;gap:.5rem}
-.nav-logo::before{content:'✦';color:var(--or);font-size:.65rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(250,246,239,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bordor)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;letter-spacing:.07em;color:var(--txt);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.nav-logo::before{content:'✦';color:var(--or2);font-size:.6rem}
 .nav-links{display:flex;list-style:none;gap:.2rem;align-items:center}
 .nav-links li{position:relative}
-.nav-links li a,.nav-links li button{padding:.45rem .85rem;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);text-decoration:none;background:none;border:none;cursor:pointer;transition:color var(--T);display:flex;align-items:center;gap:.3rem}
-.nav-links li a:hover,.nav-links li button:hover,.nav-links li a.active{color:var(--txt)}
+.nav-links li a,.nav-links li button{padding:.45rem .85rem;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);text-decoration:none;background:none;border:none;cursor:pointer;transition:color var(--T);display:flex;align-items:center;gap:.3rem}
+.nav-links li a:hover,.nav-links li button:hover{color:var(--txt)}
 .caret{font-size:.4rem;transition:transform .2s}
 .nav-links li:hover .caret{transform:rotate(180deg)}
-.dropdown{position:absolute;top:calc(100% + 8px);left:0;min-width:210px;background:var(--noir2);border:1px solid rgba(184,150,46,.18);padding:.4rem 0;opacity:0;visibility:hidden;transform:translateY(-4px);transition:all .22s ease;pointer-events:none}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;min-width:215px;background:var(--card);border:1px solid var(--bordor);box-shadow:0 8px 32px rgba(154,122,42,.1);padding:.4rem 0;opacity:0;visibility:hidden;transform:translateY(-4px);transition:all .22s ease;pointer-events:none}
 .nav-links li:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:all}
-.dropdown a{display:flex;align-items:center;gap:.7rem;padding:.6rem 1.1rem;font-size:.76rem;color:var(--txt3);text-decoration:none;transition:all .18s;letter-spacing:.03em}
-.dropdown a:hover{color:var(--or2);background:rgba(184,150,46,.05);padding-left:1.4rem}
-.dropdown a .di{color:var(--or);opacity:.7;width:14px;text-align:center;font-size:.8rem}
-.dd-sep{height:1px;background:rgba(184,150,46,.1);margin:.3rem 1.1rem}
-.nav-cta{padding:.45rem 1.3rem;border:1px solid var(--or);color:var(--or);background:transparent;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all var(--T)}
-.nav-cta:hover{background:var(--or);color:var(--noir)}
+.dropdown a{display:flex;align-items:center;gap:.7rem;padding:.6rem 1.1rem;font-size:.76rem;color:var(--txt3);text-decoration:none;transition:all .18s}
+.dropdown a:hover{color:var(--or2);background:var(--or-pal);padding-left:1.4rem}
+.dropdown a .di{color:var(--or2);opacity:.8;width:14px;text-align:center;font-size:.8rem}
+.dd-sep{height:1px;background:var(--bordor);margin:.3rem 1.1rem}
+.nav-cta{padding:.45rem 1.3rem;border:1px solid var(--or2);color:var(--or2);background:transparent;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all var(--T)}
+.nav-cta:hover{background:var(--or2);color:#fff}
 
 /* BOUTONS */
 .btn{display:inline-block;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all var(--T);border:none;text-decoration:none}
-.btn-gold{background:var(--or);color:var(--noir);padding:.8rem 2.2rem}
+.btn-gold{background:var(--or2);color:#fff;padding:.8rem 2.2rem}
 .btn-gold:hover{background:var(--or3);transform:translateY(-2px)}
-.btn-outline{background:transparent;border:1px solid rgba(184,150,46,.35);color:var(--txt3);padding:.8rem 2.2rem}
-.btn-outline:hover{border-color:var(--or);color:var(--or)}
-.btn-full{width:100%;padding:.95rem;background:var(--or);color:var(--noir);font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--T);margin-top:1rem}
+.btn-outline{background:transparent;border:1.5px solid var(--bordor);color:var(--txt3);padding:.8rem 2.2rem}
+.btn-outline:hover{border-color:var(--or2);color:var(--or2)}
+.btn-full{width:100%;padding:.95rem;background:var(--or2);color:#fff;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--T);margin-top:1rem}
 .btn-full:hover{background:var(--or3)}
-.btn-sec{padding:.65rem 1.5rem;background:transparent;border:1px solid rgba(184,150,46,.25);color:var(--txt3);font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.btn-sec:hover{border-color:var(--or);color:var(--or)}
+.btn-sec{padding:.65rem 1.5rem;background:transparent;border:1.5px solid var(--bordor);color:var(--txt3);font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-sec:hover{border-color:var(--or2);color:var(--or2)}
 
 /* CHAMPS */
 .field{margin-bottom:1.1rem}
-.field label{display:block;font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--txt3);margin-bottom:.42rem}
-.field label small{font-weight:300;text-transform:none;letter-spacing:0;font-size:.82em;color:var(--txt3);opacity:.7}
-.f-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(184,150,46,.18);color:var(--txt);font-family:'Lato',sans-serif;font-size:.92rem;padding:.7rem .9rem;outline:none;transition:border-color .2s}
-.f-input:focus{border-color:rgba(184,150,46,.5)}
-.f-input::placeholder{color:var(--txt3)}
-.f-input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.4)}
+.field label{display:block;font-size:.56rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--txt4);margin-bottom:.42rem}
+.field label small{font-weight:300;text-transform:none;letter-spacing:0;font-size:.85em;color:var(--txt4)}
+.f-input{width:100%;background:var(--bg);border:1.5px solid var(--bordor);color:var(--txt);font-family:'Lato',sans-serif;font-size:.92rem;padding:.7rem .9rem;outline:none;transition:border-color .2s}
+.f-input:focus{border-color:var(--or2)}
+.f-input::placeholder{color:var(--txt4)}
+.f-input[type=date]::-webkit-calendar-picker-indicator{filter:opacity(.4)}
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 
-/* SECTIONS */
-.page{padding-top:60px}
+/* LAYOUT */
+.page{padding-top:62px}
 .section{padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,7rem);max-width:1280px;margin:0 auto}
 .section-hd{text-align:center;margin-bottom:clamp(2.5rem,5vw,4rem)}
-.section-hd h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--ivoire);margin:.5rem 0 .9rem}
+.section-hd h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--txt);margin:.5rem 0 .9rem}
 .section-hd p{font-size:.92rem;color:var(--txt3);max-width:460px;margin:0 auto;line-height:1.8}
-.bg2{background:var(--noir2)}
+.bg2{background:var(--bg2)}
+.bg3{background:var(--bg3)}
 
 /* BOITE FORMULAIRE */
-.form-box{background:var(--noir2);border:1px solid rgba(184,150,46,.18);padding:2.5rem;max-width:620px;margin:0 auto}
-.form-box-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ivoire);text-align:center;margin-bottom:.3rem}
-.form-box-sub{font-size:.78rem;color:var(--txt3);text-align:center;margin-bottom:1.8rem;letter-spacing:.06em}
+.form-box{background:var(--card);border:1px solid var(--bordor);padding:2.5rem;max-width:620px;margin:0 auto;box-shadow:0 2px 24px rgba(154,122,42,.07)}
+.form-box-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--txt);text-align:center;margin-bottom:.3rem}
+.form-box-sub{font-size:.78rem;color:var(--txt4);text-align:center;margin-bottom:1.8rem}
 
 /* RÉSULTATS */
-.result-area{display:none;margin-top:2rem;border-top:1px solid rgba(184,150,46,.12);padding-top:2rem}
+.result-area{display:none;margin-top:2rem;border-top:1.5px solid var(--bordor);padding-top:2rem}
 .result-area.show{display:block}
-.chiffres-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,150,46,.1);margin-bottom:1.8rem}
+.chiffres-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bordor);margin-bottom:1.8rem}
 @media(max-width:600px){.chiffres-grid{grid-template-columns:1fr 1fr}}
-.chiffre-cell{background:var(--noir);padding:1.4rem .8rem;text-align:center}
-.chiffre-cell .c-lbl{font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);margin-bottom:.5rem}
+.chiffre-cell{background:var(--card);padding:1.4rem .8rem;text-align:center}
+.chiffre-cell .c-lbl{font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt4);margin-bottom:.5rem}
 .chiffre-cell .c-n{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--or2);line-height:1;margin-bottom:.2rem}
 .chiffre-cell .c-name{font-size:.7rem;color:var(--txt3);font-style:italic}
-.chiffre-cell .c-master{font-size:.5rem;font-weight:700;color:var(--or);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
-.interp-box{padding:1.8rem;background:rgba(184,150,46,.03);border:1px solid rgba(184,150,46,.1);margin-bottom:1.5rem}
+.chiffre-cell .c-master{font-size:.5rem;font-weight:700;color:var(--or2);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+.interp-box{padding:1.8rem;background:var(--or-pal);border:1px solid var(--bordor);margin-bottom:1.5rem}
 .interp-box .ib-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--or2);font-style:italic;margin-bottom:.7rem}
-.interp-box p{font-size:.88rem;color:var(--txt3);line-height:1.85}
-.annee-box{text-align:center;padding:1.8rem;border:1px solid rgba(184,150,46,.18);margin-bottom:1.5rem}
-.annee-box .ab-lbl{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--txt3);margin-bottom:.5rem}
+.interp-box p{font-size:.88rem;color:var(--txt2);line-height:1.85}
+.annee-box{text-align:center;padding:1.8rem;border:1.5px solid var(--bordor);margin-bottom:1.5rem;background:var(--card)}
+.annee-box .ab-lbl{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--txt4);margin-bottom:.5rem}
 .annee-box .ab-n{font-family:'Playfair Display',serif;font-size:3.8rem;color:var(--or2);line-height:1;margin-bottom:.4rem}
 .annee-box p{font-size:.86rem;color:var(--txt3);max-width:420px;margin:0 auto;line-height:1.8;font-style:italic}
-.result-actions{display:flex;gap:.8rem;justify-content:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(184,150,46,.1);flex-wrap:wrap}
+.result-actions{display:flex;gap:.8rem;justify-content:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--bordor);flex-wrap:wrap}
 
 /* ANGE */
-.ange-box{display:none;text-align:center;padding:2.5rem;border:1px solid rgba(184,150,46,.2);background:rgba(184,150,46,.03);max-width:520px;margin:1.5rem auto 0}
+.ange-box{display:none;text-align:center;padding:2.5rem;border:1.5px solid var(--bordor);background:var(--card);box-shadow:0 2px 24px rgba(154,122,42,.07);max-width:520px;margin:1.5rem auto 0}
 .ange-box.show{display:block}
 .ange-emoji{font-size:2.2rem;margin-bottom:.7rem;display:block}
-.ange-num{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.35rem}
-.ange-nom{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;color:var(--ivoire);margin-bottom:.25rem}
-.ange-per{font-size:.7rem;color:var(--txt3);letter-spacing:.08em;margin-bottom:1rem}
-.ange-sep{width:36px;height:1px;background:rgba(184,150,46,.3);margin:.9rem auto}
-.ange-msg{font-size:.88rem;color:var(--txt3);line-height:1.85;font-style:italic}
+.ange-num{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or2);margin-bottom:.35rem}
+.ange-nom{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;color:var(--txt);margin-bottom:.25rem}
+.ange-per{font-size:.7rem;color:var(--txt4);letter-spacing:.08em;margin-bottom:1rem}
+.ange-sep{width:36px;height:1.5px;background:var(--bordor);margin:.9rem auto}
+.ange-msg{font-size:.88rem;color:var(--txt2);line-height:1.85;font-style:italic}
 
 /* HEURES MIROIRS */
-.miroir-tabs{display:flex;max-width:360px;margin:0 auto 2rem;border:1px solid rgba(184,150,46,.18);overflow:hidden}
-.miroir-tab{flex:1;padding:.7rem;background:transparent;border:none;color:var(--txt3);font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.miroir-tab.active{background:rgba(184,150,46,.1);color:var(--or2)}
-.miroir-tab+.miroir-tab{border-left:1px solid rgba(184,150,46,.18)}
-.heures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:1px;background:rgba(184,150,46,.08);max-width:860px;margin:0 auto 2rem}
-.heure-btn{background:var(--noir);padding:.9rem .4rem;text-align:center;cursor:pointer;border:none;transition:background .18s;width:100%}
-.heure-btn:hover,.heure-btn.sel{background:rgba(184,150,46,.09)}
-.heure-btn.sel{outline:1px solid rgba(184,150,46,.35)}
-.heure-btn .hb-t{font-family:'Playfair Display',serif;font-size:1rem;color:var(--ivoire2);display:block;line-height:1;margin-bottom:.2rem;transition:color .18s}
+.miroir-tabs{display:flex;max-width:360px;margin:0 auto 2rem;border:1.5px solid var(--bordor);overflow:hidden;background:var(--card)}
+.miroir-tab{flex:1;padding:.7rem;background:transparent;border:none;color:var(--txt4);font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.miroir-tab.active{background:var(--or-pal);color:var(--or2)}
+.miroir-tab+.miroir-tab{border-left:1.5px solid var(--bordor)}
+.heures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:1px;background:var(--bordor);max-width:860px;margin:0 auto 2rem}
+.heure-btn{background:var(--card);padding:.9rem .4rem;text-align:center;cursor:pointer;border:none;transition:background .18s;width:100%}
+.heure-btn:hover,.heure-btn.sel{background:var(--or-pal)}
+.heure-btn .hb-t{font-family:'Playfair Display',serif;font-size:1rem;color:var(--txt2);display:block;line-height:1;margin-bottom:.2rem;transition:color .18s}
 .heure-btn:hover .hb-t,.heure-btn.sel .hb-t{color:var(--or2)}
-.heure-btn .hb-a{font-size:.5rem;color:var(--txt3);letter-spacing:.04em;display:block}
-.miroir-display{display:none;max-width:660px;margin:0 auto;border:1px solid rgba(184,150,46,.18);padding:2.5rem;background:var(--noir2)}
+.heure-btn .hb-a{font-size:.5rem;color:var(--txt4);letter-spacing:.04em;display:block}
+.miroir-display{display:none;max-width:660px;margin:0 auto;border:1.5px solid var(--bordor);padding:2.5rem;background:var(--card);box-shadow:0 2px 24px rgba(154,122,42,.07)}
 .miroir-display.show{display:block}
 .md-time{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--or2);text-align:center;line-height:1;margin-bottom:.4rem}
 .md-badge{text-align:center;margin-bottom:.5rem}
 .md-badge span{font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:2px 10px;border:1px solid}
-.badge-m{color:var(--or);border-color:rgba(184,150,46,.4)}
-.badge-i{color:#a0c4e0;border-color:rgba(160,196,224,.35)}
+.badge-m{color:var(--or2);border-color:var(--bordor);background:var(--or-pal)}
+.badge-i{color:var(--mauve);border-color:rgba(92,61,122,.3);background:var(--mauve-pal)}
 .md-msg{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);text-align:center;margin-bottom:1.4rem}
-.md-sep{width:36px;height:1px;background:rgba(184,150,46,.25);margin:.9rem auto 1.4rem}
-.md-text{font-size:.88rem;color:var(--txt3);line-height:1.9}
+.md-sep{width:36px;height:1.5px;background:var(--bordor);margin:.9rem auto 1.4rem}
+.md-text{font-size:.88rem;color:var(--txt2);line-height:1.9}
 .md-text p{margin-bottom:.8rem}
-.md-ange{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid rgba(184,150,46,.1);font-size:.8rem;color:var(--txt3);text-align:center;font-style:italic}
-.md-ange strong{color:var(--or);font-style:normal;font-weight:400}
+.md-ange{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--bordor);font-size:.8rem;color:var(--txt4);text-align:center;font-style:italic}
+.md-ange strong{color:var(--or2);font-style:normal;font-weight:400}
 
 /* VOYANTS */
-.voyants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:rgba(184,150,46,.08)}
-.voyant-card{background:var(--noir);transition:background .3s;cursor:pointer}
-.voyant-card:hover{background:var(--noir2)}
+.voyants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--bordor)}
+.voyant-card{background:var(--card);transition:background .3s;cursor:pointer}
+.voyant-card:hover{background:var(--bg2)}
 .v-photo{display:flex;justify-content:center;padding:2rem 2rem 1rem;position:relative}
-.v-photo img{width:130px;height:130px;border-radius:50%;object-fit:cover;object-position:center top;border:1.5px solid rgba(184,150,46,.3);transition:all .4s}
-.voyant-card:hover .v-photo img{border-color:var(--or2);box-shadow:0 0 28px rgba(184,150,46,.18);transform:scale(1.03)}
+.v-photo img{width:130px;height:130px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--bordor);transition:all .4s}
+.voyant-card:hover .v-photo img{border-color:var(--or2);box-shadow:0 4px 24px rgba(154,122,42,.2);transform:scale(1.03)}
 .v-dispo{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:.52rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;white-space:nowrap}
-.dispo-oui{color:#6be3a0;background:rgba(20,80,40,.8);border:1px solid rgba(107,227,160,.25)}
-.dispo-non{color:#a09080;background:rgba(40,30,20,.8);border:1px solid rgba(160,144,128,.18)}
-.v-body{padding:1.2rem 1.4rem 1.5rem}
-.v-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ivoire);margin-bottom:.18rem}
-.v-spec{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or);opacity:.8;margin-bottom:.7rem}
-.v-line{width:22px;height:1px;background:rgba(184,150,46,.28);margin-bottom:.7rem}
-.v-bio{font-size:.8rem;color:var(--txt3);line-height:1.62;margin-bottom:.9rem}
+.dispo-oui{color:#2d6e42;background:rgba(200,240,210,.9);border:1px solid rgba(45,110,66,.3)}
+.dispo-non{color:var(--txt4);background:var(--bg2);border:1px solid var(--bordor)}
+.v-body{padding:1.2rem 1.5rem 1.5rem}
+.v-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--txt);margin-bottom:.18rem}
+.v-spec{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or2);margin-bottom:.7rem}
+.v-line{width:24px;height:1.5px;background:var(--bordor);margin-bottom:.7rem}
+.v-bio{font-size:.8rem;color:var(--txt3);line-height:1.65;margin-bottom:.9rem}
 .v-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
-.v-tag{font-size:.55rem;letter-spacing:.07em;padding:2px 7px;border:1px solid rgba(184,150,46,.18);color:var(--txt3)}
-.btn-consult{width:100%;padding:.75rem;background:transparent;border:1px solid rgba(184,150,46,.28);color:var(--or);font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.btn-consult:hover{background:rgba(184,150,46,.08);border-color:var(--or2)}
+.v-tag{font-size:.55rem;letter-spacing:.07em;padding:2px 8px;border:1px solid var(--bordor);color:var(--txt4);background:var(--bg)}
+.btn-consult{width:100%;padding:.75rem;background:transparent;border:1.5px solid var(--bordor);color:var(--or2);font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-consult:hover{background:var(--or-pal);border-color:var(--or2)}
 
 /* OFFRES */
-.offres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(184,150,46,.08)}
-.offre{background:var(--noir);padding:2.2rem 1.8rem;cursor:pointer;transition:background .3s;position:relative}
-.offre:hover{background:var(--noir2)}
-.offre.featured{background:var(--noir2);outline:1px solid rgba(184,150,46,.28)}
-.offre-badge{font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or);border:1px solid rgba(184,150,46,.35);padding:1px 9px;display:inline-block;margin-bottom:1.3rem}
-.offre-icon{font-size:1.3rem;display:block;opacity:.65;margin-bottom:.7rem}
-.offre-name{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--ivoire);margin-bottom:.4rem}
+.offres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--bordor)}
+.offre{background:var(--card);padding:2.2rem 1.8rem;cursor:pointer;transition:background .3s}
+.offre:hover{background:var(--bg2)}
+.offre.featured{background:var(--or-pal);outline:1.5px solid var(--or2)}
+.offre-badge{font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or2);border:1px solid var(--bordor);padding:1px 9px;display:inline-block;margin-bottom:1.3rem}
+.offre-icon{font-size:1.3rem;display:block;opacity:.6;margin-bottom:.7rem;color:var(--or2)}
+.offre-name{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--txt);margin-bottom:.4rem}
 .offre-desc{font-size:.8rem;color:var(--txt3);line-height:1.58;margin-bottom:1.3rem}
 .offre-features{list-style:none;margin-bottom:1.8rem}
-.offre-features li{font-size:.8rem;color:var(--txt3);padding:.35rem 0;border-bottom:1px solid rgba(184,150,46,.07);display:flex;align-items:center;gap:.6rem}
-.offre-features li::before{content:'—';color:var(--or);opacity:.5;font-size:.65rem}
+.offre-features li{font-size:.8rem;color:var(--txt3);padding:.35rem 0;border-bottom:1px solid var(--bordor);display:flex;align-items:center;gap:.6rem}
+.offre-features li::before{content:'—';color:var(--or2);opacity:.6;font-size:.65rem}
 .offre-price{font-family:'Playfair Display',serif;font-size:2.3rem;color:var(--or2);line-height:1;margin-bottom:.18rem}
-.offre-note{font-size:.68rem;color:var(--txt3);font-style:italic;margin-bottom:1.3rem}
+.offre-note{font-size:.68rem;color:var(--txt4);font-style:italic;margin-bottom:1.3rem}
 
-/* ORACLE TIRAGE */
+/* ORACLE */
 .oracle-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
 @media(max-width:860px){.oracle-layout{grid-template-columns:1fr;gap:2rem}}
-.oracle-intro h2{font-size:clamp(1.7rem,3vw,2.6rem);color:var(--ivoire);margin:.4rem 0 1rem}
+.oracle-intro h2{font-size:clamp(1.7rem,3vw,2.6rem);color:var(--txt);margin:.4rem 0 1rem}
 .oracle-intro p{font-size:.9rem;color:var(--txt3);line-height:1.85;margin-bottom:1.2rem}
 .oracle-feats{list-style:none;margin-bottom:1.8rem}
-.oracle-feats li{font-size:.84rem;color:var(--txt3);padding:.5rem 0;border-bottom:1px solid rgba(184,150,46,.08);display:flex;align-items:center;gap:.7rem}
-.oracle-feats li::before{content:'✦';color:var(--or);font-size:.48rem;flex-shrink:0}
-.tirage-box{background:var(--noir2);border:1px solid rgba(184,150,46,.18);padding:2.2rem}
+.oracle-feats li{font-size:.84rem;color:var(--txt3);padding:.5rem 0;border-bottom:1px solid var(--bordor);display:flex;align-items:center;gap:.7rem}
+.oracle-feats li::before{content:'✦';color:var(--or2);font-size:.48rem;flex-shrink:0}
+.tirage-box{background:var(--card);border:1.5px solid var(--bordor);padding:2.2rem;box-shadow:0 2px 24px rgba(154,122,42,.07)}
 .t-step{display:none}
 .t-step.active{display:block}
-.t-step-title{font-size:.58rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:1.5rem}
-.conc-box{border:1px solid rgba(184,150,46,.12);padding:1.3rem;margin:1.3rem 0;text-align:center;background:rgba(184,150,46,.025)}
-.conc-box .ct{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.6rem}
-.conc-box p{font-size:.85rem;color:var(--txt3);line-height:1.78;font-style:italic}
+.t-step-title{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or2);text-align:center;margin-bottom:1.5rem}
+.conc-box{border:1px solid var(--bordor);padding:1.3rem;margin:1.3rem 0;text-align:center;background:var(--or-pal)}
+.conc-box .ct{font-size:.54rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or2);margin-bottom:.6rem}
+.conc-box p{font-size:.85rem;color:var(--txt2);line-height:1.78;font-style:italic}
 .welcome{font-family:'Playfair Display',serif;font-style:italic;font-size:.95rem;color:var(--or2);text-align:center;margin-bottom:1.3rem;min-height:1.3rem}
 .cards-row{display:flex;justify-content:center;gap:.9rem;margin-bottom:1.3rem}
 .card-wrap{text-align:center}
-.card-pos{font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);margin-bottom:.45rem}
-.card{width:100px;height:150px;border:1px solid rgba(184,150,46,.2);overflow:hidden;transition:transform .3s;position:relative}
+.card-pos{font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt4);margin-bottom:.45rem}
+.card{width:100px;height:150px;border:1.5px solid var(--bordor);overflow:hidden;transition:transform .3s;position:relative}
 .card:hover{transform:translateY(-3px)}
-.card-back{width:100%;height:100%;background:var(--noir3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem}
-.card-back-sym{font-size:1.4rem;opacity:.18;color:var(--or)}
-.card-back-line{width:36px;height:1px;background:rgba(184,150,46,.15)}
+.card-back{width:100%;height:100%;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem}
+.card-back-sym{font-size:1.4rem;opacity:.25;color:var(--or2)}
+.card-back-line{width:36px;height:1px;background:var(--bordor)}
 .card img{width:100%;height:100%;object-fit:cover;display:block}
 @keyframes flipIn{from{transform:rotateY(90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
-.card.revealed{animation:flipIn .45s ease forwards;border-color:rgba(184,150,46,.38)}
+.card.revealed{animation:flipIn .45s ease forwards;border-color:var(--or2)}
 .card-name-lbl{font-size:.68rem;color:var(--txt3);margin-top:.38rem;line-height:1.3}
-.btn-tirage{width:100%;padding:.9rem;background:transparent;border:1px solid rgba(184,150,46,.35);color:var(--or2);font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all var(--T);margin-top:.4rem}
-.btn-tirage:hover:not(:disabled){background:rgba(184,150,46,.07);border-color:var(--or2)}
+.btn-tirage{width:100%;padding:.9rem;background:transparent;border:1.5px solid var(--bordor);color:var(--or2);font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all var(--T);margin-top:.4rem}
+.btn-tirage:hover:not(:disabled){background:var(--or-pal)}
 .btn-tirage:disabled{opacity:.3;cursor:not-allowed}
-.lecture{display:none;margin-top:1.5rem;border-top:1px solid rgba(184,150,46,.12);padding-top:1.5rem}
+.lecture{display:none;margin-top:1.5rem;border-top:1.5px solid var(--bordor);padding-top:1.5rem}
 .lecture.show{display:block}
-.lecture-title{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--ivoire2);text-align:center;margin-bottom:.25rem}
-.lecture-sub{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);text-align:center;margin-bottom:1.1rem}
+.lecture-title{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--txt);text-align:center;margin-bottom:.25rem}
+.lecture-sub{font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt4);text-align:center;margin-bottom:1.1rem}
 .lecture-loading{text-align:center;padding:1.2rem}
-.lecture-loading .spin{display:inline-block;font-size:1.1rem;color:var(--or);animation:spin 3s linear infinite}
+.lecture-loading .spin{display:inline-block;font-size:1.1rem;color:var(--or2);animation:spin 3s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.lecture-loading p{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-top:.4rem}
-.lecture-text{font-size:.88rem;line-height:1.88;color:var(--txt3)}
+.lecture-loading p{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt4);margin-top:.4rem}
+.lecture-text{font-size:.88rem;line-height:1.88;color:var(--txt2)}
 .lecture-text p{margin-bottom:.9rem}
 .lecture-text strong{color:var(--or2);font-weight:400}
-.combo-note{margin-top:.9rem;padding:.9rem 1.1rem;border:1px solid rgba(184,150,46,.18);background:rgba(184,150,46,.03);font-size:.8rem;color:var(--txt3);font-style:italic}
-.lecture-cta{margin-top:1.3rem;text-align:center;border-top:1px solid rgba(184,150,46,.1);padding-top:1.1rem}
-.lecture-cta p{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:.7rem}
+.combo-note{margin-top:.9rem;padding:.9rem 1.1rem;border:1px solid var(--bordor);background:var(--or-pal);font-size:.8rem;color:var(--txt2);font-style:italic}
+.lecture-cta{margin-top:1.3rem;text-align:center;border-top:1px solid var(--bordor);padding-top:1.1rem}
+.lecture-cta p{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt4);margin-bottom:.7rem}
 
 /* COMPATIBILITÉ */
-.compat-box{background:var(--noir);border:1px solid rgba(184,150,46,.14);padding:1.8rem;max-width:460px;margin:2rem auto 0}
-.compat-title{font-size:.58rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.35rem}
-.compat-sub{font-size:.78rem;color:var(--txt3);text-align:center;margin-bottom:1.4rem}
-.compat-result{display:none;text-align:center;padding:1.3rem;border:1px solid rgba(184,150,46,.14);margin-top:1.1rem}
+.compat-box{background:var(--card);border:1.5px solid var(--bordor);padding:1.8rem;max-width:460px;margin:2rem auto 0;box-shadow:0 2px 16px rgba(154,122,42,.06)}
+.compat-title{font-size:.58rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or2);text-align:center;margin-bottom:.35rem}
+.compat-sub{font-size:.78rem;color:var(--txt4);text-align:center;margin-bottom:1.4rem}
+.compat-result{display:none;text-align:center;padding:1.3rem;border:1px solid var(--bordor);margin-top:1.1rem;background:var(--or-pal)}
 .compat-result.show{display:block}
 .compat-score{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--or2);line-height:1;margin-bottom:.4rem}
-.compat-msg{font-size:.82rem;color:var(--txt3);font-style:italic}
+.compat-msg{font-size:.82rem;color:var(--txt2);font-style:italic}
+
+/* STRIP */
+.strip{background:var(--bg3);border-top:1px solid var(--bordor);border-bottom:1px solid var(--bordor);padding:1.4rem 5vw;display:flex;justify-content:center;gap:clamp(1.5rem,4vw,4rem);flex-wrap:wrap}
+.strip-item{text-align:center}
+.strip-item .sn{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--or2);line-height:1;margin-bottom:.15rem}
+.strip-item .sl{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--txt4)}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(10,9,6,.88);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1rem}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(26,20,16,.55);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1rem}
 .modal-overlay.open{display:flex}
-.modal{background:var(--noir2);border:1px solid rgba(184,150,46,.18);max-width:440px;width:100%;max-height:90vh;overflow-y:auto;padding:2.2rem;position:relative}
-.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--txt3);font-size:.95rem;cursor:pointer;transition:color .2s;line-height:1}
+.modal{background:var(--card);border:1.5px solid var(--bordor);max-width:440px;width:100%;max-height:90vh;overflow-y:auto;padding:2.2rem;position:relative;box-shadow:0 8px 48px rgba(154,122,42,.15)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--txt4);font-size:.95rem;cursor:pointer;transition:color .2s}
 .modal-close:hover{color:var(--txt)}
-.modal-eyebrow{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.45rem}
-.modal-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ivoire);margin-bottom:.28rem}
-.modal-sub{font-size:.8rem;color:var(--txt3);margin-bottom:1.8rem;font-style:italic}
-.modal-sum{background:rgba(184,150,46,.05);border:1px solid rgba(184,150,46,.12);padding:.9rem 1.1rem;margin-bottom:1.6rem}
+.modal-eyebrow{font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or2);margin-bottom:.45rem}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--txt);margin-bottom:.28rem}
+.modal-sub{font-size:.8rem;color:var(--txt4);margin-bottom:1.8rem;font-style:italic}
+.modal-sum{background:var(--or-pal);border:1px solid var(--bordor);padding:.9rem 1.1rem;margin-bottom:1.6rem}
 .modal-sum-row{display:flex;justify-content:space-between;font-size:.8rem;padding:.28rem 0;color:var(--txt3)}
-.modal-sum-total{display:flex;justify-content:space-between;padding-top:.6rem;margin-top:.35rem;border-top:1px solid rgba(184,150,46,.12);font-size:.82rem;font-weight:700;letter-spacing:.07em;color:var(--or2)}
+.modal-sum-total{display:flex;justify-content:space-between;padding-top:.6rem;margin-top:.35rem;border-top:1px solid var(--bordor);font-size:.82rem;font-weight:700;letter-spacing:.07em;color:var(--or2)}
 .modal-field{margin-bottom:.95rem}
-.modal-field label{display:block;font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);margin-bottom:.4rem}
-.modal-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(184,150,46,.18);color:var(--txt);font-family:'Lato',sans-serif;font-size:.9rem;padding:.65rem .85rem;outline:none;transition:border-color .2s}
-.modal-input:focus{border-color:rgba(184,150,46,.48)}
-.modal-input::placeholder{color:var(--txt3)}
+.modal-field label{display:block;font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--txt4);margin-bottom:.4rem}
+.modal-input{width:100%;background:var(--bg);border:1.5px solid var(--bordor);color:var(--txt);font-family:'Lato',sans-serif;font-size:.9rem;padding:.65rem .85rem;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--or2)}
+.modal-input::placeholder{color:var(--txt4)}
 .modal-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.pay-methods{display:flex;gap:1px;background:rgba(184,150,46,.1);margin-bottom:1.3rem}
-.pm-btn{flex:1;padding:.58rem .4rem;background:var(--noir);border:none;color:var(--txt3);font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:all .18s}
-.pm-btn.active{background:rgba(184,150,46,.1);color:var(--or2)}
-.btn-pay{width:100%;padding:.95rem;background:var(--or);color:var(--noir);border:none;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.pay-methods{display:flex;gap:1px;background:var(--bordor);margin-bottom:1.3rem}
+.pm-btn{flex:1;padding:.58rem .4rem;background:var(--bg);border:none;color:var(--txt4);font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:all .18s}
+.pm-btn.active{background:var(--or-pal);color:var(--or2)}
+.btn-pay{width:100%;padding:.95rem;background:var(--or2);color:#fff;border:none;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .btn-pay:hover{background:var(--or3)}
-.modal-secure{text-align:center;font-size:.68rem;color:var(--txt3);margin-top:.75rem;font-style:italic}
+.modal-secure{text-align:center;font-size:.68rem;color:var(--txt4);margin-top:.75rem;font-style:italic}
 .pay-success{display:none;text-align:center;padding:1.5rem 0}
 .pay-success.show{display:block}
 .pay-success .si{font-size:1.8rem;margin-bottom:.8rem;display:block}
-.pay-success h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ivoire);font-style:italic;margin-bottom:.9rem}
+.pay-success h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--txt);font-style:italic;margin-bottom:.9rem}
 .pay-success p{font-size:.85rem;color:var(--txt3);line-height:1.78}
 
 /* FOOTER */
-footer{background:var(--noir2);border-top:1px solid rgba(184,150,46,.08);padding:2.5rem clamp(1.5rem,5vw,7rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
-.footer-brand{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--ivoire2)}
-.footer-legal{font-size:.7rem;color:var(--txt3);margin-top:.25rem;line-height:1.55}
+footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem clamp(1.5rem,5vw,7rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-brand{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--txt)}
+.footer-legal{font-size:.7rem;color:var(--txt4);margin-top:.25rem;line-height:1.55}
 .footer-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
-.footer-links a{font-size:.68rem;color:var(--txt3);text-decoration:none;letter-spacing:.07em;transition:color .2s}
-.footer-links a:hover{color:var(--or)}
-
-/* STRIP */
-.strip{background:var(--noir2);border-top:1px solid rgba(184,150,46,.1);border-bottom:1px solid rgba(184,150,46,.1);padding:1.4rem 5vw;display:flex;justify-content:center;gap:clamp(1.5rem,4vw,4rem);flex-wrap:wrap}
-.strip-item{text-align:center}
-.strip-item .sn{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--or2);line-height:1;margin-bottom:.15rem}
-.strip-item .sl{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3)}
+.footer-links a{font-size:.68rem;color:var(--txt4);text-decoration:none;letter-spacing:.07em;transition:color .2s}
+.footer-links a:hover{color:var(--or2)}
 
 @media(max-width:600px){
   nav .nav-links{display:none}
@@ -270,7 +281,7 @@ footer{background:var(--noir2);border-top:1px solid rgba(184,150,46,.08);padding
 }
 </style>
 </head>
-<body class="page-oracle">
+<body>
 <nav>
   <a href="index.html" class="nav-logo">Arcana Mystica</a>
   <ul class="nav-links">
@@ -308,92 +319,87 @@ footer{background:var(--noir2);border-top:1px solid rgba(184,150,46,.08);padding
 
 <div class="page">
   <div class="section">
-    <div style="max-width:none">
-      <div class="section-hd">
-        <div class="eyebrow">Oracle Arcana</div>
-        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--ivoire);margin:.5rem 0 .9rem">Votre tirage gratuit</h2>
-        <p style="font-size:.92rem;color:var(--txt3);max-width:460px;margin:0 auto;line-height:1.8">52 lames exclusives. Chaque tirage est unique, chaque interprétation personnalisée selon votre profil.</p>
+    <div class="section-hd">
+      <div class="eyebrow">Oracle Arcana</div>
+      <h2>Votre tirage gratuit</h2>
+      <p>52 lames exclusives. Chaque tirage est unique, chaque interprétation personnalisée selon votre profil.</p>
+    </div>
+    <div class="oracle-layout">
+      <div class="oracle-intro">
+        <h2>Un oracle exclusif,<br>créé pour vous</h2>
+        <p>52 lames dessinées spécialement pour Arcana Mystica, organisées en 7 familles planétaires. Chaque tirage révèle une lecture unique adaptée à votre âge et à vos données natales.</p>
+        <ul class="oracle-feats">
+          <li>Tirage gratuit 3 lames — Passé · Présent · Futur</li>
+          <li>Interprétation personnalisée selon votre profil</li>
+          <li>52 lames originales en 7 familles planétaires</li>
+          <li>Heure et lieu de naissance pris en compte</li>
+          <li>Combinaisons significatives détectées automatiquement</li>
+        </ul>
       </div>
-      <div class="oracle-layout">
-        <div class="oracle-intro">
-          <h2>Un oracle exclusif,<br>créé pour vous</h2>
-          <p>52 lames dessinées spécialement pour Arcana Mystica, organisées en 7 familles planétaires. Chaque tirage révèle une lecture unique adaptée à votre âge et à vos données natales.</p>
-          <ul class="oracle-feats">
-            <li>Tirage gratuit 3 lames — Passé · Présent · Futur</li>
-            <li>Interprétation personnalisée selon votre profil</li>
-            <li>52 lames originales en 7 familles planétaires</li>
-            <li>Heure et lieu de naissance pris en compte</li>
-            <li>Combinaisons significatives détectées automatiquement</li>
-          </ul>
-        </div>
-        <div class="tirage-box">
-          <div class="t-step active" id="ts1">
-            <div class="t-step-title">Votre identité</div>
-            <div class="f-row">
-              <div class="field"><label>Prénom</label><input class="f-input" type="text" id="inputPrenom" placeholder="Votre prénom" maxlength="30"></div>
-              <div class="field"><label>Nom</label><input class="f-input" type="text" id="inputNom" placeholder="Votre nom" maxlength="30"></div>
-            </div>
-            <div class="field"><label>Date de naissance</label><input class="f-input" type="date" id="inputDdn"></div>
-            <div class="f-row">
-              <div class="field"><label>Heure de naissance <small>(si connue)</small></label><input class="f-input" type="time" id="inputHeure"></div>
-              <div class="field"><label>Lieu de naissance <small>(si connu)</small></label><input class="f-input" type="text" id="inputLieu" placeholder="ex: Nantes, France" maxlength="50"></div>
-            </div>
-            <div class="conc-box">
-              <div class="ct">Avant de tirer</div>
-              <p>Fermez les yeux. Respirez. Concentrez-vous intensément sur votre question intérieure. Quand vous êtes prêt(e), cliquez.</p>
-            </div>
-            <button class="btn-full" onclick="validerIdentite()">Je suis prêt · Consulter l'Oracle</button>
+      <div class="tirage-box">
+        <div class="t-step active" id="ts1">
+          <div class="t-step-title">Votre identité</div>
+          <div class="f-row">
+            <div class="field"><label>Prénom</label><input class="f-input" type="text" id="inputPrenom" placeholder="Votre prénom" maxlength="30"></div>
+            <div class="field"><label>Nom</label><input class="f-input" type="text" id="inputNom" placeholder="Votre nom" maxlength="30"></div>
           </div>
-          <div class="t-step" id="ts2">
-            <div class="welcome" id="welcomeMsg"></div>
-            <div class="cards-row">
-              <div class="card-wrap"><div class="card-pos">Passé</div><div class="card" id="card1"><div class="card-back"><div class="card-back-sym">☽</div><div class="card-back-line"></div></div></div><div class="card-name-lbl" id="cname1"></div></div>
-              <div class="card-wrap"><div class="card-pos">Présent</div><div class="card" id="card2"><div class="card-back"><div class="card-back-sym">✦</div><div class="card-back-line"></div></div></div><div class="card-name-lbl" id="cname2"></div></div>
-              <div class="card-wrap"><div class="card-pos">Futur</div><div class="card" id="card3"><div class="card-back"><div class="card-back-sym">☀</div><div class="card-back-line"></div></div></div><div class="card-name-lbl" id="cname3"></div></div>
-            </div>
-            <button class="btn-tirage" id="drawBtn" onclick="drawCards()">Révéler les lames</button>
-            <div class="lecture" id="lecture">
-              <div class="lecture-title" id="lecTitle"></div>
-              <div class="lecture-sub">Passé · Présent · Futur</div>
-              <div class="lecture-loading" id="lecLoading"><div class="spin">✦</div><p>L'oracle consulte les lames</p></div>
-              <div class="lecture-text" id="lecText" style="display:none"></div>
-              <div class="lecture-cta"><p>Pour une lecture complète et approfondie</p><button class="btn btn-gold" onclick="openModal('Consultation Approfondie','Oracle Arcana — Lecture complète','29')">Consulter Séraphine</button></div>
-            </div>
+          <div class="field"><label>Date de naissance</label><input class="f-input" type="date" id="inputDdn"></div>
+          <div class="f-row">
+            <div class="field"><label>Heure de naissance <small>(si connue)</small></label><input class="f-input" type="time" id="inputHeure"></div>
+            <div class="field"><label>Lieu de naissance <small>(si connu)</small></label><input class="f-input" type="text" id="inputLieu" placeholder="ex: Nantes, France" maxlength="50"></div>
+          </div>
+          <div class="conc-box">
+            <div class="ct">Avant de tirer</div>
+            <p>Fermez les yeux. Respirez. Concentrez-vous intensément sur votre question intérieure. Quand vous êtes prêt(e), cliquez.</p>
+          </div>
+          <button class="btn-full" onclick="validerIdentite()">Je suis prêt · Consulter l'Oracle</button>
+        </div>
+        <div class="t-step" id="ts2">
+          <div class="welcome" id="welcomeMsg"></div>
+          <div class="cards-row">
+            <div class="card-wrap"><div class="card-pos">Passé</div><div class="card" id="card1"><div class="card-back"><div class="card-back-sym">☽</div><div class="card-back-line"></div></div></div><div class="card-name-lbl" id="cname1"></div></div>
+            <div class="card-wrap"><div class="card-pos">Présent</div><div class="card" id="card2"><div class="card-back"><div class="card-back-sym">✦</div><div class="card-back-line"></div></div></div><div class="card-name-lbl" id="cname2"></div></div>
+            <div class="card-wrap"><div class="card-pos">Futur</div><div class="card" id="card3"><div class="card-back"><div class="card-back-sym">☀</div><div class="card-back-line"></div></div></div><div class="card-name-lbl" id="cname3"></div></div>
+          </div>
+          <button class="btn-tirage" id="drawBtn" onclick="drawCards()">Révéler les lames</button>
+          <div class="lecture" id="lecture">
+            <div class="lecture-title" id="lecTitle"></div>
+            <div class="lecture-sub">Passé · Présent · Futur</div>
+            <div class="lecture-loading" id="lecLoading"><div class="spin">✦</div><p>L'oracle consulte les lames</p></div>
+            <div class="lecture-text" id="lecText" style="display:none"></div>
+            <div class="lecture-cta"><p>Pour une lecture complète et approfondie</p><button class="btn btn-gold" onclick="openModal('Consultation Approfondie','Oracle Arcana — Lecture complète','29')">Consulter Séraphine</button></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- OFFRES -->
-  <div class="bg2">
-    <div class="section">
-      <div class="section-hd"><div class="eyebrow">Nos offres</div><h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--ivoire);margin:.5rem 0 .9rem">Choisissez votre consultation</h2></div>
-      <div class="offres-grid">
-        <div class="offre" onclick="openModal('Oracle Essentiel','Tirage 5 lames Oracle Arcana','19')">
-          <span class="offre-icon">✦</span><div class="offre-name">Oracle Essentiel</div>
-          <div class="offre-desc">Tirage 5 lames avec interprétation personnalisée.</div>
-          <ul class="offre-features"><li>5 lames Oracle Arcana</li><li>Interprétation personnalisée</li><li>Réponse à votre question</li><li>Livraison instantanée</li></ul>
-          <div class="offre-price">19 €</div><div class="offre-note">paiement sécurisé</div>
-          <button class="btn btn-outline" style="width:100%">Choisir</button>
-        </div>
-        <div class="offre featured" onclick="openModal('Consultation Privée','Séraphine vous reçoit en tchat privé','39')">
-          <div class="offre-badge">Le plus demandé</div>
-          <span class="offre-icon">☽</span><div class="offre-name">Consultation Privée</div>
-          <div class="offre-desc">Session avec Séraphine — 10 lames, tchat privé.</div>
-          <ul class="offre-features"><li>10 lames Oracle Arcana</li><li>Tchat privé avec Séraphine</li><li>Amour, travail, famille, spiritualité</li><li>Questions de suivi incluses</li><li>Disponible 24h/24</li></ul>
-          <div class="offre-price">39 €</div><div class="offre-note">satisfait ou remboursé sous 48h</div>
-          <button class="btn btn-gold" style="width:100%">Consulter maintenant</button>
-        </div>
-        <div class="offre" onclick="openModal('Grand Bilan Annuel','Exploration complète des 12 mois à venir','79')">
-          <span class="offre-icon">◈</span><div class="offre-name">Grand Bilan Annuel</div>
-          <div class="offre-desc">Exploration complète des 12 mois + numérologie offerte.</div>
-          <ul class="offre-features"><li>Tirage 12 + 3 lames maîtresses</li><li>Rapport PDF illustré 15 pages</li><li>Analyse numérologique offerte</li><li>Suivi mensuel inclus</li></ul>
-          <div class="offre-price">79 €</div><div class="offre-note">paiement en 3× sans frais</div>
-          <button class="btn btn-outline" style="width:100%">Réserver</button>
-        </div>
+  <div class="bg2"><div class="section">
+    <div class="section-hd"><div class="eyebrow">Nos offres</div><h2>Choisissez votre consultation</h2></div>
+    <div class="offres-grid">
+      <div class="offre" onclick="openModal('Oracle Essentiel','Tirage 5 lames Oracle Arcana','19')">
+        <span class="offre-icon">✦</span><div class="offre-name">Oracle Essentiel</div>
+        <div class="offre-desc">Tirage 5 lames avec interprétation personnalisée.</div>
+        <ul class="offre-features"><li>5 lames Oracle Arcana</li><li>Interprétation personnalisée</li><li>Réponse immédiate</li><li>Livraison instantanée</li></ul>
+        <div class="offre-price">19 €</div><div class="offre-note">paiement sécurisé</div>
+        <button class="btn btn-outline" style="width:100%">Choisir</button>
+      </div>
+      <div class="offre featured" onclick="openModal('Consultation Privée','Séraphine vous reçoit en tchat privé','39')">
+        <div class="offre-badge">Le plus demandé</div>
+        <span class="offre-icon">☽</span><div class="offre-name">Consultation Privée</div>
+        <div class="offre-desc">Session avec Séraphine — 10 lames, tchat privé.</div>
+        <ul class="offre-features"><li>10 lames Oracle Arcana</li><li>Tchat privé avec Séraphine</li><li>Amour, travail, famille</li><li>Questions de suivi incluses</li><li>Disponible 24h/24</li></ul>
+        <div class="offre-price">39 €</div><div class="offre-note">satisfait ou remboursé 48h</div>
+        <button class="btn btn-gold" style="width:100%">Consulter maintenant</button>
+      </div>
+      <div class="offre" onclick="openModal('Grand Bilan Annuel','Exploration complète des 12 mois','79')">
+        <span class="offre-icon">◈</span><div class="offre-name">Grand Bilan Annuel</div>
+        <div class="offre-desc">Exploration 12 mois + numérologie offerte.</div>
+        <ul class="offre-features"><li>Tirage 12 + 3 lames maîtresses</li><li>Rapport PDF 15 pages</li><li>Analyse numérologique offerte</li><li>Suivi mensuel inclus</li></ul>
+        <div class="offre-price">79 €</div><div class="offre-note">paiement en 3× sans frais</div>
+        <button class="btn btn-outline" style="width:100%">Réserver</button>
       </div>
     </div>
-  </div>
+  </div></div>
 </div>
 <footer>
   <div>
@@ -421,8 +427,7 @@ footer{background:var(--noir2);border-top:1px solid rgba(184,150,46,.08);padding
       </div>
       <div class="modal-field"><label>Nom complet</label><input class="modal-input" type="text" id="payName" placeholder="Prénom et nom"></div>
       <div class="modal-field"><label>Adresse e-mail</label><input class="modal-input" type="email" id="payEmail" placeholder="votre@email.fr"></div>
-      <div class="modal-field">
-        <label>Moyen de paiement</label>
+      <div class="modal-field"><label>Moyen de paiement</label>
         <div class="pay-methods">
           <button class="pm-btn active" id="pm-cb" onclick="selPay('cb')">Carte</button>
           <button class="pm-btn" id="pm-pp" onclick="selPay('pp')">PayPal</button>
@@ -442,7 +447,7 @@ footer{background:var(--noir2);border-top:1px solid rgba(184,150,46,.08);padding
     <div class="pay-success" id="paySuccess">
       <span class="si">✦</span>
       <h3>Réservation confirmée</h3>
-      <p>Merci <strong id="sucName"></strong>.<br>Un e-mail de confirmation arrive à <strong id="sucEmail"></strong>.<br><br><em>Les astres s'alignent pour vous…</em></p>
+      <p>Merci <strong id="sucName"></strong>.<br>Un e-mail arrive à <strong id="sucEmail"></strong>.<br><br><em>Les astres s'alignent pour vous…</em></p>
     </div>
   </div>
 </div>
@@ -482,7 +487,7 @@ function doPay(){
   },2000);
 }
 
-var userName="",userNom="",userDdn="",userHeure="",userLieu="";
+var userName="",userNom="",userDdn="",userHeure="",userLieu="",drawn=false,drawnCards=[];
 var CARD_IMAGES = {
   "B": "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTIwIDE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2U2ZjBmZiIgcng9IjMiLz4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjE3MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg2MGEwIiBzdHJva2Utd2lkdGg9IjEuNSIgcng9IjIiLz4KICA8cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMTA2IiBoZWlnaHQ9IjE2NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg2MGEwIiBzdHJva2Utd2lkdGg9IjAuNSIgcng9IjEiIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjE1IiB5PSIyNSIgd2lkdGg9IjkwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzQwNjBjMCIgcng9IjQiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjIwIiB5PSIzMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjExMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiIHJ4PSIyIi8+PHRleHQgeD0iNjAiIHk9Ijk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjkiPuKcpjwvdGV4dD4KICA8dGV4dCB4PSI2MCIgeT0iMTY0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzg4NjBhMCIgZm9udC1zdHlsZT0iaXRhbGljIj5MYSBDYXJ0ZSBCbGV1ZTwvdGV4dD4KICA8dGV4dCB4PSI2MCIgeT0iMTc0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iNyIgZmlsbD0iIzg4NjBhMCIgb3BhY2l0eT0iMC43Ij5TcGVjaWFsPC90ZXh0PgogIDx0ZXh0IHg9IjEzIiB5PSIyMCIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjkiIGZpbGw9IiM4ODYwYTAiPkI8L3RleHQ+Cjwvc3ZnPg==",
   "1": "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTIwIDE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2ZhZjdmMiIgcng9IjMiLz4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjE3MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg2MGEwIiBzdHJva2Utd2lkdGg9IjEuNSIgcng9IjIiLz4KICA8cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMTA2IiBoZWlnaHQ9IjE2NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg2MGEwIiBzdHJva2Utd2lkdGg9IjAuNSIgcng9IjEiIG9wYWNpdHk9IjAuNSIvPgogIDxwYXRoIGQ9Ik0zNSA5MCBMNjAgNTAgTDg1IDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODYwYTAiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iNDgiIHI9IjYiIGZpbGw9IiM4ODYwYTAiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjUyIiB5PSI4OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjM1IiBmaWxsPSIjODg2MGEwIiByeD0iMiIvPjxwYXRoIGQ9Ik00MCA5NSBRNjAgODAgODAgOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzg4NjBhMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48Y2lyY2xlIGN4PSI0MCIgY3k9Ijk3IiByPSI0IiBmaWxsPSIjODg2MGEwIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI5NyIgcj0iNCIgZmlsbD0iIzg4NjBhMCIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iODgiIHI9IjUiIGZpbGw9IiNjOWEwMzAiIG9wYWNpdHk9IjAuOSIvPgogIDx0ZXh0IHg9IjYwIiB5PSIxNjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI5IiBmaWxsPSIjODg2MGEwIiBmb250LXN0eWxlPSJpdGFsaWMiPkxhIERlc3RpbmVlPC90ZXh0PgogIDx0ZXh0IHg9IjYwIiB5PSIxNzQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI3IiBmaWxsPSIjODg2MGEwIiBvcGFjaXR5PSIwLjciPlNwZWNpYWw8L3RleHQ+CiAgPHRleHQgeD0iMTMiIHk9IjIwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzg4NjBhMCI+MTwvdGV4dD4KPC9zdmc+",
@@ -1274,69 +1279,57 @@ function doPay(){
 // Init
 document.addEventListener("DOMContentLoaded",function(){initHeuresMiroirs();});
 
-
 function validerIdentite(){
   var p=document.getElementById("inputPrenom").value.trim();
-  var n=document.getElementById("inputNom").value.trim();
-  var d=document.getElementById("inputDdn").value;
-  var h=document.getElementById("inputHeure").value;
-  var l=document.getElementById("inputLieu").value.trim();
-  if(!p){document.getElementById("inputPrenom").style.borderColor="var(--or)";return;}
-  userName=p;userNom=n;userDdn=d;userHeure=h;userLieu=l;
+  if(!p){document.getElementById("inputPrenom").style.borderColor="var(--or2)";return;}
+  userName=p;userNom=document.getElementById("inputNom").value.trim();
+  userDdn=document.getElementById("inputDdn").value;
+  userHeure=document.getElementById("inputHeure").value;
+  userLieu=document.getElementById("inputLieu").value.trim();
   document.getElementById("ts1").classList.remove("active");
   document.getElementById("ts2").classList.add("active");
   var age="";
-  if(d){var dt=new Date(d),now=new Date(),a=now.getFullYear()-dt.getFullYear();
-    if(now.getMonth()<dt.getMonth()||(now.getMonth()===dt.getMonth()&&now.getDate()<dt.getDate()))a--;
-    age=", "+a+" ans";}
-  var lieu=l?" — "+l:"";
-  document.getElementById("welcomeMsg").textContent=p+age+lieu+" — l'Oracle est prêt pour vous";
+  if(userDdn){var d=new Date(userDdn),now=new Date(),a=now.getFullYear()-d.getFullYear();
+    if(now.getMonth()<d.getMonth()||(now.getMonth()===d.getMonth()&&now.getDate()<d.getDate()))a--;age=", "+a+" ans";}
+  document.getElementById("welcomeMsg").textContent=p+age+(userLieu?" — "+userLieu:"")+" — l'Oracle est prêt pour vous";
 }
-
 function drawCards(){
   if(drawn)return;drawn=true;
-  var btn=document.getElementById("drawBtn");
-  btn.disabled=true;btn.textContent="Les lames se disposent…";
+  var btn=document.getElementById("drawBtn");btn.disabled=true;btn.textContent="Les lames se disposent…";
   var pool=BELLINE.slice();drawnCards=[];
   for(var i=0;i<3;i++){var idx=Math.floor(Math.random()*pool.length);drawnCards.push(pool.splice(idx,1)[0]);}
-  var pos=["passe","present","futur"];
-  for(var j=0;j<3;j++){(function(k){setTimeout(function(){revealCard2(k,drawnCards[k]);},(k*700));})(j);}
-  setTimeout(function(){startAI2();},2400);
+  for(var j=0;j<3;j++){(function(k){setTimeout(function(){
+    var el=document.getElementById("card"+(k+1));
+    var img=CARD_IMAGES[String(drawnCards[k].num)];
+    el.classList.add("revealed");
+    el.innerHTML=img?'<img src="'+img+'" alt="'+drawnCards[k].name+'">'
+      :'<div class="card-back"><div style="font-size:.75rem;color:var(--or2);font-family:Playfair Display,serif;padding:.4rem;text-align:center">'+drawnCards[k].name+'</div></div>';
+    document.getElementById("cname"+(k+1)).textContent=drawnCards[k].name;
+  },k*700);})(j);}
+  setTimeout(startAI2,2400);
 }
-
-function revealCard2(idx,card){
-  var el=document.getElementById("card"+(idx+1));
-  var img=CARD_IMAGES[String(card.num)];
-  el.classList.add("revealed");
-  if(img){el.innerHTML='<img src="'+img+'" alt="'+card.name+'">';}
-  else{el.innerHTML='<div class="card-back"><div style="font-size:.8rem;color:var(--or2);font-family:Playfair Display,serif;padding:.5rem;text-align:center">'+card.name+'</div></div>';}
-  document.getElementById("cname"+(idx+1)).textContent=card.name;
-}
-
 function startAI2(){
   var lec=document.getElementById("lecture");lec.classList.add("show");
   lec.scrollIntoView({behavior:"smooth",block:"nearest"});
-  var c=drawnCards;
-  document.getElementById("lecTitle").textContent=c[0].name+" · "+c[1].name+" · "+c[2].name;
+  var c=drawnCards,c0=c[0],c1=c[1],c2=c[2];
+  document.getElementById("lecTitle").textContent=c0.name+" · "+c1.name+" · "+c2.name;
   var combos=COMBOS.filter(function(co){return co.cards.every(function(n){return c.map(function(x){return x.num;}).indexOf(n)!==-1;});});
   document.getElementById("lecLoading").style.display="block";
   document.getElementById("lecText").style.display="none";
-  var c0=c[0],c1=c[1],c2=c[2],age=getAge();
+  var age=getAge();
   setTimeout(function(){
     document.getElementById("lecLoading").style.display="none";
     var txt=document.getElementById("lecText");txt.style.display="block";
-    var ageCtx="";
-    if(age!==null){if(age>=60)ageCtx="À cette belle étape de votre vie, ";else if(age<=30)ageCtx="Dans cette période fondatrice, ";}
+    var ageCtx=age!==null?(age>=60?"À cette belle étape de votre vie, ":age<=30?"Dans cette période fondatrice, ":""):"";
     var natal="";
     if(userHeure)natal+="Né(e) à "+userHeure;
     if(userHeure&&userLieu)natal+=" à ";
     if(userLieu)natal+=userLieu;
-    if(natal)natal=" "+natal+" — ces données natales enrichissent votre lecture.";
-    var p0="Concernant votre passé, la lame <strong>"+c0.name+"</strong>"+(c0.planete?" (famille "+c0.planete+")":"")+" révèle que "+c0.passe+". "+c0.signif+natal;
-    var p1=ageCtx+"dans votre présent, <strong>"+c1.name+"</strong> s'impose avec clarté : "+c1.present+". "+c1.signif;
-    var p2="Pour votre avenir, <strong>"+c2.name+"</strong> dessine la trajectoire suivante : "+c2.futur+". "+(age!==null&&age>=60?"Cette étape de vie est une période de récolte et de sérénité méritée.":"Vos choix d'aujourd'hui orientent ce futur.");
-    var r="<p>"+p0+"</p><p>"+p1+"</p><p>"+p2+"</p>";
-    if(combos.length)r+='<div class="combo-note">✦ Combinaison : '+combos[0].text+'</div>';
+    if(natal)natal=" "+natal+" — ces données enrichissent votre lecture.";
+    var r="<p>Concernant votre passé, la lame <strong>"+c0.name+"</strong>"+(c0.planete?" (famille "+c0.planete+")":"")+" révèle que "+c0.passe+". "+c0.signif+natal+"</p>";
+    r+="<p>"+ageCtx+"dans votre présent, <strong>"+c1.name+"</strong> s'impose avec clarté : "+c1.present+". "+c1.signif+"</p>";
+    r+="<p>Pour votre avenir, <strong>"+c2.name+"</strong> annonce que "+c2.futur+". "+(age!==null&&age>=60?"Cette étape est une période de récolte et de sérénité méritée.":"Vos choix d'aujourd'hui orientent ce futur.")+"</p>";
+    if(combos.length)r+='<div class="combo-note">✦ Combinaison significative : '+combos[0].text+'</div>';
     txt.innerHTML=r;
   },1800);
 }
