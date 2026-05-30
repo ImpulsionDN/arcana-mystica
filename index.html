@@ -899,19 +899,46 @@ function calculNum(){
   var box=document.getElementById('n_result');box.innerHTML=html;box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'center'});
 }
+var AFFINITES={
+  1:{1:80,2:60,3:75,4:55,5:85,6:65,7:90,8:50,9:70},
+  2:{1:60,2:85,3:65,4:80,5:55,6:90,7:60,8:75,9:70},
+  3:{1:75,2:65,3:80,4:55,5:85,6:90,7:60,8:60,9:80},
+  4:{1:55,2:80,3:55,4:85,5:45,6:80,7:75,8:90,9:55},
+  5:{1:85,2:55,3:85,4:45,5:75,6:60,7:80,8:55,9:70},
+  6:{1:65,2:90,3:90,4:80,5:60,6:85,7:65,8:75,9:88},
+  7:{1:90,2:60,3:60,4:75,5:80,6:65,7:80,8:55,9:75},
+  8:{1:50,2:75,3:60,4:90,5:55,6:75,7:55,8:80,9:60},
+  9:{1:70,2:70,3:80,4:55,5:70,6:88,7:75,8:60,9:85}
+};
+function affinite(a,b){
+  function r9(n){while(n>9){n=(""+n).split("").reduce(function(s,d){return s+parseInt(d,10);},0);}return n||1;}
+  a=r9(a);b=r9(b);
+  return (AFFINITES[a] && AFFINITES[a][b]) ? AFFINITES[a][b] : 65;
+}
 function calculCompat(){
   var p1=document.getElementById('c_p1').value,p2=document.getElementById('c_p2').value;
   if(!normalise(p1)||!normalise(p2)){alert("Renseignez les deux prénoms.");return;}
-  var v1=sommeNom(p1,"all"),v2=sommeNom(p2,"all");
-  var diff=Math.abs(v1-v2);
-  var score=Math.max(40,100-diff*9);
-  var txt;
-  if(score>=85)txt="Une affinité rare et naturelle. Vos vibrations se répondent et se complètent avec fluidité.";
-  else if(score>=70)txt="Une belle complémentarité. Vos différences s'équilibrent et nourrissent la relation.";
-  else if(score>=55)txt="Une entente qui demande du dialogue. Vos énergies diffèrent mais peuvent s'enrichir mutuellement.";
-  else txt="Une relation de contrastes. L'attraction est forte mais l'harmonie réclame compréhension et patience.";
+  // Trois nombres de chaque prénom : expression (tout), actif (voyelles), héréditaire (consonnes)
+  var e1=sommeNom(p1,"all"), a1=sommeNom(p1,"voy"), h1=sommeNom(p1,"cons");
+  var e2=sommeNom(p2,"all"), a2=sommeNom(p2,"voy"), h2=sommeNom(p2,"cons");
+  // Croisements pondérés : expression (cœur de la personnalité) compte le plus,
+  // âme (voyelles) ensuite, tempérament (consonnes) en complément.
+  var sExpr=affinite(e1,e2);   // 50%
+  var sAme =affinite(a1,a2);   // 30%
+  var sTemp=affinite(h1,h2);   // 20%
+  var score=Math.round(sExpr*0.5 + sAme*0.3 + sTemp*0.2);
+  if(score>98)score=98; if(score<45)score=45;
+  var txt, sous;
+  if(score>=88){txt="Une affinité rare et naturelle.";sous="Vos vibrations se r\u00e9pondent presque sans effort. Vous vous comprenez \u00e0 demi-mot et partagez une vision commune de l\'essentiel\u00a0; c\'est un terrain id\u00e9al pour b\u00e2tir dans la dur\u00e9e.";}
+  else if(score>=75){txt="Une belle complémentarité.";sous="Vos diff\u00e9rences s\'\u00e9quilibrent et se nourrissent l\'une l\'autre. L\'entente est solide \u00e0 condition de cultiver le dialogue et de respecter le rythme de chacun.";}
+  else if(score>=62){txt="Une entente qui demande du dialogue.";sous="Vos \u00e9nergies diff\u00e8rent sur certains points, ce qui peut cr\u00e9er des frictions, mais aussi un bel enrichissement mutuel si vous restez \u00e0 l\'\u00e9coute l\'un de l\'autre.";}
+  else{txt="Une relation de contrastes.";sous="L\'attraction est r\u00e9elle, parfois intense, mais l\'harmonie r\u00e9clame de la patience et des compromis. Ces oppositions peuvent devenir une force si elles sont accept\u00e9es plut\u00f4t que combattues.";}
   var box=document.getElementById('c_result');
-  box.innerHTML='<div style="text-align:center"><div class="n" style="font-family:\'Playfair Display\';font-size:3rem;color:var(--gold-deep)">'+score+'%</div><div class="l" style="letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase;font-family:\'Playfair Display\';margin-bottom:1rem">affinité '+normalise(p1)+' & '+normalise(p2)+'</div><p>'+txt+'</p></div>';
+  box.innerHTML='<div style="text-align:center"><div class="n" style="font-family:\'Playfair Display\';font-size:3rem;color:var(--gold-deep)">'+score+'%</div>'+
+    '<div class="l" style="letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase;font-family:\'Playfair Display\';margin-bottom:1rem">affinit\u00e9 '+normalise(p1)+' & '+normalise(p2)+'</div></div>'+
+    '<p style="text-align:center;font-family:\'Playfair Display\';color:var(--gold-deep);font-size:1.2rem;margin-bottom:.6rem">'+txt+'</p>'+
+    '<p>'+sous+'</p>'+
+    '<p style="margin-top:.8rem;font-size:1rem;color:var(--ink-soft)">Ce r\u00e9sultat croise trois nombres de chaque pr\u00e9nom\u00a0: l\'<strong>expression</strong> (la personnalit\u00e9 globale), le nombre <strong>actif</strong> (l\'\u00e9lan du c\u0153ur, via les voyelles) et le nombre <strong>h\u00e9r\u00e9ditaire</strong> (le temp\u00e9rament, via les consonnes), selon les affinit\u00e9s traditionnelles entre les nombres.</p>';
   box.classList.add('show');box.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
