@@ -249,6 +249,10 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 /* COMPAT FEATURE */
 .compat-feat{background:linear-gradient(180deg,rgba(168,88,122,.07),var(--card));border:1px solid var(--rose);position:relative}
 .compat-feat .heart{font-size:1.9rem;color:var(--rose);text-align:center;margin-bottom:.3rem}
+.page{display:none}
+.page.show{display:block}
+.nav-links a.active{color:var(--gold-deep)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--gold)}
 .hidden{display:none}
 </style>
 </head>
@@ -259,17 +263,18 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <div class="logo" onclick="go('accueil')">ORACLE <span>ARCANA</span></div>
     <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <div class="nav-links" id="navlinks">
-      <a onclick="go('oracle')">Oracle</a>
-      <a onclick="go('numerologie')">Numérologie</a>
-      <a onclick="go('angeologie')">Angéologie</a>
-      <a onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
-      <a onclick="go('consultations')">Consultations</a>
-      <a onclick="go('journal')">Journal</a>
+      <a data-page="accueil" onclick="go('oracle')">Tirage gratuit</a>
+      <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
+      <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
+      <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
+      <a data-page="consultations" onclick="go('consultations')">Consultations</a>
+      <a data-page="journal" onclick="go('journal')">Journal</a>
+      <a data-page="avisfaq" onclick="go('avisfaq')">Avis &amp; FAQ</a>
     </div>
   </div>
 </nav>
-
-<!-- ACCUEIL -->
+<main>
+<div class="page" id="page-accueil">
 <header class="hero" id="accueil">
   <div class="wrap">
     <div class="eyebrow">Cartomancie · Numérologie · Angéologie</div>
@@ -355,6 +360,9 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 </section>
 
 <!-- NUMEROLOGIE -->
+
+</div>
+<div class="page" id="page-numerologie">
 <section class="bg2" id="numerologie">
   <div class="wrap">
     <div class="section-hd">
@@ -394,6 +402,9 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 </section>
 
 <!-- ANGEOLOGIE -->
+
+</div>
+<div class="page" id="page-angeologie">
 <section id="angeologie">
   <div class="wrap">
     <div class="section-hd">
@@ -417,6 +428,9 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 </section>
 
 <!-- HEURES MIROIRS -->
+
+</div>
+<div class="page" id="page-heures">
 <section class="bg2" id="heures">
   <div class="wrap">
     <div class="section-hd">
@@ -434,6 +448,9 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 </section>
 
 <!-- CONSULTATIONS -->
+
+</div>
+<div class="page" id="page-consultations">
 <section id="consultations">
   <div class="wrap">
     <div class="section-hd">
@@ -508,25 +525,24 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 
 <!-- AVIS -->
-<section class="bg2" id="avis">
+
+<section>
   <div class="wrap">
-    <div class="section-hd">
-      <div class="eyebrow">Ils ont consulté Arcana</div>
-      <h2>Ce qu'en disent nos consultants</h2>
-      <p>Des milliers de personnes trouvent chaque mois un éclairage sur leur chemin.</p>
+    <div class="section-hd" style="margin-top:1rem">
+      <div class="eyebrow">Ils nous ont fait confiance</div>
+      <h2 style="font-size:1.7rem">Avant de choisir, leur expérience</h2>
     </div>
     <div class="avis-grid">
-      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Le tirage gratuit m'a bluffée par sa justesse. J'ai ensuite pris une consultation privée avec Séraphine, un vrai moment de clarté sur ma situation."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d9be86,#9a7838)">M</div><div class="meta"><b>Marie L.</b><span>Consultation privée</span></div></div></div>
-      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Je voyais 11h11 partout sans comprendre. La page des heures miroirs m'a tout expliqué, et c'est gratuit. Je reviens chaque semaine."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#b59ad0,#6d4d9a)">T</div><div class="meta"><b>Thomas R.</b><span>Heures miroirs</span></div></div></div>
-      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"L'analyse de mon chemin de vie correspond exactement à qui je suis. Le rapport numérologique compléte était très détaillé et bienveillant."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#8f9bd0,#4a4d7a)">N</div><div class="meta"><b>Nadia B.</b><span>Bilan numérologique</span></div></div></div>
-      <div class="avis"><div class="stars">★★★★☆</div><div class="txt">"Marcus a une approche très posée et analytique, loin du cliché de la voyance. Ça m'a aidé à y voir plus clair pour mes projets."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#6a9a7a,#3a6a52)">S</div><div class="meta"><b>Stéphane M.</b><span>Voyance · Astrologie</span></div></div></div>
-      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Apprendre le nom de mon ange gardien et son domaine de protection m'a beaucoup apaisée. Un site doux et respectueux."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d0a87a,#9a6a45)">C</div><div class="meta"><b>Claire D.</b><span>Angéologie</span></div></div></div>
-      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"On a testé la compatibilité de nos prénoms avec mon compagnon, juste pour rire… et finalement ça a lancé une vraie belle discussion entre nous."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#c98ba5,#8a4d63)">A</div><div class="meta"><b>Amélie P.</b><span>Compatibilité des prénoms</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Une consultation privée avec Séraphine, un vrai moment de clarté sur ma situation."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d9be86,#9a7838)">M</div><div class="meta"><b>Marie L.</b><span>Consultation privée</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"L'analyse de mon chemin de vie correspond exactement à qui je suis. Très détaillé et bienveillant."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#8f9bd0,#4a4d7a)">N</div><div class="meta"><b>Nadia B.</b><span>Bilan numérologique</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★☆</div><div class="txt">"Marcus a une approche très posée, loin du cliché de la voyance. Ça m'a aidé à y voir plus clair."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#6a9a7a,#3a6a52)">S</div><div class="meta"><b>Stéphane M.</b><span>Voyance</span></div></div></div>
     </div>
+    <div style="text-align:center;margin-top:1.4rem"><a class="btn btn-outline" onclick="go('avisfaq')">Lire tous les avis →</a></div>
   </div>
 </section>
 
-<!-- JOURNAL / BLOG SEO -->
+</div>
+<div class="page" id="page-journal">
 <section id="journal">
   <div class="wrap">
     <div class="section-hd">
@@ -589,6 +605,28 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 </section>
 
 <!-- FAQ -->
+
+</div>
+<div class="page" id="page-avisfaq">
+<section class="bg2" id="avis">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Ils ont consulté Arcana</div>
+      <h2>Ce qu'en disent nos consultants</h2>
+      <p>Des milliers de personnes trouvent chaque mois un éclairage sur leur chemin.</p>
+    </div>
+    <div class="avis-grid">
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Le tirage gratuit m'a bluffée par sa justesse. J'ai ensuite pris une consultation privée avec Séraphine, un vrai moment de clarté sur ma situation."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d9be86,#9a7838)">M</div><div class="meta"><b>Marie L.</b><span>Consultation privée</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Je voyais 11h11 partout sans comprendre. La page des heures miroirs m'a tout expliqué, et c'est gratuit. Je reviens chaque semaine."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#b59ad0,#6d4d9a)">T</div><div class="meta"><b>Thomas R.</b><span>Heures miroirs</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"L'analyse de mon chemin de vie correspond exactement à qui je suis. Le rapport numérologique compléte était très détaillé et bienveillant."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#8f9bd0,#4a4d7a)">N</div><div class="meta"><b>Nadia B.</b><span>Bilan numérologique</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★☆</div><div class="txt">"Marcus a une approche très posée et analytique, loin du cliché de la voyance. Ça m'a aidé à y voir plus clair pour mes projets."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#6a9a7a,#3a6a52)">S</div><div class="meta"><b>Stéphane M.</b><span>Voyance · Astrologie</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Apprendre le nom de mon ange gardien et son domaine de protection m'a beaucoup apaisée. Un site doux et respectueux."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d0a87a,#9a6a45)">C</div><div class="meta"><b>Claire D.</b><span>Angéologie</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"On a testé la compatibilité de nos prénoms avec mon compagnon, juste pour rire… et finalement ça a lancé une vraie belle discussion entre nous."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#c98ba5,#8a4d63)">A</div><div class="meta"><b>Amélie P.</b><span>Compatibilité des prénoms</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL / BLOG SEO -->
 <section class="bg2" id="faq">
   <div class="wrap">
     <div class="section-hd">
@@ -606,6 +644,9 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
   </div>
 </section>
 
+
+</div>
+</main>
 <footer>
   <div class="wrap">
     <div class="logo">ORACLE <span>ARCANA</span></div>
@@ -616,8 +657,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <a onclick="go('heures')">Heures Miroirs</a>
       <a onclick="go('consultations')">Consultations</a>
       <a onclick="go('journal')">Journal</a>
-      <a onclick="go('avis')">Avis</a>
-      <a onclick="go('faq')">FAQ</a>
+      <a onclick="go('avisfaq')">Avis &amp; FAQ</a>
       <a href="#">Mentions légales</a>
       <a href="#">CGV</a>
     </div>
@@ -634,11 +674,30 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 <script>
 /* ============ NAVIGATION ============ */
+var PAGES={accueil:1,numerologie:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
+function setActiveNav(id){
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('data-page')===id);
+  });
+}
+function showPage(id){
+  if(!PAGES[id]) id='accueil';
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('show');});
+  var t=document.getElementById('page-'+id); if(t) t.classList.add('show');
+  setActiveNav(id);
+  if(history.replaceState) history.replaceState(null,'', id==='accueil'?(location.pathname+location.search):('#'+id));
+  window.scrollTo({top:0,behavior:'auto'});
+}
 function go(id){
   document.getElementById('navlinks').classList.remove('open');
-  var el=document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth'});
+  if(id==='oracle'){ showPage('accueil'); setTimeout(function(){var e=document.getElementById('oracle'); if(e) e.scrollIntoView({behavior:'smooth'});},80); return; }
+  if(PAGES[id]){ showPage(id); return; }
+  var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'});
 }
+window.addEventListener('DOMContentLoaded',function(){
+  var h=(location.hash||'').replace('#','');
+  showPage(PAGES[h]?h:'accueil');
+});
 window.addEventListener('scroll',function(){
   document.getElementById('toTop').classList.toggle('show', window.scrollY>500);
 });
