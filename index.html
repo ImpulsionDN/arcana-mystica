@@ -113,7 +113,9 @@ section{padding:4.5rem 0;position:relative;scroll-margin-top:80px}
 .tcard-front .cname{font-family:'Playfair Display';font-size:.92rem;color:var(--gold-deep);margin:.4rem 0 .2rem;letter-spacing:.02em}
 .tcard-front .cpos{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-family:'Playfair Display'}
 .interpretation{max-width:720px;margin:1.5rem auto 0;color:var(--ink);font-size:1.12rem;line-height:1.7;text-align:left}
-.interpretation .lame-block{margin-bottom:1.1rem}
+.interpretation .lame-block{margin-bottom:1.6rem;padding-bottom:1.4rem;border-bottom:1px solid var(--line)}
+.interpretation .lame-block:last-of-type{border-bottom:none}
+.interpretation .lame-block p{margin:.5rem 0}
 .interpretation .lame-block strong{color:var(--gold-deep);font-family:'Playfair Display'}
 .interpretation .synth{margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--line);font-style:italic}
 
@@ -729,30 +731,30 @@ window.addEventListener('scroll',function(){
    Pour brancher vos propres significations, remplacez le champ "sens". */
 function svgCard(inner){return '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#9a7838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>';}
 var LAMES=[
-  {nom:"La Clef",       val:1, svg:svgCard('<circle cx="26" cy="22" r="9"/><path d="M26 31 L26 52 M26 44 L34 44 M26 38 L36 38"/>'), sens:"Une solution se présente. Une porte longtemps fermée s'apprête à s'ouvrir ; ce que vous cherchiez devient accessible."},
-  {nom:"L'Étoile",      val:1, svg:svgCard('<path d="M32 10 L37 26 L54 26 L40 36 L45 52 L32 42 L19 52 L24 36 L10 26 L27 26 Z"/>'), sens:"Espérance et protection. Une lumière vous guide, vos vœux sont entendus, la chance vous accompagne."},
-  {nom:"Le Soleil",     val:1, svg:svgCard('<circle cx="32" cy="32" r="11"/><path d="M32 8 L32 16 M32 48 L32 56 M8 32 L16 32 M48 32 L56 32 M15 15 L21 21 M43 43 L49 49 M49 15 L43 21 M21 43 L15 49"/>'), sens:"Réussite, vitalité, clarté. Une période lumineuse s'ouvre ; vos efforts portent leurs fruits au grand jour."},
-  {nom:"L'Union",       val:1, svg:svgCard('<path d="M32 50 C12 36 18 16 32 26 C46 16 52 36 32 50 Z"/>'), sens:"Lien profond, harmonie du cœur. Une relation se renforce ou naît ; entente et tendresse sont au rendez-vous."},
-  {nom:"Le Voyageur",   val:0, svg:svgCard('<path d="M20 52 L32 14 L44 52 M22 44 L42 44"/><circle cx="32" cy="10" r="4"/>'), sens:"Mouvement, changement, départ. Une page se tourne ; un déplacement ou une évolution se prépare."},
-  {nom:"La Maison",     val:0, svg:svgCard('<path d="M14 30 L32 14 L50 30 M18 30 L18 50 L46 50 L46 30 M28 50 L28 38 L36 38 L36 50"/>'), sens:"Foyer, famille, fondations. Les questions de stabilité et de racines sont au premier plan."},
-  {nom:"La Lettre",     val:0, svg:svgCard('<rect x="12" y="20" width="40" height="26" rx="2"/><path d="M12 22 L32 38 L52 22"/>'), sens:"Nouvelle importante en chemin. Un message, un courrier ou une annonce va modifier le cours des choses."},
-  {nom:"La Fortune",    val:1, svg:svgCard('<circle cx="32" cy="32" r="18"/><path d="M32 14 L32 50 M14 32 L50 32 M19 19 L45 45 M45 19 L19 45"/>'), sens:"Chance et abondance. Le destin tourne en votre faveur ; une opportunité matérielle se dessine."},
-  {nom:"La Balance",    val:0, svg:svgCard('<path d="M32 12 L32 50 M16 22 L48 22 M16 22 L11 34 L21 34 Z M48 22 L43 34 L53 34 Z M22 50 L42 50"/>'), sens:"Équilibre, justice, vérité. Une situation se rééquilibre ; l'honnêteté et la mesure sont récompensées."},
-  {nom:"Les Présents",  val:1, svg:svgCard('<rect x="16" y="26" width="32" height="24" rx="2"/><path d="M16 34 L48 34 M32 26 L32 50 M24 26 C24 18 32 22 32 26 C32 22 40 18 40 26"/>'), sens:"Cadeau, surprise heureuse. Une joie inattendue, une reconnaissance ou un présent vous attend."},
-  {nom:"L'Ancre",       val:1, svg:svgCard('<circle cx="32" cy="14" r="4"/><path d="M32 18 L32 50 M20 38 C20 50 44 50 44 38 M22 28 L42 28"/>'), sens:"Stabilité retrouvée. Après l'agitation vient le port sûr ; vous touchez à une sécurité durable."},
-  {nom:"La Renommée",   val:1, svg:svgCard('<path d="M16 50 C16 30 48 30 48 50 M22 30 L20 16 L28 24 L32 12 L36 24 L44 16 L42 30"/>'), sens:"Honneurs, reconnaissance. Vos mérites sont vus ; estime et visibilité grandissent autour de vous."},
-  {nom:"La Sagesse",    val:1, svg:svgCard('<path d="M32 12 C20 12 18 30 26 34 C26 44 22 46 22 50 L42 50 C42 46 38 44 38 34 C46 30 44 12 32 12 Z"/>'), sens:"Discernement, lucidité. Le moment d'écouter votre intuition profonde et de prendre du recul."},
-  {nom:"L'Obstacle",    val:-1, svg:svgCard('<path d="M10 50 L24 24 L38 50 M30 50 L40 32 L54 50"/>'), sens:"Un frein à dépasser avec patience. Un retard ou une difficulté demande persévérance, mais reste surmontable."},
-  {nom:"L'Inconstance", val:-1, svg:svgCard('<path d="M12 32 C20 18 28 46 36 32 C44 18 52 46 52 46"/>'), sens:"Hésitation, instabilité. Évitez les décisions hâtives ; clarifiez vos intentions avant d'agir."},
-  {nom:"La Jalousie",   val:-1, svg:svgCard('<path d="M10 32 C18 20 46 20 54 32 C46 44 18 44 10 32 Z"/><circle cx="32" cy="32" r="6"/><path d="M32 38 L32 32"/>'), sens:"Méfiance, regards extérieurs. Une envie ou une rivalité pèse ; protégez votre jardin secret."},
-  {nom:"La Trahison",   val:-1, svg:svgCard('<path d="M18 50 C18 30 24 22 24 14 M40 50 C40 30 46 22 46 14 M22 16 L26 12 M42 16 L46 12 M24 30 C28 34 36 34 40 30"/>'), sens:"Vigilance recommandée. Une parole ou une promesse pourrait ne pas être tenue ; gardez du discernement."},
-  {nom:"Le Deuil",      val:-1, svg:svgCard('<path d="M22 18 L42 18 L40 50 L24 50 Z M28 28 L36 28 M28 36 L36 36"/>'), sens:"Une fin, une transition. Quelque chose s'achève pour laisser place au renouveau ; le passage est nécessaire."},
-  {nom:"La Maladie",    val:-1, svg:svgCard('<path d="M32 14 L32 50 M18 28 L46 28"/><circle cx="32" cy="32" r="20"/>'), sens:"Prendre soin de soi. Le corps ou le moral réclame attention et repos ; écoutez ces signaux."},
-  {nom:"Le Bonheur",    val:1, svg:svgCard('<circle cx="32" cy="32" r="18"/><path d="M24 28 L26 28 M38 28 L40 28 M24 38 C28 44 36 44 40 38"/>'), sens:"Joie sincère, sérénité. Un bien-être profond s'installe ; savourez ce moment de paix méritée."},
-  {nom:"Les Appuis",    val:1, svg:svgCard('<circle cx="22" cy="22" r="7"/><circle cx="42" cy="22" r="7"/><path d="M12 50 C12 36 32 36 32 50 M32 50 C32 36 52 36 52 50"/>'), sens:"Soutiens et alliés. Des personnes bienveillantes vous épaulent ; ne restez pas seul(e) face à vos défis."},
-  {nom:"Le Hasard",     val:0, svg:svgCard('<rect x="18" y="18" width="28" height="28" rx="4"/><circle cx="26" cy="26" r="2.5"/><circle cx="38" cy="38" r="2.5"/><circle cx="38" cy="26" r="2.5"/><circle cx="26" cy="38" r="2.5"/>'), sens:"Imprévu favorable. Un événement non planifié rebat les cartes ; restez ouvert(e) à l'inattendu."},
-  {nom:"La Découverte", val:1, svg:svgCard('<circle cx="28" cy="28" r="13"/><path d="M38 38 L50 50"/>'), sens:"Révélation, prise de conscience. Une vérité se dévoile, un talent ou une voie nouvelle apparaît."},
-  {nom:"La Grâce",      val:1, svg:svgCard('<path d="M32 12 C26 22 26 30 32 34 C38 30 38 22 32 12 Z M20 30 C24 40 30 42 32 50 M44 30 C40 40 34 42 32 50"/>'), sens:"Bénédiction, douceur. Une période de fluidité s'ouvre où les choses se font naturellement, sans forcer."}
+  {nom:"La Clef", val:1, svg:svgCard('<circle cx="26" cy="22" r="9"/><path d="M26 31 L26 52 M26 44 L34 44 M26 38 L36 38"/>'), gen:"La Clef annonce qu'une solution longtemps attendue se présente enfin. Une porte demeurée close s'apprête à s'ouvrir, et ce que vous cherchiez devient soudain accessible.", inv:"Elle vous invite à saisir l'occasion sans hésiter : la voie est dégagée, à vous d'y avancer avec confiance.", amour:"En amour, elle ouvre un dialogue resté bloqué ou dévoile les sentiments véritables d'une personne.", travail:"Côté travail, une opportunité se débloque : entretien, accord ou projet qui se concrétise.", sante:"Sur le plan de l'énergie, elle marque la fin d'un blocage et le retour d'un élan nouveau."},
+  {nom:"L'Étoile", val:1, svg:svgCard('<path d="M32 10 L37 26 L54 26 L40 36 L45 52 L32 42 L19 52 L24 36 L10 26 L27 26 Z"/>'), gen:"L'Étoile est la lame de l'espérance et de la protection. Une lumière douce veille sur vous, vos vœux sont entendus et la chance vous accompagne discrètement.", inv:"Elle vous encourage à garder la foi en l'avenir et à formuler clairement ce que vous désirez profondément.", amour:"En amour, elle promet une rencontre porteuse de sens ou l'apaisement d'une relation tourmentée.", travail:"Côté projets, elle soutient vos ambitions : ce que vous semez aujourd'hui germera.", sante:"Elle apporte sérénité et regain de vitalité, comme une respiration retrouvée."},
+  {nom:"Le Soleil", val:1, svg:svgCard('<circle cx="32" cy="32" r="11"/><path d="M32 8 L32 16 M32 48 L32 56 M8 32 L16 32 M48 32 L56 32 M15 15 L21 21 M43 43 L49 49 M49 15 L43 21 M21 43 L15 49"/>'), gen:"Le Soleil rayonne de réussite, de vitalité et de clarté. Une période lumineuse s'ouvre où vos efforts portent enfin leurs fruits au grand jour.", inv:"Elle vous invite à oser briller, à assumer vos réussites et à partager votre joie sans crainte.", garde:"Veillez seulement à ne pas vous laisser aveugler par l'enthousiasme : la mesure reste votre alliée.", amour:"En amour, c'est l'épanouissement, la complicité et la chaleur partagée.", travail:"Côté travail, reconnaissance et réussite concrète sont au rendez-vous.", sante:"Votre énergie est au plus haut : profitez-en pour entreprendre."},
+  {nom:"L'Union", val:1, svg:svgCard('<path d="M32 50 C12 36 18 16 32 26 C46 16 52 36 32 50 Z"/>'), gen:"L'Union célèbre le lien profond et l'harmonie du cœur. Une relation se renforce ou voit le jour, portée par l'entente et la tendresse.", inv:"Elle vous invite à vous ouvrir à l'autre, à cultiver la confiance et la réciprocité.", amour:"En amour, elle annonce un engagement, une réconciliation ou une belle complicité naissante.", travail:"Côté collaborations, une association ou un travail d'équipe s'annonce fructueux.", sante:"Le cœur apaisé rejaillit sur tout votre être : c'est un temps d'équilibre."},
+  {nom:"Le Voyageur", val:0, svg:svgCard('<path d="M20 52 L32 14 L44 52 M22 44 L42 44"/><circle cx="32" cy="10" r="4"/>'), gen:"Le Voyageur incarne le mouvement et le changement. Une page se tourne, un déplacement ou une évolution se prépare et vous appelle ailleurs.", inv:"Elle vous invite à accueillir le changement plutôt qu'à le redouter : il vous mène vers du neuf.", garde:"Évitez toutefois de fuir une situation sans l'avoir comprise ; le mouvement doit être choisi.", amour:"En amour, un tournant se dessine : nouvelle dynamique ou rencontre lors d'un déplacement.", travail:"Côté travail, mobilité, mutation ou nouveau cap professionnel.", sante:"Un besoin de bouger, de changer d'air et de rythme se fait sentir."},
+  {nom:"La Maison", val:0, svg:svgCard('<path d="M14 30 L32 14 L50 30 M18 30 L18 50 L46 50 L46 30 M28 50 L28 38 L36 38 L36 50"/>'), gen:"La Maison parle de foyer, de famille et de fondations. Les questions de stabilité, de racines et de chez-soi reviennent au premier plan.", inv:"Elle vous invite à consolider vos bases et à prendre soin de votre cocon, source de force.", amour:"En amour, c'est la construction à deux : emménagement, projet de vie commune, ancrage.", travail:"Côté matériel, elle favorise la sécurité, l'immobilier ou la consolidation d'un acquis.", sante:"Le repos chez soi et un cadre apaisant vous régénèrent."},
+  {nom:"La Lettre", val:0, svg:svgCard('<rect x="12" y="20" width="40" height="26" rx="2"/><path d="M12 22 L32 38 L52 22"/>'), gen:"La Lettre annonce une nouvelle importante en chemin. Un message, un courrier ou une annonce va modifier le cours des choses.", inv:"Elle vous invite à rester attentif aux signes et aux paroles qui vont vous parvenir.", amour:"En amour, une déclaration, un message inattendu ou des retrouvailles.", travail:"Côté travail, une réponse, une proposition ou un document décisif arrive.", sante:"Une information vous aide à mieux comprendre ce que vous ressentez."},
+  {nom:"La Fortune", val:1, svg:svgCard('<circle cx="32" cy="32" r="18"/><path d="M32 14 L32 50 M14 32 L50 32 M19 19 L45 45 M45 19 L19 45"/>'), gen:"La Fortune est la lame de la chance et de l'abondance. Le destin tourne en votre faveur et une opportunité matérielle se dessine.", inv:"Elle vous invite à oser tenter votre chance, tout en restant lucide sur vos choix.", garde:"Gardez la tête froide : la chance sourit à qui agit avec discernement.", amour:"En amour, un heureux hasard peut tout changer.", travail:"Côté finances, rentrée d'argent, gain ou réussite d'un investissement.", sante:"Un sentiment de fluidité : les choses se mettent en place sans forcer."},
+  {nom:"La Balance", val:0, svg:svgCard('<path d="M32 12 L32 50 M16 22 L48 22 M16 22 L11 34 L21 34 Z M48 22 L43 34 L53 34 Z M22 50 L42 50"/>'), gen:"La Balance évoque l'équilibre, la justice et la vérité. Une situation se rééquilibre et l'honnêteté finit par être récompensée.", inv:"Elle vous invite à peser les choses avec mesure et à agir avec droiture.", amour:"En amour, retour à l'équité dans le couple, ou clarification nécessaire.", travail:"Côté travail, une question de justice, de contrat ou de reconnaissance se règle.", sante:"Un rééquilibrage est à trouver entre effort et repos."},
+  {nom:"Les Présents", val:1, svg:svgCard('<rect x="16" y="26" width="32" height="24" rx="2"/><path d="M16 34 L48 34 M32 26 L32 50 M24 26 C24 18 32 22 32 26 C32 22 40 18 40 26"/>'), gen:"Les Présents annoncent un cadeau ou une surprise heureuse. Une joie inattendue, une reconnaissance ou un présent vous attend.", inv:"Elle vous invite à accueillir avec gratitude ce qui vient à vous.", amour:"En amour, une attention, un geste tendre ou une belle surprise.", travail:"Côté travail, une récompense, une prime ou une marque de reconnaissance.", sante:"Un moment de plaisir simple vous fait un bien immense."},
+  {nom:"L'Ancre", val:1, svg:svgCard('<circle cx="32" cy="14" r="4"/><path d="M32 18 L32 50 M20 38 C20 50 44 50 44 38 M22 28 L42 28"/>'), gen:"L'Ancre symbolise la stabilité retrouvée. Après l'agitation vient le port sûr ; vous touchez à une sécurité durable.", inv:"Elle vous invite à vous ancrer, à faire confiance à ce qui tient bon dans votre vie.", amour:"En amour, une relation solide et rassurante, un attachement sincère.", travail:"Côté travail, sécurité de l'emploi, situation qui se stabilise.", sante:"Un retour au calme et à l'équilibre intérieur."},
+  {nom:"La Renommée", val:1, svg:svgCard('<path d="M16 50 C16 30 48 30 48 50 M22 30 L20 16 L28 24 L32 12 L36 24 L44 16 L42 30"/>'), gen:"La Renommée parle d'honneurs et de reconnaissance. Vos mérites sont enfin vus, l'estime et la visibilité grandissent autour de vous.", inv:"Elle vous invite à assumer votre valeur et à accepter la lumière qui vient à vous.", amour:"En amour, vous êtes admiré et apprécié pour qui vous êtes vraiment.", travail:"Côté travail, promotion, succès public ou reconnaissance de vos pairs.", sante:"La fierté de vos accomplissements nourrit votre confiance."},
+  {nom:"La Sagesse", val:1, svg:svgCard('<path d="M32 12 C20 12 18 30 26 34 C26 44 22 46 22 50 L42 50 C42 46 38 44 38 34 C46 30 44 12 32 12 Z"/>'), gen:"La Sagesse invite au discernement et à la lucidité. C'est le moment d'écouter votre intuition profonde et de prendre du recul.", inv:"Elle vous invite à la patience et à la réflexion avant d'agir.", amour:"En amour, comprendre avant de réagir évite bien des malentendus.", travail:"Côté travail, une décision réfléchie vaut mieux qu'un élan précipité.", sante:"Le calme intérieur et la méditation vous apaisent."},
+  {nom:"L'Obstacle", val:-1, svg:svgCard('<path d="M10 50 L24 24 L38 50 M30 50 L40 32 L54 50"/>'), gen:"L'Obstacle marque un frein à dépasser avec patience. Un retard ou une difficulté demande de la persévérance, mais reste surmontable.", inv:"Elle vous invite à ne pas baisser les bras : chaque obstacle franchi vous renforce.", garde:"Ne forcez pas le passage tête baissée ; contournez intelligemment.", amour:"En amour, une incompréhension à dénouer par le dialogue.", travail:"Côté travail, un contretemps qui se résout avec de la ténacité.", sante:"Un coup de fatigue passager : ménagez-vous."},
+  {nom:"L'Inconstance", val:-1, svg:svgCard('<path d="M12 32 C20 18 28 46 36 32 C44 18 52 46 52 46"/>'), gen:"L'Inconstance révèle hésitation et instabilité. Les décisions hâtives sont à éviter tant que vos intentions ne sont pas claires.", inv:"Elle vous invite à clarifier ce que vous voulez vraiment avant de vous engager.", garde:"Méfiez-vous des revirements et des promesses faites trop vite.", amour:"En amour, une situation flottante qui demande à être éclaircie.", travail:"Côté travail, évitez de vous disperser ; recentrez-vous.", sante:"Une humeur changeante : accordez-vous de la douceur."},
+  {nom:"La Jalousie", val:-1, svg:svgCard('<path d="M10 32 C18 20 46 20 54 32 C46 44 18 44 10 32 Z"/><circle cx="32" cy="32" r="6"/><path d="M32 38 L32 32"/>'), gen:"La Jalousie évoque la méfiance et les regards extérieurs. Une envie ou une rivalité pèse sur votre situation.", inv:"Elle vous invite à protéger votre jardin secret et à ne pas tout exposer.", garde:"Toutes les bienveillances ne sont pas sincères : restez discret.", amour:"En amour, une tierce personne ou une possessivité à apaiser.", travail:"Côté travail, une concurrence ou une convoitise à gérer avec sang-froid.", sante:"Le stress lié au regard des autres : recentrez-vous sur vous."},
+  {nom:"La Trahison", val:-1, svg:svgCard('<path d="M18 50 C18 30 24 22 24 14 M40 50 C40 30 46 22 46 14 M22 16 L26 12 M42 16 L46 12 M24 30 C28 34 36 34 40 30"/>'), gen:"La Trahison appelle à la vigilance. Une parole ou une promesse pourrait ne pas être tenue ; le discernement est de mise.", inv:"Elle vous invite à écouter votre instinct et à vérifier avant d'accorder votre confiance.", garde:"Ne signez rien et ne vous engagez pas sans avoir tout vérifié.", amour:"En amour, une déception possible : restez lucide sans devenir soupçonneux.", travail:"Côté travail, prudence dans les alliances et les engagements.", sante:"Préservez votre énergie des personnes qui vous épuisent."},
+  {nom:"Le Deuil", val:-1, svg:svgCard('<path d="M22 18 L42 18 L40 50 L24 50 Z M28 28 L36 28 M28 36 L36 36"/>'), gen:"Le Deuil marque une fin et une transition. Quelque chose s'achève pour laisser place au renouveau ; ce passage est nécessaire.", inv:"Elle vous invite à lâcher ce qui doit partir pour accueillir ce qui vient.", garde:"Ne vous accrochez pas à ce qui est révolu : le neuf attend de l'espace.", amour:"En amour, la fin d'un cycle ouvre la voie à un nouveau départ.", travail:"Côté travail, une page se tourne avant un renouveau.", sante:"Un temps de repli salutaire avant de repartir."},
+  {nom:"La Maladie", val:-1, svg:svgCard('<path d="M32 14 L32 50 M18 28 L46 28"/><circle cx="32" cy="32" r="20"/>'), gen:"La Maladie invite à prendre soin de soi. Le corps ou le moral réclame attention et repos ; ces signaux méritent d'être écoutés.", inv:"Elle vous invite à ralentir et à vous préserver sans culpabiliser.", garde:"N'ignorez pas la fatigue : elle est un message, non une faiblesse.", amour:"En amour, accordez de la douceur, à l'autre comme à vous-même.", travail:"Côté travail, ne vous surmenez pas ; déléguez si possible.", sante:"Le repos et l'écoute du corps sont prioritaires."},
+  {nom:"Le Bonheur", val:1, svg:svgCard('<circle cx="32" cy="32" r="18"/><path d="M24 28 L26 28 M38 28 L40 28 M24 38 C28 44 36 44 40 38"/>'), gen:"Le Bonheur rayonne de joie sincère et de sérénité. Un bien-être profond s'installe et un équilibre heureux se dessine.", inv:"Elle vous invite à savourer pleinement ce moment de paix mérité.", amour:"En amour, complicité, tendresse et instants précieux.", travail:"Côté travail, satisfaction et harmonie dans vos activités.", sante:"Un bel équilibre entre corps et esprit."},
+  {nom:"Les Appuis", val:1, svg:svgCard('<circle cx="22" cy="22" r="7"/><circle cx="42" cy="22" r="7"/><path d="M12 50 C12 36 32 36 32 50 M32 50 C32 36 52 36 52 50"/>'), gen:"Les Appuis annoncent soutiens et alliés. Des personnes bienveillantes vous épaulent ; vous n'êtes pas seul face à vos défis.", inv:"Elle vous invite à accepter l'aide qu'on vous offre et à vous entourer.", amour:"En amour, un partenaire ou un proche sur qui compter vraiment.", travail:"Côté travail, des appuis solides facilitent vos projets.", sante:"L'entourage et le partage allègent vos fardeaux."},
+  {nom:"Le Hasard", val:0, svg:svgCard('<rect x="18" y="18" width="28" height="28" rx="4"/><circle cx="26" cy="26" r="2.5"/><circle cx="38" cy="38" r="2.5"/><circle cx="38" cy="26" r="2.5"/><circle cx="26" cy="38" r="2.5"/>'), gen:"Le Hasard annonce un imprévu favorable. Un événement non planifié rebat les cartes en votre faveur.", inv:"Elle vous invite à rester ouvert à l'inattendu et à saisir les occasions.", amour:"En amour, une rencontre fortuite peut tout changer.", travail:"Côté travail, une opportunité surgit là où vous ne l'attendiez pas.", sante:"Un changement spontané vous fait du bien."},
+  {nom:"La Découverte", val:1, svg:svgCard('<circle cx="28" cy="28" r="13"/><path d="M38 38 L50 50"/>'), gen:"La Découverte est la lame de la révélation. Une vérité se dévoile, un talent ou une voie nouvelle apparaît.", inv:"Elle vous invite à explorer, à apprendre et à oser une direction inédite.", amour:"En amour, vous découvrez l'autre, ou vous-même, sous un jour nouveau.", travail:"Côté travail, une idée ou une compétence révèle un potentiel insoupçonné.", sante:"Une prise de conscience vous remet en mouvement."},
+  {nom:"La Grâce", val:1, svg:svgCard('<path d="M32 12 C26 22 26 30 32 34 C38 30 38 22 32 12 Z M20 30 C24 40 30 42 32 50 M44 30 C40 40 34 42 32 50"/>'), gen:"La Grâce répand bénédiction et douceur. Une période de fluidité s'ouvre, où les choses se font naturellement, sans forcer.", inv:"Elle vous invite à vous laisser porter et à accueillir ce qui vient avec confiance.", amour:"En amour, une tendresse paisible et une belle harmonie.", travail:"Côté travail, les démarches aboutissent avec aisance.", sante:"Un sentiment de légèreté et de paix intérieure."}
 ];
 
 /* ============ TIRAGE ============ */
@@ -797,16 +799,32 @@ function afficherInterpretation(){
   var age=ageDepuis(document.getElementById('o_naiss').value);
   var v=vocabAge(age);
   var ageTxt=(age!==null)?(" ("+age+" ans)"):"";
-  var html='<p style="font-style:italic;margin-bottom:1.2rem">Bienvenue '+prenom+ageTxt+'. Les lames se sont posées pour éclairer '+v.vie+'.</p>';
+  var dom=['amour','travail','sante'];
+  var domLbl={amour:'En amour',travail:'Au travail',sante:'\u00c9nergie & sant\u00e9'};
+  var html='<p style="font-style:italic;margin-bottom:1.4rem">Bienvenue '+prenom+ageTxt+'. Prenez le temps de lire chaque lame\u00a0: ensemble, elles dessinent le fil de '+v.vie+'.</p>';
   tirage.forEach(function(l,i){
-    html+='<div class="lame-block"><strong>'+POSITIONS[i]+' — '+l.nom+'.</strong> '+l.sens+'</div>';
+    html+='<div class="lame-block">';
+    html+='<strong>'+POSITIONS[i]+'\u00a0\u2014 '+l.nom+'</strong>';
+    html+='<p>'+l.gen+'</p>';
+    html+='<p>'+l.inv+(l.garde?(' '+l.garde):'')+'</p>';
+    html+='<p style="font-size:1rem;color:var(--ink-soft)">';
+    var parts=dom.map(function(d){return '<strong style="color:var(--gold-deep);font-weight:500">'+domLbl[d]+'\u00a0:</strong> '+l[d];});
+    html+=parts.join(' &nbsp;\u00b7&nbsp; ');
+    html+='</p></div>';
   });
-  var tonal;
-  var score=tirage.reduce(function(s,l){return s+l.val;},0);
-  if(score>0)tonal="L'ensemble du tirage est porteur : les énergies convergent favorablement. "+v.ouv;
-  else if(score<0)tonal="Le tirage invite à la prudence et à la patience : les obstacles présents ne sont que passagers, ils préparent un terrain plus solide. "+v.ouv;
-  else tonal="Le tirage est en équilibre : à vous de pencher la balance par vos choix conscients. "+v.ouv;
-  html+='<div class="synth">'+tonal+' Pour une lecture approfondie reliée précisément à votre question, '+prenom+', l\'un de nos voyants peut vous recevoir en consultation privée.</div>';
+  var score=tirage.reduce(function(s,l){return s+parseInt(l.val,10);},0);
+  var t1,t2;
+  if(score>0){
+    t1="Lu dans son ensemble, votre tirage est nettement porteur. Le "+tirage[0].nom+" qui \u00e9claire votre pass\u00e9 a pos\u00e9 les bases de ce que vous vivez aujourd'hui avec le "+tirage[1].nom+", et cette dynamique se prolonge naturellement vers le "+tirage[2].nom+" qui ouvre votre avenir.";
+    t2="Les \u00e9nergies convergent dans le bon sens\u00a0: c'est une p\u00e9riode o\u00f9 oser et avancer vous r\u00e9ussira. "+v.ouv;
+  } else if(score<0){
+    t1="Pris dans son ensemble, votre tirage invite \u00e0 la patience. Le "+tirage[0].nom+" rappelle d'o\u00f9 vous venez, le "+tirage[1].nom+" d\u00e9crit la tension du moment pr\u00e9sent, et le "+tirage[2].nom+" indique la direction \u00e0 prendre pour vous en lib\u00e9rer.";
+    t2="Les obstacles pr\u00e9sents ne sont que passagers\u00a0: ils pr\u00e9parent un terrain plus solide pour la suite. "+v.ouv;
+  } else {
+    t1="Votre tirage est en \u00e9quilibre. Le "+tirage[0].nom+", le "+tirage[1].nom+" et le "+tirage[2].nom+" se r\u00e9pondent sans pencher d'un c\u00f4t\u00e9 ni de l'autre\u00a0: tout reste \u00e0 \u00e9crire selon vos choix.";
+    t2="\u00c0 vous de faire pencher la balance par vos d\u00e9cisions conscientes des prochaines semaines. "+v.ouv;
+  }
+  html+='<div class="synth"><p>'+t1+'</p><p style="margin-top:.8rem">'+t2+'</p><p style="margin-top:.8rem;font-style:italic">Pour relier ces lames pr\u00e9cis\u00e9ment \u00e0 votre question, '+prenom+', l\'un de nos voyants peut vous recevoir en consultation priv\u00e9e et approfondir chaque message.</p></div>';
   document.getElementById('o_interp').innerHTML=html;
   document.getElementById('o_reset').style.display='inline-flex';
   document.getElementById('o_cta').style.display='flex';
@@ -838,18 +856,18 @@ function sommeNom(s,filtre){
   return reduce(tot);
 }
 var SENS_VIE={
-  1:"l'indépendance et le leadership. Vous êtes fait(e) pour initier, ouvrir des voies et avancer en pionnier.",
-  2:"la coopération et la sensibilité. Votre force est le lien, la diplomatie et l'écoute des autres.",
-  3:"l'expression et la créativité. La communication, l'art et la joie de vivre sont vos moteurs.",
-  4:"la construction et la stabilité. Méthodique et fiable, vous bâtissez du solide qui dure.",
-  5:"la liberté et le mouvement. Curieux(se) et adaptable, vous avez besoin de changement et d'aventure.",
-  6:"l'harmonie et la responsabilité. Le foyer, l'amour et le soin des autres guident votre chemin.",
-  7:"la recherche et la spiritualité. Analyste et introspectif(ve), vous cherchez le sens profond des choses.",
-  8:"la réussite et le pouvoir. Ambitieux(se) et organisé(e), vous êtes destiné(e) à la réalisation matérielle.",
-  9:"l'altruisme et l'universalité. Généreux(se) et idéaliste, vous œuvrez pour un bien plus grand que vous.",
-  11:"l'inspiration (nombre maître). Intuition élevée et idéal ; vous êtes un éveilleur de conscience.",
-  22:"la réalisation (nombre maître). Bâtisseur(se) de grands projets, vous pouvez concrétiser l'impossible.",
-  33:"l'amour universel (nombre maître). Guérisseur(se) et guide, votre mission est de servir avec compassion."
+  1:"l'indépendance et le leadership. Vous êtes fait(e) pour initier, ouvrir des voies et avancer en pionnier. Votre défi est d'oser décider seul(e) tout en sachant vous entourer, car votre force naturelle inspire les autres à vous suivre.",
+  2:"la coopération et la sensibilité. Votre force est le lien, la diplomatie et l'écoute. Vous brillez dans la relation et l'harmonie, à condition de ne pas vous oublier vous-même pour faire plaisir aux autres.",
+  3:"l'expression et la créativité. La communication, l'art et la joie de vivre sont vos moteurs. Votre chemin s'épanouit quand vous laissez parler votre créativité, sans vous éparpiller dans trop de directions à la fois.",
+  4:"la construction et la stabilité. Méthodique et fiable, vous bâtissez du solide qui dure. Votre sécurité vient du travail et de la rigueur, mais veillez à garder de la souplesse face à l'imprévu.",
+  5:"la liberté et le mouvement. Curieux(se) et adaptable, vous avez besoin de changement et d'aventure. Votre vie s'enrichit par l'expérience et la rencontre, pourvu que vous appreniez aussi à vous engager durablement.",
+  6:"l'harmonie et la responsabilité. Le foyer, l'amour et le soin des autres guident votre chemin. Vous êtes un pilier pour vos proches ; pensez seulement à recevoir autant que vous donnez.",
+  7:"la recherche et la spiritualité. Analyste et introspectif(ve), vous cherchez le sens profond des choses. Votre richesse est intérieure ; veillez à ne pas trop vous isoler de ceux qui vous aiment.",
+  8:"la réussite et le pouvoir. Ambitieux(se) et organisé(e), vous êtes destiné(e) à la réalisation matérielle. L'argent et la réussite vous sourient si vous gardez l'équilibre entre l'avoir et l'être.",
+  9:"l'altruisme et l'universalité. Généreux(se) et idéaliste, vous œuvrez pour un bien plus grand que vous. Votre accomplissement passe par le don et le lâcher-prise sur ce qui doit partir.",
+  11:"l'inspiration (nombre maître). Intuition élevée et idéal puissant : vous êtes un éveilleur de conscience. Cette vibration intense demande de canaliser votre sensibilité pour ne pas vous laisser submerger.",
+  22:"la réalisation (nombre maître). Bâtisseur(se) de grands projets, vous pouvez concrétiser l'impossible. Votre mission est d'ancrer vos idéaux dans le réel, au service du plus grand nombre.",
+  33:"l'amour universel (nombre maître). Guérisseur(se) et guide, votre mission est de servir avec compassion. Cette vibration rare appelle un équilibre entre le don aux autres et le soin de soi."
 };
 function calculNum(){
   var prenom=document.getElementById('n_prenom').value;
@@ -870,9 +888,14 @@ function calculNum(){
     '<div class="num-cell"><div class="n">'+intime+'</div><div class="l">Nombre intime</div></div>'+
     '<div class="num-cell"><div class="n">'+real+'</div><div class="l">Réalisation</div></div>'+
     '<div class="num-cell"><div class="n">'+anPerso+'</div><div class="l">Année perso.</div></div></div>';
-  html+='<p style="margin-bottom:1rem"><strong style="color:var(--gold-deep);font-family:\'Playfair Display\'">Votre chemin de vie '+chemin+'</strong> place sous le signe de '+(SENS_VIE[chemin]||"")+'</p>';
-  if(chemin===11||chemin===22||chemin===33)html+='<p style="margin-bottom:1rem;font-style:italic">Vous portez un nombre maître : une vibration puissante qui appelle de grandes responsabilités et un fort potentiel.</p>';
-  html+='<p>Votre <strong>nombre d\'expression '+expr+'</strong> décrit la manière dont vous rayonnez vers le monde, tandis que votre <strong>nombre intime '+intime+'</strong> révèle vos aspirations secrètes. Pour cette <strong>année personnelle '+anPerso+'</strong>, l\'énergie dominante vous invite à '+(anPerso<=3?"semer, initier et oser de nouveaux départs.":anPerso<=6?"consolider, équilibrer et prendre soin de vos liens.":"récolter, approfondir et faire le bilan avant un nouveau cycle.")+'</p>';
+  var pn=(document.getElementById('n_prenom').value||"").trim();
+  html+='<p style="margin-bottom:1rem">'+(pn?pn+', votre ':'Votre ')+'<strong style="color:var(--gold-deep);font-family:\'Playfair Display\'">chemin de vie '+chemin+'</strong> vous place sous le signe de '+(SENS_VIE[chemin]||"")+'</p>';
+  if(chemin===11||chemin===22||chemin===33)html+='<p style="margin-bottom:1rem;font-style:italic">Vous portez de plus un nombre maître\u00a0: une vibration rare et puissante, qui d\u00e9cuple votre potentiel mais appelle aussi de grandes responsabilit\u00e9s. Apprendre \u00e0 la canaliser est l\'un des grands enjeux de votre vie.</p>';
+  html+='<h4 style="font-family:\'Playfair Display\';color:var(--gold-deep);font-weight:500;margin:1.2rem 0 .4rem">Comment vous rayonnez</h4>';
+  html+='<p>Votre <strong>nombre d\'expression '+expr+'</strong> d\u00e9crit la mani\u00e8re dont les autres vous per\u00e7oivent et dont vous agissez dans le monde\u00a0: c\'est votre signature ext\u00e9rieure. En contrepoint, votre <strong>nombre intime '+intime+'</strong> r\u00e9v\u00e8le vos aspirations profondes et secr\u00e8tes, ce qui vous fait vibrer loin des regards. Votre <strong>nombre de r\u00e9alisation '+real+'</strong> indique enfin la voie par laquelle vous vous accomplirez concr\u00e8tement.</p>';
+  html+='<h4 style="font-family:\'Playfair Display\';color:var(--gold-deep);font-weight:500;margin:1.2rem 0 .4rem">Votre ann\u00e9e en cours</h4>';
+  var anTxt=(anPerso<=3?"un temps de semailles et d\'\u00e9lan\u00a0: c\'est le moment d\'initier, d\'oser de nouveaux d\u00e9parts et de planter les graines de demain.":anPerso<=6?"un temps de consolidation\u00a0: vous \u00eates appel\u00e9(e) \u00e0 \u00e9quilibrer, \u00e0 b\u00e2tir et \u00e0 prendre soin de vos liens les plus pr\u00e9cieux.":"un temps de r\u00e9colte et de bilan\u00a0: vous recueillez ce que vous avez sem\u00e9, vous approfondissez et vous pr\u00e9parez en douceur un nouveau cycle.");
+  html+='<p>Pour cette <strong>ann\u00e9e personnelle '+anPerso+'</strong>, l\'\u00e9nergie dominante annonce '+anTxt+' Gardez ce mot d\'ordre \u00e0 l\'esprit dans vos d\u00e9cisions des prochains mois.</p>';
   var box=document.getElementById('n_result');box.innerHTML=html;box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'center'});
 }
@@ -947,11 +970,12 @@ function calculAnge(){
   if(!ange)ange=ANGES[0];
   var nom=(normalise(prenom))?prenom:"Cher consultant";
   var box=document.getElementById('a_result');
-  box.innerHTML='<div style="text-align:center"><div style="font-size:2rem;color:var(--gold);margin-bottom:.5rem">♁</div>'+
+  box.innerHTML='<div style="text-align:center"><div style="font-size:2rem;color:var(--gold);margin-bottom:.5rem">\u2641</div>'+
     '<h3 style="font-family:\'Playfair Display\';color:var(--gold-deep);font-size:1.9rem;margin-bottom:.4rem">'+ange[0]+'</h3>'+
     '<div class="l" style="letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;font-family:\'Playfair Display\';margin-bottom:1.2rem">Votre ange gardien</div></div>'+
-    '<p>'+nom+', votre ange gardien est <strong style="color:var(--gold-deep)">'+ange[0]+'</strong>, gardien de '+ange[5]+'. Il veille sur vous depuis votre naissance et vous transmet ses qualités lorsque vous l\'invoquez en conscience.</p>'+
-    '<p style="margin-top:1rem;font-style:italic">Lorsque vous vous sentez perdu(e), prenez un instant de calme, respirez et adressez-lui votre demande. Sa protection se manifeste souvent par des synchronicités — notamment les heures miroirs que vous croisez au quotidien.</p>';
+    '<p>'+nom+', votre ange gardien est <strong style="color:var(--gold-deep)">'+ange[0]+'</strong>, le gardien de '+ange[5]+'. Dans la tradition ang\u00e9ologique, chacun des 72 anges veille sur une p\u00e9riode pr\u00e9cise de l\'ann\u00e9e\u00a0; le v\u00f4tre vous accompagne depuis votre premier souffle et vous transmet ses qualit\u00e9s lorsque vous faites appel \u00e0 lui en conscience.</p>'+
+    '<p style="margin-top:.9rem">Concr\u00e8tement, '+ange[0]+' vous soutient tout particuli\u00e8rement dans ce domaine\u00a0: c\'est vers cette \u00e9nergie que vous pouvez vous tourner dans les moments de doute ou de choix difficile. Plus vous lui pr\u00eatez attention, plus sa pr\u00e9sence devient \u00e9vidente dans votre quotidien.</p>'+
+    '<p style="margin-top:.9rem;font-style:italic">Pour l\'invoquer, offrez-vous un instant de calme, respirez profond\u00e9ment et formulez votre demande avec sinc\u00e9rit\u00e9. Sa r\u00e9ponse se manifeste souvent par des signes discrets\u00a0\u2014 et notamment par les heures miroirs que vous croisez sans le vouloir.</p>';
   box.classList.add('show');box.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
@@ -1003,6 +1027,25 @@ function hmTab(type,el){
   renderHM(type);
   document.getElementById('hm_result').classList.remove('show');
 }
+/* sens du chiffre dominant d'une heure */
+var CHIFFRE_SENS={
+"0":"les commencements et le potentiel infini",
+"1":"l'affirmation de soi et les nouveaux d\u00e9parts",
+"2":"l'\u00e9quilibre, le couple et la coop\u00e9ration",
+"3":"la cr\u00e9ativit\u00e9, la communication et la joie",
+"4":"la stabilit\u00e9, le travail et les fondations",
+"5":"le changement, la libert\u00e9 et le mouvement",
+"6":"l'amour, l'harmonie et la famille",
+"7":"la spiritualit\u00e9, la r\u00e9flexion et la chance",
+"8":"la r\u00e9ussite, l'abondance et le pouvoir",
+"9":"l'accomplissement, l'altruisme et la fin d'un cycle"
+};
+function chiffreDominant(h){
+  var digits=h.replace(':','').split('');
+  var counts={},max=0,best=digits[0];
+  digits.forEach(function(d){counts[d]=(counts[d]||0)+1;if(counts[d]>max){max=counts[d];best=d;}});
+  return best;
+}
 function renderHM(type){
   var data=(type==='miroir')?HM_MIROIR:HM_INVERSE;
   var grid=document.getElementById('hm_grid');grid.innerHTML='';
@@ -1011,7 +1054,18 @@ function renderHM(type){
     d.innerHTML='<div class="t">'+h.replace(':','h')+'</div><div class="tag">'+(type==='miroir'?'miroir':'inversée')+'</div>';
     d.onclick=function(){
       var box=document.getElementById('hm_result');
-      box.innerHTML='<div style="text-align:center"><div class="n" style="font-family:\'Playfair Display\';font-size:2.6rem;color:var(--gold-deep)">'+h.replace(':','h')+'</div></div><p style="margin-top:.6rem">'+data[h]+'</p>';
+      var ch=chiffreDominant(h);
+      var sensChiffre=CHIFFRE_SENS[ch]||"une vibration particuli\u00e8re";
+      var intro=(type==='miroir')
+        ? "Voir une heure miroir n'a rien d'anodin\u00a0: c'est souvent le signe que votre esprit, vos guides ou votre ange gardien cherchent \u00e0 attirer votre attention au moment pr\u00e9cis o\u00f9 vous en avez besoin."
+        : "Les heures invers\u00e9es, qui se lisent en miroir, sont des clins d'\u0153il du destin\u00a0: elles soulignent une situation en train de se retourner, souvent en votre faveur.";
+      box.innerHTML=
+        '<div style="text-align:center"><div class="n" style="font-family:\'Playfair Display\';font-size:2.6rem;color:var(--gold-deep)">'+h.replace(':','h')+'</div>'+
+        '<div class="l" style="letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;font-family:\'Playfair Display\';font-size:.78rem">'+(type==='miroir'?'Heure miroir':'Heure invers\u00e9e')+'</div></div>'+
+        '<p style="margin-top:1rem">'+intro+'</p>'+
+        '<p style="margin-top:.8rem"><strong style="color:var(--gold-deep);font-family:\'Playfair Display\';font-weight:500">Son message\u00a0:</strong> '+data[h]+'</p>'+
+        '<p style="margin-top:.8rem">Le chiffre '+ch+' qui domine cette heure renforce '+sensChiffre+'\u00a0: c\'est l\'\u00e9nergie \u00e0 garder en t\u00eate dans les heures qui suivent.</p>'+
+        '<p style="margin-top:.8rem;font-style:italic">Notez ce que vous \u00e9tiez en train de penser en voyant cette heure\u00a0: c\'est souvent l\u00e0 que se cache la r\u00e9ponse. Pour aller plus loin, d\u00e9couvrez l\'ange associ\u00e9 \u00e0 votre date de naissance.</p>';
       box.classList.add('show');box.scrollIntoView({behavior:'smooth',block:'center'});
     };
     grid.appendChild(d);
