@@ -42,7 +42,11 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.88);backdrop-f
 .logo span{color:var(--ink);font-weight:400}
 .nav-links{display:flex;gap:1.7rem;align-items:center}
 .nav-links a{text-decoration:none;color:var(--ink-soft);font-size:1.02rem;letter-spacing:.03em;transition:color .25s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--gold);transition:right .28s ease}
 .nav-links a:hover{color:var(--gold-deep)}
+.nav-links a:hover::after{right:0}
+.nav-links a.active{color:var(--gold-deep)}
+.nav-links a.active::after{right:0}
 .badge-free{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;font-family:'Playfair Display';font-size:.6rem;letter-spacing:.12em;padding:.18rem .5rem;border-radius:20px;margin-left:.35rem;vertical-align:middle;text-transform:uppercase;animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,145,73,.4)}50%{box-shadow:0 0 0 6px rgba(184,145,73,0)}}
 .burger{display:none;font-size:1.6rem;color:var(--gold-deep);background:none;border:none;cursor:pointer}
@@ -265,6 +269,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <div class="nav-links" id="navlinks">
       <a data-page="accueil" onclick="go('oracle')">Tirage gratuit</a>
       <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
+      <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité</a>
       <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
       <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
       <a data-page="consultations" onclick="go('consultations')">Consultations</a>
@@ -384,7 +389,22 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <button class="btn btn-gold" onclick="openModal('Bilan Numérologique','Votre portrait chiffré complet',29)">Réserver · 29 €</button>
     </div>
 
-    <div class="panel compat-feat" style="margin-top:3rem" id="compatibilite">
+
+  </div>
+</section>
+
+<!-- ANGEOLOGIE -->
+
+</div>
+<div class="page" id="page-compatibilite">
+<section id="compatibilite">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow" style="color:var(--rose)">Le test le plus demandé</div>
+      <h2>Compatibilité amoureuse</h2>
+      <p>Vos deux prénoms vibrent-ils à l'unisson&nbsp;? Découvrez votre taux d'affinité en un instant.</p>
+    </div>
+    <div class="panel compat-feat" style="margin-top:3rem">
       <div class="heart">♥</div>
       <div class="section-hd" style="margin-bottom:1.2rem">
         <div class="eyebrow" style="color:var(--rose)">Le test le plus demandé</div>
@@ -398,11 +418,12 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <div style="text-align:center"><button class="btn btn-outline" onclick="calculCompat()">Calculer l'affinité</button></div>
     </div>
     <div class="result-box" id="c_result"></div>
+    <div class="cta-band">
+      <div class="ct"><b>Envie d'aller plus loin à deux ?</b><span>Un voyant analyse votre relation en consultation privée.</span></div>
+      <button class="btn btn-gold" onclick="go('consultations')">Consulter →</button>
+    </div>
   </div>
 </section>
-
-<!-- ANGEOLOGIE -->
-
 </div>
 <div class="page" id="page-angeologie">
 <section id="angeologie">
@@ -653,6 +674,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <div class="fl">
       <a onclick="go('oracle')">Oracle</a>
       <a onclick="go('numerologie')">Numérologie</a>
+      <a onclick="go('compatibilite')">Compatibilité</a>
       <a onclick="go('angeologie')">Angéologie</a>
       <a onclick="go('heures')">Heures Miroirs</a>
       <a onclick="go('consultations')">Consultations</a>
@@ -674,7 +696,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,numerologie:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);
