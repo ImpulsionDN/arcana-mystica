@@ -109,9 +109,15 @@ section{padding:4.5rem 0;position:relative;scroll-margin-top:80px}
 .tcard-back{background:linear-gradient(160deg,#fffdf9,#f1e6cf);border:1px solid var(--gold);box-shadow:inset 0 0 24px rgba(184,145,73,.18)}
 .tcard-back .pos{font-family:'Playfair Display';font-size:.62rem;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase;margin-top:.8rem}
 .tcard-back svg{opacity:.85}
-.tcard-front{background:linear-gradient(170deg,#fffdf9,#f6eeda);border:1px solid var(--gold-deep);transform:rotateY(180deg);box-shadow:inset 0 0 24px rgba(184,145,73,.22)}
+.tcard-front{background:linear-gradient(170deg,#fffdf9,#fbf3df);border:2px solid var(--ac,#9a7838);transform:rotateY(180deg);box-shadow:inset 0 0 24px rgba(184,145,73,.22)}
 .tcard-front .cname{font-family:'Playfair Display';font-size:.92rem;color:var(--gold-deep);margin:.4rem 0 .2rem;letter-spacing:.02em}
 .tcard-front .cpos{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-family:'Playfair Display'}
+.tcard-front{position:relative;overflow:hidden}
+.tcard-front::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--ac,#9a7838)}
+.tcard-front .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,var(--ac2,transparent),transparent 62%);opacity:.5;pointer-events:none}
+.tcard-front .blason{position:absolute;top:7px;right:8px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff;background:var(--ac,#9a7838);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.tcard-front .astre-lbl{font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ac,#9a7838);font-family:'Playfair Display';margin-top:.15rem;opacity:.85}
+.tcard-front svg{position:relative;z-index:1}
 .interpretation{max-width:720px;margin:1.5rem auto 0;color:var(--ink);font-size:1.12rem;line-height:1.7;text-align:left}
 .interpretation .lame-block{margin-bottom:1.6rem;padding-bottom:1.4rem;border-bottom:1px solid var(--line)}
 .interpretation .lame-block:last-of-type{border-bottom:none}
@@ -678,6 +684,18 @@ window.addEventListener('scroll',function(){
 /* ============ LAMES DE L'ORACLE ARCANA ============ */
 /* Illustrations SVG 100% originales — aucune reproduction d'un jeu existant.
    Pour brancher vos propres significations, remplacez le champ "sens". */
+/* ============ ASTRES (esprit Oracle de Belline) ============ */
+var ASTRES={
+  soleil: {nom:"Soleil",  sym:"\u2609", c:"#e0a317", c2:"#f6dca0"},
+  lune:   {nom:"Lune",    sym:"\u263d", c:"#7e91c4", c2:"#cdd6ee"},
+  mercure:{nom:"Mercure", sym:"\u263f", c:"#2fa39a", c2:"#a9ded7"},
+  venus:  {nom:"V\u00e9nus",   sym:"\u2640", c:"#ce6e97", c2:"#f1c2d6"},
+  mars:   {nom:"Mars",    sym:"\u2642", c:"#c0463a", c2:"#eca89f"},
+  jupiter:{nom:"Jupiter", sym:"\u2643", c:"#3e6bb0", c2:"#aac0e6"},
+  saturne:{nom:"Saturne", sym:"\u2644", c:"#6a5e86", c2:"#c2b8d5"}
+};
+/* Association de chaque lame \u00e0 un astre, dans l'ordre du tableau LAMES */
+var ASTRE_LAME=["mercure","jupiter","soleil","venus","mercure","venus","mercure","jupiter","saturne","venus","saturne","jupiter","jupiter","saturne","lune","mars","lune","saturne","lune","soleil","jupiter","jupiter","lune","venus"];
 function svgCard(inner){return '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#9a7838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>';}
 var LAMES=[
   {nom:"La Clef", val:1, svg:svgCard('<circle cx="26" cy="22" r="9"/><path d="M26 31 L26 52 M26 44 L34 44 M26 38 L36 38"/>'), gen:"La Clef annonce qu'une solution longtemps attendue se présente enfin. Une porte demeurée close s'apprête à s'ouvrir, et ce que vous cherchiez devient soudain accessible.", inv:"Elle vous invite à saisir l'occasion sans hésiter : la voie est dégagée, à vous d'y avancer avec confiance.", amour:"En amour, elle ouvre un dialogue resté bloqué ou dévoile les sentiments véritables d'une personne.", travail:"Côté travail, une opportunité se débloque : entretien, accord ou projet qui se concrétise.", sante:"Sur le plan de l'énergie, elle marque la fin d'un blocage et le retour d'un élan nouveau."},
@@ -749,9 +767,12 @@ function tirer(){
   row.style.display='flex';row.innerHTML='';
   tirage.forEach(function(l,i){
     var c=document.createElement('div');c.className='tcard';
+    var idx=LAMES.indexOf(l);
+    var ast=ASTRES[ASTRE_LAME[idx]]||ASTRES.soleil;
+    var svgCol=l.svg.replace('stroke="#9a7838"','stroke="'+ast.c+'"');
     c.innerHTML='<div class="tcard-inner">'+
       '<div class="tcard-face tcard-back">'+svgCard('<circle cx="32" cy="32" r="14"/><path d="M32 8 L32 18 M32 46 L32 56 M8 32 L18 32 M46 32 L56 32"/>')+'<div class="pos">'+POSITIONS[i]+'</div></div>'+
-      '<div class="tcard-face tcard-front">'+l.svg+'<div class="cpos">'+POSITIONS[i]+'</div><div class="cname">'+l.nom+'</div></div>'+
+      '<div class="tcard-face tcard-front" style="--ac:'+ast.c+';--ac2:'+ast.c2+'">'+'<div class="glow"></div>'+'<div class="blason" title="'+ast.nom+'">'+ast.sym+'</div>'+svgCol+'<div class="cpos">'+POSITIONS[i]+'</div><div class="cname">'+l.nom+'</div><div class="astre-lbl">'+ast.sym+' '+ast.nom+'</div></div>'+
       '</div>';
     row.appendChild(c);
     setTimeout(function(){c.classList.add('flipped');},350+i*450);
