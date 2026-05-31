@@ -1399,20 +1399,31 @@ function lancerGuidanceIA(){
   }
 
   var maxTok=(t.indexOf("ang")>=0)?1600:1000;
-  fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      model:"claude-sonnet-4-20250514",
-      max_tokens:maxTok,
-      system:sys,
-      messages:[{role:"user",content:usr}]
-    })
-  }).then(function(r){return r.json();}).then(function(data){
-    var texte=(data&&data.content?data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join("\n"):"")||
-      "Les lames vous invitent aujourd'hui à la confiance : une période plus claire s'ouvre à vous. Avancez à votre rythme, votre intuition vous guide bien.";
+
+  // Texte de secours développé, par formule (si l'IA n'est pas joignable)
+  var SECOURS;
+  if(t.indexOf("ang")>=0){
+    SECOURS="Ton ange gardien veille sur toi en ce moment, et sa présence se fait plus douce que tu ne l'imagines.\n\n"+
+      "La présence de ton ange — Il porte une énergie de protection et d'apaisement. Là où le doute s'installe, il vient déposer une certitude tranquille : tu n'avances pas seul(e).\n\n"+
+      "Le domaine qu'il éclaire — En ce moment, son attention se porte sur ton équilibre intérieur et tes liens les plus chers. Il t'invite à ralentir, à écouter ce qui compte vraiment pour toi.\n\n"+
+      "Son message — Aie confiance dans le chemin parcouru. Les épreuves d'hier ont nourri une force que tu portes désormais en toi. Ce qui se prépare est plus lumineux que ce que tu crains.\n\n"+
+      "Reconnaître ses signes — Une plume, une intuition soudaine, une rencontre qui tombe à point, ou ces heures miroirs que tu croises sans le vouloir : autant de clins d'œil discrets. Apprends à les remarquer.\n\n"+
+      "Pour l'invoquer — Offre-toi un instant de calme, respire profondément, et formule en pensée : « Je t'accueille, veille sur mon chemin. » Sa réponse viendra, à sa manière, au bon moment.";
+  } else if(t.indexOf("num")>=0){
+    SECOURS="Vos nombres dessinent un tempérament riche, fait d'élan et de réflexion à la fois.\n\n"+
+      "Vous avancez avec une belle capacité à rebondir : là où d'autres s'arrêtent, vous trouvez une porte. Votre défi de l'année est d'oser poser vos limites et de ne pas vous disperser.\n\n"+
+      "Le conseil des nombres : choisissez une ou deux priorités et tenez-les. C'est en concentrant votre énergie que vous récolterez le plus. Faites confiance à votre rythme.";
+  } else {
+    SECOURS="Les lames vous accompagnent aujourd'hui avec bienveillance.\n\n"+
+      "Le passé a posé des bases solides, le présent vous invite à la confiance, et l'avenir s'ouvre sur une période plus sereine. Les obstacles que vous percevez ne sont que passagers.\n\n"+
+      "Avancez pas à pas, en écoutant votre intuition : elle vous guide bien. Le meilleur reste à venir.";
+  }
+
+  var done=false;
+  function afficherGuidance(texte){
+    if(done)return; done=true;
     var loader=document.getElementById('ia_loader'); if(loader)loader.style.display='none';
-    var head=document.querySelector('#modalContent h3'); if(head)head.textContent='Votre guidance, '+(nom||'')+' \u2727';
+    var head=document.querySelector('#modalContent h3'); if(head)head.textContent='Votre guidance'+(nom?(', '+nom):'')+' \u2727';
     var sub=document.querySelector('#modalContent .sub');
     if(parTchat){
       if(sub)sub.innerHTML='Voici le message des lames, rien que pour vous\u00a0:';
@@ -1424,13 +1435,30 @@ function lancerGuidanceIA(){
     var c=document.getElementById('modalContent');
     c.innerHTML+='<button class="btn btn-outline" style="width:100%;margin-top:1rem" onclick="closeModal()">Fermer</button>'+
       '<div class="pay-note">Guidance générée automatiquement \u00b7 voir nos mentions légales</div>';
+  }
+
+  // Sécurité : si rien ne répond sous 12 s, on affiche le texte de secours
+  var secu=setTimeout(function(){afficherGuidance(SECOURS);},12000);
+
+  fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      model:"claude-sonnet-4-20250514",
+      max_tokens:maxTok,
+      system:sys,
+      messages:[{role:"user",content:usr}]
+    })
+  }).then(function(r){
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    return r.json();
+  }).then(function(data){
+    clearTimeout(secu);
+    var texte=(data&&data.content?data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join("\n"):"")||SECOURS;
+    afficherGuidance(texte);
   }).catch(function(){
-    var loader=document.getElementById('ia_loader'); if(loader)loader.style.display='none';
-    var z=document.getElementById('ia_zone');
-    if(z)z.textContent="Les lames vous accompagnent : une période plus sereine s'annonce. Faites confiance à votre intuition et avancez pas à pas.";
-    var c=document.getElementById('modalContent');
-    c.innerHTML+='<button class="btn btn-outline" style="width:100%;margin-top:1rem" onclick="closeModal()">Fermer</button>'+
-      '<div class="pay-note">Guidance générée automatiquement \u00b7 voir nos mentions légales</div>';
+    clearTimeout(secu);
+    afficherGuidance(SECOURS);
   });
 }
 
