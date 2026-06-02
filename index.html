@@ -288,6 +288,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <div class="nav-links" id="navlinks">
       <a data-page="accueil" onclick="go('oracle')">Tirage gratuit</a>
+      <a data-page="roue" onclick="go('roue')">Roue des Mois</a>
       <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
       <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité</a>
       <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
@@ -389,12 +390,18 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
   </div>
 </section>
 
-<!-- TEASER ROUE DES MOIS (accueil) -->
+
+
+<!-- NUMEROLOGIE -->
+
+</div>
+<!-- PAGE ROUE DES MOIS -->
+<div class="page" id="page-roue">
 <section class="bg2">
   <div class="wrap">
     <div class="roue-wrap">
       <div class="roue-emblem" aria-hidden="true">
-        <svg viewBox="0 0 100 100" width="84" height="84" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 100 100" width="96" height="96" xmlns="http://www.w3.org/2000/svg">
           <circle cx="50" cy="50" r="44" fill="none" stroke="var(--gold)" stroke-width="1.2"/>
           <circle cx="50" cy="50" r="30" fill="none" stroke="var(--gold-light)" stroke-width="0.8"/>
           <g stroke="var(--gold)" stroke-width="0.7" opacity="0.8"><line x1="50.0" y1="20.0" x2="50.0" y2="6.0"/><line x1="65.0" y1="24.0" x2="72.0" y2="11.9"/><line x1="76.0" y1="35.0" x2="88.1" y2="28.0"/><line x1="80.0" y1="50.0" x2="94.0" y2="50.0"/><line x1="76.0" y1="65.0" x2="88.1" y2="72.0"/><line x1="65.0" y1="76.0" x2="72.0" y2="88.1"/><line x1="50.0" y1="80.0" x2="50.0" y2="94.0"/><line x1="35.0" y1="76.0" x2="28.0" y2="88.1"/><line x1="24.0" y1="65.0" x2="11.9" y2="72.0"/><line x1="20.0" y1="50.0" x2="6.0" y2="50.0"/><line x1="24.0" y1="35.0" x2="11.9" y2="28.0"/><line x1="35.0" y1="24.0" x2="28.0" y2="11.9"/></g>
@@ -402,9 +409,9 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         </svg>
       </div>
       <div class="section-hd" style="margin-bottom:2.5rem">
-        <div class="eyebrow">Pour aller plus loin</div>
+        <div class="eyebrow">Lecture du temps</div>
         <h2>La Roue des Mois</h2>
-        <p>Le tirage gratuit éclaire l'instant présent. La Roue des Mois va plus loin : elle dévoile, mois après mois, ce que vos prochaines lunes vous réservent — une lame de Belline pour chacun des mois à venir.</p>
+        <p>Pour chaque mois à venir, une lame de l'Oracle de Belline est tirée et reliée à votre chemin de vie — afin de dévoiler, mois après mois, ce que vos prochaines lunes vous réservent.</p>
       </div>
       <div class="offres">
         <div class="offre">
@@ -433,9 +440,6 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     </div>
   </div>
 </section>
-
-<!-- NUMEROLOGIE -->
-
 </div>
 <div class="page" id="page-numerologie">
 <section class="bg2" id="numerologie">
@@ -769,7 +773,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);
