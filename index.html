@@ -82,7 +82,8 @@ section{padding:4.5rem 0;position:relative;scroll-margin-top:80px}
 
 /* HOME RUBRIQUES */
 .rubriques{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem}
-.rub{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:2.2rem 1.8rem;text-decoration:none;color:inherit;transition:transform .35s,box-shadow .35s,border-color .35s;display:block}
+.rub{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:2.2rem 1.8rem;text-decoration:none;color:inherit;transition:transform .35s,box-shadow .35s,border-color .35s;display:block;cursor:pointer}
+.rub:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(154,120,56,.15);border-color:var(--gold)}
 .rub:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold)}
 .rub .num{font-family:'Playfair Display';font-size:1rem;color:var(--gold);letter-spacing:.2em;margin-bottom:1rem}
 .rub .ic{font-size:2rem;color:var(--gold-deep);margin-bottom:.7rem}
@@ -315,7 +316,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
   <div class="wrap">
     <div class="section-hd">
       <div class="eyebrow">Ce que vous trouverez ici</div>
-      <h2>Quatre voies vers la clarté</h2>
+      <h2>Cinq voies vers la clarté</h2>
     </div>
     <div class="rubriques">
       <a class="rub" onclick="go('oracle')">
@@ -328,13 +329,18 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         <h3>Numérologie</h3>
         <p>Chemin de vie, expression, compatibilité des prénoms et année personnelle.</p>
       </a>
+      <a class="rub" onclick="go('compatibilite')">
+        <div class="num">III</div><div class="ic">♥</div>
+        <h3>Compatibilité</h3>
+        <p>La compatibilité amoureuse de vos prénoms et de vos chemins de vie.</p>
+      </a>
       <a class="rub" onclick="go('angeologie')">
-        <div class="num">III</div><div class="ic">♁</div>
+        <div class="num">IV</div><div class="ic">♁</div>
         <h3>Angéologie</h3>
         <p>Découvrez votre ange gardien parmi les 72 et son message pour vous.</p>
       </a>
       <a class="rub" onclick="go('heures')">
-        <div class="num">IV</div><div class="ic">☽</div>
+        <div class="num">V</div><div class="ic">☽</div>
         <h3>Heures Miroirs</h3>
         <p>La signification des heures miroirs et inversées — entièrement gratuit.</p>
       </a>
