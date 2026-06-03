@@ -288,14 +288,15 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <div class="nav-links" id="navlinks">
       <a data-page="accueil" onclick="go('oracle')">Tirage gratuit</a>
+      <a data-page="ouinon" onclick="go('ouinon')">Oui / Non</a>
       <a data-page="roue" onclick="go('roue')">Roue des Mois</a>
       <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
       <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité</a>
       <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
       <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
       <a data-page="consultations" onclick="go('consultations')">Consultations</a>
-      <a data-page="journal" onclick="go('journal')">Journal</a>
-      <a data-page="avisfaq" onclick="go('avisfaq')">Avis &amp; FAQ</a>
+      <a data-page="journal" class="nav-min" onclick="go('journal')">Journal</a>
+      <a data-page="avisfaq" class="nav-min" onclick="go('avisfaq')">Avis &amp; FAQ</a>
     </div>
   </div>
 </nav>
@@ -394,6 +395,43 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 <!-- NUMEROLOGIE -->
 
+</div>
+<!-- PAGE OUI / NON -->
+<div class="page" id="page-ouinon">
+<section>
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Oui ou Non</div>
+      <h2>La Réponse des Lames</h2>
+      <p>Posez une question fermée à l'oracle. Trois lames de Belline sont tirées pour faire pencher la balance — et vous répondre.</p>
+    </div>
+    <div class="on-box">
+      <input id="onQuestion" class="on-input" placeholder="Ex. : Vais-je recevoir une bonne nouvelle ce mois-ci ?">
+      <div id="onCounter" class="on-counter"></div>
+      <button class="btn btn-gold" id="onBtn" onclick="tirerOuiNon()">Interroger les lames</button>
+      <div id="onResult" class="on-result"></div>
+    </div>
+  </div>
+</section>
+<style>
+.on-box{max-width:640px;margin:0 auto;text-align:center}
+.on-input{width:100%;padding:.9rem 1rem;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-family:inherit;font-size:1rem;margin-bottom:1rem}
+.on-counter{font-size:.85rem;color:var(--ink-soft);margin-bottom:1.1rem;letter-spacing:.03em}
+.on-result{margin-top:2.4rem}
+.on-q{font-style:italic;color:var(--ink-soft);margin-bottom:1.4rem}
+.on-cards{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.on-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1rem;width:148px}
+.on-card-svg{display:flex;justify-content:center;margin-bottom:.5rem}
+.on-card-svg svg{width:56px;height:56px}
+.on-card-nom{font-weight:600;color:var(--ink);font-size:.92rem;margin-bottom:.35rem;min-height:2.4em}
+.on-card-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+.on-card-tag.t-pos{color:#2d7a46}.on-card-tag.t-neg{color:#a23b3b}.on-card-tag.t-neu{color:var(--gold-deep)}
+.on-verdict{font-size:2.8rem;font-weight:700;margin:.4rem 0 .6rem;letter-spacing:.02em}
+.on-verdict.on-oui{color:#2d7a46}.on-verdict.on-non{color:#a23b3b}.on-verdict.on-neutre{color:var(--gold-deep)}
+.on-phrase{max-width:520px;margin:0 auto;color:var(--ink-soft);line-height:1.6}
+.on-paywall{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--gold-deep);font-size:.95rem}
+.nav-links a.nav-min{font-size:.82rem;opacity:.62}
+</style>
 </div>
 <!-- PAGE ROUE DES MOIS -->
 <div class="page" id="page-roue">
@@ -773,7 +811,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);
@@ -1584,6 +1622,44 @@ function lancerGuidanceIA(){
 function closeModal(){modalBg.classList.remove('open');}
 modalBg.addEventListener('click',function(e){if(e.target===modalBg)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+</script>
+<script>
+(function(){
+  try{ if(location.search.indexOf("ouinon=ok")>=0||location.hash.indexOf("ouinon-ok")>=0){ localStorage.setItem("arc_oui_unlock","1"); } }catch(e){}
+  function st(){ var u=0,k=false; try{u=parseInt(localStorage.getItem("arc_oui_uses")||"0",10)||0;k=localStorage.getItem("arc_oui_unlock")==="1";}catch(e){} return {uses:u,unlocked:k}; }
+  function maj(){ var el=document.getElementById("onCounter"); if(!el)return; var s=st();
+    el.innerHTML = s.unlocked ? "✦ Accès illimité activé" : ("Tirages gratuits restants : <b>"+Math.max(0,3-s.uses)+"</b> / 3"); }
+  window.tirerOuiNon=function(){
+    var s=st();
+    if(!s.unlocked && s.uses>=3){ openModal("Tirage Oui/Non illimité","Vos 3 tirages offerts sont utilisés. Débloquez les tirages Oui/Non en illimité, à vie, pour 7,99 €.",7.99); return; }
+    var idx=[]; while(idx.length<3){ var r=Math.floor(Math.random()*LAMES.length); if(idx.indexOf(r)<0) idx.push(r); }
+    var cards=idx.map(function(i){return LAMES[i];});
+    var sum=cards.reduce(function(a,c){return a+(c.val||0);},0);
+    var verdict,vclass,phrase;
+    if(sum>=2){verdict="OUI";vclass="on-oui";phrase="Les lames s'accordent : l'augure est franchement favorable. Avancez avec confiance.";}
+    else if(sum===1){verdict="Plutôt oui";vclass="on-oui";phrase="La tendance penche vers le oui, avec une légère réserve à observer.";}
+    else if(sum===0){verdict="Peut-être";vclass="on-neutre";phrase="Les forces s'équilibrent : la réponse n'est pas encore tranchée. Reformulez votre question, ou laissez le temps agir.";}
+    else if(sum===-1){verdict="Plutôt non";vclass="on-non";phrase="La tendance penche vers le non ; la prudence est conseillée.";}
+    else {verdict="NON";vclass="on-non";phrase="Les lames se rejoignent dans le refus : ce n'est pas le moment, ou pas la bonne voie.";}
+    var q=(document.getElementById("onQuestion").value||"").trim();
+    var cardsHtml=cards.map(function(c){
+      var t=c.val>0?"t-pos":(c.val<0?"t-neg":"t-neu");
+      var lbl=c.val>0?"favorable":(c.val<0?"défavorable":"nuancée");
+      return `<div class="on-card"><div class="on-card-svg">${c.svg}</div><div class="on-card-nom">${c.nom}</div><div class="on-card-tag ${t}">${lbl}</div></div>`;
+    }).join("");
+    var html="";
+    if(q) html+=`<div class="on-q">« ${q} »</div>`;
+    html+=`<div class="on-cards">${cardsHtml}</div>`;
+    html+=`<div class="on-verdict ${vclass}">${verdict}</div>`;
+    html+=`<div class="on-phrase">${phrase}</div>`;
+    document.getElementById("onResult").innerHTML=html;
+    if(!s.unlocked){ try{ localStorage.setItem("arc_oui_uses", String(s.uses+1)); }catch(e){} }
+    maj();
+    var s2=st();
+    if(!s2.unlocked && s2.uses>=3){ document.getElementById("onResult").innerHTML+=`<div class="on-paywall">C'était votre dernier tirage gratuit. Au prochain, vous pourrez débloquer l'accès illimité pour 7,99 €.</div>`; }
+  };
+  if(document.readyState!=="loading") maj(); else document.addEventListener("DOMContentLoaded",maj);
+})();
 </script>
 </body>
 </html>
