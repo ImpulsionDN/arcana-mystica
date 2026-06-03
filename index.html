@@ -41,6 +41,15 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.88);backdrop-f
 .logo{font-family:'Playfair Display';font-size:1.45rem;letter-spacing:.14em;color:var(--gold-deep);font-weight:600;cursor:pointer}
 .logo span{color:var(--ink);font-weight:400}
 .nav-links{display:flex;gap:1.7rem;align-items:center}
+.nav-group{position:relative;align-self:stretch;display:flex;align-items:center}
+.nav-trigger{cursor:pointer;color:var(--ink-soft);font-size:1.02rem;letter-spacing:.03em;display:inline-flex;align-items:center;gap:.32rem;transition:color .25s;white-space:nowrap}
+.nav-trigger:hover{color:var(--gold-deep)}
+.nav-trigger .caret{font-size:.62rem;color:var(--gold)}
+.nav-drop{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.45rem;min-width:236px;display:none;z-index:70;box-shadow:0 14px 36px rgba(154,120,56,.18)}
+.nav-group:hover .nav-drop{display:block}
+.nav-drop a{display:flex;align-items:center;white-space:nowrap;padding:.62rem .85rem;border-radius:8px;color:var(--ink);font-size:.98rem}
+.nav-drop a::after{display:none}
+.nav-drop a:hover,.nav-drop a.active{background:var(--bg-2);color:var(--gold-deep)}
 .nav-links a{text-decoration:none;color:var(--ink-soft);font-size:1.02rem;letter-spacing:.03em;transition:color .25s;position:relative}
 .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--gold);transition:right .28s ease}
 .nav-links a:hover{color:var(--gold-deep)}
@@ -54,6 +63,10 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.88);backdrop-f
   .nav-links{position:fixed;inset:76px 0 auto 0;flex-direction:column;background:var(--bg);padding:1.5rem;border-bottom:1px solid var(--line);display:none;gap:1.2rem}
   .nav-links.open{display:flex}
   .burger{display:block}
+  .nav-group{flex-direction:column;align-items:flex-start;align-self:auto;width:100%}
+  .nav-trigger{color:var(--gold-deep);font-weight:500;margin-bottom:.2rem}
+  .nav-drop{position:static;transform:none;display:block;border:none;box-shadow:none;background:transparent;padding:0 0 0 .9rem;min-width:0}
+  .nav-drop a{padding:.5rem 0}
 }
 
 /* BUTTONS */
@@ -288,16 +301,25 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <div class="logo" onclick="go('accueil')">ORACLE <span>ARCANA</span></div>
     <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
     <div class="nav-links" id="navlinks">
-      <a data-page="accueil" onclick="go('oracle')">Tirage gratuit</a>
-      <a data-page="ouinon" onclick="go('ouinon')">Oui / Non<span class="badge-free">Gratuit</span></a>
-      <a data-page="roue" onclick="go('roue')">Roue des Mois</a>
-      <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
-      <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité</a>
-      <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
-      <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
+      <div class="nav-group">
+        <span class="nav-trigger">Tirages gratuits <span class="caret">▾</span></span>
+        <div class="nav-drop">
+          <a data-page="accueil" onclick="go('oracle')">Tirage gratuit · 3 lames</a>
+          <a data-page="ouinon" onclick="go('ouinon')">Oui / Non<span class="badge-free">Gratuit</span></a>
+          <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-trigger">Lectures <span class="caret">▾</span></span>
+        <div class="nav-drop">
+          <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
+          <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité</a>
+          <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
+        </div>
+      </div>
+      <a data-page="roue" onclick="go('roue')">La Roue des Mois</a>
       <a data-page="consultations" onclick="go('consultations')">Consultations</a>
-      <a data-page="journal" class="nav-min" onclick="go('journal')">Journal</a>
-      <a data-page="avisfaq" class="nav-min" onclick="go('avisfaq')">Avis &amp; FAQ</a>
+      <a data-page="avisfaq" class="nav-min" onclick="go('avisfaq')">FAQ</a>
     </div>
   </div>
 </nav>
@@ -797,8 +819,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <a onclick="go('angeologie')">Angéologie</a>
       <a onclick="go('heures')">Heures Miroirs</a>
       <a onclick="go('consultations')">Consultations</a>
-      <a onclick="go('journal')">Journal</a>
-      <a onclick="go('avisfaq')">Avis &amp; FAQ</a>
+            <a onclick="go('avisfaq')">Avis &amp; FAQ</a>
       <a href="#">Mentions légales</a>
       <a href="#">CGV</a>
     </div>
