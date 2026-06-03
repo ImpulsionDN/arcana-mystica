@@ -1694,6 +1694,12 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()
 .lunes-wrap{text-align:center}
 .lunes-wrap h2{font-family:'Playfair Display';color:var(--ink);margin:.3rem 0 .6rem;font-size:2rem}
 .lunes-intro{color:var(--ink-soft);max-width:580px;margin:0 auto 2.2rem}
+.lunes-synthese{text-align:left;background:var(--bg-2);border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.8rem;margin:0 auto 2.6rem;max-width:680px}
+.lunes-synthese h3{font-family:'Playfair Display';color:var(--gold-deep);margin:0 0 .9rem;font-size:1.3rem}
+.lunes-synthese p{color:var(--ink-soft);line-height:1.75;margin:0 0 .8rem}
+.lunes-synthese p:last-child{margin-bottom:0}
+.lune-interp p{margin:0 0 .55rem}
+.lune-interp p:last-child{margin-bottom:0}
 .lunes-list{text-align:left;display:flex;flex-direction:column;gap:1rem}
 .lune-row{display:grid;grid-template-columns:120px 92px 1fr;gap:1.1rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 4px 16px rgba(154,120,56,.06)}
 .lune-mois{font-family:'Playfair Display';color:var(--gold-deep);font-size:1.1rem}
@@ -1712,22 +1718,34 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()
 (function(){
   var MOIS=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
   function moisLabel(off){ var d=new Date(); var idx=d.getMonth()+off; var y=d.getFullYear()+Math.floor(idx/12); idx=((idx%12)+12)%12; var s=MOIS[idx]+" "+y; return s.charAt(0).toUpperCase()+s.slice(1); }
+  function joinFr(a){ if(!a.length) return ""; if(a.length===1) return a[0]; return a.slice(0,-1).join(", ")+" et "+a[a.length-1]; }
+  function clean(s){ return (s||"").toString().trim(); }
   window.renderLunes=function(n){
     if(typeof LAMES==="undefined"||!document.getElementById("lunesResult")) return;
     var pool=[]; while(pool.length<n && pool.length<LAMES.length){ var r=Math.floor(Math.random()*LAMES.length); if(pool.indexOf(r)<0) pool.push(r); }
+    var moisPos=[], moisNeg=[], cntPos=0, cntNeg=0, cntNeu=0;
     var rows=pool.map(function(idx,k){
-      var c=LAMES[idx];
-      var tend=c.val>0?"favorable":(c.val<0?"à surveiller":"en nuance");
-      var tcl=c.val>0?"t-pos":(c.val<0?"t-neg":"t-neu");
-      return '<div class="lune-row"><div class="lune-mois">'+moisLabel(k)+'</div>'
-        +'<div class="lune-carte"><div class="lune-svg">'+(c.svg||"")+'</div><div class="lune-nom">'+(c.nom||"")+'</div><div class="lune-tend '+tcl+'">'+tend+'</div></div>'
-        +'<div class="lune-interp">'+((c.gen||"").toString().trim())+'</div></div>';
+      var c=LAMES[idx]; var lbl=moisLabel(k); var court=lbl.split(" ")[0];
+      var tend,tcl;
+      if(c.val>0){tend="favorable";tcl="t-pos";cntPos++;moisPos.push(court);}
+      else if(c.val<0){tend="à surveiller";tcl="t-neg";cntNeg++;moisNeg.push(court);}
+      else {tend="en nuance";tcl="t-neu";cntNeu++;}
+      var corps="";
+      if(clean(c.gen)) corps+=`<p>${clean(c.gen)}</p>`;
+      if(clean(c.inv)) corps+=`<p>${clean(c.inv)}</p>`;
+      return `<div class="lune-row"><div class="lune-mois">${lbl}</div><div class="lune-carte"><div class="lune-svg">${c.svg||""}</div><div class="lune-nom">${c.nom||""}</div><div class="lune-tend ${tcl}">${tend}</div></div><div class="lune-interp">${corps}</div></div>`;
     }).join("");
-    var html='<div class="lunes-wrap"><div class="eyebrow">Votre lecture personnelle</div>'
-      +'<h2>Votre Tirage des Lunes — '+n+' mois</h2>'
-      +'<p class="lunes-intro">Voici les lames de l\'Oracle de Belline tirées pour vos '+n+' prochains mois. Prenez le temps de les lire, mois après mois.</p>'
-      +'<div class="lunes-list">'+rows+'</div>'
-      +'<p class="lunes-note">Conservez précieusement cette page (capture d\'écran ou impression). Pour une question, écrivez-nous.</p></div>';
+    var tone;
+    if(cntPos>=Math.max(1,cntNeg*2) && cntPos>=cntNeu) tone="nettement porteuse";
+    else if(cntNeg>cntPos) tone="exigeante, qui demandera patience et discernement";
+    else tone="contrastée, faite d'élans et de temps de recul";
+    var s=`<p>Sur vos ${n} prochains mois, l'Oracle de Belline dessine une période <b>${tone}</b>.</p>`;
+    if(moisPos.length) s+=`<p>Les énergies les plus favorables se concentrent sur ${joinFr(moisPos)} : ce sont vos fenêtres d'action, les moments où vos initiatives trouveront le plus d'écho. Avancez alors avec confiance.</p>`;
+    if(moisNeg.length) s+=`<p>À l'inverse, ${joinFr(moisNeg)} ${moisNeg.length>1?"vous invitent":"vous invite"} à la prudence et au recul — non pas des mois « négatifs », mais des moments où observer et patienter servira mieux que forcer les choses.</p>`;
+    else s+=`<p>Aucun mois ne présente d'obstacle majeur : le courant vous est plutôt favorable d'un bout à l'autre de la période.</p>`;
+    s+=`<p>Lisez chaque lame en regard du mois qu'elle accompagne : prises ensemble, elles tracent le fil de votre route, avec ses élans et ses respirations. Et souvenez-vous qu'une lame n'enferme jamais rien — elle éclaire une tendance que vos choix viennent toujours infléchir.</p>`;
+    var synth=`<div class="lunes-synthese"><h3>La synthèse de votre période</h3>${s}</div>`;
+    var html=`<div class="lunes-wrap"><div class="eyebrow">Votre lecture personnelle</div><h2>Votre Tirage des Lunes — ${n} mois</h2><p class="lunes-intro">Une lame de l'Oracle de Belline a été tirée pour chacun de vos ${n} prochains mois. Voici d'abord la vue d'ensemble, puis le détail mois par mois.</p>${synth}<div class="lunes-list">${rows}</div><p class="lunes-note">Conservez précieusement cette page (capture d'écran ou impression). Pour approfondir une question, écrivez-nous.</p></div>`;
     var box=document.getElementById("lunesResult"); box.innerHTML=html; box.style.display="block";
   };
   try{
