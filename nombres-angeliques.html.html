@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nombres Angéliques — Oracle Arcana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF5E9; --card:#FFFFFF; --card-hover:#F4ECD9;
+    --gold:#A8833B; --gold-deep:#8C6E2C; --gold-soft:#C9A24B;
+    --brown:#5B5140; --ink:#3C3322; --line:rgba(168,131,59,.28);
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--display); color:var(--brown);
+    background:radial-gradient(120% 70% at 50% -5%, #FFFDF6 0%, var(--cream) 55%);
+    min-height:100vh; position:relative}
+  .wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px}
+
+  /* Header */
+  header{display:flex; align-items:center; justify-content:space-between; padding:26px 0 18px; border-bottom:1px solid var(--line)}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:3px; color:var(--ink)}
+  .logo b{color:var(--gold); font-weight:600}
+  nav{display:flex; gap:30px; font-size:18px; color:var(--gold); flex-wrap:wrap; font-family:var(--display)}
+  nav a{color:var(--gold); text-decoration:none; transition:color .25s}
+  nav a:hover{color:var(--gold-deep)}
+  nav a.current{color:var(--gold-deep); font-weight:600}
+  @media(max-width:760px){nav{display:none}}
+
+  /* Badge GRATUIT */
+  .badge{display:inline-block; font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:1.5px;
+    color:#FBF6EA; background:var(--gold-deep); padding:5px 15px; border-radius:20px; text-transform:uppercase; vertical-align:middle}
+
+  /* Hero */
+  .hero{text-align:center; padding:60px 0 26px}
+  .eyebrow{font-family:var(--sans); font-size:13px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:20px}
+  h1{font-family:var(--display); font-weight:500; font-size:clamp(46px,8vw,88px); line-height:1.05; color:var(--ink)}
+  h1 .badge{font-size:14px; transform:translateY(-14px); margin-left:10px}
+  .sub{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,24px); color:var(--brown); opacity:.85; margin:20px auto 0; max-width:600px; line-height:1.5}
+
+  /* Grid */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:16px; padding:34px 0 60px}
+  .tile{position:relative; aspect-ratio:1/1; border:1px solid var(--line); border-radius:16px; background:var(--card);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    cursor:pointer; transition:transform .28s, border-color .28s, box-shadow .28s, background .28s;
+    box-shadow:0 4px 18px rgba(120,95,40,.06)}
+  .tile:hover{transform:translateY(-5px); border-color:var(--gold); background:var(--card-hover); box-shadow:0 14px 34px rgba(140,110,44,.16)}
+  .tile:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+  .tile .num{font-family:var(--display); font-weight:600; font-size:50px; color:var(--gold); line-height:1}
+  .tile .key{font-family:var(--sans); font-size:11px; letter-spacing:2px; color:var(--brown); opacity:.7; text-transform:uppercase}
+
+  /* Modal */
+  .overlay{position:fixed; inset:0; z-index:20; background:rgba(60,45,20,.34); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:22px; opacity:0; pointer-events:none; transition:opacity .3s}
+  .overlay.open{opacity:1; pointer-events:auto}
+  .modal{position:relative; max-width:510px; width:100%; text-align:center; background:#FFFDF8;
+    border:1px solid var(--line); border-radius:22px; padding:46px 40px 40px; transform:scale(.94); transition:transform .3s;
+    box-shadow:0 30px 70px rgba(90,70,30,.22)}
+  .overlay.open .modal{transform:scale(1)}
+  .modal .mn{font-family:var(--display); font-weight:600; font-size:74px; color:var(--gold); line-height:1}
+  .modal .mk{font-family:var(--sans); font-size:12px; letter-spacing:3px; color:var(--gold-deep); margin-top:4px; text-transform:uppercase}
+  .modal .divider{width:60px; height:1px; background:var(--gold); opacity:.5; margin:22px auto}
+  .modal .msg{font-family:var(--display); font-size:21px; line-height:1.6; color:var(--ink); font-style:italic}
+  .modal .cta{display:inline-block; margin-top:30px; font-family:var(--sans); font-size:14px; letter-spacing:1px; color:#FBF6EA;
+    text-decoration:none; padding:14px 30px; border-radius:40px; background:var(--gold-deep); transition:filter .25s}
+  .modal .cta:hover{filter:brightness(1.08)}
+  .modal .close{position:absolute; top:14px; right:20px; background:none; border:none; color:var(--gold); font-size:28px; cursor:pointer; line-height:1; transition:color .2s}
+  .modal .close:hover{color:var(--gold-deep)}
+
+  footer{text-align:center; padding:30px 0 50px; color:var(--brown); opacity:.7; font-family:var(--sans); font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+  @media(prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><b>ORACLE</b> ARCANA</div>
+    <nav>
+      <a href="#" class="current">Tirages gratuits ▾</a>
+      <a href="#">Lectures</a>
+      <a href="#">Le Tirage des Lunes</a>
+      <a href="#">Consultations</a>
+      <a href="#">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Synchronicités</div>
+    <h1>Nombres Angéliques <span class="badge">Gratuit</span></h1>
+    <p class="sub">Vous croisez sans cesse le même nombre — 111, 222, 333… ? Ce n'est pas un hasard. Touchez un nombre pour découvrir son message.</p>
+  </section>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalNum">
+    <button class="close" onclick="closeModal()" aria-label="Fermer">×</button>
+    <div class="mn" id="modalNum">111</div>
+    <div class="mk" id="modalKey"></div>
+    <div class="divider"></div>
+    <p class="msg" id="modalMsg"></p>
+    <!-- Remplacez par l'URL réelle de votre page de tirage -->
+    <a class="cta" href="https://oracle-arcana.fr">Recevoir ma lecture complète →</a>
+  </div>
+</div>
+
+<script>
+  const data = [
+    ["000","Renouveau","Le 000 marque un point de bascule : un cycle se referme pour qu'un autre puisse naître. Tu te trouves devant une page blanche, reliée à l'infini des possibles, où tout reste à écrire. Pose une intention claire et sincère : l'univers attend ton premier mot pour t'accompagner."],
+    ["111","Manifestation","Le 111 est l'un des signes les plus puissants : tes pensées sont en train de prendre forme dans le réel. Un nouveau cycle s'ouvre, et c'est toi qui en tiens la direction. Surveille ce à quoi tu penses le plus souvent, car c'est précisément ce que tu es en train d'attirer à toi."],
+    ["222","Harmonie","Le 222 t'invite à la confiance et à la patience : ce que tu construis se met en place, même si tu n'en vois pas encore les fruits. C'est un appel à l'équilibre, dans tes relations comme à l'intérieur de toi. Ne force rien — le bon moment viendra de lui-même."],
+    ["333","Guidance","Le 333 annonce la présence rapprochée de tes guides : tu n'avances pas seul. Ils t'encouragent à exprimer ta créativité, ta voix et ta vérité, sans plus te censurer. Ose te montrer tel que tu es : ta voie est juste, et elle est soutenue."],
+    ["444","Protection","Le 444 est un signe profondément rassurant : tu es entouré et protégé par des forces bienveillantes. Même dans les moments de doute ou de fatigue, tu es exactement là où tu dois être. Continue, persévère : tes efforts reposent sur des bases solides."],
+    ["555","Changement","Le 555 annonce un grand mouvement : une transformation importante se prépare dans ta vie. Plutôt que de la craindre, accueille-la — elle vient te libérer de ce qui ne te correspond plus. Ce changement, même s'il bouscule, t'ouvre vers plus de liberté et de vérité."],
+    ["666","Recentrage","Le 666 n'a rien d'inquiétant : c'est un appel tout en douceur à te recentrer. Tu t'es peut-être trop concentré sur le matériel, les soucis ou les pensées sombres. Reviens à l'équilibre entre le concret et le spirituel, reconnecte-toi à l'essentiel, et la paix reviendra."],
+    ["777","Chance","Le 777 est un signe de chance et d'alignement spirituel assez rare. Tu récoltes aujourd'hui ce que tu as patiemment semé, et l'univers valide ton chemin. Continue dans cette direction : tu es béni, et de belles synchronicités t'attendent."],
+    ["888","Abondance","Le 888 annonce un cycle de prospérité et d'accomplissement. Une réussite — matérielle, financière ou personnelle — est sur le point de se concrétiser. Reste ouvert à recevoir, sans culpabilité : l'abondance cherche simplement un chemin vers toi."],
+    ["999","Accomplissement","Le 999 marque la fin d'un grand chapitre de ta vie. Une étape s'achève pour laisser place à un renouveau profond. Laisse partir ce qui est terminé — une relation, une habitude, une page — afin de faire de la place à ce qui veut éclore."]
+  ];
+
+  const grid = document.getElementById('grid');
+  data.forEach((item)=>{
+    const [num,key,msg] = item;
+    const t = document.createElement('button');
+    t.className='tile';
+    t.innerHTML = `<span class="num">${num}</span><span class="key">${key}</span>`;
+    t.onclick = ()=>openModal(num,key,msg);
+    grid.appendChild(t);
+  });
+
+  const overlay = document.getElementById('overlay');
+  function openModal(num,key,msg){
+    document.getElementById('modalNum').textContent = num;
+    document.getElementById('modalKey').textContent = key;
+    document.getElementById('modalMsg').textContent = '« '+msg+' »';
+    overlay.classList.add('open');
+  }
+  function closeModal(){ overlay.classList.remove('open'); }
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>
