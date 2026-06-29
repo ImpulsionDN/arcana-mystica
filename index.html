@@ -316,6 +316,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
           <a data-page="accueil" onclick="go('oracle')">Tirage 3 lames<span class="badge-free">Gratuit</span></a>
           <a data-page="ouinon" onclick="go('ouinon')">Oui / Non<span class="badge-free">Gratuit</span></a>
           <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
+          <a data-page="synchronicites" onclick="go('synchronicites')">Synchronicités<span class="badge-free">Gratuit</span></a>
           <a href="nombres-angeliques.html">Nombres Angéliques<span class="badge-free">Gratuit</span></a>
         </div>
       </div>
@@ -351,7 +352,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
   <div class="wrap">
     <div class="section-hd">
       <div class="eyebrow">Ce que vous trouverez ici</div>
-      <h2>Cinq voies vers la clarté</h2>
+      <h2>Six voies vers la clarté</h2>
     </div>
     <div class="rubriques">
       <a class="rub" onclick="go('oracle')">
@@ -378,6 +379,11 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         <div class="num">V</div><div class="ic">☽</div>
         <h3>Heures Miroirs</h3>
         <p>La signification des heures miroirs et inversées — entièrement gratuit.</p>
+      </a>
+      <a class="rub" onclick="go('synchronicites')">
+        <div class="num">VI</div><div class="ic">✶</div>
+        <h3>Synchronicités</h3>
+        <p>Plume, papillon, nombre répété… Le sens des signes que la vie place sur votre route — gratuit.</p>
       </a>
     </div>
   </div>
@@ -631,6 +637,104 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 <!-- CONSULTATIONS -->
 
 </div>
+<!-- SYNCHRONICITÉS -->
+<div class="page" id="page-synchronicites">
+<section class="bg2" id="synchronicites">
+  <div class="wrap">
+    <style>
+      .sy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;max-width:940px;margin:0 auto}
+      .sy-card{background:var(--card,#fffdf9);border:1px solid rgba(154,120,56,.28);border-radius:14px;padding:22px 12px;text-align:center;cursor:pointer;transition:all .2s ease;font-family:inherit}
+      .sy-card:hover{border-color:#b89149;transform:translateY(-2px);box-shadow:0 8px 20px rgba(154,120,56,.14)}
+      .sy-card.active{border-color:#9a7838;background:#faf3e6}
+      .sy-emo{font-size:34px;line-height:1;margin-bottom:10px}
+      .sy-name{font-family:'Cormorant Garamond',serif;font-size:21px;color:#2a2218;font-weight:600}
+      .sy-result{max-width:780px;margin:28px auto 0;background:var(--card,#fffdf9);border:1px solid rgba(154,120,56,.3);border-left:3px solid #9a7838;border-radius:12px;padding:26px 32px;color:#3a3526;font-size:18px;line-height:1.65;display:none}
+      .sy-result.show{display:block}
+      .sy-result h4{font-family:'Cormorant Garamond',serif;font-size:28px;color:#9a7838;margin:0 0 10px}
+      .sy-result a{color:#9a7838;cursor:pointer;text-decoration:underline}
+      .sy-cta{text-align:center;margin:50px auto 0;max-width:680px}
+      .sy-cta p{color:#6b5f4d;font-size:18px;margin-bottom:18px}
+    </style>
+    <div class="section-hd">
+      <div class="eyebrow">Synchronicités · 100% gratuit</div>
+      <h2>Les signes de l'univers</h2>
+      <p>Une plume sur le chemin, un papillon qui s'attarde, un nombre qui revient… La vie sème parfois de petits clins d'œil. Cliquez sur un signe pour découvrir ce qu'il murmure.</p>
+    </div>
+    <div class="sy-grid" id="sy_grid">
+      <button class="sy-card" onclick="syShow('plume',this)"><div class="sy-emo">🪶</div><div class="sy-name">Plume</div></button>
+      <button class="sy-card" onclick="syShow('papillon',this)"><div class="sy-emo">🦋</div><div class="sy-name">Papillon</div></button>
+      <button class="sy-card" onclick="syShow('coccinelle',this)"><div class="sy-emo">🐞</div><div class="sy-name">Coccinelle</div></button>
+      <button class="sy-card" onclick="syShow('arcenciel',this)"><div class="sy-emo">🌈</div><div class="sy-name">Arc-en-ciel</div></button>
+      <button class="sy-card" onclick="syShow('oiseau',this)"><div class="sy-emo">🕊️</div><div class="sy-name">Oiseau</div></button>
+      <button class="sy-card" onclick="syShow('nombre',this)"><div class="sy-emo">🔢</div><div class="sy-name">Nombre répété</div></button>
+      <button class="sy-card" onclick="syShow('heuremiroir',this)"><div class="sy-emo">🕰️</div><div class="sy-name">Heure miroir</div></button>
+      <button class="sy-card" onclick="syShow('animal',this)"><div class="sy-emo">🦊</div><div class="sy-name">Animal qui revient</div></button>
+      <button class="sy-card" onclick="syShow('chanson',this)"><div class="sy-emo">🎵</div><div class="sy-name">Chanson</div></button>
+      <button class="sy-card" onclick="syShow('trefle',this)"><div class="sy-emo">🍀</div><div class="sy-name">Trèfle</div></button>
+      <button class="sy-card" onclick="syShow('etoile',this)"><div class="sy-emo">⭐</div><div class="sy-name">Étoile filante</div></button>
+      <button class="sy-card" onclick="syShow('lune',this)"><div class="sy-emo">🌙</div><div class="sy-name">Lune</div></button>
+      <button class="sy-card" onclick="syShow('etoilefixe',this)"><div class="sy-emo">🌟</div><div class="sy-name">Étoile fixe</div></button>
+      <button class="sy-card" onclick="syShow('corbeau',this)"><div class="sy-emo">🐦‍⬛</div><div class="sy-name">Corbeau</div></button>
+      <button class="sy-card" onclick="syShow('araignee',this)"><div class="sy-emo">🕷️</div><div class="sy-name">Araignée</div></button>
+      <button class="sy-card" onclick="syShow('abeille',this)"><div class="sy-emo">🐝</div><div class="sy-name">Abeille</div></button>
+      <button class="sy-card" onclick="syShow('odeur',this)"><div class="sy-emo">👃</div><div class="sy-name">Odeur familière</div></button>
+      <button class="sy-card" onclick="syShow('coeur',this)"><div class="sy-emo">❤️</div><div class="sy-name">Cœur</div></button>
+      <button class="sy-card" onclick="syShow('objet',this)"><div class="sy-emo">🔑</div><div class="sy-name">Objet retrouvé</div></button>
+      <button class="sy-card" onclick="syShow('frisson',this)"><div class="sy-emo">💫</div><div class="sy-name">Frisson</div></button>
+      <button class="sy-card" onclick="syShow('fleur',this)"><div class="sy-emo">🌸</div><div class="sy-name">Fleur hors saison</div></button>
+      <button class="sy-card" onclick="syShow('panne',this)"><div class="sy-emo">⚡</div><div class="sy-name">Objet qui s'arrête</div></button>
+      <button class="sy-card" onclick="syShow('hibou',this)"><div class="sy-emo">🦉</div><div class="sy-name">Hibou</div></button>
+      <button class="sy-card" onclick="syShow('feuille',this)"><div class="sy-emo">🍂</div><div class="sy-name">Feuille qui tombe</div></button>
+      <button class="sy-card" onclick="syShow('vent',this)"><div class="sy-emo">🌬️</div><div class="sy-name">Souffle de vent</div></button>
+      <button class="sy-card" onclick="syShow('cygne',this)"><div class="sy-emo">🦢</div><div class="sy-name">Cygne</div></button>
+    </div>
+    <div class="sy-result" id="sy_result"></div>
+    <div class="sy-cta">
+      <p>Un signe vous trouble, ou revient sans cesse ? Une consultation privée en éclaire le sens, relié à votre histoire.</p>
+      <button class="btn btn-gold" onclick="go('consultations')">Aller plus loin &rarr;</button>
+    </div>
+  </div>
+</section>
+</div>
+<script>
+window.SY_DATA={
+  plume:{t:"🪶 La plume",d:"Une présence bienveillante veille sur vous. La plume, surtout blanche, est un signe de réconfort : elle invite à la confiance et à la légèreté. Vous n'avancez pas seul(e)."},
+  papillon:{t:"🦋 Le papillon",d:"Le papillon annonce une transformation. Quelque chose en vous se métamorphose : laissez l'ancien se défaire pour que le nouveau prenne son envol. Un signe d'espoir et de renaissance."},
+  coccinelle:{t:"🐞 La coccinelle",d:"Petit porte-bonheur ailé. La coccinelle souffle que vos souhaits sont entendus et qu'une protection douce vous entoure. C'est le moment de formuler un vœu."},
+  arcenciel:{t:"🌈 L'arc-en-ciel",d:"Après la pluie, la promesse. L'arc-en-ciel marque la fin d'une épreuve et l'arrivée d'un apaisement. Gardez espoir : l'éclaircie est déjà là."},
+  oiseau:{t:"🕊️ L'oiseau",d:"Un oiseau qui s'attarde ou se pose près de vous porte un message : une nouvelle attendue, un lien à renouer, ou simplement une invitation à prendre de la hauteur."},
+  nombre:{t:"🔢 Le nombre répété",d:"Voir sans cesse le même nombre — 111, 444, 777… — attire votre attention sur une pensée juste, au bon moment. Chaque suite a sa nuance ; notez celle qui vous suit, elle vous parle."},
+  heuremiroir:{t:"🕰️ L'heure miroir",d:"11:11, 22:22, minuit… ces heures doubles sont des clins d'œil du temps. Découvrez le message précis de la vôtre dans la rubrique <a onclick=\"go('heures')\">Heures Miroirs</a>."},
+  animal:{t:"🦊 L'animal qui revient",d:"Un animal qui croise souvent votre route devient un guide. Son message dépend de son espèce : le renard invite à la ruse, le cerf à s'élever, le chat à protéger l'invisible."},
+  chanson:{t:"🎵 La chanson au bon moment",d:"Une mélodie qui surgit pile au moment juste répond souvent à une question que vous portez en silence. Écoutez ses paroles : elles semblent vous être adressées."},
+  trefle:{t:"🍀 Le trèfle à quatre feuilles",d:"Le trouver est rare — comme l'instant d'alignement qu'il signale. Un encouragement clair : osez. La chance accompagne ceux qui font le premier pas."},
+  etoile:{t:"⭐ L'étoile filante",d:"Une étoile filante ouvre une parenthèse magique. Formulez un vœu précis, le cœur sincère : c'est le moment d'ancrer une intention et de lui donner de l'élan."},
+  lune:{t:"🌙 La lune",d:"Remarquer la lune souligne vos cycles intérieurs. Nouvelle lune : semez une intention. Pleine lune : libérez ce qui pèse. Suivez son rythme, il est aussi le vôtre."},
+  etoilefixe:{t:"🌟 L'étoile fixe",d:"Retrouver toujours la même étoile en levant les yeux, c'est se rappeler qu'un repère stable veille au-dessus du tumulte. Gardez le cap : vous êtes guidé(e)."},
+  corbeau:{t:"🐦‍⬛ Le corbeau",d:"Souvent mal compris, le corbeau est un messager fin et intelligent, lié aux mystères. Il invite à regarder au-delà des apparences : une vérité cachée cherche à se révéler."},
+  araignee:{t:"🕷️ L'araignée",d:"L'araignée tisse, patiemment. La voir rappelle que vous êtes en train de créer quelque chose — un projet, un lien, une vie. Faites confiance au fil que vous déroulez."},
+  abeille:{t:"🐝 L'abeille",d:"L'abeille parle de travail fécond et de douceur récompensée. Votre persévérance porte ses fruits ; une abondance tranquille se prépare."},
+  odeur:{t:"👃 L'odeur familière",d:"Sentir soudain un parfum connu — celui d'un proche, d'un lieu aimé — sans qu'il soit là, c'est une présence qui se rappelle à vous avec tendresse. Un moment de lien, à accueillir doucement."},
+  coeur:{t:"❤️ Le cœur",d:"Voir un cœur se dessiner — dans un nuage, une tache, une pierre — n'est jamais tout à fait un hasard. C'est l'amour qui vous fait signe : il est plus présent que vous ne le croyez."},
+  objet:{t:"🔑 L'objet retrouvé",d:"Retrouver un objet perdu depuis longtemps, juste au bon moment, porte un message : un souvenir, une personne ou une part de vous demande à être regardée à nouveau."},
+  frisson:{t:"💫 Le frisson",d:"Un frisson soudain, sans raison, signale souvent que vous touchez juste : une parole vraie, une intuition, un instant important. Votre corps reconnaît ce que l'esprit n'a pas encore formulé."},
+  fleur:{t:"🌸 La fleur hors saison",d:"Une fleur qui éclot à contretemps défie les règles — comme un rappel que la beauté et le renouveau peuvent surgir quand on ne les attend plus. Un espoir inattendu."},
+  panne:{t:"⚡ L'objet qui s'arrête",d:"Quand un objet s'arrête net au moment juste — une horloge, une lumière, une musique coupée — l'univers semble marquer une pause pour attirer votre attention. Arrêtez-vous, et écoutez."},
+  hibou:{t:"🦉 Le hibou",d:"Le hibou voit dans l'obscurité. Le croiser invite à faire confiance à votre clairvoyance : vous percevez ce qui est caché. Une sagesse intérieure s'éveille."},
+  feuille:{t:"🍂 La feuille qui tombe",d:"Une feuille qui se détache et tombe à vos pieds rappelle la beauté du lâcher-prise. Quelque chose s'achève en douceur, pour laisser la place. Accueillez le cycle."},
+  vent:{t:"🌬️ Le souffle de vent",d:"Un vent qui se lève soudain est un souffle de changement. Il balaie l'ancien et annonce un mouvement. Laissez-le vous porter plutôt que d'y résister."},
+  cygne:{t:"🦢 Le cygne",d:"Le cygne incarne la grâce et la fidélité. Le voir annonce souvent l'harmonie en amour ou une paix retrouvée. Un signe d'élégance et de cœur apaisé."}
+};
+window.syShow=function(k,el){
+  var d=window.SY_DATA[k]; if(!d) return;
+  var box=document.getElementById('sy_result');
+  box.innerHTML='<h4>'+d.t+'</h4>'+d.d;
+  box.classList.add('show');
+  document.querySelectorAll('#sy_grid .sy-card').forEach(function(c){c.classList.remove('active');});
+  if(el) el.classList.add('active');
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+};
+</script>
 <div class="page" id="page-consultations">
 <section id="consultations">
   <div class="wrap">
@@ -817,7 +921,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,consultations:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);
