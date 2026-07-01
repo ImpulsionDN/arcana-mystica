@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre Signe Astrologique — Oracle Arcana</title>
+<meta name="description" content="Votre signe astrologique gratuit : entrez votre date de naissance et découvrez votre signe du zodiaque et votre portrait complet (personnalité, amour, forces). Astrologie sur Oracle Arcana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf6ef; --ink:#2a2218; --ink-soft:#6b5f4d;
+    --gold:#b89149; --gold-deep:#9a7838; --gold-light:#d9be86;
+    --line:rgba(184,145,73,.25); --card:#fffdf9; --card-tint:#fbf1e2; --rose:#a8587a;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Nunito Sans','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--sans); color:var(--ink-soft);
+    background:
+      radial-gradient(1100px 620px at 78% -8%, #fbe6d4 0%, rgba(251,230,212,0) 55%),
+      radial-gradient(820px 560px at 8% 10%, #f6e6ea 0%, rgba(246,230,234,0) 50%),
+      linear-gradient(180deg,#fdf6ea,#faf6ef);
+    min-height:100vh}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px}
+
+  nav.top{position:sticky; top:0; z-index:10; background:rgba(250,246,239,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:74px; max-width:1080px; margin:0 auto; padding:0 24px}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:4px; color:var(--ink); text-decoration:none; font-weight:600}
+  .logo b{color:var(--gold-deep); font-weight:600}
+  .menu{display:flex; gap:26px; font-size:15px; color:var(--ink-soft); font-weight:600}
+  .menu a{color:var(--ink-soft); text-decoration:none; transition:color .2s}
+  .menu a:hover{color:var(--gold-deep)}
+  .menu .sep{color:var(--gold); opacity:.55}
+  @media(max-width:760px){.menu{display:none}}
+
+  .badge{display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.5px; color:#FBF6EA; background:var(--gold-deep); padding:5px 15px; border-radius:20px; text-transform:uppercase; vertical-align:middle}
+
+  .hero{text-align:center; padding:56px 0 10px}
+  .eyebrow{font-weight:700; font-size:13px; letter-spacing:5px; color:var(--gold-deep); text-transform:uppercase; margin-bottom:18px}
+  h1{font-family:var(--display); font-weight:600; font-size:clamp(42px,7vw,72px); line-height:1.05; color:var(--ink)}
+  h1 .badge{font-size:14px; transform:translateY(-14px); margin-left:8px}
+  .sub{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,23px); color:var(--ink-soft); margin:18px auto 0; max-width:600px; line-height:1.5}
+  .zodiac-row{display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin:26px auto 0; font-size:24px; color:var(--gold); opacity:.55}
+
+  .form{max-width:520px; margin:30px auto 0; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:30px; box-shadow:0 10px 30px rgba(120,95,40,.09); text-align:center}
+  .form label{display:block; font-weight:700; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:14px}
+  .selects{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  select{font-family:var(--sans); font-size:16px; padding:13px 18px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; outline:none; transition:border-color .2s}
+  select:focus{border-color:var(--gold)}
+  .btn{margin-top:20px; font-family:var(--sans); font-weight:700; font-size:16px; letter-spacing:.4px; color:#FBF6EA; border:none; cursor:pointer; padding:15px 34px; border-radius:40px; background:linear-gradient(180deg,#cba653,#98762f); box-shadow:0 10px 24px rgba(154,120,56,.28); transition:filter .2s, transform .2s}
+  .btn:hover{filter:brightness(1.06); transform:translateY(-2px)}
+  .form-err{color:var(--rose); font-size:14px; margin-top:12px; min-height:16px}
+  .rborn{font-size:14px; color:var(--ink-soft); margin-top:6px}
+
+  .result{max-width:640px; margin:34px auto 0; opacity:0; transform:translateY(12px); transition:opacity .45s, transform .45s; display:none}
+  .result.show{opacity:1; transform:none; display:block}
+  .rcard{background:#FFFDF8; border:1px solid var(--line); border-radius:24px; padding:44px 40px; text-align:center; box-shadow:0 24px 60px rgba(90,70,30,.16)}
+  .glyph{font-family:'Cormorant Garamond',serif; font-size:82px; line-height:1; color:var(--gold-deep)}
+  .rname{font-family:var(--display); font-weight:600; font-size:46px; color:var(--ink); line-height:1.05; margin-top:6px}
+  .rdates{font-weight:700; font-size:13px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-top:8px}
+  .tags{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:20px 0}
+  .tag{font-size:13px; font-weight:600; color:var(--ink); background:var(--card-tint); border:1px solid var(--line); padding:7px 16px; border-radius:20px}
+  .tag b{color:var(--gold-deep)}
+  .divider{width:60px; height:1px; background:var(--gold); opacity:.5; margin:22px auto}
+  .portrait{font-family:var(--display); font-size:21px; line-height:1.6; color:var(--ink)}
+  .rline{margin-top:16px; font-size:16px; line-height:1.55; color:var(--ink-soft)}
+  .rline b{color:var(--gold-deep); font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.5px; text-transform:uppercase; display:block; margin-bottom:2px}
+  .cta{display:inline-block; margin-top:28px; font-family:var(--sans); font-weight:700; font-size:14px; letter-spacing:.6px; color:#FBF6EA; text-decoration:none; padding:14px 30px; border-radius:40px; background:linear-gradient(180deg,#cba653,#98762f); transition:filter .25s}
+  .cta:hover{filter:brightness(1.06)}
+  .premium-note{margin-top:16px; font-size:13px; color:var(--ink-soft); opacity:.85}
+
+  .premium{max-width:640px; margin:40px auto 0; text-align:center; padding:28px; border:1px dashed var(--gold); border-radius:18px; background:linear-gradient(180deg,#fff5ec,#fbe9e9)}
+  .premium .lab{font-weight:700; font-size:12px; letter-spacing:4px; color:var(--rose); text-transform:uppercase}
+  .premium h4{font-family:var(--display); font-size:28px; color:var(--ink); margin-top:8px; font-weight:600}
+  .premium p{color:var(--ink-soft); font-size:15px; margin-top:6px; line-height:1.5}
+
+  footer{text-align:center; padding:44px 0 50px; margin-top:50px; color:var(--ink-soft); opacity:.75; font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="nav-in">
+  <a href="index.html" class="logo"><b>ORACLE</b> ARCANA</a>
+  <div class="menu">
+    <a href="index.html">Tirages gratuits</a><span class="sep">·</span>
+    <a href="index.html">Lectures</a><span class="sep">·</span>
+    <a href="index.html#roue">Le Tirage des Lunes</a><span class="sep">·</span>
+    <a href="index.html#consultations">Consultations</a><span class="sep">·</span>
+    <a href="index.html#avisfaq">FAQ</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Astrologie</div>
+    <h1>Votre Signe Astrologique <span class="badge">Gratuit</span></h1>
+    <p class="sub">Entrez votre date de naissance et découvrez votre signe du zodiaque ainsi que votre portrait.</p>
+    <div class="zodiac-row" id="zrow"></div>
+  </section>
+
+  <div class="form">
+    <label>Votre date de naissance</label>
+    <div class="selects">
+      <select id="jour" aria-label="Jour"><option value="" selected disabled>Jour</option></select>
+      <select id="mois" aria-label="Mois">
+        <option value="" selected disabled>Mois</option>
+        <option value="1">Janvier</option><option value="2">Février</option><option value="3">Mars</option>
+        <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
+        <option value="7">Juillet</option><option value="8">Août</option><option value="9">Septembre</option>
+        <option value="10">Octobre</option><option value="11">Novembre</option><option value="12">Décembre</option>
+      </select>
+      <select id="annee" aria-label="Année"><option value="" selected disabled>Année</option></select>
+    </div>
+    <div class="form-err" id="formErr"></div>
+    <button class="btn" onclick="reveal()">Révéler mon signe ✦</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="rcard">
+      <div class="glyph" id="rGlyph"></div>
+      <div class="rname" id="rName"></div>
+      <div class="rdates" id="rDates"></div>
+      <div class="rborn" id="rBorn"></div>
+      <div class="tags" id="rTags"></div>
+      <div class="divider"></div>
+      <p class="portrait" id="rPortrait"></p>
+      <div class="rline"><b>En amour</b><span id="rAmour"></span></div>
+      <div class="rline"><b>Votre atout majeur</b><span id="rAtout"></span></div>
+      <a class="cta" href="theme-astral.html">Recevoir mon thème astral complet →</a>
+      <div class="premium-note">Version complète et payante : votre carte du ciel détaillée (ascendant, planètes, maisons), longuement interprétée et <b>envoyée par email</b>. Votre heure et votre lieu de naissance vous seront demandés à cette étape.</div>
+    </div>
+  </div>
+
+  <div class="premium">
+    <div class="lab">✦ Bientôt sur Oracle Arcana ✦</div>
+    <h4>Votre Thème Astral complet</h4>
+    <p>Ascendant, position des planètes, maisons astrologiques et interprétation personnalisée — la version complète de votre carte du ciel, à partir de votre date, heure et lieu de naissance. Un document long et personnalisé, envoyé directement par email.</p>
+  </div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+
+<script>
+  const j=document.getElementById('jour');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;j.appendChild(o);}
+  const yy=document.getElementById('annee');
+  for(let y=2012;y>=1920;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  const MOIS=['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  document.getElementById('zrow').textContent='\u2648\uFE0E \u2649\uFE0E \u264A\uFE0E \u264B\uFE0E \u264C\uFE0E \u264D\uFE0E \u264E\uFE0E \u264F\uFE0E \u2650\uFE0E \u2651\uFE0E \u2652\uFE0E \u2653\uFE0E';
+
+  const S = {
+    belier:{g:'♈',n:'Bélier',d:'21 mars – 19 avril',e:'Feu',p:'Mars',
+      portrait:"Premier signe du zodiaque, le Bélier est un pionnier dans l'âme : énergique, courageux et spontané, vous foncez là où d'autres hésitent. Vous aimez initier, relever des défis et avancer vite, portés par un enthousiasme communicatif. Votre franchise et votre audace inspirent, même si votre impatience peut parfois vous jouer des tours. Vous êtes né pour ouvrir la voie.",
+      amour:"Passionné et direct, vous aimez conquérir et vous donnez sans compter, à condition de ne jamais vous ennuyer.",
+      atout:"Votre courage et votre incroyable capacité à rebondir."},
+    taureau:{g:'♉',n:'Taureau',d:'20 avril – 20 mai',e:'Terre',p:'Vénus',
+      portrait:"Gouverné par Vénus, le Taureau aime la beauté, le confort et les plaisirs simples de la vie. Patient, fiable et déterminé, vous construisez lentement mais sûrement, et rien n'ébranle votre ténacité. Vous appréciez la stabilité, la douceur et les choses qui durent. Sous votre calme se cache une volonté de fer.",
+      amour:"Loyal et sensuel, vous offrez une tendresse solide et rassurante, faite pour durer.",
+      atout:"Votre persévérance et votre sens du concret."},
+    gemeaux:{g:'♊',n:'Gémeaux',d:'21 mai – 20 juin',e:'Air',p:'Mercure',
+      portrait:"Curieux, vif et sociable, le Gémeaux est un éternel explorateur d'idées. Vous aimez apprendre, échanger, jongler avec les mots et les possibilités. Votre esprit rapide et votre humour vous rendent captivant, même si votre besoin de nouveauté vous rend parfois insaisissable. Vous êtes le messager, celui qui relie les mondes.",
+      amour:"Vous avez besoin de complicité intellectuelle et de légèreté : on vous séduit d'abord par les mots.",
+      atout:"Votre adaptabilité et votre vivacité d'esprit."},
+    cancer:{g:'♋',n:'Cancer',d:'21 juin – 22 juillet',e:'Eau',p:'la Lune',
+      portrait:"Gouverné par la Lune, le Cancer est le plus sensible et le plus attaché du zodiaque. Intuitif, protecteur et profondément aimant, vous placez la famille et le foyer au cœur de votre vie. Votre coquille protège une immense tendresse, réservée à ceux qui savent gagner votre confiance. Vous ressentez tout, intensément.",
+      amour:"Fidèle et fusionnel, vous aimez protéger et être protégé, dans un cocon de douceur.",
+      atout:"Votre intuition et votre grand cœur."},
+    lion:{g:'♌',n:'Lion',d:'23 juillet – 22 août',e:'Feu',p:'le Soleil',
+      portrait:"Gouverné par le Soleil, le Lion rayonne naturellement. Généreux, fier et charismatique, vous êtes fait pour briller et entraîner les autres. Vous aimez créer, aimer grand et être reconnu à votre juste valeur. Derrière votre panache se cache un cœur noble et loyal, en quête de sincérité.",
+      amour:"Flamboyant et dévoué, vous offrez tout — à condition qu'on vous admire en retour.",
+      atout:"Votre générosité et votre force d'entraînement."},
+    vierge:{g:'♍',n:'Vierge',d:'23 août – 22 septembre',e:'Terre',p:'Mercure',
+      portrait:"Précise, dévouée et lucide, la Vierge cherche à améliorer tout ce qu'elle touche. Vous avez le sens du détail, de l'ordre et du service, et une intelligence pratique remarquable. Exigeante avec les autres mais surtout avec vous-même, vous donnez le meilleur dans l'ombre. Votre discrétion cache une grande valeur.",
+      amour:"Attentionné et loyal, vous exprimez vos sentiments par des attentions concrètes plus que par de grands mots.",
+      atout:"Votre rigueur et votre dévouement sincère."},
+    balance:{g:'♎',n:'Balance',d:'23 septembre – 22 octobre',e:'Air',p:'Vénus',
+      portrait:"Gouvernée par Vénus, la Balance recherche l'harmonie, la beauté et la justice. Diplomate, charmante et sociable, vous détestez les conflits et savez créer du lien partout. Vous pesez le pour et le contre, parfois jusqu'à l'hésitation, en quête du juste équilibre. La relation à l'autre est votre art de vivre.",
+      amour:"Romantique et attentionné, le couple et l'harmonie sont essentiels à votre équilibre.",
+      atout:"Votre sens du lien et de l'équité."},
+    scorpion:{g:'♏',n:'Scorpion',d:'23 octobre – 21 novembre',e:'Eau',p:'Pluton',
+      portrait:"Intense, magnétique et profond, le Scorpion ne fait jamais les choses à moitié. Vous ressentez tout avec puissance et cherchez la vérité derrière les apparences. Votre force intérieure et votre capacité à renaître de vos épreuves impressionnent. Mystérieux et passionné, vous fascinez autant que vous intriguez.",
+      amour:"Entier et fusionnel, vous aimez avec une intensité totale et une loyauté sans faille.",
+      atout:"Votre force de transformation et votre intuition profonde."},
+    sagittaire:{g:'♐',n:'Sagittaire',d:'22 novembre – 21 décembre',e:'Feu',p:'Jupiter',
+      portrait:"Gouverné par Jupiter, le Sagittaire est un aventurier optimiste et libre. Vous aimez voyager, apprendre, explorer les idées et repousser vos horizons. Franc et enthousiaste, vous communiquez votre foi en la vie. Vous avez besoin d'espace, de sens et de grandes visions.",
+      amour:"Vous avez besoin de liberté et de complicité : un partenaire-aventurier qui partage votre soif de découvertes.",
+      atout:"Votre optimisme et votre ouverture d'esprit."},
+    capricorne:{g:'♑',n:'Capricorne',d:'22 décembre – 19 janvier',e:'Terre',p:'Saturne',
+      portrait:"Gouverné par Saturne, le Capricorne est ambitieux, patient et responsable. Vous construisez votre réussite pierre par pierre, avec discipline et persévérance. Sous une apparence sérieuse se cachent une profondeur et un humour discrets. Vous visez haut et vous savez que le temps travaille pour vous.",
+      amour:"Fidèle et engagé, vous avancez lentement mais construisez pour durer.",
+      atout:"Votre ambition et votre sens des responsabilités."},
+    verseau:{g:'♒',n:'Verseau',d:'20 janvier – 18 février',e:'Air',p:'Uranus',
+      portrait:"Original, indépendant et visionnaire, le Verseau pense différemment. Vous êtes tourné vers l'avenir, l'innovation et les grandes idées humanistes. Attaché à votre liberté, vous cultivez votre singularité et refusez les cases. Ami fidèle et esprit libre, vous inspirez le changement autour de vous.",
+      amour:"Vous avez besoin d'un lien qui respecte votre liberté : l'amitié et la complicité d'esprit priment.",
+      atout:"Votre originalité et votre vision d'avenir."},
+    poissons:{g:'♓',n:'Poissons',d:'19 février – 20 mars',e:'Eau',p:'Neptune',
+      portrait:"Gouverné par Neptune, le Poissons est le plus sensible et le plus imaginatif du zodiaque. Rêveur, empathique et intuitif, vous ressentez les émotions du monde comme les vôtres. Votre créativité et votre douceur touchent profondément ceux qui vous approchent. Vous naviguez entre rêve et réalité, guidé par votre cœur.",
+      amour:"Tendre et fusionnel, vous aimez avec une générosité et une sensibilité rares.",
+      atout:"Votre empathie et votre imagination débordante."}
+  };
+
+  function getSign(m,d){
+    if((m==3&&d>=21)||(m==4&&d<=19)) return 'belier';
+    if((m==4&&d>=20)||(m==5&&d<=20)) return 'taureau';
+    if((m==5&&d>=21)||(m==6&&d<=20)) return 'gemeaux';
+    if((m==6&&d>=21)||(m==7&&d<=22)) return 'cancer';
+    if((m==7&&d>=23)||(m==8&&d<=22)) return 'lion';
+    if((m==8&&d>=23)||(m==9&&d<=22)) return 'vierge';
+    if((m==9&&d>=23)||(m==10&&d<=22)) return 'balance';
+    if((m==10&&d>=23)||(m==11&&d<=21)) return 'scorpion';
+    if((m==11&&d>=22)||(m==12&&d<=21)) return 'sagittaire';
+    if((m==12&&d>=22)||(m==1&&d<=19)) return 'capricorne';
+    if((m==1&&d>=20)||(m==2&&d<=18)) return 'verseau';
+    return 'poissons';
+  }
+
+  function reveal(){
+    const dv=document.getElementById('jour').value, mv=document.getElementById('mois').value, av=document.getElementById('annee').value;
+    const err=document.getElementById('formErr');
+    if(!dv||!mv||!av){ err.textContent='Veuillez indiquer votre jour, mois et année de naissance.'; return; }
+    err.textContent='';
+    const m=parseInt(mv), d=parseInt(dv), a=parseInt(av);
+    const s=S[getSign(m,d)];
+    document.getElementById('rBorn').textContent='Né(e) le '+d+' '+MOIS[m]+' '+a;
+    document.getElementById('rGlyph').textContent=s.g+'\uFE0E';
+    document.getElementById('rName').textContent=s.n;
+    document.getElementById('rDates').textContent=s.d;
+    document.getElementById('rTags').innerHTML='<span class="tag"><b>Élément</b> &nbsp;'+s.e+'</span><span class="tag"><b>Astre</b> &nbsp;'+s.p+'</span>';
+    document.getElementById('rPortrait').textContent='« '+s.portrait+' »';
+    document.getElementById('rAmour').textContent=s.amour;
+    document.getElementById('rAtout').textContent=s.atout;
+    const r=document.getElementById('result');
+    r.classList.add('show');
+    r.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+</script>
+</body>
+</html>

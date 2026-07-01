@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre Thème Astral Complet — Oracle Arcana</title>
+<meta name="description" content="Commandez votre thème astral complet et personnalisé : ascendant, planètes, maisons astrologiques et interprétation détaillée, à partir de votre date, heure et lieu de naissance. Reçu par email. Oracle Arcana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf6ef; --ink:#2a2218; --ink-soft:#6b5f4d;
+    --gold:#b89149; --gold-deep:#9a7838; --gold-light:#d9be86;
+    --line:rgba(184,145,73,.25); --card:#fffdf9; --card-tint:#fbf1e2; --rose:#a8587a;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Nunito Sans','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--sans); color:var(--ink-soft);
+    background:
+      radial-gradient(1100px 620px at 78% -8%, #fbe6d4 0%, rgba(251,230,212,0) 55%),
+      radial-gradient(820px 560px at 8% 10%, #f6e6ea 0%, rgba(246,230,234,0) 50%),
+      linear-gradient(180deg,#fdf6ea,#faf6ef);
+    min-height:100vh}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px}
+
+  nav.top{position:sticky; top:0; z-index:10; background:rgba(250,246,239,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:74px; max-width:1080px; margin:0 auto; padding:0 24px}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:4px; color:var(--ink); text-decoration:none; font-weight:600}
+  .logo b{color:var(--gold-deep); font-weight:600}
+  .menu{display:flex; gap:26px; font-size:15px; color:var(--ink-soft); font-weight:600}
+  .menu a{color:var(--ink-soft); text-decoration:none; transition:color .2s}
+  .menu a:hover{color:var(--gold-deep)}
+  .menu .sep{color:var(--gold); opacity:.55}
+  @media(max-width:760px){.menu{display:none}}
+
+  .hero{text-align:center; padding:54px 0 8px}
+  .eyebrow{font-weight:700; font-size:13px; letter-spacing:5px; color:var(--gold-deep); text-transform:uppercase; margin-bottom:16px}
+  h1{font-family:var(--display); font-weight:600; font-size:clamp(40px,6.5vw,66px); line-height:1.05; color:var(--ink)}
+  .sub{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,23px); color:var(--ink-soft); margin:16px auto 0; max-width:600px; line-height:1.5}
+  .price{display:inline-block; margin-top:22px; font-family:var(--display); font-weight:600; font-size:34px; color:var(--gold-deep)}
+  .price small{font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:1px; color:var(--ink-soft); text-transform:uppercase; display:block; margin-top:2px}
+
+  /* Ce que vous recevez */
+  .receive{margin:36px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .rec{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 18px; text-align:center; box-shadow:0 6px 18px rgba(120,95,40,.06)}
+  .rec svg{width:30px; height:30px; stroke:var(--gold-deep); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; margin-bottom:8px}
+  .rec b{display:block; font-family:var(--display); font-size:19px; color:var(--ink); font-weight:600; line-height:1.15}
+  .rec span{font-size:13px; color:var(--ink-soft)}
+  @media(max-width:640px){.receive{grid-template-columns:1fr 1fr}}
+
+  /* Formulaire */
+  .form{max-width:620px; margin:40px auto 0; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:34px 34px 30px; box-shadow:0 12px 34px rgba(120,95,40,.10)}
+  .form h2{font-family:var(--display); font-weight:600; font-size:30px; color:var(--ink); text-align:center; margin-bottom:6px}
+  .form .intro{text-align:center; font-size:14px; color:var(--ink-soft); margin-bottom:24px}
+  .field{margin-bottom:18px}
+  .field label{display:block; font-weight:700; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:8px}
+  input[type=text], input[type=email]{width:100%; font-family:var(--sans); font-size:16px; padding:13px 16px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); outline:none; transition:border-color .2s}
+  input:focus, select:focus{border-color:var(--gold)}
+  .row{display:flex; gap:10px; flex-wrap:wrap}
+  .row select{flex:1; min-width:90px; font-family:var(--sans); font-size:15px; padding:13px 12px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; outline:none}
+  .row.villepays input:first-child{flex:2}
+  .hint{font-size:12.5px; color:var(--ink-soft); margin-top:8px; line-height:1.4}
+  .check{display:flex; align-items:center; gap:9px; margin-top:10px; font-size:14px; color:var(--ink-soft); cursor:pointer}
+  .check input{width:17px; height:17px; accent-color:var(--gold-deep); cursor:pointer}
+  .btn{width:100%; margin-top:8px; font-family:var(--sans); font-weight:700; font-size:17px; letter-spacing:.4px; color:#FBF6EA; border:none; cursor:pointer; padding:17px 28px; border-radius:40px; background:linear-gradient(180deg,#cba653,#98762f); box-shadow:0 10px 24px rgba(154,120,56,.28); transition:filter .2s, transform .2s}
+  .btn:hover{filter:brightness(1.06); transform:translateY(-2px)}
+  .secure{text-align:center; font-size:13px; color:var(--ink-soft); margin-top:14px}
+  .msg{margin-top:16px; padding:14px 16px; border-radius:12px; font-size:14px; line-height:1.5; display:none}
+  .msg.err{display:block; background:#fbeaf0; color:#8a3b5e; border:1px solid #e6c2d2}
+  .msg.ok{display:block; background:#eef5ee; color:#3a6a52; border:1px solid #cfe4d2}
+
+  .faq{max-width:620px; margin:34px auto 0}
+  .faq h3{font-family:var(--display); font-size:26px; color:var(--ink); text-align:center; margin-bottom:16px; font-weight:600}
+  .qa{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:10px}
+  .qa b{font-family:var(--display); font-size:19px; color:var(--gold-deep)}
+  .qa p{font-size:14px; color:var(--ink-soft); margin-top:4px; line-height:1.5}
+
+  footer{text-align:center; padding:44px 0 50px; margin-top:50px; color:var(--ink-soft); opacity:.75; font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="nav-in">
+  <a href="index.html" class="logo"><b>ORACLE</b> ARCANA</a>
+  <div class="menu">
+    <a href="index.html">Tirages gratuits</a><span class="sep">·</span>
+    <a href="astrologie.html">Astrologie</a><span class="sep">·</span>
+    <a href="index.html#consultations">Consultations</a><span class="sep">·</span>
+    <a href="index.html#avisfaq">FAQ</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Astrologie · Version complète</div>
+    <h1>Votre Thème Astral Complet</h1>
+    <p class="sub">Votre carte du ciel personnalisée, longuement interprétée et envoyée par email.</p>
+    <div class="price">19 €<small>Document complet · paiement unique</small></div>
+  </section>
+
+  <div class="receive">
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M3 18h18M12 18a6 6 0 0 0-6-6M12 18a6 6 0 0 1 6-6M12 8V4M12 4l-2 2M12 4l2 2"/></svg><b>Votre Ascendant</b><span>et le milieu du ciel</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><circle cx="12" cy="3" r="1.4" fill="currentColor" stroke="none"/><circle cx="21" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg><b>Les planètes</b><span>en signes & maisons</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg><b>Les 12 maisons</b><span>les domaines de vie</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7.7 8.3 16.3 16M16.3 8.3 7.7 16M8 7h8"/></svg><b>Les aspects</b><span>majeurs entre astres</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 12h6M9 15h4"/></svg><b>Interprétation</b><span>longue & personnalisée</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><b>Reçu par email</b><span>en document PDF</span></div>
+  </div>
+
+  <div class="form">
+    <h2>Vos informations de naissance</h2>
+    <p class="intro">Ces trois données sont indispensables pour calculer votre carte du ciel avec précision.</p>
+
+    <div class="field">
+      <label>Prénom</label>
+      <input type="text" id="prenom" placeholder="Votre prénom">
+    </div>
+
+    <div class="field">
+      <label>Email (pour recevoir votre thème)</label>
+      <input type="email" id="email" placeholder="vous@exemple.fr">
+    </div>
+
+    <div class="field">
+      <label>Date de naissance</label>
+      <div class="row">
+        <select id="jour"><option value="" selected disabled>Jour</option></select>
+        <select id="mois">
+          <option value="" selected disabled>Mois</option>
+          <option value="1">Janvier</option><option value="2">Février</option><option value="3">Mars</option>
+          <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
+          <option value="7">Juillet</option><option value="8">Août</option><option value="9">Septembre</option>
+          <option value="10">Octobre</option><option value="11">Novembre</option><option value="12">Décembre</option>
+        </select>
+        <select id="annee"><option value="" selected disabled>Année</option></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Heure de naissance</label>
+      <div class="row">
+        <select id="heure"><option value="" selected disabled>Heure</option></select>
+        <select id="minute"><option value="" selected disabled>Minute</option></select>
+      </div>
+      <label class="check"><input type="checkbox" id="noheure" onchange="toggleHeure()"> Je ne connais pas mon heure exacte</label>
+      <div class="hint">L'heure détermine votre ascendant et vos maisons. Sans elle, on utilise 12:00 et l'analyse sera partielle (comme le recommandent les astrologues).</div>
+    </div>
+
+    <div class="field">
+      <label>Lieu de naissance</label>
+      <div class="row villepays">
+        <input type="text" id="ville" placeholder="Ville / commune">
+        <input type="text" id="pays" placeholder="Pays" value="France">
+      </div>
+      <div class="hint">La commune sert à déterminer la latitude et la longitude, essentielles au calcul de l'ascendant et des maisons.</div>
+    </div>
+
+    <button class="btn" onclick="order()">Commander mon thème astral — 19 €</button>
+    <div class="secure">Paiement sécurisé · Livraison par email sous 24 h</div>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div class="faq">
+    <h3>Questions fréquentes</h3>
+    <div class="qa"><b>Je ne connais pas mon heure de naissance ?</b><p>Cochez la case prévue : nous utiliserons 12:00. Votre thème sera établi, mais l'ascendant et les maisons resteront approximatifs. Vous pouvez retrouver votre heure exacte sur votre acte de naissance intégral (mairie de naissance).</p></div>
+    <div class="qa"><b>Sous quel délai vais-je le recevoir ?</b><p>Votre thème astral complet vous est envoyé par email sous 24 heures, en document PDF que vous pourrez conserver.</p></div>
+    <div class="qa"><b>Mes données sont-elles protégées ?</b><p>Vos informations ne servent qu'à établir votre thème et à vous l'envoyer. Elles ne sont ni revendues, ni partagées.</p></div>
+  </div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+
+<script>
+  // === À BRANCHER : collez ici votre lien de paiement Stripe (laisser vide tant qu'il n'est pas prêt) ===
+  const STRIPE_URL = "";
+
+  const j=document.getElementById('jour');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;j.appendChild(o);}
+  const yy=document.getElementById('annee');
+  for(let y=2012;y>=1920;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  const hh=document.getElementById('heure');
+  for(let h=0;h<24;h++){const o=document.createElement('option');o.value=h;o.textContent=(h<10?'0'+h:h)+' h';hh.appendChild(o);}
+  const mm=document.getElementById('minute');
+  for(let m=0;m<60;m++){const o=document.createElement('option');o.value=m;o.textContent=(m<10?'0'+m:m);mm.appendChild(o);}
+
+  function toggleHeure(){
+    const off=document.getElementById('noheure').checked;
+    document.getElementById('heure').disabled=off;
+    document.getElementById('minute').disabled=off;
+    if(off){document.getElementById('heure').value='';document.getElementById('minute').value='';}
+  }
+
+  function order(){
+    const msg=document.getElementById('msg');
+    const email=document.getElementById('email').value.trim();
+    const d=document.getElementById('jour').value, mo=document.getElementById('mois').value, a=document.getElementById('annee').value;
+    const ville=document.getElementById('ville').value.trim();
+    const noheure=document.getElementById('noheure').checked;
+    const h=document.getElementById('heure').value, mi=document.getElementById('minute').value;
+
+    if(!email || !/.+@.+\..+/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre thème."; return; }
+    if(!d || !mo || !a){ msg.className='msg err'; msg.textContent="Merci d'indiquer votre date de naissance complète (jour, mois, année)."; return; }
+    if(!noheure && (h==='' || mi==='')){ msg.className='msg err'; msg.textContent="Indiquez votre heure de naissance, ou cochez « Je ne connais pas mon heure exacte »."; return; }
+    if(!ville){ msg.className='msg err'; msg.textContent="Merci d'indiquer votre ville / commune de naissance."; return; }
+
+    const heureTxt = noheure ? '12:00 (approx.)' : ((h<10?'0'+h:h)+':'+(mi<10?'0'+mi:mi));
+    // Données prêtes à être transmises au paiement / au calcul du thème
+    const data = { email, jour:d, mois:mo, annee:a, heure:heureTxt, ville, pays:document.getElementById('pays').value.trim() };
+
+    if(STRIPE_URL){
+      // Redirection vers le paiement Stripe (email pré-rempli)
+      window.location.href = STRIPE_URL + (STRIPE_URL.includes('?')?'&':'?') + 'prefilled_email=' + encodeURIComponent(email);
+    } else {
+      msg.className='msg ok';
+      msg.textContent="Merci "+(document.getElementById('prenom').value.trim()||'')+" ! Vos informations sont bien enregistrées. Le paiement en ligne sera activé très prochainement — votre thème vous sera alors envoyé par email.";
+    }
+  }
+</script>
+</body>
+</html>
