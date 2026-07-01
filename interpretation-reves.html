@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interprétation des Rêves — Oracle Arcana</title>
+<meta name="description" content="Dictionnaire des rêves gratuit : signification de rêver de serpent, eau, dents qui tombent, chute, mort, araignée... 46 symboles expliqués. Touchez un symbole et découvrez le message de vos rêves sur Oracle Arcana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf6ef; --ink:#2a2218; --ink-soft:#6b5f4d;
+    --gold:#b89149; --gold-deep:#9a7838; --gold-light:#d9be86;
+    --line:rgba(184,145,73,.25); --card:#fffdf9; --card-tint:#fbf1e2; --rose:#a8587a;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Nunito Sans','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--sans); color:var(--ink-soft);
+    background:
+      radial-gradient(1100px 620px at 78% -8%, #fbe6d4 0%, rgba(251,230,212,0) 55%),
+      radial-gradient(820px 560px at 8% 10%, #f6e6ea 0%, rgba(246,230,234,0) 50%),
+      linear-gradient(180deg,#fdf6ea,#faf6ef);
+    min-height:100vh}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+
+  nav.top{position:sticky; top:0; z-index:10; background:rgba(250,246,239,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:74px}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:4px; color:var(--ink); text-decoration:none; font-weight:600}
+  .logo b{color:var(--gold-deep); font-weight:600}
+  .menu{display:flex; gap:26px; font-size:15px; color:var(--ink-soft); font-weight:600}
+  .menu a{color:var(--ink-soft); text-decoration:none; transition:color .2s}
+  .menu a:hover{color:var(--gold-deep)}
+  .menu .sep{color:var(--gold); opacity:.55}
+  @media(max-width:760px){.menu{display:none}}
+
+  .badge{display:inline-block; font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:1.5px;
+    color:#FBF6EA; background:var(--gold-deep); padding:5px 15px; border-radius:20px; text-transform:uppercase; vertical-align:middle}
+
+  .hero{text-align:center; padding:52px 0 6px}
+  .eyebrow{font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:5px; color:var(--gold-deep); text-transform:uppercase; margin-bottom:18px}
+  h1{font-family:var(--display); font-weight:600; font-size:clamp(44px,7.5vw,78px); line-height:1.05; color:var(--ink)}
+  h1 .badge{font-size:14px; transform:translateY(-16px); margin-left:10px}
+  .sub{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,24px); color:var(--ink-soft); margin:18px auto 0; max-width:620px; line-height:1.5}
+
+  .search{max-width:460px; margin:26px auto 0; position:relative}
+  .search input{width:100%; font-family:var(--sans); font-size:16px; padding:14px 20px 14px 48px; border:1px solid var(--line); border-radius:40px; background:var(--card); color:var(--ink); outline:none; transition:border-color .2s, box-shadow .2s}
+  .search input:focus{border-color:var(--gold); box-shadow:0 0 0 4px rgba(184,145,73,.12)}
+  .search .si{position:absolute; left:17px; top:50%; transform:translateY(-50%); width:20px; height:20px; stroke:var(--gold-deep); fill:none; stroke-width:1.7; stroke-linecap:round}
+  .count{text-align:center; font-family:var(--sans); font-size:13px; color:var(--ink-soft); margin-top:12px; letter-spacing:.5px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:16px; padding:22px 0 60px}
+  .tile{position:relative; aspect-ratio:1/1; border:1px solid var(--line); border-radius:18px;
+    background:linear-gradient(180deg,var(--card-tint),var(--card) 55%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+    cursor:pointer; transition:transform .26s, border-color .26s, box-shadow .26s; font-family:inherit;
+    box-shadow:0 6px 20px rgba(120,95,40,.07)}
+  .tile:hover{transform:translateY(-5px); border-color:var(--gold); box-shadow:0 16px 36px rgba(140,110,44,.16)}
+  .tile:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+  .tile .ic svg{width:42px; height:42px; stroke:var(--gold-deep); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round}
+  .tile .key{font-family:var(--display); font-weight:600; font-size:22px; color:var(--ink); line-height:1.12; text-align:center; padding:0 8px}
+  .noresult{grid-column:1/-1; text-align:center; color:var(--ink-soft); font-family:var(--display); font-style:italic; font-size:21px; padding:44px 0}
+
+  .overlay{position:fixed; inset:0; z-index:20; background:rgba(60,45,20,.34); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:22px; opacity:0; pointer-events:none; transition:opacity .3s}
+  .overlay.open{opacity:1; pointer-events:auto}
+  .modal{position:relative; max-width:510px; width:100%; text-align:center; background:#FFFDF8;
+    border:1px solid var(--line); border-radius:22px; padding:44px 40px 40px; transform:scale(.94); transition:transform .3s;
+    box-shadow:0 30px 70px rgba(90,70,30,.22)}
+  .overlay.open .modal{transform:scale(1)}
+  .modal .ic svg{width:60px; height:60px; stroke:var(--gold-deep); fill:none; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round}
+  .modal .mt{font-family:var(--display); font-weight:600; font-size:40px; color:var(--gold-deep); line-height:1.1; margin-top:8px}
+  .modal .mk{font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:3px; color:var(--gold); margin-top:6px; text-transform:uppercase}
+  .modal .divider{width:60px; height:1px; background:var(--gold); opacity:.5; margin:20px auto}
+  .modal .msg{font-family:var(--display); font-size:21px; line-height:1.6; color:var(--ink); font-style:italic}
+  .modal .cta{display:inline-block; margin-top:28px; font-family:var(--sans); font-weight:700; font-size:14px; letter-spacing:.6px; color:#FBF6EA;
+    text-decoration:none; padding:14px 30px; border-radius:40px; background:linear-gradient(180deg,#cba653,#98762f); transition:filter .25s}
+  .modal .cta:hover{filter:brightness(1.06)}
+  .modal .close{position:absolute; top:14px; right:20px; background:none; border:none; color:var(--gold); font-size:28px; cursor:pointer; line-height:1}
+  .modal .close:hover{color:var(--gold-deep)}
+
+  footer{text-align:center; padding:30px 0 50px; color:var(--ink-soft); opacity:.75; font-family:var(--sans); font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+  @media(prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap nav-in">
+  <a href="index.html" class="logo"><b>ORACLE</b> ARCANA</a>
+  <div class="menu">
+    <a href="index.html">Tirages gratuits</a><span class="sep">·</span>
+    <a href="index.html">Lectures</a><span class="sep">·</span>
+    <a href="index.html#roue">Le Tirage des Lunes</a><span class="sep">·</span>
+    <a href="index.html#consultations">Consultations</a><span class="sep">·</span>
+    <a href="index.html#avisfaq">FAQ</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Dictionnaire des rêves</div>
+    <h1>Interprétation des Rêves <span class="badge">Gratuit</span></h1>
+    <p class="sub">Un rêve vous intrigue et vous suit au réveil ? Il porte souvent un message. Cherchez ou touchez un symbole pour découvrir sa signification.</p>
+    <div class="search">
+      <svg class="si" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="Rechercher un rêve… (serpent, eau, chute…)" aria-label="Rechercher un symbole de rêve">
+    </div>
+    <div class="count" id="count"></div>
+  </section>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close" onclick="closeModal()" aria-label="Fermer">×</button>
+    <div class="ic" id="modalIcon"></div>
+    <div class="mt" id="modalTitle"></div>
+    <div class="mk" id="modalKey"></div>
+    <div class="divider"></div>
+    <p class="msg" id="modalMsg"></p>
+    <a class="cta" href="index.html#consultations">Recevoir ma lecture complète →</a>
+  </div>
+</div>
+
+<script>
+  const I = {
+    serpent:'<path d="M4 14c2-3 3 2 5 0s2-4 4-4 3 2 5 2"/><circle cx="19.5" cy="11.7" r="1" fill="currentColor" stroke="none"/>',
+    eau:'<path d="M12 3c3 4 6 7 6 10.5A6 6 0 0 1 6 13.5C6 10 9 7 12 3z"/>',
+    dents:'<path d="M6 5c-1.5 1-2 3-1.6 6 .3 2 .6 5 1.2 7 .4 1.3 2 1.2 2.2-.2l.6-3.5c.2-1 1.4-1 1.6 0l.6 3.5c.2 1.4 1.8 1.5 2.2.2.6-2 .9-5 1.2-7 .4-3-.1-5-1.6-6-1.4-.9-2.6 0-4 0S7.4 4.1 6 5z"/>',
+    chute:'<path d="M12 3v11"/><path d="M8 10l4 4 4-4"/><path d="M5 18c2.5 2 11.5 2 14 0"/>',
+    voler:'<path d="M3 13c3-4 6-4 9 0"/><path d="M12 13c3-4 6-4 9 0"/>',
+    mort:'<path d="M7 4h10M7 20h10"/><path d="M8 4c0 4 8 6 8 8s-8 4-8 8"/><path d="M16 4c0 4-8 6-8 8s8 4 8 8"/>',
+    araignee:'<circle cx="12" cy="12" r="3"/><path d="M12 9V5M9.6 10.4 6.5 7.3M14.4 10.4l3.1-3.1M9 12H4.5M15 12h4.5M9.6 13.6l-3.1 3.1M14.4 13.6l3.1 3.1"/>',
+    bebe:'<path d="M16 12a5 5 0 1 1-4.6-5 4 4 0 0 0 4.6 5z"/><path d="M18.6 5l.5 1.5 1.5.5-1.5.5-.5 1.5-.5-1.5-1.5-.5 1.5-.5z"/>',
+    maison:'<path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
+    feu:'<path d="M12 3c.5 3 3 4 3 7a3 3 0 0 1-6 0c0-1.2.6-2 1.2-2.6C10.5 9 12 8 12 3z"/><path d="M9.5 12.5c-.6 1-.4 2.5 1 3"/>',
+    chat:'<path d="M6 7l2.2 3M18 7l-2.2 3"/><circle cx="12" cy="13" r="4.6"/><path d="M12 14v2.2M12 15l-3-1M12 15l3-1"/>',
+    chien:'<circle cx="12" cy="13" r="4.6"/><path d="M8 9C6 8 4.5 9.5 5 12M16 9c2-1 3.5.5 3 3"/><path d="M12 15.2a1 1 0 0 0 0-1.6"/>',
+    argent:'<circle cx="12" cy="12" r="8"/><path d="M15 9.5a3.5 3.5 0 1 0 0 5M8.5 11h5M8.5 13h5"/>',
+    poursuivi:'<ellipse cx="9" cy="8" rx="1.8" ry="2.8"/><path d="M8 11.3c.2.6 1.8.6 2 0"/><ellipse cx="15" cy="15" rx="1.8" ry="2.8"/><path d="M14 18.3c.2.6 1.8.6 2 0"/>',
+    grossesse:'<path d="M12 21S5 15 5 9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 1.5C19 15 12 21 12 21z"/><circle cx="12" cy="11" r="1.6"/>',
+    mariage:'<circle cx="9.5" cy="14" r="4.4"/><circle cx="14.5" cy="14" r="4.4"/><path d="M12 5.2l1.5 2.1h-3z"/>',
+    voiture:'<path d="M4 14l2-5h12l2 5"/><rect x="3" y="14" width="18" height="4" rx="1"/><path d="M7 18v1.4M17 18v1.4"/>',
+    mer:'<path d="M3 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 13c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>',
+    oiseau:'<path d="M4 13c2.5-2.6 5-2.6 7 0M13 13c2.5-2.6 5-2.6 7 0"/><path d="M11 13c0 3 .5 4.6 1 4.6s1-1.6 1-4.6"/>',
+    porte:'<rect x="6" y="3" width="12" height="18" rx="1"/><path d="M4.5 21h15"/><circle cx="14.6" cy="12" r=".8" fill="currentColor" stroke="none"/>',
+    lune:'<path d="M16.5 12.5a5.5 5.5 0 1 1-5-7 4.5 4.5 0 0 0 5 7z"/>',
+    soleil:'<circle cx="12" cy="12" r="4.3"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/>',
+    etoile:'<path d="M12 3l2.5 6.4L21 10l-5 4.3L17.4 21 12 17.3 6.6 21 8 14.3 3 10l6.5-.6z"/>',
+    poisson:'<path d="M4 12c3-5 10-5 13 0-3 5-10 5-13 0z"/><path d="M17 12c1.5-1.5 3-1.5 3.5-2M17 12c1.5 1.5 3 1.5 3.5 2"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/>',
+    papillon:'<path d="M12 6.5v11"/><path d="M12 8c-1-3-6-4-7.5-1s2.5 6 7.5 4M12 8c1-3 6-4 7.5-1s-2.5 6-7.5 4M12 13c-1 2.5-5 4-6.5 1M12 13c1 2.5 5 4 6.5 1"/>',
+    abeille:'<ellipse cx="12" cy="14" rx="3.6" ry="4.8"/><path d="M8.6 12.5h6.8M8.6 15.2h6.8M12 9.2V6.5M12 6.5l-1.8-1.8M12 6.5l1.8-1.8"/><path d="M8.6 11c-2.6-1.6-3.6-3.4-2.8-4.6M15.4 11c2.6-1.6 3.6-3.4 2.8-4.6"/>',
+    fleur:'<circle cx="12" cy="12" r="2.1"/><path d="M12 9.9c0-3 3-3.6 3-.9M14.1 12c3 0 3.6 3 .9 3M12 14.1c0 3-3 3.6-3 .9M9.9 12c-3 0-3.6-3-.9-3"/><path d="M12 14.2V21"/>',
+    arbre:'<path d="M12 21v-6"/><path d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M12 12l-2.4-2M12 13.2l2.4-2"/>',
+    montagne:'<path d="M3 19l6-11 3.5 6 2-3 6.5 8z"/><path d="M9 8l2 3.4"/>',
+    orage:'<path d="M7 15.5a4 4 0 0 1 .4-8 5 5 0 0 1 9.6 1.4A3.5 3.5 0 0 1 17 15.5"/><path d="M12 12l-2 3.6h3l-2 3.6"/>',
+    neige:'<path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9"/><path d="M12 6.4l-2.3 1.4M12 6.4l2.3 1.4M12 17.6l-2.3-1.4M12 17.6l2.3-1.4M6.6 11.2l.3 2.6M17.4 11.2l-.3 2.6"/>',
+    cle:'<circle cx="8" cy="12" r="3.4"/><path d="M11.2 12H20M17 12v3M20 12v2.4"/>',
+    miroir:'<ellipse cx="12" cy="10" rx="6" ry="7.2"/><path d="M12 17.2V21M9 21h6"/><path d="M9 7c.6-1.4 2-2.4 3.4-2.4"/>',
+    pont:'<path d="M3 16c5 0 6-6 9-6s4 6 9 6"/><path d="M3 16v3M21 16v3M9 13.2V19M15 13.2V19M12 11v8"/>',
+    escalier:'<path d="M4 20v-3h4v-3h4v-3h4v-3h4"/>',
+    train:'<rect x="6" y="4" width="12" height="12" rx="2.5"/><path d="M6 10.5h12M9 16l-2 3.5M15 16l2 3.5"/><circle cx="9.2" cy="13" r=".8" fill="currentColor" stroke="none"/><circle cx="14.8" cy="13" r=".8" fill="currentColor" stroke="none"/>',
+    avion:'<path d="M12 3c1 0 1.6 1.2 1.6 3.2v3.6l6 3.8v2l-6-1.8v3l2 1.5V21l-3.6-1L8.4 21v-1.7l2-1.5v-3l-6 1.8v-2l6-3.8V6.2C10.4 4.2 11 3 12 3z"/>',
+    telephone:'<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M10.5 18h3"/>',
+    eglise:'<path d="M12 3v4M10 5h4"/><path d="M6 21v-9l6-4 6 4v9"/><path d="M6 12.5l-3 2V21M18 12.5l3 2V21"/><path d="M10 21v-4h4v4"/>',
+    chaussures:'<path d="M3 16v-5l4 1 3-3.5 2 2c1.2 1.2 3 2 6 2h3v3.5z"/><path d="M3 16h18"/>',
+    coeurbrise:'<path d="M12 20S4 14 4 9a4 4 0 0 1 7-1 4 4 0 0 1 7 1c0 5-6 11-6 11z"/><path d="M12 8l-1.6 3 2.2 1.8-1.6 3"/>',
+    requin:'<path d="M3 17c4 1.2 12 1 18-3-2 .2-4-.8-5-3-1 3-3.2 3.2-5.2 3.2C7.8 14.4 5 14 3 17z"/><path d="M11 8l2-4 1.2 5"/>',
+    souris:'<circle cx="10" cy="13" r="4"/><circle cx="7" cy="9.2" r="2"/><circle cx="13" cy="9.2" r="2"/><path d="M14 14.5c3 0 5 1 6 3.2"/><circle cx="10" cy="13" r=".7" fill="currentColor" stroke="none"/>',
+    cheval:'<path d="M6 21c-1-5 1-9 4.2-10.2l1-4L14.4 10c3 1.2 4 4 4 8.5"/><path d="M11.2 6.8l-1-3"/>',
+    noyer:'<path d="M3 16.5c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M9 13.5l1-3M12 12.5V8M15 13.5l-1-3M10 10.5h4"/>',
+    sang:'<path d="M12 3c3 4 6 7 6 10.5A6 6 0 0 1 6 13.5C6 10 9 7 12 3z"/><path d="M12 10v4M10 12h4"/>'
+  };
+  function svg(k){ return `<svg viewBox="0 0 24 24">${I[k]||''}</svg>`; }
+
+  const data = [
+    ["serpent","Serpent","Transformation","Rêver d'un serpent annonce le plus souvent une transformation profonde qui se prépare en vous. Comme l'animal qui mue, vous laissez derrière vous une ancienne peau — une croyance, une relation, une version de vous-même. S'il vous effraie, il révèle une peur à regarder en face ; s'il vous fascine, il annonce une renaissance et un regain de puissance intérieure."],
+    ["eau","Eau","Émotions","L'eau, dans les rêves, est le miroir de vos émotions. Une eau claire et calme reflète une paix intérieure retrouvée ; une eau trouble ou agitée signale des sentiments confus ou refoulés qui demandent à être écoutés. Observez son mouvement : il vous dit où en est votre monde intérieur en ce moment."],
+    ["dents","Dents qui tombent","Perte de contrôle","Rêver que ses dents tombent est l'un des rêves les plus fréquents. Il traduit souvent une peur de perdre le contrôle, la confiance en soi, ou l'image que l'on renvoie aux autres. C'est un appel à vous rassurer sur votre valeur : ce que vous craignez de perdre est bien plus solide que vous ne le pensez."],
+    ["chute","Chute","Lâcher-prise","Tomber dans un rêve exprime un sentiment d'insécurité ou la peur de perdre la maîtrise d'une situation. Mais c'est aussi une invitation au lâcher-prise : vous vous accrochez peut-être trop fort à quelque chose. Accepter de tomber, dans le rêve, c'est apprendre à faire confiance à la vie qui vous porte."],
+    ["voler","Voler","Liberté","Voler en rêve est l'un des plus beaux songes : il annonce une libération et un élan vers le haut. Vous vous affranchissez d'un poids, d'une limite, d'un regard. Plus le vol est fluide, plus vous êtes aligné avec vos aspirations profondes. C'est le rêve de ceux qui reprennent leur pouvoir."],
+    ["mort","Mort","Renaissance","Contrairement à ce qu'il évoque, rêver de mort n'annonce presque jamais un décès. Il symbolise une fin nécessaire pour laisser place au renouveau : la fin d'un cycle, d'un rôle, d'une habitude. Une porte se ferme pour qu'une autre s'ouvre. C'est un rêve de transformation, pas de fin."],
+    ["araignee","Araignée","Création & emprise","L'araignée tisse : elle représente votre pouvoir de créer, de bâtir patiemment votre propre toile — votre vie, vos projets. Mais elle peut aussi révéler un sentiment d'emprise, une situation ou une personne qui vous retient. À vous de voir si vous êtes le tisserand… ou la proie."],
+    ["bebe","Bébé","Nouveau départ","Rêver d'un bébé annonce un nouveau départ : un projet qui naît, une part de vous qui s'éveille, une nouvelle étape de vie. C'est le symbole de la pureté, du potentiel et de la vulnérabilité des commencements. Quelque chose de neuf demande à être nourri et protégé en vous."],
+    ["maison","Maison","Le soi","La maison, en rêve, c'est vous-même. Chaque pièce représente une part de votre être : le grenier vos pensées, la cave votre inconscient, les fondations vos valeurs. Une maison lumineuse parle d'harmonie intérieure ; des pièces inconnues révèlent des aspects de vous encore à explorer."],
+    ["feu","Feu","Passion & purification","Le feu est une énergie puissante et ambivalente. Il peut annoncer la passion, l'élan créateur, un désir qui s'embrase — ou une colère, un conflit qui couve. Maîtrisé, il purifie et transforme ; incontrôlé, il alerte sur une émotion trop longtemps contenue qui demande à sortir."],
+    ["chat","Chat","Intuition","Le chat symbolise l'intuition, l'indépendance et la part féminine et mystérieuse en chacun. Le voir en rêve vous invite à faire confiance à votre instinct plutôt qu'à votre seule raison. Un chat affectueux annonce une harmonie ; un chat fuyant, une vérité intérieure que vous n'osez pas encore regarder."],
+    ["chien","Chien","Loyauté","Le chien incarne la fidélité, l'amitié et la protection. Le rencontrer en rêve parle de vos liens sincères et du soutien qui vous entoure. Un chien joyeux confirme une amitié précieuse ; un chien menaçant peut révéler une confiance trahie ou une loyauté à clarifier autour de vous."],
+    ["argent","Argent","Valeur de soi","Rêver d'argent parle rarement d'argent réel : il reflète votre énergie, votre confiance et la valeur que vous vous accordez. En trouver annonce une reconnaissance qui vient à vous ; en perdre invite à ne pas vous dévaloriser. La vraie richesse dont parle ce rêve est intérieure."],
+    ["poursuivi","Être poursuivi","Évitement","Être poursuivi en rêve révèle une situation ou une émotion que vous fuyez dans la vie éveillée. Ce qui vous court après, c'est souvent ce que vous n'osez pas affronter. Le rêve vous invite doucement à vous retourner : ce que vous fuyez perd son pouvoir dès que vous le regardez en face."],
+    ["grossesse","Grossesse","Projet en gestation","Rêver de grossesse annonce presque toujours une création en cours : un projet, une idée, une nouvelle version de vous qui mûrit en secret. Quelque chose grandit en vous et n'est pas encore prêt à naître. Faites-lui confiance et donnez-lui le temps : le moment venu, il verra le jour."],
+    ["mariage","Mariage","Union","Le mariage en rêve symbolise l'union et l'engagement — pas seulement amoureux. Il parle de deux parties de vous qui se réconcilient, de l'alliance entre votre raison et votre cœur, ou d'un engagement nouveau dans votre vie. C'est un rêve d'unité et de promesse envers soi-même."],
+    ["voiture","Voiture","Direction de vie","La voiture représente la façon dont vous menez votre vie. Qui est au volant ? Si c'est vous, vous tenez votre destin en main ; si c'est un autre, vous laissez peut-être les autres décider pour vous. Une route dégagée annonce un cap clair ; des freins qui lâchent, un besoin de reprendre le contrôle."],
+    ["mer","Mer / Océan","Inconscient","La mer représente l'immensité de votre inconscient et de vos émotions profondes. Calme, elle annonce la sérénité ; déchaînée, elle révèle des émotions puissantes qui vous submergent. Plonger, c'est accepter d'explorer ce que vous cachez au fond de vous — et y trouver des trésors."],
+    ["oiseau","Oiseau","Message","L'oiseau est messager entre le ciel et la terre : le voir en rêve annonce souvent une nouvelle, une inspiration ou une élévation spirituelle. Un oiseau qui s'envole parle de liberté et de bonnes nouvelles ; un oiseau en cage, d'un élan que vous vous interdisez encore de suivre."],
+    ["porte","Porte","Opportunité","Une porte, en rêve, est le seuil d'un changement. Ouverte, elle annonce une opportunité qui s'offre à vous ; fermée, un obstacle ou une décision encore prématurée. La question que pose ce rêve est simple : êtes-vous prêt à franchir le pas et à entrer dans ce qui vous attend ?"],
+    ["lune","Lune","Cycles & intuition","La lune éclaire votre part intérieure, vos émotions et votre intuition. La voir en rêve vous invite à écouter vos ressentis et à accueillir vos cycles, faits de pleins et de vides. Elle annonce souvent une période où votre sensibilité et votre imagination sont particulièrement fécondes."],
+    ["soleil","Soleil","Vitalité & réussite","Le soleil rayonne de vie, de clarté et de réussite. Le rêver annonce un regain d'énergie, une vérité qui se révèle ou un succès qui approche. C'est un signe chaleureux : ce qui était dans l'ombre revient à la lumière, et votre chemin s'éclaire."],
+    ["etoile","Étoile","Espoir & guidance","L'étoile est un phare dans la nuit : elle symbolise l'espoir, la foi en l'avenir et la guidance. La voir en rêve vous rappelle que vos vœux les plus profonds vous montrent la direction. Suivez votre étoile intérieure : elle sait où vous devez aller."],
+    ["poisson","Poisson","Abondance & inconscient","Le poisson glisse dans les eaux de l'inconscient : il parle de vos émotions profondes et de ce qui vous nourrit intérieurement. Il est aussi un ancien symbole d'abondance et de fécondité. Le rêver annonce souvent une idée féconde ou une richesse qui remonte doucement à la surface."],
+    ["papillon","Papillon","Métamorphose","Le papillon est le symbole même de la transformation : chenille devenue lumière, il annonce une belle métamorphose intérieure. Vous sortez d'un cocon, une nouvelle version de vous prend son envol. C'est un rêve d'espoir, de légèreté et de renaissance."],
+    ["abeille","Abeille","Travail & récompense","L'abeille parle de travail patient, d'organisation et de fruits récoltés. La rêver annonce que vos efforts vont porter, souvent grâce à l'entraide et à la persévérance. C'est aussi un signe de prospérité douce : le miel de votre travail est en train de se former."],
+    ["fleur","Fleur","Épanouissement","La fleur qui s'ouvre annonce un épanouissement : un amour, un talent, une joie qui éclosent. Le rêver célèbre votre beauté intérieure et une période de douceur qui s'ouvre à vous. Une fleur fanée, elle, invite à prendre soin de ce qui compte avant qu'il ne se fane."],
+    ["arbre","Arbre","Racines & croissance","L'arbre relie la terre et le ciel : il parle de vos racines, de votre solidité et de votre croissance. Un arbre vigoureux annonce stabilité et épanouissement ; un arbre fragile invite à renforcer vos appuis. Pour grandir vers le haut, souvenez-vous qu'il faut d'abord s'ancrer profondément."],
+    ["montagne","Montagne","Défi & élévation","La montagne représente un grand objectif ou un défi à gravir. La rêver parle de l'effort demandé, mais aussi de l'élévation qui attend au sommet. Ne regardez pas seulement la pente : chaque pas vous rapproche d'une vue plus vaste sur votre vie."],
+    ["orage","Orage / Foudre","Tension & révélation","L'orage exprime une tension accumulée qui a besoin d'éclater pour se libérer. Il peut annoncer un conflit ou une émotion forte — mais après la pluie vient toujours l'apaisement. La foudre, elle, symbolise une révélation soudaine : une vérité qui frappe et change tout."],
+    ["neige","Neige","Pause & pureté","La neige recouvre tout d'un silence blanc : elle annonce une pause, un temps de repos ou de recueillement. Elle parle de pureté, de renouveau et d'émotions mises en sommeil. Le rêver invite à ralentir : sous ce calme apparent, quelque chose se prépare en douceur."],
+    ["cle","Clé","Solution","La clé annonce une solution, un accès à ce qui était fermé. Le rêver signifie que vous détenez déjà la réponse à une question qui vous préoccupe. Une porte de votre vie est sur le point de s'ouvrir : cherchez ce que cette clé vous invite à déverrouiller."],
+    ["miroir","Miroir","Regard sur soi","Le miroir vous renvoie à vous-même : il parle de l'image que vous avez de vous et de la vérité que vous osez, ou non, regarder. Un reflet clair annonce une belle lucidité ; un reflet flou ou déformé, un besoin de vous réconcilier avec qui vous êtes vraiment."],
+    ["pont","Pont","Transition","Le pont relie deux rives : il symbolise un passage, une transition entre deux étapes de votre vie. Le traverser en rêve annonce que vous êtes prêt à franchir un cap. Hésiter sur le pont révèle une décision en suspens : la traversée, elle, mène toujours vers du nouveau."],
+    ["escalier","Escalier","Évolution par étapes","L'escalier parle d'une progression qui se fait marche après marche. Le monter annonce une élévation, une réussite qui se construit patiemment ; le descendre invite à explorer vos profondeurs ou votre passé. On n'atteint le haut qu'une marche à la fois."],
+    ["train","Train","Chemin de vie","Le train suit une voie tracée : il parle de votre chemin de vie et du sentiment d'être, ou non, sur les bons rails. Le rater exprime la peur de laisser passer une occasion ; le prendre annonce que vous avancez dans la bonne direction, porté par un mouvement plus grand que vous."],
+    ["avion","Avion","Grand élan","L'avion annonce un grand projet qui prend de l'altitude, un changement d'envergure ou un voyage — réel ou intérieur. Le décollage parle d'un élan qui se libère enfin ; les turbulences, d'un passage un peu secoué mais sans danger. Vous êtes en train de viser plus haut et plus loin."],
+    ["telephone","Téléphone","Message à recevoir","Le téléphone parle de communication : un message important cherche à vous atteindre, ou vous à l'exprimer. Un appel qu'on n'arrive pas à décrocher révèle une vérité que l'on évite ; un appel reçu annonce une nouvelle ou un lien à renouer. Écoutez ce que vous avez à dire — ou à entendre."],
+    ["eglise","Église","Recueillement","L'église, temple ou lieu sacré, parle de votre besoin de sens, de paix intérieure et de recueillement. Le rêver invite à vous relier à quelque chose de plus grand que vos soucis quotidiens. C'est souvent un appel à faire une pause spirituelle et à retrouver vos valeurs profondes."],
+    ["chaussures","Chaussures","Votre chemin","Les chaussures parlent de votre façon d'avancer dans la vie et du chemin que vous empruntez. Des chaussures neuves annoncent un nouveau départ ; usées, un besoin de changer de direction ; perdues, un sentiment d'égarement passager. Êtes-vous bien chaussé pour la route qui vous attend ?"],
+    ["coeurbrise","Chagrin d'amour","Guérison","Revoir un ancien amour ou un cœur brisé en rêve ne signifie pas un retour en arrière : c'est votre cœur qui achève de guérir. Une part de vous solde une histoire, une blessure, pour se rendre disponible à du neuf. Ce rêve n'est pas un regret, c'est une libération qui se termine."],
+    ["requin","Requin","Peur à affronter","Le requin incarne une peur puissante, une menace réelle ou imaginaire qui rôde sous la surface de vos émotions. Le rêver invite à identifier ce qui vous inquiète vraiment, souvent tapi dans l'inconscient. Regardé en face, ce qui semblait dévorant se révèle bien moins dangereux qu'il n'y paraissait."],
+    ["souris","Souris","Petits soucis","La souris parle de petites contrariétés ou de craintes qui grignotent votre tranquillité sans être graves. Le rêver invite à ne pas laisser de menus soucis prendre trop de place. C'est aussi un rappel de discrétion et d'humilité : les petites choses, bien traitées, évitent les grandes."],
+    ["cheval","Cheval","Force & liberté","Le cheval symbolise une force puissante et noble : votre énergie vitale, votre élan, votre désir de liberté. Un cheval lancé au galop annonce que votre puissance se déploie ; un cheval difficile à maîtriser invite à mieux canaliser vos passions. C'est un rêve de vitalité et d'indépendance."],
+    ["noyer","Se noyer","Émotions submergeantes","Se noyer en rêve traduit un sentiment d'être submergé — par des émotions, des responsabilités ou une situation qui vous dépasse. Ce n'est pas un présage funeste, mais un appel de votre inconscient : il est temps de reprendre votre souffle. Demandez de l'aide, allégez votre charge, et vous retrouverez pied."],
+    ["sang","Sang","Énergie vitale","Le sang, c'est la vie qui circule : il parle de votre énergie profonde, de vos passions et de vos liens familiaux. En perdre peut signaler une fatigue ou une énergie qui s'échappe ; le voir couler sans peur annonce au contraire une vitalité qui se renouvelle. Écoutez ce que votre élan vital cherche à vous dire."]
+  ];
+
+  const grid = document.getElementById('grid');
+  const countEl = document.getElementById('count');
+  const tiles = [];
+  data.forEach((item)=>{
+    const [key,name,kw,msg] = item;
+    const t = document.createElement('button');
+    t.className='tile';
+    t.innerHTML = `<span class="ic">${svg(key)}</span><span class="key">${name}</span>`;
+    t.onclick = ()=>openModal(key,name,kw,msg);
+    grid.appendChild(t);
+    tiles.push({el:t,name,kw});
+  });
+
+  const noresult = document.createElement('div');
+  noresult.className='noresult'; noresult.style.display='none';
+  noresult.textContent = "Aucun symbole trouvé. Essayez un autre mot.";
+  grid.appendChild(noresult);
+
+  function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  const q = document.getElementById('q');
+  function refresh(){
+    const term = norm(q.value.trim());
+    let n=0;
+    tiles.forEach(t=>{
+      const show = !term || norm(t.name).includes(term) || norm(t.kw).includes(term);
+      t.el.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    noresult.style.display = n===0 ? '' : 'none';
+    countEl.textContent = term ? (n+' résultat'+(n>1?'s':'')) : (tiles.length+' symboles à explorer');
+  }
+  q.addEventListener('input', refresh);
+  refresh();
+
+  const overlay = document.getElementById('overlay');
+  function openModal(key,name,kw,msg){
+    document.getElementById('modalIcon').innerHTML = svg(key);
+    document.getElementById('modalTitle').textContent = name;
+    document.getElementById('modalKey').textContent = kw;
+    document.getElementById('modalMsg').textContent = '« '+msg+' »';
+    overlay.classList.add('open');
+  }
+  function closeModal(){ overlay.classList.remove('open'); }
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

@@ -302,6 +302,54 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 #arc-toast::before{content:"\2727";color:var(--gold-deep);font-size:1.2rem}
 #arc-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.oah-wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.oah-hero{position:relative;overflow:hidden;background:radial-gradient(1100px 620px at 74% -6%,#fbe6d4 0,rgba(251,230,212,0) 58%),radial-gradient(820px 560px at 10% 26%,#f6e6ea 0,rgba(246,230,234,0) 55%),radial-gradient(700px 500px at 46% 96%,#f4ecd8 0,rgba(244,236,216,0) 60%),linear-gradient(180deg,#fdf6ea,#faf6ef)}
+.oah-hero-in{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:20px;padding:56px 0 54px}
+.oah-eyebrow{font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:5px;color:#9a7838;text-transform:uppercase;margin-bottom:18px}
+.oah-h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:64px;line-height:1.06;color:#2a2218;letter-spacing:.5px;margin:0}
+.oah-h1 em{font-style:italic;color:#a8587a}
+.oah-lead{font-family:'Nunito Sans',sans-serif;max-width:520px;margin:18px 0 0;font-size:18px;line-height:1.6;color:#6b5f4d}
+.oah-btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.oah-btn{font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:16px;padding:15px 28px;border-radius:40px;cursor:pointer;border:1.6px solid transparent;transition:.2s}
+.oah-btn-gold{background:linear-gradient(180deg,#cba653,#98762f);color:#fff8ea;box-shadow:0 10px 24px rgba(154,120,56,.3)}
+.oah-btn-gold:hover{transform:translateY(-2px)}
+.oah-btn-outline{background:transparent;border-color:#b89149;color:#9a7838}
+.oah-btn-outline:hover{background:rgba(184,145,73,.08)}
+.oah-reassure{font-family:'Nunito Sans',sans-serif;margin-top:22px;font-size:14px;color:#6b5f4d;letter-spacing:.4px}
+.oah-reassure b{color:#9a7838}
+.oah-art{display:flex;justify-content:center}
+.oah-art svg{width:100%;max-width:400px;height:auto;filter:drop-shadow(0 18px 40px rgba(120,80,30,.2))}
+.oah-discover{padding:60px 0 26px;background:linear-gradient(180deg,#faf6ef,#fbf1e6 60%,#faf6ef)}
+.oah-sec-hd{text-align:center;margin-bottom:34px}
+.oah-sec-hd .oah-eyebrow{margin-bottom:12px}
+.oah-h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:42px;color:#2a2218;letter-spacing:.5px;margin:0}
+.oah-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.oah-card{position:relative;display:block;text-decoration:none;background:linear-gradient(180deg,var(--t),#fffdf9 46%);border:1px solid rgba(184,145,73,.25);border-radius:20px;padding:24px 22px;box-shadow:0 8px 22px rgba(90,70,30,.09);transition:.22s;overflow:hidden;cursor:pointer}
+.oah-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--a)}
+.oah-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(90,70,30,.13);border-color:var(--a)}
+.oah-ic{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;background:#fff;border:1px solid rgba(184,145,73,.25)}
+.oah-ic svg{width:28px;height:28px;stroke:var(--a);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.oah-ic .oah-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--a)}
+.oah-card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#2a2218;margin:0 0 5px;line-height:1.1}
+.oah-card p{font-family:'Nunito Sans',sans-serif;font-size:14px;color:#6b5f4d;line-height:1.45;margin:0}
+.oah-arrow{font-family:'Nunito Sans',sans-serif;margin-top:12px;font-weight:700;font-size:13px;color:var(--a);letter-spacing:.4px}
+.oah-c-gold{--a:#9a7838;--t:#f7ead0}
+.oah-c-violet{--a:#6d4d9a;--t:#ece3f5}
+.oah-c-green{--a:#5f8a6a;--t:#e2eee6}
+.oah-c-rose{--a:#a8587a;--t:#f7e5ec}
+.oah-c-amber{--a:#c1863a;--t:#f9e8cf}
+.oah-c-blue{--a:#4f6aa8;--t:#e3ebf7}
+.oah-c-indigo{--a:#5b57a8;--t:#e7e6f5}
+.oah-c-soon{--a:#b7a373;--t:#f6efe0;cursor:default;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;border-style:dashed}
+.oah-c-soon:hover{transform:none;box-shadow:0 8px 22px rgba(90,70,30,.09);border-color:rgba(184,145,73,.25)}
+.oah-soon-badge{display:inline-block;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#fff8ea;background:#a8587a;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+@media(max-width:980px){.oah-grid{grid-template-columns:repeat(2,1fr)}.oah-h1{font-size:54px}}
+@media(max-width:860px){.oah-hero-in{grid-template-columns:1fr;text-align:center;padding:38px 0 42px}.oah-h1{font-size:44px}.oah-lead{margin-left:auto;margin-right:auto}.oah-btns{justify-content:center}.oah-art{order:-1;margin-bottom:16px}.oah-art svg{max-width:280px}}
+@media(max-width:560px){.oah-grid{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 
@@ -336,58 +384,91 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 </nav>
 <main>
 <div class="page" id="page-accueil">
-<header class="hero" id="accueil">
-  <div class="wrap">
-    <div class="eyebrow">Cartomancie · Numérologie · Angéologie</div>
-    <h1>Les lames révèlent<br>ce que <em>l'âme cherche</em></h1>
-    <p class="lead">Posez votre question à l'univers. L'Oracle Arcana éclaire votre chemin de vie, à toute heure.</p>
-    <div class="hero-btns">
-      <button class="btn btn-gold" onclick="go('oracle')">✦ Tirage 3 lames gratuit</button>
-      <button class="btn btn-outline" onclick="go('consultations')">Découvrir les consultations</button>
+<header class="oah-hero" id="accueil">
+  <div class="oah-wrap oah-hero-in">
+    <div class="oah-hero-txt">
+      <div class="oah-eyebrow">✦ Cartomancie · Numérologie · Angéologie ✦</div>
+      <h1 class="oah-h1">Les lames révèlent<br>ce que <em>l'âme cherche</em></h1>
+      <p class="oah-lead">Posez votre question à l'univers. L'Oracle Arcana éclaire votre chemin de vie, à toute heure.</p>
+      <div class="oah-btns">
+        <button class="oah-btn oah-btn-gold" onclick="go('oracle')">✦ Tirage 3 lames gratuit</button>
+        <button class="oah-btn oah-btn-outline" onclick="go('consultations')">Découvrir les consultations</button>
+      </div>
+      <div class="oah-reassure"><b>Gratuit</b> · Sans inscription · Résultat immédiat</div>
+    </div>
+    <div class="oah-art">
+      <svg viewBox="0 0 420 470" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="oahGlow" cx="50%" cy="42%" r="55%"><stop offset="0%" stop-color="#f6d9a4" stop-opacity=".65"/><stop offset="55%" stop-color="#f0c98a" stop-opacity=".18"/><stop offset="100%" stop-color="#f0c98a" stop-opacity="0"/></radialGradient>
+          <linearGradient id="oahCard" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fffdf7"/><stop offset="100%" stop-color="#f7eddb"/></linearGradient>
+          <linearGradient id="oahRose" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fdf3f3"/><stop offset="100%" stop-color="#f4e0e6"/></linearGradient>
+          <linearGradient id="oahGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d9be86"/><stop offset="50%" stop-color="#b89149"/><stop offset="100%" stop-color="#9a7838"/></linearGradient>
+          <mask id="oahMoon"><rect width="420" height="470" fill="#000"/><circle cx="210" cy="78" r="34" fill="#fff"/><circle cx="226" cy="70" r="30" fill="#000"/></mask>
+        </defs>
+        <rect width="420" height="470" fill="url(#oahGlow)"/>
+        <circle cx="210" cy="78" r="34" fill="url(#oahGold)" mask="url(#oahMoon)"/>
+        <g fill="#c8a24d"><path d="M300 60l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M120 54l1.6 5 5 1.6-5 1.6-1.6 5-1.6-5-5-1.6 5-1.6z" opacity=".8"/><circle cx="338" cy="140" r="2.4" opacity=".7"/><circle cx="86" cy="150" r="2.4" opacity=".6"/><circle cx="360" cy="300" r="2.6" opacity=".6"/><circle cx="60" cy="300" r="2.2" opacity=".55"/></g>
+        <g transform="rotate(-17 210 415)"><rect x="150" y="175" width="120" height="215" rx="14" fill="url(#oahRose)" stroke="url(#oahGold)" stroke-width="3"/><rect x="162" y="187" width="96" height="191" rx="9" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".55"/><g transform="translate(210,282)" fill="none" stroke="#b89149" stroke-width="2"><circle r="26"/><path d="M0-26V26M-26 0H26M-18-18L18 18M18-18L-18 18"/></g></g>
+        <g transform="rotate(17 210 415)"><rect x="150" y="175" width="120" height="215" rx="14" fill="url(#oahCard)" stroke="url(#oahGold)" stroke-width="3"/><rect x="162" y="187" width="96" height="191" rx="9" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".55"/><g transform="translate(210,282)" fill="#b89149"><circle r="6"/><g stroke="#b89149" stroke-width="2" fill="none"><circle r="18"/><circle r="26"/></g></g></g>
+        <rect x="150" y="150" width="120" height="220" rx="14" fill="url(#oahCard)" stroke="url(#oahGold)" stroke-width="3.4"/>
+        <rect x="162" y="162" width="96" height="196" rx="9" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".6"/>
+        <g transform="translate(210,260)" fill="#b89149"><path d="M0-34 L7.6 -10.4 L32.3 -10.5 L12.4 4.2 L20.2 27.7 L0 13 L-20.2 27.7 L-12.4 4.2 L-32.3 -10.5 L-7.6 -10.4 Z"/></g>
+        <circle cx="210" cy="330" r="9" fill="none" stroke="#b89149" stroke-width="1.6"/>
+      </svg>
     </div>
   </div>
 </header>
 
-<section class="bg2">
-  <div class="wrap">
-    <div class="section-hd">
-      <div class="eyebrow">Ce que vous trouverez ici</div>
-      <h2>Six voies vers la clarté</h2>
+<section class="oah-discover">
+  <div class="oah-wrap">
+    <div class="oah-sec-hd">
+      <div class="oah-eyebrow">Par où commencer</div>
+      <h2 class="oah-h2">Que souhaitez-vous découvrir ?</h2>
     </div>
-    <div class="rubriques">
-      <a class="rub" onclick="go('oracle')">
-        <div class="num">I</div><div class="ic">✦</div>
-        <h3>Oracle Arcana</h3>
-        <p>Un tirage de 3 lames gratuit, interprété selon votre chemin de vie.</p>
+    <div class="oah-grid">
+      <a class="oah-card oah-c-gold" onclick="go('oracle')">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 7.5l1.2 3.3H16l-2.3 1.8.9 3.4L12 14l-2.5 2 .9-3.4L8 10.8h2.8z" stroke-width="1.2"/></svg></div>
+        <h3>Tirage du jour</h3><p>Tirez 3 lames et recevez votre guidance.</p>
+        <div class="oah-arrow">Tirer mes cartes →</div>
       </a>
-      <a class="rub" onclick="go('numerologie')">
-        <div class="num">II</div><div class="ic">✷</div>
-        <h3>Numérologie</h3>
-        <p>Chemin de vie, expression, compatibilité des prénoms et année personnelle.</p>
+      <a class="oah-card oah-c-violet" onclick="go('heures')">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <h3>Heures Miroirs</h3><p>21:21, 11:11… le message de l'heure.</p>
+        <div class="oah-arrow">Voir la signification →</div>
       </a>
-      <a class="rub" onclick="go('compatibilite')">
-        <div class="num">III</div><div class="ic">♥</div>
-        <h3>Compatibilité</h3>
-        <p>La compatibilité amoureuse de vos prénoms et de vos chemins de vie.</p>
+      <a class="oah-card oah-c-green" onclick="go('numerologie')">
+        <div class="oah-ic"><span class="oah-num">7</span></div>
+        <h3>Numérologie</h3><p>Ce que vos chiffres révèlent de vous.</p>
+        <div class="oah-arrow">Calculer mon chiffre →</div>
       </a>
-      <a class="rub" onclick="go('angeologie')">
-        <div class="num">IV</div><div class="ic">♁</div>
-        <h3>Angéologie</h3>
-        <p>Découvrez votre ange gardien parmi les 72 et son message pour vous.</p>
+      <a class="oah-card oah-c-rose" onclick="go('angeologie')">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><path d="M6 18C6 10 12 4 18 4c0 8-6 14-12 14z"/><path d="M6 18l4-4" stroke-width="1.3"/></svg></div>
+        <h3>Votre Ange Gardien</h3><p>L'ange lié à votre date de naissance.</p>
+        <div class="oah-arrow">Trouver mon ange →</div>
       </a>
-      <a class="rub" onclick="go('heures')">
-        <div class="num">V</div><div class="ic">☽</div>
-        <h3>Heures Miroirs</h3>
-        <p>La signification des heures miroirs et inversées — entièrement gratuit.</p>
+      <a class="oah-card oah-c-amber" href="nombres-angeliques.html">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 6.4L20 11l-6.2 1.6L12 19l-1.8-6.4L4 11l6.2-1.6z"/></svg></div>
+        <h3>Nombres Angéliques</h3><p>111, 222… le sens des nombres.</p>
+        <div class="oah-arrow">Décoder un nombre →</div>
       </a>
-      <a class="rub" onclick="go('synchronicites')">
-        <div class="num">VI</div><div class="ic">✶</div>
-        <h3>Synchronicités</h3>
-        <p>Plume, papillon, nombre répété… Le sens des signes que la vie place sur votre route — gratuit.</p>
+      <a class="oah-card oah-c-blue" onclick="go('ouinon')">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><path d="M9.2 9a3 3 0 1 1 4.3 2.7c-.9.5-1.5 1-1.5 2.1"/><circle cx="12" cy="17.5" r="1" fill="#4f6aa8" stroke="none"/></svg></div>
+        <h3>Oui ou Non ?</h3><p>Une réponse claire à votre question.</p>
+        <div class="oah-arrow">Poser ma question →</div>
       </a>
+      <a class="oah-card oah-c-indigo" href="interpretation-reves.html">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><path d="M16.5 13a5.5 5.5 0 1 1-5-7 4.5 4.5 0 0 0 5 7z"/><path d="M18 4l.5 1.5L20 6l-1.5.5L18 8l-.5-1.5L16 6z"/></svg></div>
+        <h3>Interprétation des rêves</h3><p>46 symboles de rêves expliqués.</p>
+        <div class="oah-arrow">Explorer mes rêves →</div>
+      </a>
+      <div class="oah-card oah-c-soon">
+        <span class="oah-soon-badge">Bientôt</span>
+        <h3>Astrologie & Thème astral</h3><p>Votre carte du ciel personnalisée arrive prochainement.</p>
+      </div>
     </div>
   </div>
 </section>
+
 
 <div class="wrap">
   <div class="trust">
