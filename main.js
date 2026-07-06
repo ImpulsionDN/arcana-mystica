@@ -773,85 +773,217 @@ function doPay(){
 document.addEventListener("DOMContentLoaded",function(){initHeuresMiroirs();});
 
 // ============================================================
+// CORRESPONDANCES RÉUTILISABLES — Numérologie & Tarot
+// ============================================================
+var NUMERO_MEANINGS = {
+  "0":"Le vide fécond, le potentiel infini avant toute manifestation. Rien n'est encore figé : tout reste possible.",
+  "1":"Le commencement, l'initiative, l'énergie du leader qui ouvre la marche en confiance.",
+  "2":"La dualité harmonieuse, l'art du partenariat, l'écoute et la diplomatie.",
+  "3":"La créativité et l'expression joyeuse — le chiffre de la communication et de la spontanéité.",
+  "4":"La structure, la stabilité, les fondations solides que rien ne peut ébranler.",
+  "5":"Le mouvement, la liberté, le changement qui libère et fait grandir.",
+  "6":"L'amour, la responsabilité affective, l'harmonie du foyer et des proches.",
+  "7":"La sagesse intérieure, la spiritualité, l'introspection qui éclaire le chemin.",
+  "8":"L'abondance, la puissance matérielle, le juste retour des efforts fournis.",
+  "9":"L'achèvement, la générosité universelle, la sagesse qui se transmet aux autres.",
+  "11":"Nombre maître de l'intuition et de l'inspiration — un pont direct vers le monde spirituel.",
+  "22":"Nombre maître du bâtisseur — la capacité de transformer un grand rêve en réalité concrète et durable."
+};
+var TAROT_MAJEURS = [
+  {n:"Le Mat",t:"L'insouciance et le début d'un nouveau voyage, sans attaches ni peur du saut dans l'inconnu."},
+  {n:"Le Bateleur",t:"L'habileté et les ressources déjà en votre possession pour agir dès maintenant."},
+  {n:"La Papesse",t:"Le secret, l'intuition silencieuse, la sagesse qui attend d'être révélée."},
+  {n:"L'Impératrice",t:"L'abondance créatrice, la fertilité des projets et des idées nouvelles."},
+  {n:"L'Empereur",t:"La structure, l'autorité bienveillante, la stabilité que vous construisez pas à pas."},
+  {n:"Le Pape",t:"La transmission, le conseil extérieur précieux, la guidance qui éclaire votre voie."},
+  {n:"L'Amoureux",t:"Le choix du cœur, l'alignement entre attirance et valeurs profondes."},
+  {n:"Le Chariot",t:"La victoire par la maîtrise de soi et une détermination sans faille."},
+  {n:"La Justice",t:"L'équilibre, la vérité qui se rétablit, les comptes qui finissent par s'équilibrer."},
+  {n:"L'Hermite",t:"Le retrait salutaire, la lumière intérieure qui guide dans la solitude choisie."},
+  {n:"La Roue de Fortune",t:"Le cycle qui tourne en votre faveur, un changement de chance inattendu."},
+  {n:"La Force",t:"Le courage doux, la maîtrise par la douceur plutôt que par la contrainte."},
+  {n:"Le Pendu",t:"Le lâcher-prise, une autre perspective qui se révèle en suspendant l'action."},
+  {n:"L'Arcane sans nom",t:"La transformation radicale, une fin nécessaire à une renaissance."},
+  {n:"Tempérance",t:"L'équilibre subtil, le mélange harmonieux de deux forces opposées."},
+  {n:"Le Diable",t:"Les attachements à examiner, la tentation qui invite à plus de conscience."},
+  {n:"La Maison Dieu",t:"La rupture libératrice, l'effondrement qui ouvre sur une vérité plus solide."},
+  {n:"L'Étoile",t:"L'espoir retrouvé, la protection céleste après la tempête."},
+  {n:"La Lune",t:"L'intuition et les illusions à démêler, le monde de l'inconscient qui s'exprime."},
+  {n:"Le Soleil",t:"La joie éclatante, la réussite lumineuse et la vitalité retrouvée."},
+  {n:"Le Jugement",t:"L'appel à se relever, un bilan qui ouvre sur un renouveau pleinement assumé."},
+  {n:"Le Monde",t:"L'accomplissement, un cycle qui se referme en pleine réussite."}
+];
+function numeroOf(hh){var r={0:0,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:1,11:11,12:3,13:4,14:5,15:6,16:7,17:8,18:9,19:1,20:2,21:3,22:22,23:5};return r[hh];}
+function tarotOf(hh){return hh<=21?TAROT_MAJEURS[hh]:null;}
+
+// ============================================================
 // HEURES MIROIRS + HEURES INVERSÉES — données complètes
 // ============================================================
 var HEURES_MIROIRS = {
   // ===== HEURES MIROIRS (chiffres identiques) =====
   "00h00":{type:"miroir",heure:"00h00",message:"Le commencement absolu, l'infini",ange:"Vehuhiah",
-    texte:"<p>L'heure 00h00 est une heure miroir d'une puissance exceptionnelle, symbolisant l'infini et le recommencement absolu. Vous vous trouvez au seuil entre deux jours, entre deux mondes. C'est un signal fort de l'univers : un nouveau cycle commence pour vous.</p><p>Les pensées que vous avez à cet instant précis ont une puissance particulière. L'univers vous invite à faire table rase et à définir clairement ce que vous désirez créer dans votre vie. Concentrez-vous sur le positif et émettez vos intentions les plus profondes.</p>"},
+    flash:"Un seuil s'ouvre. Ce que vous pensez maintenant se manifeste plus vite qu'ailleurs.",
+    texte:"<p>L'heure 00h00 est une heure miroir d'une puissance exceptionnelle, symbolisant l'infini et le recommencement absolu. Vous vous trouvez au seuil entre deux jours, entre deux mondes. C'est un signal fort de l'univers : un nouveau cycle commence pour vous.</p><p>Les pensées que vous avez à cet instant précis ont une puissance particulière. L'univers vous invite à faire table rase et à définir clairement ce que vous désirez créer dans votre vie. Concentrez-vous sur le positif et émettez vos intentions les plus profondes.</p>",
+    amour:"En amour, 00h00 marque la fin symbolique d'un chapitre pour laisser place à une histoire plus alignée avec qui vous êtes devenu(e). Si une relation vient de se terminer, ce n'est pas un hasard : le terrain se prépare pour du neuf.",
+    hh:0},
   "01h01":{type:"miroir",heure:"01h01",message:"Force intérieure et nouveau départ",ange:"Jeliel",
-    texte:"<p>01h01 annonce qu'une nouvelle énergie entre dans votre vie. Les anges vous encouragent à aller de l'avant avec confiance et détermination. Vos pensées actuelles ont le pouvoir direct de créer votre réalité.</p><p>Si vous traversez une période difficile, sachez que des changements positifs sont imminents. Le chiffre 1 répété est un signe de leadership et d'indépendance — faites confiance à votre force intérieure.</p>"},
+    flash:"Une énergie neuve s'installe. Avancez, le terrain est plus favorable qu'il n'y paraît.",
+    texte:"<p>01h01 annonce qu'une nouvelle énergie entre dans votre vie. Les anges vous encouragent à aller de l'avant avec confiance et détermination. Vos pensées actuelles ont le pouvoir direct de créer votre réalité.</p><p>Si vous traversez une période difficile, sachez que des changements positifs sont imminents. Le chiffre 1 répété est un signe de leadership et d'indépendance — faites confiance à votre force intérieure.</p>",
+    amour:"Pour les célibataires, 01h01 annonce une rencontre portée par une énergie d'indépendance assumée — vous attirez en étant pleinement vous-même. En couple, c'est le moment de reprendre l'initiative affective plutôt que d'attendre.",
+    hh:1},
   "02h02":{type:"miroir",heure:"02h02",message:"Harmonie et relations importantes",ange:"Sitael",
-    texte:"<p>L'heure 02h02 vous parle de vos relations et de l'harmonie dans votre vie. Une personne importante pourrait entrer dans votre vie, ou une relation existante va évoluer de manière significative dans un sens positif.</p><p>Le 2 répété symbolise la dualité, le partenariat et la diplomatie. Les anges vous invitent à cultiver la paix et la douceur dans tous vos échanges.</p>"},
+    flash:"Une relation clé évolue. Restez attentif(ve) aux signaux de rapprochement.",
+    texte:"<p>L'heure 02h02 vous parle de vos relations et de l'harmonie dans votre vie. Une personne importante pourrait entrer dans votre vie, ou une relation existante va évoluer de manière significative dans un sens positif.</p><p>Le 2 répété symbolise la dualité, le partenariat et la diplomatie. Les anges vous invitent à cultiver la paix et la douceur dans tous vos échanges.</p>",
+    amour:"02h02 est l'une des heures les plus favorables au couple : elle annonce un rapprochement ou l'arrivée d'une personne réellement complémentaire. La diplomatie et la douceur sont vos meilleures alliées en ce moment.",
+    hh:2},
   "03h03":{type:"miroir",heure:"03h03",message:"Créativité et expression de soi",ange:"Elemiah",
-    texte:"<p>03h03 est l'heure des artistes et des créateurs. L'univers vous encourage à exprimer votre créativité et à partager vos dons avec le monde. Quelque chose de nouveau et de beau est en train d'éclore en vous.</p><p>Le 3 est le chiffre de la communication et de l'expression. C'est le moment idéal pour entreprendre un projet créatif ou simplement laisser votre imagination s'exprimer librement.</p>"},
+    flash:"Votre créativité est en effervescence. Ce que vous exprimez maintenant touchera juste.",
+    texte:"<p>03h03 est l'heure des artistes et des créateurs. L'univers vous encourage à exprimer votre créativité et à partager vos dons avec le monde. Quelque chose de nouveau et de beau est en train d'éclore en vous.</p><p>Le 3 est le chiffre de la communication et de l'expression. C'est le moment idéal pour entreprendre un projet créatif ou simplement laisser votre imagination s'exprimer librement.</p>",
+    amour:"En amour, 03h03 favorise les déclarations sincères et originales. C'est le bon moment pour exprimer vos sentiments avec vos mots à vous, sans crainte du ridicule — l'authenticité séduit davantage que la perfection.",
+    hh:3},
   "04h04":{type:"miroir",heure:"04h04",message:"Stabilité et construction solide",ange:"Mahasiah",
-    texte:"<p>L'heure 04h04 vous parle de fondations et de stabilité. Si vous avez des projets en cours, continuez à travailler avec persévérance. Les bases que vous posez aujourd'hui seront solides et durables.</p><p>Le 4 répété est l'énergie du bâtisseur. Les anges vous rappellent que la patience est une vertu — construisez étape par étape, sans précipitation.</p>"},
+    flash:"Les fondations que vous posez aujourd'hui tiendront. Continuez, sans précipiter.",
+    texte:"<p>L'heure 04h04 vous parle de fondations et de stabilité. Si vous avez des projets en cours, continuez à travailler avec persévérance. Les bases que vous posez aujourd'hui seront solides et durables.</p><p>Le 4 répété est l'énergie du bâtisseur. Les anges vous rappellent que la patience est une vertu — construisez étape par étape, sans précipitation.</p>",
+    amour:"04h04 annonce la consolidation d'une relation : un projet à deux (emménagement, engagement, avenir commun) prend une base solide. Pour les célibataires, elle invite à ne plus rechercher l'étincelle seule, mais la stabilité qui dure.",
+    hh:4},
   "05h05":{type:"miroir",heure:"05h05",message:"Changement et liberté",ange:"Lelahel",
-    texte:"<p>05h05 annonce des changements importants dans votre vie. Ces changements sont positifs même s'ils peuvent déstabiliser temporairement. L'univers vous invite à embrasser la nouveauté avec ouverture et confiance.</p><p>Le 5 est le chiffre de la liberté et de l'aventure. Osez sortir de votre zone de confort — la liberté que vous cherchez est à votre portée.</p>"},
+    flash:"Le changement qui s'annonce est une libération, pas une perte.",
+    texte:"<p>05h05 annonce des changements importants dans votre vie. Ces changements sont positifs même s'ils peuvent déstabiliser temporairement. L'univers vous invite à embrasser la nouveauté avec ouverture et confiance.</p><p>Le 5 est le chiffre de la liberté et de l'aventure. Osez sortir de votre zone de confort — la liberté que vous cherchez est à votre portée.</p>",
+    amour:"En amour, 05h05 peut signifier le besoin de plus d'air dans une relation qui devient étouffante, ou au contraire la libération d'un lien qui freinait votre épanouissement. Dans les deux cas, la liberté retrouvée sert votre cœur.",
+    hh:5},
   "06h06":{type:"miroir",heure:"06h06",message:"Amour, famille et responsabilité",ange:"Achaiah",
-    texte:"<p>L'heure 06h06 est l'heure de l'amour et de la famille. Elle vous invite à vous concentrer sur vos proches et à renforcer les liens affectifs. La sécurité émotionnelle est au cœur de votre bien-être.</p><p>Si vous traversez des tensions familiales, cette heure est un signe que la réconciliation est possible et souhaitée par les forces célestes.</p>"},
+    flash:"Vos proches ont besoin de votre présence. Un geste tendre suffit à tout réchauffer.",
+    texte:"<p>L'heure 06h06 est l'heure de l'amour et de la famille. Elle vous invite à vous concentrer sur vos proches et à renforcer les liens affectifs. La sécurité émotionnelle est au cœur de votre bien-être.</p><p>Si vous traversez des tensions familiales, cette heure est un signe que la réconciliation est possible et souhaitée par les forces célestes.</p>",
+    amour:"06h06 est directement liée au cœur : elle annonce un approfondissement du lien amoureux, la tendresse retrouvée, et pour les célibataires, une rencontre placée sous le signe de la douceur et de la sécurité affective plutôt que de la passion brûlante.",
+    hh:6},
   "07h07":{type:"miroir",heure:"07h07",message:"Chance et éveil spirituel",ange:"Cahethel",
-    texte:"<p>07h07 est considérée comme l'une des heures miroirs les plus chargées spirituellement. Elle annonce une période de chance et d'éveil spirituel profond. Votre intuition est particulièrement aiguisée en ce moment.</p><p>Le 7 est le chiffre de la sagesse et de la spiritualité. Fiez-vous à vos pressentiments et à votre voix intérieure — les anges sont proches de vous.</p>"},
+    flash:"Votre intuition ne se trompe pas en ce moment. Écoutez-la sans hésiter.",
+    texte:"<p>07h07 est considérée comme l'une des heures miroirs les plus chargées spirituellement. Elle annonce une période de chance et d'éveil spirituel profond. Votre intuition est particulièrement aiguisée en ce moment.</p><p>Le 7 est le chiffre de la sagesse et de la spiritualité. Fiez-vous à vos pressentiments et à votre voix intérieure — les anges sont proches de vous.</p>",
+    amour:"En amour, 07h07 évoque une connexion qui dépasse le simple charme physique — un alignement d'âmes, presque spirituel, avec la personne qui compte. Faites confiance à ce que vous ressentez, même si le mental cherche à le rationaliser.",
+    hh:7},
   "08h08":{type:"miroir",heure:"08h08",message:"Abondance et prospérité",ange:"Haziel",
-    texte:"<p>08h08 est l'heure de l'abondance et de la prospérité matérielle. Elle annonce des opportunités financières et des développements positifs dans votre vie professionnelle. Le cycle de l'abondance s'ouvre pour vous.</p><p>Le 8 couché est le symbole de l'infini. Restez focusé sur vos objectifs et continuez à agir avec détermination — la prospérité est sur votre chemin.</p>"},
+    flash:"Le cycle de l'abondance s'ouvre. Restez focalisé(e), les résultats arrivent.",
+    texte:"<p>08h08 est l'heure de l'abondance et de la prospérité matérielle. Elle annonce des opportunités financières et des développements positifs dans votre vie professionnelle. Le cycle de l'abondance s'ouvre pour vous.</p><p>Le 8 couché est le symbole de l'infini. Restez focusé sur vos objectifs et continuez à agir avec détermination — la prospérité est sur votre chemin.</p>",
+    amour:"08h08 amplifie ce qui existe déjà : une relation heureuse devient plus riche encore, une relation en difficulté voit ses tensions s'intensifier temporairement avant de se résoudre. Le retour est toujours à la mesure de ce que vous y investissez.",
+    hh:8},
   "09h09":{type:"miroir",heure:"09h09",message:"Fin de cycle et générosité",ange:"Aladiah",
-    texte:"<p>L'heure 09h09 marque la fin d'un cycle important. Quelque chose touche à sa fin pour laisser place à quelque chose de nouveau et de meilleur. Acceptez ce passage avec grâce et gratitude.</p><p>Le 9 est le chiffre de l'humanisme et de la compassion. Cette heure vous invite à vous tourner vers les autres et à exercer votre générosité naturelle.</p>"},
+    flash:"Une page se tourne. Ce qui se termine libère une place pour du meilleur.",
+    texte:"<p>L'heure 09h09 marque la fin d'un cycle important. Quelque chose touche à sa fin pour laisser place à quelque chose de nouveau et de meilleur. Acceptez ce passage avec grâce et gratitude.</p><p>Le 9 est le chiffre de l'humanisme et de la compassion. Cette heure vous invite à vous tourner vers les autres et à exercer votre générosité naturelle.</p>",
+    amour:"En amour, 09h09 peut signifier la fin apaisée d'une histoire qui avait fait son temps, pour laisser place à un amour plus juste. Accueillez ce deuil affectif avec gratitude plutôt qu'avec regret — il vous prépare à mieux aimer.",
+    hh:9},
   "10h10":{type:"miroir",heure:"10h10",message:"Accomplissement et potentiel infini",ange:"Lauviah",
-    texte:"<p>10h10 est l'heure du potentiel infini. Elle annonce que tout ce que vous touchez peut se transformer positivement. C'est le moment idéal pour lancer de nouveaux projets ou prendre des décisions importantes.</p><p>Vos pensées positives se matérialisent rapidement en ce moment. Concentrez votre énergie sur ce que vous désirez vraiment créer dans votre vie.</p>"},
+    flash:"Tout ce que vous entreprenez maintenant a un potentiel démultiplié.",
+    texte:"<p>10h10 est l'heure du potentiel infini. Elle annonce que tout ce que vous touchez peut se transformer positivement. C'est le moment idéal pour lancer de nouveaux projets ou prendre des décisions importantes.</p><p>Vos pensées positives se matérialisent rapidement en ce moment. Concentrez votre énergie sur ce que vous désirez vraiment créer dans votre vie.</p>",
+    amour:"10h10 est une heure faste pour l'amour naissant : une rencontre faite maintenant porte en elle un potentiel d'avenir réel. En couple, c'est le moment idéal pour lancer un projet commun porteur de sens.",
+    hh:10},
   "11h11":{type:"miroir",heure:"11h11",message:"Portail spirituel — intuition divine",ange:"Hahaiah",
-    texte:"<p>11h11 est l'heure miroir par excellence, la plus connue et la plus puissante. Elle représente un portail spirituel, une connexion directe avec les forces célestes. Lorsque vous voyez 11h11, l'univers vous dit clairement : il vous entend.</p><p>C'est un signe fort que vos anges gardiens sont présents à vos côtés. Vos pensées et vos intentions ont une puissance décuplée. Utilisez ce moment sacré pour émettre vos intentions les plus positives et les plus sincères.</p>"},
+    flash:"L'heure la plus puissante de toutes. Faites un vœu sincère, maintenant.",
+    texte:"<p>11h11 est l'heure miroir par excellence, la plus connue et la plus puissante. Elle représente un portail spirituel, une connexion directe avec les forces célestes. Lorsque vous voyez 11h11, l'univers vous dit clairement : il vous entend.</p><p>C'est un signe fort que vos anges gardiens sont présents à vos côtés. Vos pensées et vos intentions ont une puissance décuplée. Utilisez ce moment sacré pour émettre vos intentions les plus positives et les plus sincères.</p>",
+    amour:"En amour, 11h11 est le signe d'une connexion vibratoire rare — beaucoup y voient l'empreinte d'une âme sœur ou d'un lien karmique. Faites un vœu sincère concernant votre vie sentimentale : cette heure porte une force de manifestation exceptionnelle.",
+    hh:11},
   "12h12":{type:"miroir",heure:"12h12",message:"Harmonie parfaite et équilibre",ange:"Iezalel",
-    texte:"<p>12h12 symbolise l'harmonie et l'équilibre parfaits. Elle vous invite à rétablir l'équilibre dans les domaines de votre vie qui en manquent. Midi et minuit, les deux extrêmes du temps se rejoignent.</p><p>C'est le moment de réconcilier les aspects opposés de votre personnalité et de trouver une voie harmonieuse entre vos différentes aspirations.</p>"},
+    flash:"Midi et minuit se rejoignent. C'est l'heure de réconcilier vos contraires.",
+    texte:"<p>12h12 symbolise l'harmonie et l'équilibre parfaits. Elle vous invite à rétablir l'équilibre dans les domaines de votre vie qui en manquent. Midi et minuit, les deux extrêmes du temps se rejoignent.</p><p>C'est le moment de réconcilier les aspects opposés de votre personnalité et de trouver une voie harmonieuse entre vos différentes aspirations.</p>",
+    amour:"12h12 annonce la réconciliation entre deux personnalités qui semblaient opposées — un couple qui trouve enfin son équilibre, ou une rencontre entre deux tempéraments complémentaires qui s'accordent mieux qu'ils ne le pensaient.",
+    hh:12},
   "13h13":{type:"miroir",heure:"13h13",message:"Transformation et renaissance",ange:"Mebahel",
-    texte:"<p>13h13 est une heure de transformation profonde. Associée au chiffre 13, symbole du changement et de la renaissance, elle vous annonce qu'une métamorphose est en cours dans votre vie.</p><p>Ne craignez pas ce changement. Ce qui se termine était nécessaire pour que quelque chose de plus beau et de plus aligné avec votre véritable nature puisse naître.</p>"},
+    flash:"Une métamorphose est en cours. Ne craignez pas ce qui se termine.",
+    texte:"<p>13h13 est une heure de transformation profonde. Associée au chiffre 13, symbole du changement et de la renaissance, elle vous annonce qu'une métamorphose est en cours dans votre vie.</p><p>Ne craignez pas ce changement. Ce qui se termine était nécessaire pour que quelque chose de plus beau et de plus aligné avec votre véritable nature puisse naître.</p>",
+    amour:"En amour, 13h13 marque un passage : une relation superficielle se transforme en lien plus vrai, ou se termine pour laisser place à quelque chose de plus authentique. La transformation, même inconfortable, sert toujours votre cœur.",
+    hh:13},
   "14h14":{type:"miroir",heure:"14h14",message:"Stabilité et ancrage dans le présent",ange:"Hariel",
-    texte:"<p>14h14 vous invite à vous ancrer dans le moment présent. L'énergie du 14 apporte la stabilité et vous rappelle l'importance des fondations solides dans tous les domaines de votre vie.</p><p>Vérifiez que vos bases sont bien solides, que ce soit dans votre vie affective, professionnelle ou matérielle. La solidité intérieure est votre meilleure protection.</p>"},
+    flash:"Vérifiez vos bases. La solidité intérieure est votre meilleure protection.",
+    texte:"<p>14h14 vous invite à vous ancrer dans le moment présent. L'énergie du 14 apporte la stabilité et vous rappelle l'importance des fondations solides dans tous les domaines de votre vie.</p><p>Vérifiez que vos bases sont bien solides, que ce soit dans votre vie affective, professionnelle ou matérielle. La solidité intérieure est votre meilleure protection.</p>",
+    amour:"14h14 est le bon moment pour poser des bases concrètes dans votre couple — un projet commun, un engagement clair. Pour les célibataires, elle invite à s'ancrer dans ses propres valeurs avant de chercher à deux.",
+    hh:14},
   "15h15":{type:"miroir",heure:"15h15",message:"Libération et épanouissement authentique",ange:"Hekamiah",
-    texte:"<p>L'heure 15h15 est celle de l'épanouissement et de la liberté d'être soi-même. Elle vous encourage à vous exprimer authentiquement et à vous libérer des contraintes qui limitent votre développement personnel.</p><p>Vos anges vous soutiennent pleinement dans votre quête de liberté et d'authenticité. Cessez de vous conformer aux attentes des autres et vivez votre vérité.</p>"},
+    flash:"Vous n'avez plus à vous conformer. Vivez votre vérité, maintenant.",
+    texte:"<p>L'heure 15h15 est celle de l'épanouissement et de la liberté d'être soi-même. Elle vous encourage à vous exprimer authentiquement et à vous libérer des contraintes qui limitent votre développement personnel.</p><p>Vos anges vous soutiennent pleinement dans votre quête de liberté et d'authenticité. Cessez de vous conformer aux attentes des autres et vivez votre vérité.</p>",
+    amour:"15h15 annonce une passion intense qui embrase le cœur — laissez-vous porter par vos sentiments sans chercher à les rationaliser. C'est une heure où l'amour vécu pleinement, sans retenue, transforme profondément.",
+    hh:15},
   "16h16":{type:"miroir",heure:"16h16",message:"Amour et engagement responsable",ange:"Lauviah II",
-    texte:"<p>16h16 est l'heure de l'amour responsable et de l'engagement sincère. Elle vous invite à prendre soin de ceux que vous aimez avec plus d'attention et de tendresse. Les liens affectifs méritent d'être cultivés quotidiennement.</p><p>Si vous êtes en couple, c'est un signe de renforcement du lien. Si vous êtes célibataire, une rencontre significative et durable est possible dans les prochaines semaines.</p>"},
+    flash:"Un geste d'attention aujourd'hui renforcera durablement un lien qui compte.",
+    texte:"<p>16h16 est l'heure de l'amour responsable et de l'engagement sincère. Elle vous invite à prendre soin de ceux que vous aimez avec plus d'attention et de tendresse. Les liens affectifs méritent d'être cultivés quotidiennement.</p><p>Si vous êtes en couple, c'est un signe de renforcement du lien. Si vous êtes célibataire, une rencontre significative et durable est possible dans les prochaines semaines.</p>",
+    amour:"En couple, 16h16 confirme un renforcement du lien et l'envie de s'engager plus profondément. Célibataire, elle annonce une rencontre qui, loin d'être éphémère, a une vraie vocation à durer.",
+    hh:16},
   "17h17":{type:"miroir",heure:"17h17",message:"Dépassez les obstacles que vous vous imposez",ange:"Caliel",
-    texte:"<p>17h17 est reliée à l'archétype de l'Étoile — symbole de protection, d'espoir et d'optimisme. C'est un message fort : vous êtes guidé(e) et protégé(e) par des forces bienveillantes bien plus grandes que vous.</p><p>Cette heure vous invite à dépasser les limites que vous vous imposez vous-même. La plupart de vos obstacles sont intérieurs. Faites confiance à votre étoile et avancez avec courage.</p>"},
+    flash:"Vous êtes protégé(e) bien plus que vous ne le croyez. Avancez avec courage.",
+    texte:"<p>17h17 est reliée à l'archétype de l'Étoile — symbole de protection, d'espoir et d'optimisme. C'est un message fort : vous êtes guidé(e) et protégé(e) par des forces bienveillantes bien plus grandes que vous.</p><p>Cette heure vous invite à dépasser les limites que vous vous imposez vous-même. La plupart de vos obstacles sont intérieurs. Faites confiance à votre étoile et avancez avec courage.</p>",
+    amour:"En amour, 17h17 redonne espoir : même si la solitude pèse en ce moment, une belle personne veille déjà sur votre chemin. Osez sortir de votre zone de confort affective — l'obstacle principal est souvent la peur, pas la réalité.",
+    hh:17},
   "18h18":{type:"miroir",heure:"18h18",message:"Abondance intérieure et extérieure",ange:"Leuviah",
-    texte:"<p>18h18 annonce une période d'abondance sur tous les plans. Que ce soit sur le plan matériel, affectif ou spirituel, les énergies sont favorables à la prospérité et à l'épanouissement de toutes vos facultés.</p><p>Restez ouvert(e) aux opportunités qui se présentent et accueillez l'abondance avec gratitude sincère. La gratitude multiplie les bienfaits.</p>"},
+    flash:"L'abondance frappe à votre porte. Accueillez-la avec gratitude, elle se multiplie ainsi.",
+    texte:"<p>18h18 annonce une période d'abondance sur tous les plans. Que ce soit sur le plan matériel, affectif ou spirituel, les énergies sont favorables à la prospérité et à l'épanouissement de toutes vos facultés.</p><p>Restez ouvert(e) aux opportunités qui se présentent et accueillez l'abondance avec gratitude sincère. La gratitude multiplie les bienfaits.</p>",
+    amour:"18h18 annonce une belle rencontre ou l'approfondissement heureux d'une relation existante. L'abondance affective est à votre portée — restez ouvert(e) plutôt que de fermer la porte par peur d'être déçu(e).",
+    hh:18},
   "19h19":{type:"miroir",heure:"19h19",message:"Fin d'un cycle, commencement d'un autre",ange:"Pahaliah",
-    texte:"<p>19h19 marque la fin d'un cycle et le commencement lumineux d'un autre. Quelque chose s'achève pour laisser place à du nouveau et de plus prometteur. Cette transition est nécessaire et profondément bénéfique.</p><p>Faites confiance au processus de la vie. Ce qui se ferme laissera entrer davantage de lumière et d'opportunités dans votre existence.</p>"},
+    flash:"Ce qui se ferme laissera entrer plus de lumière que vous ne l'imaginez.",
+    texte:"<p>19h19 marque la fin d'un cycle et le commencement lumineux d'un autre. Quelque chose s'achève pour laisser place à du nouveau et de plus prometteur. Cette transition est nécessaire et profondément bénéfique.</p><p>Faites confiance au processus de la vie. Ce qui se ferme laissera entrer davantage de lumière et d'opportunités dans votre existence.</p>",
+    amour:"En amour, 19h19 favorise particulièrement les nouvelles rencontres et l'épanouissement au sein d'un couple déjà installé. Une page sentimentale se tourne pour ouvrir un chapitre plus lumineux — accueillez-le sans regarder en arrière.",
+    hh:19},
   "20h20":{type:"miroir",heure:"20h20",message:"Prise de conscience et jugement éclairé",ange:"Nelkhael",
-    texte:"<p>20h20 vous invite à prendre du recul et à évaluer votre situation avec lucidité et bienveillance envers vous-même. C'est le moment de faire le point, de comprendre ce qui fonctionne et ce qui doit évoluer.</p><p>Cette heure favorise la prise de décision éclairée et la mise en place de nouveaux projets mûrement réfléchis. Votre jugement est fiable en ce moment.</p>"},
+    flash:"Votre jugement est fiable en ce moment. Prenez le recul qu'il vous faut.",
+    texte:"<p>20h20 vous invite à prendre du recul et à évaluer votre situation avec lucidité et bienveillance envers vous-même. C'est le moment de faire le point, de comprendre ce qui fonctionne et ce qui doit évoluer.</p><p>Cette heure favorise la prise de décision éclairée et la mise en place de nouveaux projets mûrement réfléchis. Votre jugement est fiable en ce moment.</p>",
+    amour:"20h20 apporte une clarté bienvenue sur vos sentiments réels — le moment est propice pour juger sereinement une relation ambiguë. Une personne pense d'ailleurs intensément à vous à cet instant précis.",
+    hh:20},
   "21h21":{type:"miroir",heure:"21h21",message:"L'univers vous est favorable",ange:"Yeiayel",
-    texte:"<p>21h21 est un signe clair que l'univers est pleinement en votre faveur. Les énergies cosmiques s'alignent pour vous soutenir dans vos projets et vos désirs les plus profonds. Vous êtes sur le bon chemin.</p><p>Continuez à avancer avec confiance et sérénité. Les obstacles qui se présentent ne sont que temporaires et font partie du voyage vers votre destinée.</p>"},
+    flash:"Le premier pas est le vôtre à faire. L'univers a déjà dit oui.",
+    texte:"<p>21h21 est un signe clair que l'univers est pleinement en votre faveur. Les énergies cosmiques s'alignent pour vous soutenir dans vos projets et vos désirs les plus profonds. Vous êtes sur le bon chemin.</p><p>Continuez à avancer avec confiance et sérénité. Les obstacles qui se présentent ne sont que temporaires et font partie du voyage vers votre destinée.</p>",
+    amour:"21h21 est l'heure du premier pas en amour : déclarez-vous, envoyez ce message, osez cette invitation. L'univers vous assure que cette démarche sera couronnée de succès, ou du moins, qu'elle ne sera jamais regrettée.",
+    hh:21},
   "22h22":{type:"miroir",heure:"22h22",message:"Maître bâtisseur — ambition et vision",ange:"Melahel",
-    texte:"<p>22h22 est une heure miroir très puissante associée au Nombre Maître 22. Elle vous invite à penser grand et à construire quelque chose de durable et de significatif — pour votre vie et pour ceux qui vous entourent.</p><p>Vos ambitions sont légitimes et pleinement réalisables. Continuez à construire votre vision avec détermination, sagesse et persévérance.</p>"},
+    flash:"Pensez grand : ce que vous bâtissez maintenant est fait pour durer.",
+    texte:"<p>22h22 est une heure miroir très puissante associée au Nombre Maître 22. Elle vous invite à penser grand et à construire quelque chose de durable et de significatif — pour votre vie et pour ceux qui vous entourent.</p><p>Vos ambitions sont légitimes et pleinement réalisables. Continuez à construire votre vision avec détermination, sagesse et persévérance.</p>",
+    amour:"En amour, 22h22 annonce qu'une personne qui vous aime sincèrement va bientôt se manifester — un message, un appel, un geste inattendu. Restez attentif(ve) dans les jours qui suivent : le signal ne tardera pas.",
+    hh:22},
   "23h23":{type:"miroir",heure:"23h23",message:"Transformation spirituelle et lâcher-prise",ange:"Haheuiah",
-    texte:"<p>23h23 est une heure de transformation spirituelle profonde. Elle marque la fin de la journée et vous invite à faire le bilan, à lâcher prise sur ce qui ne sert plus votre évolution et votre bonheur.</p><p>Un nouveau vous est en train d'émerger. Accueillez cette transformation avec gratitude et confiance absolue en la sagesse de votre chemin de vie.</p>"},
+    flash:"Faites le bilan de la journée, puis lâchez prise. Demain porte du neuf.",
+    texte:"<p>23h23 est une heure de transformation spirituelle profonde. Elle marque la fin de la journée et vous invite à faire le bilan, à lâcher prise sur ce qui ne sert plus votre évolution et votre bonheur.</p><p>Un nouveau vous est en train d'émerger. Accueillez cette transformation avec gratitude et confiance absolue en la sagesse de votre chemin de vie.</p>",
+    amour:"23h23 suggère qu'une personne que vous aimez a besoin de vous en ce moment, sans oser vous l'avouer ouvertement. Un mot tendre de votre part, envoyé sans attendre qu'on vous le demande, pourrait faire toute la différence.",
+    hh:23},
 
   // ===== HEURES INVERSÉES (lecture symétrique) =====
   "10h01":{type:"inverse",heure:"10h01",message:"Retour aux sources et introspection",ange:"Achaiah",
+    flash:"Vos origines détiennent une clé pour votre présent. Regardez en arrière un instant.",
     texte:"<p>L'heure inversée 10h01 est un miroir temporel qui vous invite à regarder vers vos origines et vos fondements. Ce que vous avez vécu dans le passé contient les clés de votre avenir. Un retour aux sources s'impose.</p><p>Cette heure symétrique symbolise la réflexion — comme un miroir qui vous renvoie votre image. Qui êtes-vous vraiment, au-delà des rôles que vous jouez ? La réponse est en vous.</p>"},
   "12h21":{type:"inverse",heure:"12h21",message:"Équilibre parfait entre donner et recevoir",ange:"Iezalel",
+    flash:"Vérifiez la balance : donnez-vous plus que vous ne recevez, ou l'inverse ?",
     texte:"<p>12h21 est une heure inversée d'une grande harmonie symbolique. Elle vous parle de l'équilibre entre ce que vous donnez et ce que vous recevez. Y a-t-il un déséquilibre dans vos relations ou dans votre énergie vitale ?</p><p>L'univers vous invite à rééquilibrer les flux d'énergie dans votre vie. Apprenez à recevoir avec autant de grâce que vous donnez.</p>"},
   "13h31":{type:"inverse",heure:"13h31",message:"Transformation intérieure accélérée",ange:"Mebahel",
+    flash:"La métamorphose s'accélère. Ce qui se transforme en vous ira jusqu'au bout.",
     texte:"<p>L'heure inversée 13h31 amplifie l'énergie transformatrice du 13. Une métamorphose profonde est en cours dans votre vie intérieure. Ce processus peut sembler déstabilisant mais il est absolument nécessaire à votre évolution.</p><p>Le miroir du temps vous invite à accepter les changements avec sérénité. Ce qui se transforme en vous émergera bientôt sous une forme plus lumineuse et plus authentique.</p>"},
   "14h41":{type:"inverse",heure:"14h41",message:"Fondations solides pour un avenir durable",ange:"Hariel",
+    flash:"Ne précipitez rien : ce qui se bâtit lentement tient toujours plus longtemps.",
     texte:"<p>14h41 vous parle de ce que vous construisez pour l'avenir. Les fondations que vous posez aujourd'hui détermineront la solidité de votre vie dans les années à venir. Investissez du temps et de l'énergie dans ce qui est vraiment important.</p><p>Cette heure symétrique vous rappelle que les constructions durables demandent du temps et de la patience. Ne précipitez pas ce qui mérite d'être bâti solidement.</p>"},
   "15h51":{type:"inverse",heure:"15h51",message:"Liberté retrouvée après les épreuves",ange:"Hekamiah",
+    flash:"L'épreuve touche à sa fin. La légèreté que vous cherchez arrive bientôt.",
     texte:"<p>L'heure inversée 15h51 annonce une libération prochaine après une période d'épreuves ou de contraintes. Vous avez traversé une phase difficile qui touche à sa fin. La liberté que vous cherchez est à portée de main.</p><p>L'univers vous confirme que vos efforts ont été vus et reconnus. Une nouvelle phase de légèreté et d'épanouissement s'ouvre devant vous.</p>"},
   "20h02":{type:"inverse",heure:"20h02",message:"Vision et intuition renforcées",ange:"Nelkhael",
+    flash:"Ce qui ressemble à un obstacle cache peut-être une opportunité déguisée.",
     texte:"<p>20h02 est une heure inversée qui renforce votre capacité à voir au-delà des apparences. Votre intuition est particulièrement fiable en ce moment — faites-lui confiance même si votre mental résiste.</p><p>Cette heure vous invite à regarder votre situation sous un angle différent. Ce que vous percevez comme un obstacle cache peut-être une opportunité déguisée.</p>"},
   "21h12":{type:"inverse",heure:"21h12",message:"Harmonie entre raison et intuition",ange:"Yeiayel",
+    flash:"Écoutez votre tête et votre cœur en même temps : la vraie réponse satisfait les deux.",
     texte:"<p>L'heure inversée 21h12 vous invite à réconcilier votre raison et votre intuition. Trop souvent, nous faisons primer l'une sur l'autre. La sagesse réside dans l'équilibre entre ces deux facultés complémentaires.</p><p>Dans la décision que vous devez prendre, écoutez à la fois votre tête et votre cœur. La réponse juste est celle qui satisfait les deux.</p>"},
   "23h32":{type:"inverse",heure:"23h32",message:"Message des profondeurs de la nuit",ange:"Haheuiah",
+    flash:"Une vérité longtemps tue cherche à remonter à la surface. Accordez-lui le silence.",
     texte:"<p>23h32, heure de la nuit profonde, vous transmet un message des couches les plus profondes de votre inconscient. Quelque chose cherche à remonter à la surface de votre conscience — une vérité, un désir longtemps refoulé.</p><p>Accordez-vous un moment de silence et d'écoute intérieure. Ce message nocturne peut changer votre vision de vous-même et de votre chemin de vie.</p>"},
   "01h10":{type:"inverse",heure:"01h10",message:"Nouveau départ après une longue nuit",ange:"Jeliel",
+    flash:"L'aube pointe après la période difficile. Vos efforts vont bientôt payer.",
     texte:"<p>L'heure inversée 01h10 symbolise le nouveau départ après une période sombre ou difficile. Comme l'aube qui commence à pointer dans la nuit, une lumière nouvelle entre dans votre vie.</p><p>Les efforts que vous avez fournis durant cette période difficile vont bientôt porter leurs fruits. La persévérance est récompensée — continuez à avancer.</p>"},
   "02h20":{type:"inverse",heure:"02h20",message:"Relations et réciprocité",ange:"Sitael",
+    flash:"Y a-t-il quelqu'un que vous n'avez pas assez remercié dernièrement ?",
     texte:"<p>02h20, heure inversée de la dualité, vous parle de réciprocité dans vos relations. Y a-t-il quelqu'un dans votre entourage envers qui vous n'exprimez pas suffisamment votre affection ou votre reconnaissance ?</p><p>L'univers vous invite à rééquilibrer vos échanges affectifs. L'amour et l'amitié se nourrissent de réciprocité et d'attention mutuelle.</p>"},
   "03h30":{type:"inverse",heure:"03h30",message:"Éveil créatif à l'heure des songes",ange:"Elemiah",
+    flash:"Notez ce que vous venez de rêver — une idée précieuse s'y cache peut-être.",
     texte:"<p>03h30, l'heure mystérieuse du milieu de la nuit. Cette heure inversée est associée à l'éveil créatif et aux messages qui viennent de votre subconscient à travers les rêves. Notez ce que vous venez de rêver.</p><p>Les créateurs, artistes et visionnaires ressentent souvent un éveil particulier à cette heure. Si une idée vous est venue, ne la laissez pas s'échapper — notez-la immédiatement.</p>"},
   "04h40":{type:"inverse",heure:"04h40",message:"Travail nocturne de l'âme",ange:"Mahasiah",
+    flash:"Votre évolution intérieure avance, même dans le silence et l'invisible.",
     texte:"<p>04h40 est l'heure où l'âme travaille en profondeur, loin du bruit du monde. Cette heure inversée vous invite à honorer le travail invisible que vous accomplissez sur vous-même, même quand vous ne le voyez pas.</p><p>Votre évolution intérieure se poursuit même dans le silence et l'obscurité. Faites confiance au processus — vous progressez bien plus que vous ne le pensez.</p>"},
+  "05h50":{type:"inverse",heure:"05h50",message:"L'aube d'une liberté nouvelle",ange:"Lelahel",
+    flash:"Le changement que vous repoussiez est peut-être déjà en train de vous libérer.",
+    texte:"<p>05h50, heure inversée du changement, vous invite à regarder différemment une situation que vous jugiez instable. Ce qui bouge dans votre vie en ce moment n'est pas une menace, mais une ouverture vers plus de liberté.</p><p>Cette heure symétrique vous rappelle que la liberté véritable naît souvent d'un changement d'abord redouté. Faites confiance au mouvement plutôt que de vous y opposer.</p>"},
 };
+
 
 
 function initHeuresMiroirs(){
@@ -883,6 +1015,35 @@ function afficherMiroir(h){
   document.getElementById('mdMsg').textContent=data.message;
   document.getElementById('mdText').innerHTML=data.texte;
   document.getElementById('mdAnge').innerHTML='Ange associé : <strong>'+data.ange+'</strong>';
+
+  var flashEl=document.getElementById('mdFlash');
+  if(flashEl){
+    if(data.flash){flashEl.textContent=data.flash;flashEl.style.display='block';}
+    else{flashEl.style.display='none';}
+  }
+
+  var extraEl=document.getElementById('mdExtra');
+  if(extraEl){
+    if(data.type==='miroir' && data.hh!==undefined){
+      var num=numeroOf(data.hh);
+      var numTxt=NUMERO_MEANINGS[String(num)]||'';
+      var tar=tarotOf(data.hh);
+      var html='';
+      html+='<div class="md-card"><h4>&#128149; En amour</h4><p>'+(data.amour||'')+'</p></div>';
+      html+='<div class="md-card"><h4>&#128302; Numérologie</h4><p class="md-card-num">Nombre '+num+(num===11||num===22?' (maître)':'')+'</p><p>'+numTxt+'</p></div>';
+      if(tar){
+        html+='<div class="md-card"><h4>&#127183; Écho du Tarot</h4><p class="md-card-num">'+tar.n+'</p><p>'+tar.t+'</p></div>';
+      } else {
+        html+='<div class="md-card"><h4>&#127183; Écho du Tarot</h4><p>Cette heure dépasse les 22 arcanes majeurs — elle porte sa propre puissance, au-delà du Tarot classique.</p></div>';
+      }
+      extraEl.innerHTML=html;
+      extraEl.style.display='grid';
+    } else {
+      extraEl.innerHTML='';
+      extraEl.style.display='none';
+    }
+  }
+
   var d=document.getElementById('mDisplay');d.classList.add('show');
   d.scrollIntoView({behavior:'smooth',block:'nearest'});
 }

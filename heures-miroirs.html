@@ -139,6 +139,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;ali
 .md-text p{margin-bottom:.8rem}
 .md-ange{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--bordor);font-size:.8rem;color:var(--txt4);text-align:center;font-style:italic}
 .md-ange strong{color:var(--or2);font-style:normal;font-weight:400}
+.md-flash{display:none;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--or2);line-height:1.5;padding:0 1.2rem;margin-bottom:.2rem}
+.md-extra{display:none;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem}
+.md-card{background:var(--bg2,rgba(154,122,42,.05));border:1px solid var(--bordor);padding:1.1rem 1rem;text-align:center}
+.md-card h4{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin:0 0 .6rem}
+.md-card-num{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--or2);margin-bottom:.4rem}
+.md-card p{font-size:.76rem;color:var(--txt2);line-height:1.6;margin:0 0 .4rem}
+.md-card p:last-child{margin-bottom:0}
+@media (max-width:680px){.md-extra{grid-template-columns:1fr}}
 
 /* VOYANTS */
 .voyants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--bordor)}
@@ -347,8 +355,10 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
       <div class="md-time" id="mdTime"></div>
       <div class="md-badge" id="mdBadge"></div>
       <div class="md-msg" id="mdMsg"></div>
+      <div class="md-flash" id="mdFlash"></div>
       <div class="md-sep"></div>
       <div class="md-text" id="mdText"></div>
+      <div class="md-extra" id="mdExtra"></div>
       <div class="md-ange" id="mdAnge"></div>
     </div>
   </div>
