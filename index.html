@@ -669,6 +669,10 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <div style="text-align:center"><button class="btn btn-outline" onclick="calculCompat()">Calculer l'affinité</button></div>
     </div>
     <div class="result-box" id="c_result"></div>
+    <div class="cta-band" id="c_cta_synastrie" style="display:none">
+      <div class="ct"><b>Envie d'aller plus loin, tous les deux ?</b><span>Votre synastrie complète croise vos signes, vos éléments et votre numérologie de couple.</span></div>
+      <button class="btn btn-gold" onclick="window.location.href='synastrie.html'">Recevoir notre synastrie complète →</button>
+    </div>
     <div class="cta-band">
       <div class="ct"><b>Envie d'aller plus loin à deux ?</b><span>Une guidance personnalisée analyse votre relation en consultation privée.</span></div>
       <button class="btn btn-gold" onclick="go('consultations')">Consulter →</button>
@@ -1426,6 +1430,7 @@ function calculCompat(){
     h4('Votre dynamique au quotidien')+'<p>'+DYN[dynLv]+'</p>'+
     '<p style="margin-top:1rem;font-size:1rem;color:var(--ink-soft)">Ce r\u00e9sultat croise trois nombres de chaque pr\u00e9nom\u00a0: l\'<strong>expression</strong> (la personnalit\u00e9 globale), le nombre <strong>actif</strong> (l\u2019\u00e9lan du c\u0153ur, via les voyelles) et le nombre <strong>h\u00e9r\u00e9ditaire</strong> (le temp\u00e9rament, via les consonnes), selon les affinit\u00e9s traditionnelles entre les nombres. Pour une lecture vraiment personnalis\u00e9e de votre relation, une consultation reste irrempla\u00e7able.</p>';
   box.classList.add('show');box.scrollIntoView({behavior:'smooth',block:'center'});
+  var ctaSyn=document.getElementById('c_cta_synastrie'); if(ctaSyn) ctaSyn.style.display='flex';
 }
 
 /* ============ ANGEOLOGIE — 72 anges ============ */
