@@ -364,7 +364,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         <div class="nav-drop">
           <a data-page="accueil" onclick="go('oracle')">Tirage 3 lames<span class="badge-free">Gratuit</span></a>
           <a data-page="ouinon" onclick="go('ouinon')">Oui / Non<span class="badge-free">Gratuit</span></a>
-          <a data-page="heures" onclick="go('heures')">Heures Miroirs<span class="badge-free">Gratuit</span></a>
+          <a href="heures-miroirs.html">Heures Miroirs<span class="badge-free">Gratuit</span></a>
           <a data-page="synchronicites" onclick="go('synchronicites')">Synchronicités<span class="badge-free">Gratuit</span></a>
           <a href="nombres-angeliques.html">Nombres Angéliques<span class="badge-free">Gratuit</span></a>
           <a href="interpretation-reves.html">Interprétation des rêves<span class="badge-free">Gratuit</span></a>
@@ -434,7 +434,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         <h3>Tirage du jour</h3><p>Tirez 3 lames et recevez votre guidance.</p>
         <div class="oah-arrow">Tirer mes cartes →</div>
       </a>
-      <a class="oah-card oah-c-violet" onclick="go('heures')">
+      <a class="oah-card oah-c-violet" href="heures-miroirs.html">
         <div class="oah-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
         <h3>Heures Miroirs</h3><p>21:21, 11:11… le message de l'heure.</p>
         <div class="oah-arrow">Voir la signification →</div>
@@ -789,7 +789,7 @@ window.SY_DATA={
   arcenciel:{t:"🌈 L'arc-en-ciel",d:"Après la pluie, la promesse. L'arc-en-ciel marque la fin d'une épreuve et l'arrivée d'un apaisement. Gardez espoir : l'éclaircie est déjà là."},
   oiseau:{t:"🕊️ L'oiseau",d:"Un oiseau qui s'attarde ou se pose près de vous porte un message : une nouvelle attendue, un lien à renouer, ou simplement une invitation à prendre de la hauteur."},
   nombre:{t:"🔢 Le nombre répété",d:"Voir sans cesse le même nombre — 111, 444, 777… — attire votre attention sur une pensée juste, au bon moment. Chaque suite a sa nuance ; notez celle qui vous suit, elle vous parle."},
-  heuremiroir:{t:"🕰️ L'heure miroir",d:"11:11, 22:22, minuit… ces heures doubles sont des clins d'œil du temps. Découvrez le message précis de la vôtre dans la rubrique <a onclick=\"go('heures')\">Heures Miroirs</a>."},
+  heuremiroir:{t:"🕰️ L'heure miroir",d:"11:11, 22:22, minuit… ces heures doubles sont des clins d'œil du temps. Découvrez le message précis de la vôtre dans la rubrique <a href=\"heures-miroirs.html\">Heures Miroirs</a>."},
   animal:{t:"🦊 L'animal qui revient",d:"Un animal qui croise souvent votre route devient un guide. Son message dépend de son espèce : le renard invite à la ruse, le cerf à s'élever, le chat à protéger l'invisible."},
   chanson:{t:"🎵 La chanson au bon moment",d:"Une mélodie qui surgit pile au moment juste répond souvent à une question que vous portez en silence. Écoutez ses paroles : elles semblent vous être adressées."},
   trefle:{t:"🍀 Le trèfle à quatre feuilles",d:"Le trouver est rare — comme l'instant d'alignement qu'il signale. Un encouragement clair : osez. La chance accompagne ceux qui font le premier pas."},
@@ -892,7 +892,7 @@ window.syShow=function(k,el){
         <div class="desc">Le sens de toutes vos synchronicités horaires.</div>
         <ul><li>Heures miroirs & inversées</li><li>Message angélique associé</li><li>Accès libre et illimité</li></ul>
         <div class="price">Gratuit</div><div class="pn">offert à tous les visiteurs</div>
-        <button class="btn btn-outline" style="width:100%" onclick="go('heures')">Consulter ✦</button>
+        <button class="btn btn-outline" style="width:100%" onclick="location.href='heures-miroirs.html'">Consulter ✦</button>
       </div>
     </div>
   </div>
@@ -987,7 +987,7 @@ window.syShow=function(k,el){
       <a onclick="go('numerologie')">Numérologie</a>
       <a onclick="go('compatibilite')">Compatibilité</a>
       <a onclick="go('angeologie')">Angéologie</a>
-      <a onclick="go('heures')">Heures Miroirs</a>
+      <a href="heures-miroirs.html">Heures Miroirs</a>
       <a onclick="go('consultations')">Consultations</a>
             <a onclick="go('avisfaq')">Avis &amp; FAQ</a>
       <a href="#">Mentions légales</a>
@@ -1614,7 +1614,7 @@ VOYANTS.forEach(function(v){
     '<div class="v-bio">'+v.bio+'</div><div class="v-tags">'+v.tags.map(function(t){return '<span class="v-tag">'+t+'</span>';}).join('')+'</div></div>'+
     '<div class="v-act"><div class="v-status '+(v.on?'st-on':'st-off')+'">'+v.label+'</div>'+
     (free
-      ? '<button class="btn btn-outline" onclick="go(\'heures\')">Heures Miroirs · Gratuit ✦</button>'
+      ? '<button class="btn btn-outline" onclick="location.href=\'heures-miroirs.html\'">Heures Miroirs · Gratuit ✦</button>'
       : '<button class="btn btn-gold" onclick="openModal(\'Consultation — '+v.nom+'\',\''+v.spec+'\','+v.prix+')">Consulter · '+v.prix+' €</button>')+
     '</div>';
   vl.appendChild(el);
