@@ -162,14 +162,14 @@
 
     <button class="btn" onclick="order()">Commander notre synastrie — 19 €</button>
     <p style="text-align:center; font-size:13px; color:#7c7365; margin-top:10px;">À l'étape suivante (paiement sécurisé Stripe), il vous sera à nouveau demandé vos deux dates de naissance — c'est normal, cela nous permet de vérifier vos informations avant de préparer votre document.</p>
-    <div class="secure">Paiement sécurisé · Livraison par email sous 24 h</div>
+    <div class="secure">Paiement sécurisé · Résultat instantané à l'écran</div>
     <div class="msg" id="msg"></div>
   </div>
 
   <div class="faq">
     <h3>Questions fréquentes</h3>
     <div class="qa"><b>Pourquoi seulement la date, sans l'heure ni le lieu ?</b><p>La synastrie amoureuse s'appuie sur vos signes solaires et vos éléments — des données déjà très révélatrices sur l'alchimie d'un couple, et bien plus simples à réunir à deux que quatre données de naissance complètes.</p></div>
-    <div class="qa"><b>Sous quel délai vais-je la recevoir ?</b><p>Votre synastrie complète vous est envoyée par email sous 24 heures, en document PDF que vous pourrez conserver à deux.</p></div>
+    <div class="qa"><b>Sous quel délai vais-je la recevoir ?</b><p>Instantanément ! Votre synastrie complète (signes, éléments, chemins de vie) s'affiche automatiquement à l'écran juste après votre paiement. Pensez à l'enregistrer ou l'imprimer si vous voulez la garder.</p></div>
     <div class="qa"><b>Mes données sont-elles protégées ?</b><p>Vos informations ne servent qu'à établir votre synastrie et à vous l'envoyer. Elles ne sont ni revendues, ni partagées.</p></div>
   </div>
 
@@ -201,13 +201,14 @@
     if(!p1j || !p1m || !p1a){ msg.className='msg err'; msg.textContent="Merci d'indiquer la date de naissance complète de la Personne 1."; return; }
     if(!p2j || !p2m || !p2a){ msg.className='msg err'; msg.textContent="Merci d'indiquer la date de naissance complète de la Personne 2."; return; }
 
-    const data = { email, p1n, p1date:p1j+'/'+p1m+'/'+p1a, p2n, p2date:p2j+'/'+p2m+'/'+p2a };
+    const data = { email, p1n, p1j, p1m, p1a, p2n, p2j, p2m, p2a };
+    localStorage.setItem('oa_synastrie', JSON.stringify(data));
 
     if(STRIPE_URL){
       window.location.href = STRIPE_URL + (STRIPE_URL.includes('?')?'&':'?') + 'prefilled_email=' + encodeURIComponent(email);
     } else {
-      msg.className='msg ok';
-      msg.textContent="Merci ! Vos informations sont bien enregistrées. Le paiement en ligne sera activé très prochainement — votre synastrie vous sera alors envoyée par email.";
+      // En attendant la création du lien Stripe : accès direct au résultat pour test
+      window.location.href = 'resultat-synastrie.html';
     }
   }
 </script>
