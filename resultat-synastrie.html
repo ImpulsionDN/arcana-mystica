@@ -53,11 +53,15 @@
   .portrait p{font-size:14.5px; line-height:1.6; color:var(--ink-soft)}
   .portrait .cv-num{font-family:var(--display); font-size:32px; color:var(--gold-deep); font-weight:600; display:inline-block; margin-right:10px; vertical-align:middle}
 
-  .couple{margin-top:32px; background:linear-gradient(160deg,rgba(168,88,122,.08),rgba(184,145,73,.08)); border:1px solid var(--rose); border-radius:22px; padding:34px 30px; text-align:center}
-  .couple .score{font-family:var(--display); font-size:56px; color:var(--rose); font-weight:600; line-height:1}
-  .couple .score small{display:block; font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-soft); margin-top:4px}
-  .couple .elements{font-family:var(--display); font-size:20px; color:var(--ink); margin:16px 0 14px}
-  .couple p{font-size:15px; line-height:1.65; color:var(--ink-soft); text-align:left; max-width:600px; margin:0 auto}
+  .couple{margin-top:32px; background:linear-gradient(160deg,rgba(168,88,122,.08),rgba(184,145,73,.08)); border:1px solid var(--rose); border-radius:22px; padding:34px 30px; display:grid; grid-template-columns:1fr 1fr; gap:24px}
+  @media(max-width:640px){.couple{grid-template-columns:1fr}}
+  .couple-sub{text-align:center}
+  .couple-sub + .couple-sub{border-left:1px solid rgba(168,88,122,.25); padding-left:24px}
+  @media(max-width:640px){.couple-sub + .couple-sub{border-left:none; border-top:1px solid rgba(168,88,122,.25); padding-left:0; padding-top:24px}}
+  .couple .score{font-family:var(--display); font-size:48px; color:var(--rose); font-weight:600; line-height:1}
+  .couple .score small{display:block; font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--ink-soft); margin-top:4px}
+  .couple .elements{font-family:var(--display); font-size:18px; color:var(--ink); margin:12px 0 10px}
+  .couple p{font-size:14px; line-height:1.6; color:var(--ink-soft); text-align:left; margin:0}
 
   .synth{margin-top:28px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 28px}
   .synth h3{font-family:var(--display); font-size:22px; color:var(--ink); margin-bottom:10px}
@@ -109,7 +113,7 @@
       <button onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button>
       <a href="index.html">Retour à l'accueil</a>
     </div>
-    <p class="note">Pensez à enregistrer ou imprimer cette page — elle ne sera pas renvoyée par email.</p>
+    <p class="note" id="emailStatus">📧 Envoi d'une copie par email à <span id="emailDest"></span>…</p>
   </div>
 
   <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
@@ -117,6 +121,9 @@
 
 <script src="moteur.js"></script>
 <script>
+  // === À BRANCHER : URL de votre Worker Cloudflare une fois déployé ===
+  const WORKER_URL = "https://synastrie-passerelle.dni-business44.workers.dev";
+
 (function(){
   var raw = localStorage.getItem('oa_synastrie');
   var loading = document.getElementById('loading');
@@ -151,6 +158,7 @@
         '<div class="prenom">'+prenom+'</div>'+
         '<div class="signe">'+signe.nom+' · '+signe.element+'</div>'+
         '<h4>☀ Signe solaire</h4><p>'+signe.soleil+'</p>'+
+        '<h4>♥ En amour</h4><p>'+signe.amour+'</p>'+
         '<h4>✦ Chemin de vie</h4>'+
         '<span class="cv-num">'+cv+'</span><span style="font-size:14.5px;color:var(--ink-soft)">'+CHEMIN_VIE[cv]+'</span>'+
         '</div>';
@@ -158,10 +166,19 @@
     document.getElementById('duoPortraits').innerHTML =
       portraitHTML(data.p1n, s1, cv1) + portraitHTML(data.p2n, s2, cv2);
 
+    var compatNum = compatNumero(cv1, cv2);
+
     document.getElementById('coupleSection').innerHTML =
-      '<div class="score">'+compat.score+'%<small>Alliance des éléments</small></div>'+
-      '<div class="elements">'+s1.element+' &amp; '+s2.element+'</div>'+
-      '<p>'+compat.texte+'</p>';
+      '<div class="couple-sub">'+
+        '<div class="score">'+compat.score+'%<small>Alliance des éléments</small></div>'+
+        '<div class="elements">'+s1.element+' &amp; '+s2.element+'</div>'+
+        '<p>'+compat.texte+'</p>'+
+      '</div>'+
+      '<div class="couple-sub">'+
+        '<div class="score">'+compatNum.score+'%<small>Numérologie du couple</small></div>'+
+        '<div class="elements">Chemin '+cv1+' &amp; '+cv2+'</div>'+
+        '<p>'+compatNum.texte+'</p>'+
+      '</div>';
 
     var cvClose = (cv1===cv2);
     var cvTexte = cvClose
@@ -174,6 +191,27 @@
 
     loading.style.display='none';
     resultat.style.display='block';
+
+    // Envoi automatique de l'email via le Worker Cloudflare (Resend)
+    var emailStatus = document.getElementById('emailStatus');
+    document.getElementById('emailDest').textContent = data.email;
+    if(WORKER_URL){
+      fetch(WORKER_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      }).then(function(r){ return r.json(); }).then(function(res){
+        if(res.ok){
+          emailStatus.textContent = '✅ Une copie a bien été envoyée à ' + data.email;
+        } else {
+          emailStatus.textContent = '⚠️ L\'email n\'a pas pu être envoyé, mais votre résultat reste affiché ci-dessus — pensez à l\'enregistrer.';
+        }
+      }).catch(function(){
+        emailStatus.textContent = '⚠️ L\'email n\'a pas pu être envoyé, mais votre résultat reste affiché ci-dessus — pensez à l\'enregistrer.';
+      });
+    } else {
+      emailStatus.style.display='none';
+    }
   }, 900);
 })();
 </script>
