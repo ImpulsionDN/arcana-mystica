@@ -367,7 +367,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
           <a href="heures-miroirs.html">Heures Miroirs<span class="badge-free">Gratuit</span></a>
           <a data-page="synchronicites" onclick="go('synchronicites')">Synchronicités<span class="badge-free">Gratuit</span></a>
           <a href="nombres-angeliques.html">Nombres Angéliques<span class="badge-free">Gratuit</span></a>
-          <a href="interpretation-reves.html">Interprétation des rêves<span class="badge-free">Gratuit</span></a>
+          <a data-page="reves" onclick="go('reves')">Interprétation des rêves<span class="badge-free">Gratuit</span></a>
           <a href="astrologie.html">Astrologie<span class="badge-free">Gratuit</span></a>
           <a data-page="totem" onclick="go('totem')">Animal Totem<span class="badge-free">Gratuit</span></a>
         </div>
@@ -825,6 +825,437 @@ window.syShow=function(k,el){
   box.scrollIntoView({behavior:'smooth',block:'center'});
 };
 </script>
+<!-- INTERPRÉTATION DES RÊVES -->
+<div class="page" id="page-reves">
+<section id="reves">
+  <div class="wrap">
+    <style>
+      .reve-themes{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:1.4rem 0 1.8rem}
+      .reve-theme{cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.55rem 1.3rem;border:1px solid var(--gold);border-radius:30px;background:transparent;color:var(--gold-deep);transition:all .25s}
+      .reve-theme:hover{background:var(--bg-2);transform:translateY(-2px)}
+      .reve-theme.active{background:var(--gold);color:#fff}
+      .reve-familles{max-width:640px;margin:0 auto 1.6rem}
+      .reve-famille{border:1px solid var(--line);border-radius:10px;margin-bottom:.7rem;overflow:hidden;background:#fff}
+      .reve-famille-hd{cursor:pointer;padding:.9rem 1.3rem;display:flex;justify-content:space-between;align-items:center;font-family:'Playfair Display';font-weight:500;font-size:1.05rem;color:var(--gold-deep);transition:background .25s}
+      .reve-famille-hd:hover{background:var(--bg-2)}
+      .reve-famille-hd .car{font-size:.7rem;color:var(--gold);transition:transform .3s}
+      .reve-famille.open .reve-famille-hd .car{transform:rotate(180deg)}
+      .reve-famille-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+      .reve-famille.open .reve-famille-body{max-height:700px}
+      .reve-famille-in{padding:.2rem 1.3rem 1.1rem;display:flex;flex-wrap:wrap;gap:.55rem}
+      .reve-famille-in .reve-theme{font-size:.94rem;padding:.5rem 1.1rem}
+      #reve_result .rangle{text-align:center;color:var(--ink-soft);font-style:italic;font-size:.95rem;margin-bottom:.6rem}
+      #reve_result .rsymb{font-family:'Playfair Display';font-size:1.7rem;color:var(--gold-deep);margin-bottom:.8rem;text-align:center}
+      #reve_result .rtxt{color:var(--ink);font-size:1.12rem;line-height:1.7;margin-bottom:1.8rem}
+      #reve_result .offres{margin-top:1rem}
+    </style>
+
+    <!-- SECTION 1 : HERO -->
+    <div class="section-hd">
+      <div class="eyebrow">Interprétation des rêves</div>
+      <h2>Que cherchent à vous dire vos rêves ?</h2>
+      <p>Décrivez votre songe et recevez une première lecture instantanée. Nos rêves parlent le langage des symboles — apprenez à les écouter.</p>
+    </div>
+    <div class="hint" style="text-align:center;font-style:normal;margin:-1.6rem 0 2.6rem"><b>Gratuit</b> · Sans inscription · Résultat immédiat</div>
+
+    <!-- SECTION 2 : OUTIL DE SAISIE (existant, conservé) -->
+    <div class="panel">
+      <div class="field">
+        <label>Votre rêve</label>
+        <textarea id="reve_texte" rows="3" placeholder="Décrivez votre rêve en quelques mots…"></textarea>
+      </div>
+      <div class="hint" style="text-align:center;margin-bottom:.4rem">…ou choisissez un thème dans les familles ci-dessous</div>
+      <div class="reve-familles" id="reve_familles"></div>
+      <div class="hint" style="text-align:center;margin-bottom:.4rem">Choisissez votre angle de lecture</div>
+      <div class="reve-themes" id="reve_angles">
+        <button type="button" class="reve-theme" onclick="reveSelectAngle('psychologique',this)">Psychologique</button>
+        <button type="button" class="reve-theme active" onclick="reveSelectAngle('symbolique',this)">Symbolique</button>
+        <button type="button" class="reve-theme" onclick="reveSelectAngle('spirituel',this)">Spirituel</button>
+      </div>
+      <div style="text-align:center"><button class="btn btn-gold" onclick="interpreterReve()">Interpréter mon rêve</button></div>
+    </div>
+
+    <!-- SECTION 3 : RÉSULTAT GRATUIT + BLOC PREMIUM (existant, conservé) -->
+    <div class="result-box" id="reve_result"></div>
+    <div class="concentre" style="max-width:780px;margin-top:2rem">« Les interprétations et rapports proposés ici sont générés par une intelligence artificielle, à titre de divertissement et d'accompagnement personnel. Ils ne remplacent aucun avis médical ou psychologique. »</div>
+  </div>
+</section>
+
+<!-- SECTION 4 : COMMENT ÇA MARCHE -->
+<section class="bg2">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Le processus</div>
+      <h2>Comment ça marche</h2>
+    </div>
+    <div class="rubriques">
+      <div class="rub" style="cursor:default">
+        <div class="num">01</div>
+        <h3>Décrivez votre rêve</h3>
+        <p>Racontez votre songe librement, ou choisissez le thème qui vous parle.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="num">02</div>
+        <h3>Choisissez votre angle</h3>
+        <p>Psychologique, symbolique ou spirituel : l'éclairage qui vous ressemble.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="num">03</div>
+        <h3>Recevez votre lecture</h3>
+        <p>Une interprétation immédiate, et un rapport complet si vous voulez aller plus loin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 : CONTENU DU RAPPORT COMPLET -->
+<section>
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Rapport complet · 7,99 €</div>
+      <h2>Ce que révèle votre rapport complet</h2>
+    </div>
+    <div class="rubriques">
+      <div class="rub" style="cursor:default">
+        <div class="ic">✦</div>
+        <h3>Le symbole principal</h3>
+        <p>Le cœur de votre rêve décrypté, ce qu'il représente vraiment pour vous.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">♡</div>
+        <h3>Le message émotionnel</h3>
+        <p>Les émotions cachées que votre rêve met en lumière.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">☾</div>
+        <h3>Ce que dit votre inconscient</h3>
+        <p>Le message profond que votre esprit cherche à vous transmettre.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">✷</div>
+        <h3>Amour &amp; travail</h3>
+        <p>Ce que votre rêve éclaire de votre vie sentimentale et professionnelle.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">◈</div>
+        <h3>Conseils concrets</h3>
+        <p>Des pistes d'action pour intégrer ce message dans votre quotidien.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">♁</div>
+        <h3>Questions d'introspection</h3>
+        <p>Des questions à méditer pour prolonger votre cheminement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 : SYMBOLES DE RÊVES LES PLUS FRÉQUENTS -->
+<section class="bg2">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Petit lexique des songes</div>
+      <h2>Les symboles de rêves les plus fréquents</h2>
+      <p>Un aperçu des grands symboles oniriques et de ce qu'ils murmurent.</p>
+    </div>
+    <div class="rubriques">
+      <div class="rub" style="cursor:default">
+        <div class="ic">🕳️</div>
+        <h3>Chute</h3>
+        <p>Symbole de lâcher-prise&nbsp;: votre esprit vous invite à accueillir un changement plutôt qu'à le redouter.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🦷</div>
+        <h3>Dents qui tombent</h3>
+        <p>L'un des rêves les plus universels&nbsp;: il questionne votre confiance en vous et votre image face aux autres.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">💧</div>
+        <h3>Eau</h3>
+        <p>Miroir de vos émotions&nbsp;: calme ou agitée, elle révèle l'état profond de votre monde intérieur.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🐍</div>
+        <h3>Serpent</h3>
+        <p>Symbole ancien de mue et de renouveau&nbsp;: il annonce souvent une transformation en cours.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🕊️</div>
+        <h3>Vol</h3>
+        <p>Signe de liberté retrouvée&nbsp;: votre âme se prépare à s'élever au-dessus d'une situation pesante.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🏃</div>
+        <h3>Poursuite</h3>
+        <p>Ce qui vous poursuit en rêve demande souvent à être regardé en face, non fui.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🌑</div>
+        <h3>Mort symbolique</h3>
+        <p>Rarement littérale, elle annonce la fin d'un cycle pour laisser place à une renaissance.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🏠</div>
+        <h3>Maison</h3>
+        <p>Reflet de votre psychisme&nbsp;: chaque pièce explorée est une facette de vous-même.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">📝</div>
+        <h3>Examen</h3>
+        <p>Traduit une peur d'être jugé(e) ou de ne pas être à la hauteur d'une attente.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">👶</div>
+        <h3>Bébé</h3>
+        <p>Symbolise un projet naissant ou une part fragile de vous qui demande à être protégée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 : POURQUOI ORACLE ARCANA -->
+<section>
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Nos engagements</div>
+      <h2>Pourquoi Oracle Arcana</h2>
+    </div>
+    <div class="rubriques">
+      <div class="rub" style="cursor:default">
+        <div class="ic">☾</div>
+        <h3>Disponible 24h/24, 7j/7</h3>
+        <p>Votre guidance vous attend, à toute heure du jour et de la nuit.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">✦</div>
+        <h3>Sans abonnement</h3>
+        <p>Un paiement unique pour votre rapport. Aucun engagement, aucune surprise.</p>
+      </div>
+      <div class="rub" style="cursor:default">
+        <div class="ic">🕊</div>
+        <h3>Confidentiel &amp; bienveillant</h3>
+        <p>Vos rêves les plus intimes, analysés en toute discrétion, sans jugement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8 : FAQ -->
+<section class="bg2">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Questions fréquentes</div>
+      <h2>Tout ce que vous vous demandez</h2>
+    </div>
+    <div class="faq">
+      <details><summary>L'interprétation est-elle fiable&nbsp;?<span class="pm">+</span></summary><div class="ans">Nos lectures s'appuient sur les grands cadres d'interprétation des rêves (symbolique, psychologique, spirituel) pour vous offrir un éclairage nuancé et personnalisé. Elles sont une invitation à la réflexion, pas une vérité absolue.</div></details>
+      <details><summary>Que contient le rapport complet&nbsp;?<span class="pm">+</span></summary><div class="ans">Un rapport structuré en 6 parties&nbsp;: symbole principal, message émotionnel, message de l'inconscient, liens avec l'amour et le travail, conseils concrets et questions d'introspection, selon l'angle choisi.</div></details>
+      <details><summary>Comment est généré le rapport&nbsp;?<span class="pm">+</span></summary><div class="ans">Votre rapport est généré par une intelligence artificielle à partir de votre rêve et de l'angle choisi. Il est proposé à titre de divertissement et d'accompagnement personnel, et ne remplace aucun avis médical ou psychologique.</div></details>
+      <details><summary>Mes données sont-elles confidentielles&nbsp;?<span class="pm">+</span></summary><div class="ans">Oui. Votre rêve sert uniquement à générer votre lecture et n'est ni revendu ni partagé.</div></details>
+      <details><summary>Dois-je m'abonner&nbsp;?<span class="pm">+</span></summary><div class="ans">Non. Chaque rapport est un achat unique à 7,99&nbsp;€, sans abonnement ni engagement.</div></details>
+      <details><summary>Sous quel délai je reçois mon rapport&nbsp;?<span class="pm">+</span></summary><div class="ans">Immédiatement après le paiement, votre rapport est généré et affiché en quelques instants.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9 : APPEL À L'ACTION FINAL -->
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <div class="ct"><b>Prêt à percer le mystère de vos rêves&nbsp;?</b><span>Décrivez-le et recevez votre première lecture, gratuite et immédiate.</span></div>
+      <button class="btn btn-gold" onclick="reveScrollToTool()">Découvrir mon rêve ↑</button>
+    </div>
+  </div>
+</section>
+</div>
+<script>
+window.REVES={
+  chute:{symb:"La Chute",txt:"Rêver que vous tombez dans le vide évoque une perte de contrôle ou d'appui dans votre vie éveillée. Ce n'est pas un mauvais présage&nbsp;: c'est souvent le signe qu'un changement demande à être accueilli, même s'il vous déstabilise. Votre inconscient vous invite à lâcher prise sur ce que vous ne pouvez plus retenir. Qu'est-ce qui, dans votre vie actuelle, vous donne cette sensation de ne plus rien maîtriser&nbsp;?"},
+  poursuite:{symb:"La Poursuite",txt:"Être poursuivi(e) dans un rêve traduit souvent une situation, une émotion ou une responsabilité que vous cherchez à fuir dans la réalité. Ce qui vous pourchasse n'est peut-être pas une menace, mais une part de vous-même qui réclame d'être regardée en face. Plus vous courez, plus elle s'accroche, jusqu'à ce que vous choisissiez de vous retourner. De quoi, ou de qui, essayez-vous de prendre de la distance en ce moment&nbsp;?"},
+  eau:{symb:"L'Eau",txt:"L'eau, dans les rêves, est le miroir de vos émotions profondes. Une eau calme reflète une paix intérieure retrouvée, tandis qu'une eau agitée ou trouble parle d'un trouble émotionnel encore mal identifié. Ce songe vous invite à plonger, sans crainte, vers ce que vous ressentez vraiment. Quelle émotion, ces derniers temps, cherche à remonter à la surface&nbsp;?"},
+  dents:{symb:"Les Dents qui tombent",txt:"Rêver que vos dents tombent est l'un des songes les plus fréquents&nbsp;: il touche souvent à la peur de perdre le contrôle, son image, ou sa capacité à s'exprimer. Ce n'est presque jamais littéral, c'est un cri silencieux de votre confiance en vous. Ce rêve peut aussi accompagner une période de transition ou de changement d'identité. Où, dans votre vie, avez-vous l'impression de perdre un peu de votre assurance&nbsp;?"},
+  vol:{symb:"Le Vol",txt:"Voler dans un rêve est souvent l'un des plus beaux messages de l'inconscient&nbsp;: celui d'une liberté retrouvée ou désirée. Il peut signaler que vous êtes prêt(e) à vous élever au-dessus d'une situation qui vous pesait. La sensation de légèreté ressentie en vol reflète une force intérieure encore sous-estimée. Vers quoi, ou vers qui, aimeriez-vous prendre votre envol aujourd'hui&nbsp;?"},
+  mort:{symb:"La Mort symbolique",txt:"Rêver de la mort n'annonce presque jamais une fin réelle&nbsp;: elle symbolise une transformation profonde, la clôture d'un chapitre pour en ouvrir un autre. Ce songe accompagne souvent une renaissance intérieure, un passage d'une version de vous-même vers une autre. Ce qui « meurt » dans le rêve laisse toujours la place à quelque chose de neuf. Quelle partie de votre vie sentez-vous prête à se transformer&nbsp;?"},
+  examen:{symb:"L'Examen",txt:"Rêver de passer un examen, surtout non préparé, révèle une peur d'être jugé(e) ou de ne pas être à la hauteur d'une attente, la vôtre ou celle des autres. Ce songe ressurgit souvent lors d'une échéance importante ou d'une remise en question personnelle. Il ne mesure pas votre valeur réelle, mais la pression que vous vous imposez. Quelle situation, en ce moment, vous donne l'impression d'être évalué(e)&nbsp;?"},
+  serpent:{symb:"Le Serpent",txt:"Le serpent est un symbole ancien et ambivalent&nbsp;: il représente à la fois la peur, la tentation, et la guérison ou le renouveau. Selon son attitude dans votre rêve, il peut signaler une menace latente ou, au contraire, une transformation salvatrice en cours. Il vous invite à regarder ce qui, chez vous, cherche à muer. Ce serpent vous semblait-il menaçant, ou simplement présent&nbsp;?"},
+  maison:{symb:"La Maison",txt:"La maison, dans les rêves, représente votre propre psychisme&nbsp;: chaque pièce, chaque étage, chaque porte fermée évoque une facette de vous-même. Découvrir une pièce inconnue signale souvent une partie de votre personnalité encore inexplorée. Ce songe vous invite à l'introspection, pièce après pièce. Quelle pièce de ce rêve vous a le plus marqué(e), et pourquoi&nbsp;?"},
+  bebe:{symb:"Le Bébé",txt:"Rêver d'un bébé évoque rarement une grossesse littérale&nbsp;: il symbolise un nouveau projet, une idée fragile ou une part de vous-même qui demande à naître et à être protégée. Ce songe accompagne souvent les débuts d'un chemin encore incertain mais plein de promesses. Prendre soin du bébé dans le rêve reflète la façon dont vous prenez soin de ce projet naissant. Quelle nouvelle idée, ou quel nouveau projet, essayez-vous de faire grandir en ce moment&nbsp;?"}
+};
+var REVE_GENERAL={symb:"Un Message Voilé",txt:"Chaque rêve est un message codé de votre inconscient, tissé avec les images et les émotions qui vous habitent. Même sans symbole évident, ce songe témoigne d'un dialogue intérieur en cours, entre ce que vous vivez et ce que vous ressentez profondément. Il n'y a pas de hasard dans ce qui traverse votre sommeil&nbsp;: chaque élément a un sens, propre à votre histoire. Qu'est-ce qui, dans ce rêve, vous a laissé la sensation la plus forte en vous réveillant&nbsp;?"};
+var REVE_FAMILLES=[
+  {nom:"Peurs & angoisses",themes:[
+    ['chute','Chute'],['poursuite','Poursuite'],['mort','Mort'],['examen','Examen'],
+    ['retard',"Être en retard"],['nudite_public','Nudité en public'],['perdre','Se perdre'],
+    ['enfermement','Enfermement'],['guerre','Guerre'],['accident','Accident']
+  ]},
+  {nom:"Eau & éléments",themes:[
+    ['eau','Eau'],['mer','Mer'],['noyade','Noyade'],['feu','Feu'],
+    ['tempete','Tempête'],['inondation','Inondation'],['neige','Neige'],['pluie','Pluie']
+  ]},
+  {nom:"Corps & santé",themes:[
+    ['dents','Dents qui tombent'],['cheveux','Cheveux'],['maladie','Maladie'],['grossesse','Grossesse'],
+    ['sang','Sang'],['chute_cheveux','Chute de cheveux'],['blessure','Blessure'],['nudite','Nudité']
+  ]},
+  {nom:"Personnes & liens",themes:[
+    ['ex_partenaire','Ex-partenaire'],['tromperie',"Être trompé(e)"],['mariage','Mariage'],['bebe','Bébé'],
+    ['personne_decedee','Personne décédée'],['dispute','Dispute'],['retrouvailles','Retrouvailles'],['inconnu','Inconnu']
+  ]},
+  {nom:"Animaux",themes:[
+    ['serpent','Serpent'],['araignee','Araignée'],['chien','Chien'],['chat','Chat'],['oiseau','Oiseau'],
+    ['loup','Loup'],['cheval','Cheval'],['souris','Souris'],['insectes','Insectes']
+  ]},
+  {nom:"Lieux & objets",themes:[
+    ['maison','Maison'],['escalier','Escalier'],['argent','Argent'],['cles','Clés'],['voiture','Voiture'],
+    ['ascenseur','Ascenseur'],['miroir','Miroir'],['porte','Porte'],['telephone','Téléphone']
+  ]}
+];
+var THEME_LABELS={};
+REVE_FAMILLES.forEach(function(fam){
+  fam.themes.forEach(function(t){ THEME_LABELS[t[0]]=t[1]; });
+});
+function reveRenderFamilles(){
+  var cont=document.getElementById('reve_familles');
+  if(!cont) return;
+  var html='';
+  REVE_FAMILLES.forEach(function(fam,i){
+    html+='<div class="reve-famille'+(i===0?' open':'')+'">'+
+      '<div class="reve-famille-hd" onclick="reveToggleFamille('+i+')"><span>'+fam.nom+'</span><span class="car">▾</span></div>'+
+      '<div class="reve-famille-body"><div class="reve-famille-in">'+
+        fam.themes.map(function(t){
+          return '<button type="button" class="reve-theme" onclick="reveSelectTheme(\''+t[0]+'\',this)">'+t[1]+'</button>';
+        }).join('')+
+      '</div></div>'+
+    '</div>';
+  });
+  cont.innerHTML=html;
+}
+window.reveToggleFamille=function(idx){
+  var familles=document.querySelectorAll('#reve_familles .reve-famille');
+  var target=familles[idx];
+  var wasOpen=target.classList.contains('open');
+  familles.forEach(function(f){ f.classList.remove('open'); });
+  if(!wasOpen) target.classList.add('open');
+};
+reveRenderFamilles();
+var REVE_KEYWORDS={
+  chute:['tombe dans le vide','chute libre','je tombe'],
+  poursuite:['poursuit','pourchass','me court apres','fuir quelqu'],
+  mort:['mort','mourir','dece','cadavre','tuer'],
+  examen:['examen','controle','interrogation'],
+  retard:['en retard','rate mon train','rate mon avion'],
+  nudite_public:['nu en public','tout nu devant tout le monde'],
+  perdre:['me perds','me suis perdu','labyrinthe','suis perdue'],
+  enfermement:['enferme','enfermee','pris au piege','coince'],
+  guerre:['guerre','bombe','soldat'],
+  accident:['accident','collision','crash'],
+  eau:['eau','nager','vague'],
+  mer:['la mer','ocean','plage'],
+  noyade:['noy'],
+  feu:['feu','incendie','flamme','brule'],
+  tempete:['tempete','orage','ouragan'],
+  inondation:['inond'],
+  neige:['neige','neiger'],
+  pluie:['pluie','pleuv'],
+  dents:['dent'],
+  chute_cheveux:['perte de cheveux','cheveux qui tombent','cheveux tombent'],
+  cheveux:['coiffure','cheveux longs','couper les cheveux'],
+  maladie:['malade','maladie','fievre'],
+  grossesse:['enceinte','grossesse'],
+  sang:['sang','saign'],
+  blessure:['blessure','blesse','plaie'],
+  nudite:['tout nu','toute nue'],
+  ex_partenaire:['mon ex','ancien copain','ancienne copine'],
+  tromperie:['trompe','tromperie','infidele'],
+  mariage:['mariage','me marie','epouser'],
+  bebe:['bebe','nourrisson'],
+  personne_decedee:['defunt','personne decedee'],
+  dispute:['dispute','conflit','crier apres'],
+  retrouvailles:['retrouv'],
+  inconnu:['inconnu'],
+  serpent:['serpent','vipere'],
+  araignee:['araignee'],
+  chien:['chien','chiot'],
+  chat:['chat ','chaton'],
+  oiseau:['oiseau'],
+  loup:['loup'],
+  cheval:['cheval'],
+  souris:['souris'],
+  insectes:['insecte','mouche','fourmi'],
+  maison:['maison','piece','couloir','etage'],
+  escalier:['escalier','marche'],
+  argent:['argent','billets'],
+  cles:['cle','trousseau'],
+  voiture:['voiture','conduire','volant'],
+  ascenseur:['ascenseur'],
+  miroir:['miroir','reflet'],
+  porte:['porte ferm','porte ouverte','derriere la porte'],
+  telephone:['telephone','portable sonne'],
+  vol:['voler','vol ','vol,','vole ','envol','planer','aile']
+};
+var ANGLE_LABELS={psychologique:"Lecture psychologique",symbolique:"Lecture symbolique",spirituel:"Lecture spirituelle"};
+var reveThemeChoisi=null;
+var reveAngleChoisi='symbolique';
+window.reveSelectTheme=function(key,el){
+  reveThemeChoisi=key;
+  document.querySelectorAll('#reve_familles .reve-theme').forEach(function(b){b.classList.remove('active');});
+  if(el) el.classList.add('active');
+};
+window.reveSelectAngle=function(key,el){
+  reveAngleChoisi=key;
+  document.querySelectorAll('#reve_angles .reve-theme').forEach(function(b){b.classList.remove('active');});
+  if(el) el.classList.add('active');
+};
+function reveNormalise(s){
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+}
+function reveDetecteTheme(texte){
+  var t=reveNormalise(texte);
+  var cles=Object.keys(REVE_KEYWORDS);
+  for(var i=0;i<cles.length;i++){
+    var mots=REVE_KEYWORDS[cles[i]];
+    for(var j=0;j<mots.length;j++){
+      if(t.indexOf(mots[j])!==-1) return cles[i];
+    }
+  }
+  return null;
+}
+window.interpreterReve=function(){
+  var texte=document.getElementById('reve_texte').value.trim();
+  var theme=reveDetecteTheme(texte)||reveThemeChoisi;
+  var data;
+  if(theme && window.REVES[theme]){
+    data=window.REVES[theme];
+  } else if(theme && THEME_LABELS[theme]){
+    data={symb:THEME_LABELS[theme],txt:REVE_GENERAL.txt};
+  } else {
+    data=REVE_GENERAL;
+  }
+  var angleLabel=ANGLE_LABELS[reveAngleChoisi]||ANGLE_LABELS.symbolique;
+  var box=document.getElementById('reve_result');
+  box.innerHTML=
+    '<div class="rangle">'+angleLabel+'</div>'+
+    '<div class="rsymb">'+data.symb+'</div>'+
+    '<div class="rtxt">'+data.txt+'</div>'+
+    '<div class="offres"><div class="offre feat">'+
+      '<div class="offre-badge">Rapport complet</div>'+
+      '<div class="ic">🌙</div><h3>Votre interprétation complète</h3>'+
+      '<div class="desc">Allez plus loin que le symbole&nbsp;: comprenez ce que votre inconscient cherche vraiment à vous dire.</div>'+
+      '<ul><li>Interprétation détaillée et approfondie</li><li>Analyse de la dimension émotionnelle</li><li>Le message de votre inconscient</li><li>Conseils concrets pour agir</li><li>Liens avec votre vie amoureuse et professionnelle</li></ul>'+
+      '<div class="price">7,99 €</div><div class="pn">paiement unique · sans abonnement</div>'+
+      '<button class="btn btn-gold" style="width:100%" onclick="lancerPaiementReve()">Recevoir mon rapport complet &rarr;</button>'+
+    '</div></div>';
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+};
+window.lancerPaiementReve=function(){
+  /* À compléter : intégration du paiement pour le rapport de rêve complet */
+};
+window.reveScrollToTool=function(){
+  go('reves');
+  var t=document.getElementById('reve_texte');
+  if(t){ t.scrollIntoView({behavior:'smooth',block:'center'}); t.focus(); }
+};
+</script>
 <!-- ANIMAL TOTEM -->
 <div class="page" id="page-totem">
 <section class="bg2" id="totem">
@@ -1120,7 +1551,7 @@ function totemReveal(){
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,totem:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,reves:1,totem:1,consultations:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);
