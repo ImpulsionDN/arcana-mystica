@@ -848,6 +848,11 @@ window.syShow=function(k,el){
       #reve_result .rsymb{font-family:'Playfair Display';font-size:1.7rem;color:var(--gold-deep);margin-bottom:.8rem;text-align:center}
       #reve_result .rtxt{color:var(--ink);font-size:1.12rem;line-height:1.7;margin-bottom:1.8rem}
       #reve_result .offres{margin-top:1rem}
+      .reve-rapport{max-width:720px;margin:0 auto;background:linear-gradient(180deg,rgba(184,145,73,.08),var(--card));border:1px solid var(--gold);border-radius:14px;padding:2.4rem 2.2rem;box-shadow:var(--shadow)}
+      .reve-rapport h3{font-family:'Playfair Display';color:var(--gold-deep);font-size:1.6rem;margin-bottom:1.2rem;text-align:center}
+      .reve-rapport .corps p{margin:0 0 1rem;color:var(--ink);font-size:1.1rem;line-height:1.75}
+      .reve-rapport .corps strong{color:var(--gold-deep);font-family:'Playfair Display';font-weight:600}
+      .reve-rapport .rload{text-align:center;color:var(--ink-soft);font-style:italic;padding:1rem 0;line-height:1.8}
     </style>
 
     <!-- SECTION 1 : HERO -->
@@ -877,6 +882,7 @@ window.syShow=function(k,el){
 
     <!-- SECTION 3 : RÉSULTAT GRATUIT + BLOC PREMIUM (existant, conservé) -->
     <div class="result-box" id="reve_result"></div>
+    <div class="result-box" id="reve_rapport"></div>
     <div class="concentre" style="max-width:780px;margin-top:2rem">« Les interprétations et rapports proposés ici sont générés par une intelligence artificielle, à titre de divertissement et d'accompagnement personnel. Ils ne remplacent aucun avis médical ou psychologique. »</div>
   </div>
 </section>
@@ -1243,13 +1249,83 @@ window.interpreterReve=function(){
       '<ul><li>Interprétation détaillée et approfondie</li><li>Analyse de la dimension émotionnelle</li><li>Le message de votre inconscient</li><li>Conseils concrets pour agir</li><li>Liens avec votre vie amoureuse et professionnelle</li></ul>'+
       '<div class="price">7,99 €</div><div class="pn">paiement unique · sans abonnement</div>'+
       '<button class="btn btn-gold" style="width:100%" onclick="lancerPaiementReve()">Recevoir mon rapport complet &rarr;</button>'+
+      '<div class="hint" id="reve_pay_warn" style="text-align:center;color:var(--rose);margin-top:.8rem;display:none">Décrivez votre rêve ou choisissez un thème avant de recevoir votre rapport complet.</div>'+
     '</div></div>';
   box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'center'});
 };
 window.lancerPaiementReve=function(){
-  /* À compléter : intégration du paiement pour le rapport de rêve complet */
+  var texteEl=document.getElementById('reve_texte');
+  var texte=(texteEl?texteEl.value:"").trim();
+  var theme=reveThemeChoisi;
+  var angle=reveAngleChoisi;
+  var warn=document.getElementById('reve_pay_warn');
+  if(!texte && !theme){
+    if(warn) warn.style.display='block';
+    return;
+  }
+  if(warn) warn.style.display='none';
+  try{
+    sessionStorage.setItem('reve_en_attente', JSON.stringify({reve:texte, theme:theme||"", angle:angle}));
+  }catch(e){}
+  window.location.href="https://buy.stripe.com/test_dRmdR1fVg6Ye43289IdZ600";
 };
+function reveEscapeHtml(s){
+  return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function reveFormatRapport(text){
+  var safe=reveEscapeHtml(text).replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+  var paras=safe.split(/\n{2,}/); if(paras.length<2) paras=safe.split(/\n/);
+  return paras.map(function(p){ p=p.trim(); return p?("<p>"+p.replace(/\n/g,"<br>")+"</p>"):""; }).join("");
+}
+function reveChargerRapportPaye(){
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('reve_paye')!=='1' || !params.get('session_id')) return;
+  var sessionId=params.get('session_id');
+  var attente=null;
+  try{ attente=JSON.parse(sessionStorage.getItem('reve_en_attente')||"null"); }catch(e){}
+  if(typeof go==='function') go('reves');
+  var rapportBox=document.getElementById('reve_rapport');
+  if(!rapportBox) return;
+  rapportBox.classList.add('show');
+  rapportBox.innerHTML='<div class="reve-rapport"><div class="rload">✧ Votre rapport se prépare…<br>Cela peut prendre 10 à 20 secondes.</div></div>';
+  rapportBox.scrollIntoView({behavior:'smooth',block:'center'});
+  fetch('https://arcana-reves.dni-business44.workers.dev',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      reve:(attente&&attente.reve)||"",
+      theme:(attente&&attente.theme)||"",
+      angle:(attente&&attente.angle)||"symbolique",
+      session_id:sessionId
+    })
+  }).then(function(r){
+    return r.text().then(function(t){
+      var j=null; try{ j=JSON.parse(t); }catch(e){}
+      return {ok:r.ok, j:j};
+    });
+  }).then(function(res){
+    if(res.ok && res.j && res.j.report){
+      rapportBox.innerHTML=
+        '<div class="reve-rapport"><h3>Votre rapport complet</h3>'+
+        '<div class="corps">'+reveFormatRapport(res.j.report)+'</div>'+
+        '<div class="concentre" style="margin-top:1.6rem;font-size:.96rem">« Ce rapport est généré par une intelligence artificielle, à titre de divertissement et d\'accompagnement personnel. »</div>'+
+        '</div>';
+    } else {
+      rapportBox.innerHTML=
+        '<div class="reve-rapport"><h3>Un instant d\'imprévu…</h3>'+
+        '<div class="corps"><p>Nous n\'avons pas pu générer votre rapport pour le moment. Si votre paiement a bien été effectué, réessayez dans quelques instants, ou contactez notre support en précisant l\'adresse e-mail utilisée pour le paiement.</p></div></div>';
+    }
+  }).catch(function(){
+    rapportBox.innerHTML=
+      '<div class="reve-rapport"><h3>Un instant d\'imprévu…</h3>'+
+      '<div class="corps"><p>Une erreur de connexion nous empêche d\'afficher votre rapport. Réessayez dans quelques instants, ou contactez notre support si le problème persiste.</p></div></div>';
+  }).then(function(){
+    try{ sessionStorage.removeItem('reve_en_attente'); }catch(e){}
+    if(history.replaceState) history.replaceState(null,'', window.location.pathname+'#reves');
+  });
+}
+if(document.readyState!=='loading'){ reveChargerRapportPaye(); } else { document.addEventListener('DOMContentLoaded', reveChargerRapportPaye); }
 window.reveScrollToTool=function(){
   go('reves');
   var t=document.getElementById('reve_texte');
