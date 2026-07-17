@@ -1,0 +1,24 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg"><title>Emblème du loup totem</title><desc>Un loup stylisé en lignes dorées sur fond nocturne étoilé.</desc>
+<defs><clipPath id="disc"><circle cx="340" cy="340" r="300"/></clipPath></defs>
+<circle cx="340" cy="340" r="300" fill="#141026"/>
+<g clip-path="url(#disc)">
+<circle cx="340" cy="330" r="150" fill="none" stroke="#3a3060" stroke-width="1"/>
+<circle cx="470" cy="180" r="70" fill="#1d1838"/><circle cx="448" cy="168" r="70" fill="#141026"/>
+<circle cx="180" cy="150" r="2.5" fill="#d9b45a"/><circle cx="230" cy="110" r="1.8" fill="#d9b45a"/><circle cx="150" cy="230" r="2" fill="#d9b45a"/><circle cx="540" cy="300" r="2.2" fill="#d9b45a"/><circle cx="520" cy="420" r="1.6" fill="#d9b45a"/><circle cx="200" cy="500" r="2" fill="#d9b45a"/><circle cx="480" cy="500" r="1.8" fill="#d9b45a"/><circle cx="130" cy="360" r="1.6" fill="#d9b45a"/><circle cx="340" cy="90" r="2" fill="#d9b45a"/>
+</g>
+<circle cx="340" cy="340" r="300" fill="none" stroke="#d9b45a" stroke-width="2"/>
+<circle cx="340" cy="340" r="288" fill="none" stroke="#8a6d2f" stroke-width="0.8"/>
+<g fill="none" stroke="#e6c56a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M300 266 C296 320 306 372 340 432 C374 372 384 320 380 266 C368 250 352 244 340 244 C328 244 312 250 300 266 Z"/>
+<path d="M300 266 L270 186 L326 240"/>
+<path d="M380 266 L410 186 L354 240"/>
+<path d="M312 300 L338 314"/>
+<path d="M368 300 L342 314"/>
+<path d="M340 340 C332 348 330 360 340 372 C350 360 348 348 340 340 Z" fill="#e6c56a"/>
+<path d="M340 372 L340 398"/>
+<path d="M340 384 C328 394 316 392 308 384"/>
+<path d="M340 384 C352 394 364 392 372 384"/>
+</g>
+<circle cx="322" cy="306" r="5" fill="#e6c56a"/><circle cx="358" cy="306" r="5" fill="#e6c56a"/>
+<text x="340" y="612" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="8" fill="#e6c56a">LE LOUP</text>
+</svg>

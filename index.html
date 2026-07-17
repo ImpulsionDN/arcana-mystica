@@ -369,6 +369,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
           <a href="nombres-angeliques.html">Nombres Angéliques<span class="badge-free">Gratuit</span></a>
           <a href="interpretation-reves.html">Interprétation des rêves<span class="badge-free">Gratuit</span></a>
           <a href="astrologie.html">Astrologie<span class="badge-free">Gratuit</span></a>
+          <a data-page="totem" onclick="go('totem')">Animal Totem<span class="badge-free">Gratuit</span></a>
         </div>
       </div>
       <div class="nav-group">
@@ -824,6 +825,176 @@ window.syShow=function(k,el){
   box.scrollIntoView({behavior:'smooth',block:'center'});
 };
 </script>
+<!-- ANIMAL TOTEM -->
+<div class="page" id="page-totem">
+<section class="bg2" id="totem">
+  <div class="wrap">
+    <style>
+      .totem-quiz{max-width:680px;margin:0 auto}
+      .totem-progress{text-align:center;color:var(--ink-soft);font-style:italic;font-size:.98rem;margin-bottom:1.6rem}
+      .totem-q{display:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem 2.2rem;box-shadow:var(--shadow)}
+      .totem-q.active{display:block;animation:fade .5s}
+      .totem-q .tq-num{font-family:'Playfair Display';font-size:.66rem;letter-spacing:.14em;color:var(--gold-deep);text-transform:uppercase;margin-bottom:.6rem}
+      .totem-q h4{font-family:'Playfair Display';font-weight:500;font-size:1.25rem;color:var(--ink);margin-bottom:1.2rem}
+      .totem-opts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+      @media(max-width:560px){.totem-opts{grid-template-columns:1fr}}
+      .totem-opt{text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.75rem 1rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ink);cursor:pointer;transition:all .25s}
+      .totem-opt:hover{border-color:var(--gold);background:var(--bg-2);transform:translateY(-2px)}
+      .totem-result{max-width:640px;margin:1.8rem auto 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2.6rem 2.4rem;box-shadow:var(--shadow);text-align:center;display:none}
+      .totem-result.show{display:block;animation:fade .5s}
+      .totem-result img{width:180px;height:180px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);margin:0 auto 1.3rem;display:block;box-shadow:var(--shadow)}
+      .totem-result h3{font-size:1.9rem;color:var(--gold-deep);margin-bottom:1rem}
+      .totem-result p{color:var(--ink);font-size:1.12rem;line-height:1.7;text-align:left;margin-bottom:1rem}
+      .totem-result .totem-cta{margin-top:1.4rem}
+      .totem-sub{font-family:'Playfair Display';font-weight:500;font-size:1.15rem;color:var(--gold-deep);text-align:left;margin:1.6rem 0 .6rem}
+      .totem-result .totem-msg{font-family:'Cormorant Garamond',serif;font-style:italic;text-align:center;font-size:1.28rem;color:var(--gold-light);margin-top:1.8rem}
+    </style>
+    <div class="section-hd">
+      <div class="eyebrow">Tirage gratuit</div>
+      <h2>Votre Animal Totem</h2>
+      <p>Six questions, une intuition à écouter : laissez votre animal spirituel se révéler à vous.</p>
+    </div>
+    <div class="totem-quiz" id="totem_quiz">
+      <div class="totem-progress" id="totem_progress">Question 1 / 6</div>
+
+      <div class="totem-q active" data-q="1">
+        <div class="tq-num">Question 1</div>
+        <h4>Face à un imprévu, votre premier réflexe est de...</h4>
+        <div class="totem-opts">
+          <button class="totem-opt" onclick="totemAnswer('loup',this)">Rassembler vos proches pour y faire face ensemble</button>
+          <button class="totem-opt" onclick="totemAnswer('hibou',this)">Prendre du recul et observer avant d'agir</button>
+          <button class="totem-opt" onclick="totemAnswer('cerf',this)">Chercher d'abord à apaiser les tensions</button>
+          <button class="totem-opt" onclick="totemAnswer('corbeau',this)">Sentir qu'un message se cache derrière cet imprévu</button>
+          <button class="totem-opt" onclick="totemAnswer('ours',this)">Vous retirer un instant pour réfléchir seul(e)</button>
+          <button class="totem-opt" onclick="totemAnswer('renard',this)">Trouver une solution astucieuse, presque par instinct</button>
+          <button class="totem-opt" onclick="totemAnswer('papillon',this)">Y voir l'occasion de changer de direction</button>
+          <button class="totem-opt" onclick="totemAnswer('serpent',this)">Laisser la situation se transformer sans résister</button>
+        </div>
+      </div>
+
+      <div class="totem-q" data-q="2">
+        <div class="tq-num">Question 2</div>
+        <h4>Dans un groupe, on dit souvent de vous que vous êtes...</h4>
+        <div class="totem-opts">
+          <button class="totem-opt" onclick="totemAnswer('loup',this)">La personne fidèle sur qui l'on peut compter</button>
+          <button class="totem-opt" onclick="totemAnswer('hibou',this)">Celle qui observe tout, en silence</button>
+          <button class="totem-opt" onclick="totemAnswer('cerf',this)">La personne douce et bienveillante</button>
+          <button class="totem-opt" onclick="totemAnswer('corbeau',this)">Quelqu'un d'un peu mystérieux</button>
+          <button class="totem-opt" onclick="totemAnswer('ours',this)">La personne calme qui rassure</button>
+          <button class="totem-opt" onclick="totemAnswer('renard',this)">L'esprit vif qui a toujours une idée</button>
+          <button class="totem-opt" onclick="totemAnswer('papillon',this)">L'âme légère qui apporte de la joie</button>
+          <button class="totem-opt" onclick="totemAnswer('serpent',this)">Celle qui se réinvente sans cesse</button>
+        </div>
+      </div>
+
+      <div class="totem-q" data-q="3">
+        <div class="tq-num">Question 3</div>
+        <h4>Votre lieu ressourçant idéal serait...</h4>
+        <div class="totem-opts">
+          <button class="totem-opt" onclick="totemAnswer('loup',this)">Une forêt profonde, entouré(e) des vôtres</button>
+          <button class="totem-opt" onclick="totemAnswer('hibou',this)">Un endroit calme, sous les étoiles</button>
+          <button class="totem-opt" onclick="totemAnswer('cerf',this)">Une clairière paisible au lever du jour</button>
+          <button class="totem-opt" onclick="totemAnswer('corbeau',this)">Un lieu chargé d'histoire et de mystère</button>
+          <button class="totem-opt" onclick="totemAnswer('ours',this)">Une grotte ou un refuge isolé</button>
+          <button class="totem-opt" onclick="totemAnswer('renard',this)">Un sentier sinueux à explorer</button>
+          <button class="totem-opt" onclick="totemAnswer('papillon',this)">Un jardin fleuri, en plein soleil</button>
+          <button class="totem-opt" onclick="totemAnswer('serpent',this)">Un lieu chaud, propice à la mue et à la transformation</button>
+        </div>
+      </div>
+
+      <div class="totem-q" data-q="4">
+        <div class="tq-num">Question 4</div>
+        <h4>Ce qui vous pèse le plus, c'est...</h4>
+        <div class="totem-opts">
+          <button class="totem-opt" onclick="totemAnswer('loup',this)">Être exclu(e) de votre clan</button>
+          <button class="totem-opt" onclick="totemAnswer('hibou',this)">Que l'on ignore vos intuitions</button>
+          <button class="totem-opt" onclick="totemAnswer('cerf',this)">La violence et les conflits</button>
+          <button class="totem-opt" onclick="totemAnswer('corbeau',this)">Les vérités que l'on refuse de voir</button>
+          <button class="totem-opt" onclick="totemAnswer('ours',this)">Perdre le contrôle de vous-même</button>
+          <button class="totem-opt" onclick="totemAnswer('renard',this)">Être pris(e) au piège, sans issue</button>
+          <button class="totem-opt" onclick="totemAnswer('papillon',this)">Rester figé(e), sans jamais évoluer</button>
+          <button class="totem-opt" onclick="totemAnswer('serpent',this)">Ne plus pouvoir vous transformer</button>
+        </div>
+      </div>
+
+      <div class="totem-q" data-q="5">
+        <div class="tq-num">Question 5</div>
+        <h4>Une qualité que l'on vous reconnaît souvent...</h4>
+        <div class="totem-opts">
+          <button class="totem-opt" onclick="totemAnswer('loup',this)">La loyauté</button>
+          <button class="totem-opt" onclick="totemAnswer('hibou',this)">La sagesse</button>
+          <button class="totem-opt" onclick="totemAnswer('cerf',this)">La douceur</button>
+          <button class="totem-opt" onclick="totemAnswer('corbeau',this)">La perspicacité</button>
+          <button class="totem-opt" onclick="totemAnswer('ours',this)">La force tranquille</button>
+          <button class="totem-opt" onclick="totemAnswer('renard',this)">La ruse</button>
+          <button class="totem-opt" onclick="totemAnswer('papillon',this)">La légèreté</button>
+          <button class="totem-opt" onclick="totemAnswer('serpent',this)">La capacité à renaître</button>
+        </div>
+      </div>
+
+      <div class="totem-q" data-q="6">
+        <div class="tq-num">Question 6</div>
+        <h4>Si vous deviez guider quelqu'un, vous lui diriez...</h4>
+        <div class="totem-opts">
+          <button class="totem-opt" onclick="totemAnswer('loup',this)">« Avance, je suis avec toi »</button>
+          <button class="totem-opt" onclick="totemAnswer('hibou',this)">« Regarde au-delà des apparences »</button>
+          <button class="totem-opt" onclick="totemAnswer('cerf',this)">« Avance avec grâce et sensibilité »</button>
+          <button class="totem-opt" onclick="totemAnswer('corbeau',this)">« Écoute les signes qui t'entourent »</button>
+          <button class="totem-opt" onclick="totemAnswer('ours',this)">« Prends le temps de te retrouver »</button>
+          <button class="totem-opt" onclick="totemAnswer('renard',this)">« Il existe toujours un chemin détourné »</button>
+          <button class="totem-opt" onclick="totemAnswer('papillon',this)">« N'aie pas peur de changer »</button>
+          <button class="totem-opt" onclick="totemAnswer('serpent',this)">« Chaque fin est un nouveau départ »</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="totem-result" id="totem_result"></div>
+  </div>
+</section>
+</div>
+<script>
+/* Remplacez les chemins ci-dessous par vos propres illustrations pour chaque animal totem. */
+window.TOTEMS={
+  loup:{nom:"Loup",img:"images/totem-loup.svg",desc:"<p>Si le Loup vous a choisi, c'est que vous portez en vous une fidélité rare et un instinct que peu de gens possèdent. Vous êtes de ceux qui ressentent avant de comprendre, qui protègent avant qu'on ne le demande.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Le Loup est un être de cœur et d'instinct. Vous avancez dans la vie guidé(e) par une boussole intérieure que rien ne dévie — pas les modes, pas les jugements, pas la peur. Là où d'autres hésitent et cherchent l'approbation, vous savez, tout simplement. Cette assurance tranquille impressionne parfois, ou dérange. Elle est pourtant l'un de vos plus beaux dons.</p><h4 class='totem-sub'>Vos forces</h4><p>Loyauté farouche, courage, intuition sûre. Vous protégez les vôtres avec une intensité que rien n'ébranle, et votre seule présence rassure ceux qui vous entourent. Vous savez aussi rester libre : jamais vous ne vous laissez enfermer dans un rôle qui n'est pas le vôtre.</p><h4 class='totem-sub'>Votre défi</h4><p>Apprendre à faire confiance sans craindre de perdre votre indépendance. Votre force ne naît jamais de l'isolement, mais des liens profonds que vous tissez — votre meute, choisie avec soin. Osez vous appuyer sur les autres : ce n'est pas une faiblesse, c'est ce qui rend la meute invincible.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous donnez tout, mais à ceux qui le méritent : vous n'aimez pas à moitié. Ceux qui gagnent votre confiance gagnent un(e) allié(e) pour la vie. Votre défi sera d'ouvrir la porte assez tôt, sans attendre d'être absolument certain(e).</p><p class='totem-msg'>« Écoute ton instinct : il ne t'a jamais trahi. Avance, même seul(e) s'il le faut — les tiens te rejoindront sur le chemin. »</p>"},
+  hibou:{nom:"Hibou",img:"images/totem-hibou.svg",desc:"<p>Si le Hibou veille sur vous, c'est que vous percevez ce que les autres ne voient pas : les intentions cachées, les vérités tues, la lumière dans l'obscurité.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Le Hibou est le gardien de la sagesse et des secrets de la nuit. Vous avancez avec discrétion, préférant observer avant d'agir, et cette patience est votre plus grande force. Vous ressentez les choses bien avant de les comprendre.</p><h4 class='totem-sub'>Vos forces</h4><p>Clairvoyance, intuition profonde, lucidité. Vous lisez les gens et les situations avec une justesse presque troublante. Votre calme cache un esprit toujours en éveil, capable de démêler ce qui échappe aux autres.</p><h4 class='totem-sub'>Votre défi</h4><p>Ne pas vous replier trop loin dans votre monde intérieur. Votre clairvoyance est un cadeau — mais elle n'a de valeur que partagée. Osez éclairer les autres de ce que vous voyez.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous aimez en profondeur, sans bruit. Vous avez besoin d'un lien vrai, à l'abri du paraître. Ceux qui savent vous écouter découvrent une âme d'une richesse rare.</p><p class='totem-msg'>« Le Hibou ne crie pas ; il sait. Fais confiance à cette voix silencieuse en toi : elle connaît le chemin, même dans la nuit la plus noire. »</p>"},
+  cerf:{nom:"Cerf",img:"images/totem-cerf.svg",desc:"<p>Si le Cerf vous accompagne, c'est que vous alliez une douceur profonde à une dignité tranquille qui inspire le respect sans jamais s'imposer.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Comme ses bois qui repoussent chaque année, vous avez ce don rare de vous régénérer après les épreuves, plus vrai et plus fort. Votre sensibilité vous relie à la beauté du monde et aux autres.</p><h4 class='totem-sub'>Vos forces</h4><p>Grâce, noblesse de cœur, résilience. Vous avancez avec une élégance naturelle et une capacité à renaître que rien ne semble pouvoir briser durablement.</p><h4 class='totem-sub'>Votre défi</h4><p>Ne pas fuir au moindre danger, mais tenir votre place avec la noblesse qui est la vôtre. Ce que certains prennent pour de la fragilité est en réalité votre force la plus tranquille.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous aimez avec délicatesse et loyauté. Vous avez besoin de douceur et de respect, et vous offrez en retour une présence apaisante, rare et précieuse.</p><p class='totem-msg'>« Le Cerf marche tête haute dans la clairière. Avance avec cette même élégance : tu n'as rien à prouver, seulement à être. »</p>"},
+  corbeau:{nom:"Corbeau",img:"images/totem-corbeau.svg",desc:"<p>Si le Corbeau s'est posé près de vous, c'est que vous portez une intelligence vive et une âme qui n'a pas peur des zones d'ombre.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Messager entre les mondes, le Corbeau devine un commencement là où d'autres voient une fin. Vous savez que toute perte prépare une renaissance, et vous transformez ce que la vie vous donne, même le plus dur, en quelque chose de neuf.</p><h4 class='totem-sub'>Vos forces</h4><p>Intelligence, créativité, curiosité de tout. Vous êtes un(e) alchimiste : vous changez le plomb des épreuves en or. Rien ne vous rebute, tout vous inspire.</p><h4 class='totem-sub'>Votre défi</h4><p>Ne pas vous laisser happer par le mystère au point d'oublier la lumière du jour. Votre magie a besoin d'ancrage pour porter ses fruits.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous aimez les âmes profondes et les esprits libres. Le lien qui vous convient est celui qui vous laisse explorer sans jamais vous enfermer.</p><p class='totem-msg'>« Le Corbeau connaît les secrets que le temps enfouit. Observe les signes autour de toi : pour qui sait voir, le monde parle sans cesse. »</p>"},
+  ours:{nom:"Ours",img:"images/totem-ours.svg",desc:"<p>Si l'Ours veille sur vous, c'est que vous possédez une puissance intérieure qui n'a nul besoin de bruit pour s'imposer.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Capable d'une grande douceur comme d'une détermination sans faille, vous protégez les vôtres avec un calme qui rassure. Comme l'ours dans sa tanière, vous connaissez la valeur du repli et de l'introspection.</p><h4 class='totem-sub'>Vos forces</h4><p>Force tranquille, stabilité, protection. Vous êtes un roc pour ceux qui vous entourent. Votre présence apaise, votre parole compte, votre calme fait autorité sans jamais s'imposer.</p><h4 class='totem-sub'>Votre défi</h4><p>Ne pas confondre solitude ressourçante et isolement. Retrouvez vos forces dans le silence, puis ouvrez votre cœur au bon moment : les vôtres vous attendent.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous aimez avec constance et profondeur. Lent(e) à vous ouvrir, mais indéfectible une fois le lien noué. On peut compter sur vous, toujours.</p><p class='totem-msg'>« L'Ours ne se hâte pas ; il avance avec l'assurance de qui connaît sa force. Prends le temps qu'il faut : ta puissance est patiente. »</p>"},
+  renard:{nom:"Renard",img:"images/totem-renard.svg",desc:"<p>Si le Renard vous a choisi, c'est que vous possédez une intelligence agile et un charme naturel qui vous ouvrent bien des portes.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Vif(ve) d'esprit, vous trouvez toujours un chemin là où les autres voient un mur. Vous lisez les situations en un clin d'œil et vous adaptez à tout sans jamais perdre votre malice ni votre indépendance.</p><h4 class='totem-sub'>Vos forces</h4><p>Ruse, adaptabilité, charme. Vous êtes un(e) stratège au cœur léger, capable de retourner les situations les plus délicates avec un sourire.</p><h4 class='totem-sub'>Votre défi</h4><p>Mettre cette astuce au service de vos plus belles intentions, et laisser voir votre cœur derrière le sourire. Votre finesse gagne à s'accompagner de sincérité.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Séduisant(e) et joueur(se), vous avez besoin de complicité et de légèreté. Le lien qui dure sera celui où vous oserez enfin baisser la garde.</p><p class='totem-msg'>« Le Renard danse entre l'ombre et la lumière, insaisissable et libre. Fais-toi confiance : ta finesse est un art. »</p>"},
+  papillon:{nom:"Papillon",img:"images/totem-papillon.svg",desc:"<p>Si le Papillon vole vers vous, c'est que votre âme connaît le grand secret : rien n'est jamais figé, et toute transformation, même douloureuse, mène vers la beauté.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Vous avez traversé vos propres cocons, ces périodes d'ombre d'où l'on ressort changé(e), et vous en êtes sorti(e) avec des ailes. Vous apportez de la couleur là où vous passez.</p><h4 class='totem-sub'>Vos forces</h4><p>Légèreté, sensibilité, capacité de renouveau. Vous rappelez aux autres la joie des choses simples et la beauté de l'instant. Votre présence est une bouffée d'air.</p><h4 class='totem-sub'>Votre défi</h4><p>Ne pas fuir dans le mouvement perpétuel. Posez-vous assez longtemps pour savourer ce que vous êtes devenu(e) : vous l'avez mérité.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous aimez avec fraîcheur et spontanéité. Vous avez besoin d'un lien qui vous laisse respirer et grandir, jamais d'une cage, aussi douce soit-elle.</p><p class='totem-msg'>« Le Papillon ne regrette pas la chenille qu'il était. Déploie tes ailes : tu as mérité ce ciel. »</p>"},
+  serpent:{nom:"Serpent",img:"images/totem-serpent.svg",desc:"<p>Si le Serpent s'enroule autour de votre chemin, c'est que vous portez une force de vie puissante et une capacité rare à vous réinventer.</p><h4 class='totem-sub'>Votre nature profonde</h4><p>Comme il abandonne sa peau ancienne pour renaître, vous savez laisser derrière vous ce qui vous entrave, encore et encore, sans jamais cesser d'avancer. Vous portez une sagesse ancienne.</p><h4 class='totem-sub'>Vos forces</h4><p>Guérison, intuition, renaissance. Vous percevez les énergies subtiles et transformez chaque épreuve en une nouvelle peau. Votre profondeur impressionne.</p><h4 class='totem-sub'>Votre défi</h4><p>Accueillir vos propres transformations sans les craindre, car elles sont votre plus grand pouvoir. Ne vous accrochez pas à la peau ancienne quand vient l'heure de muer.</p><h4 class='totem-sub'>En amour et en lien</h4><p>Vous aimez avec intensité et vérité. Vous avez besoin d'un lien profond, capable d'évoluer avec vous. Les liens de surface vous ennuient vite.</p><p class='totem-msg'>« Le Serpent ne s'accroche pas au passé ; il mue et poursuit sa route. Fais confiance à ce cycle en toi : chaque fin que tu traverses est une renaissance. »</p>"}
+};
+var totemScores={loup:0,hibou:0,cerf:0,corbeau:0,ours:0,renard:0,papillon:0,serpent:0};
+var totemStep=1;
+var TOTEM_TOTAL=6;
+window.totemAnswer=function(totem,el){
+  totemScores[totem]++;
+  var cur=document.querySelector('.totem-q[data-q="'+totemStep+'"]');
+  if(cur) cur.classList.remove('active');
+  totemStep++;
+  if(totemStep>TOTEM_TOTAL){ totemReveal(); return; }
+  var next=document.querySelector('.totem-q[data-q="'+totemStep+'"]');
+  if(next) next.classList.add('active');
+  var prog=document.getElementById('totem_progress');
+  if(prog) prog.textContent='Question '+totemStep+' / '+TOTEM_TOTAL;
+};
+function totemReveal(){
+  var best=null,bestScore=-1;
+  Object.keys(totemScores).forEach(function(k){
+    if(totemScores[k]>bestScore){ bestScore=totemScores[k]; best=k; }
+  });
+  var t=window.TOTEMS[best];
+  document.getElementById('totem_quiz').style.display='none';
+  var box=document.getElementById('totem_result');
+  box.innerHTML=
+    '<img src="'+t.img+'" alt="'+t.nom+'">'+
+    '<h3>'+t.nom+'</h3>'+
+    t.desc+
+    '<div class="totem-cta"><button class="btn btn-gold" onclick="go(\'consultations\')">Consulter un voyant &rarr;</button></div>';
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
 <div class="page" id="page-consultations">
 <section id="consultations">
   <div class="wrap">
@@ -1010,7 +1181,7 @@ window.syShow=function(k,el){
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,totem:1,consultations:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);

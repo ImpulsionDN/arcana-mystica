@@ -1,0 +1,23 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg"><title>Emblème du renard totem</title><desc>Un renard de face stylisé aux grandes oreilles, en lignes dorées sur fond nocturne étoilé.</desc>
+<defs><clipPath id="disc"><circle cx="340" cy="340" r="300"/></clipPath></defs>
+<circle cx="340" cy="340" r="300" fill="#141026"/>
+<g clip-path="url(#disc)">
+<circle cx="340" cy="330" r="150" fill="none" stroke="#3a3060" stroke-width="1"/>
+<circle cx="470" cy="180" r="70" fill="#1d1838"/><circle cx="448" cy="168" r="70" fill="#141026"/>
+<circle cx="180" cy="150" r="2.5" fill="#d9b45a"/><circle cx="230" cy="110" r="1.8" fill="#d9b45a"/><circle cx="150" cy="230" r="2" fill="#d9b45a"/><circle cx="540" cy="300" r="2.2" fill="#d9b45a"/><circle cx="520" cy="420" r="1.6" fill="#d9b45a"/><circle cx="200" cy="500" r="2" fill="#d9b45a"/><circle cx="480" cy="500" r="1.8" fill="#d9b45a"/><circle cx="130" cy="360" r="1.6" fill="#d9b45a"/><circle cx="340" cy="90" r="2" fill="#d9b45a"/>
+</g>
+<circle cx="340" cy="340" r="300" fill="none" stroke="#d9b45a" stroke-width="2"/>
+<circle cx="340" cy="340" r="288" fill="none" stroke="#8a6d2f" stroke-width="0.8"/>
+<g fill="none" stroke="#e6c56a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M314 306 C316 360 326 408 340 446 C354 408 364 360 366 306 L340 330 Z"/>
+<path d="M314 306 L286 206 L340 292"/>
+<path d="M366 306 L394 206 L340 292"/>
+<path d="M301 214 L298 248"/>
+<path d="M379 214 L382 248"/>
+<path d="M316 320 C324 316 334 318 340 326"/>
+<path d="M364 320 C356 316 346 318 340 326"/>
+</g>
+<ellipse cx="324" cy="342" rx="6" ry="8" fill="#e6c56a"/><ellipse cx="356" cy="342" rx="6" ry="8" fill="#e6c56a"/>
+<ellipse cx="340" cy="432" rx="8" ry="6" fill="#e6c56a"/>
+<text x="340" y="612" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="8" fill="#e6c56a">LE RENARD</text>
+</svg>

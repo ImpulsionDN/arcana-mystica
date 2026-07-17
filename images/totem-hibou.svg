@@ -1,0 +1,25 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg"><title>Emblème du hibou totem</title><desc>Un hibou stylisé en lignes dorées sur fond nocturne étoilé.</desc>
+<defs><clipPath id="disc"><circle cx="340" cy="340" r="300"/></clipPath></defs>
+<circle cx="340" cy="340" r="300" fill="#141026"/>
+<g clip-path="url(#disc)">
+<circle cx="340" cy="330" r="150" fill="none" stroke="#3a3060" stroke-width="1"/>
+<circle cx="470" cy="180" r="70" fill="#1d1838"/><circle cx="448" cy="168" r="70" fill="#141026"/>
+<circle cx="180" cy="150" r="2.5" fill="#d9b45a"/><circle cx="230" cy="110" r="1.8" fill="#d9b45a"/><circle cx="150" cy="230" r="2" fill="#d9b45a"/><circle cx="540" cy="300" r="2.2" fill="#d9b45a"/><circle cx="520" cy="420" r="1.6" fill="#d9b45a"/><circle cx="200" cy="500" r="2" fill="#d9b45a"/><circle cx="480" cy="500" r="1.8" fill="#d9b45a"/><circle cx="130" cy="360" r="1.6" fill="#d9b45a"/><circle cx="340" cy="90" r="2" fill="#d9b45a"/>
+</g>
+<circle cx="340" cy="340" r="300" fill="none" stroke="#d9b45a" stroke-width="2"/>
+<circle cx="340" cy="340" r="288" fill="none" stroke="#8a6d2f" stroke-width="0.8"/>
+<g fill="none" stroke="#e6c56a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M340 210 C300 214 268 236 256 276 C246 310 250 360 262 404 C274 448 300 486 340 500 C380 486 406 448 418 404 C430 360 434 310 424 276 C412 236 380 214 340 210 Z"/>
+<path d="M282 232 C266 210 250 206 236 214 C252 220 262 236 268 252"/>
+<path d="M398 232 C414 210 430 206 444 214 C428 220 418 236 412 252"/>
+<circle cx="304" cy="286" r="34"/><circle cx="376" cy="286" r="34"/>
+<path d="M340 300 L328 322 L340 332 L352 322 Z" fill="#e6c56a"/>
+<path d="M300 356 C316 372 364 372 380 356"/>
+<path d="M292 390 C316 410 364 410 388 390"/>
+<path d="M286 424 C316 448 364 448 394 424"/>
+<path d="M262 300 C240 320 232 356 244 392"/>
+<path d="M418 300 C440 320 448 356 436 392"/>
+</g>
+<circle cx="304" cy="286" r="9" fill="#e6c56a"/><circle cx="376" cy="286" r="9" fill="#e6c56a"/>
+<text x="340" y="612" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="8" fill="#e6c56a">LE HIBOU</text>
+</svg>

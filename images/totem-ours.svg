@@ -1,0 +1,23 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg"><title>Emblème de l'ours totem</title><desc>Un ours de face stylisé, en lignes dorées sur fond nocturne étoilé.</desc>
+<defs><clipPath id="disc"><circle cx="340" cy="340" r="300"/></clipPath></defs>
+<circle cx="340" cy="340" r="300" fill="#141026"/>
+<g clip-path="url(#disc)">
+<circle cx="340" cy="330" r="150" fill="none" stroke="#3a3060" stroke-width="1"/>
+<circle cx="470" cy="180" r="70" fill="#1d1838"/><circle cx="448" cy="168" r="70" fill="#141026"/>
+<circle cx="180" cy="150" r="2.5" fill="#d9b45a"/><circle cx="230" cy="110" r="1.8" fill="#d9b45a"/><circle cx="150" cy="230" r="2" fill="#d9b45a"/><circle cx="540" cy="300" r="2.2" fill="#d9b45a"/><circle cx="520" cy="420" r="1.6" fill="#d9b45a"/><circle cx="200" cy="500" r="2" fill="#d9b45a"/><circle cx="480" cy="500" r="1.8" fill="#d9b45a"/><circle cx="130" cy="360" r="1.6" fill="#d9b45a"/><circle cx="340" cy="90" r="2" fill="#d9b45a"/>
+</g>
+<circle cx="340" cy="340" r="300" fill="none" stroke="#d9b45a" stroke-width="2"/>
+<circle cx="340" cy="340" r="288" fill="none" stroke="#8a6d2f" stroke-width="0.8"/>
+<g fill="none" stroke="#e6c56a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M298 316 C292 274 314 250 340 250 C366 250 388 274 382 316 C388 366 372 414 340 436 C308 414 292 366 298 316 Z"/>
+<circle cx="300" cy="272" r="26"/><circle cx="380" cy="272" r="26"/>
+<circle cx="300" cy="272" r="12"/><circle cx="380" cy="272" r="12"/>
+<ellipse cx="340" cy="376" rx="34" ry="28"/>
+<path d="M340 358 C330 364 330 376 340 380 C350 376 350 364 340 358 Z" fill="#e6c56a"/>
+<path d="M340 380 L340 398"/>
+<path d="M340 390 C332 400 322 398 316 392"/>
+<path d="M340 390 C348 400 358 398 364 392"/>
+</g>
+<circle cx="320" cy="322" r="5" fill="#e6c56a"/><circle cx="360" cy="322" r="5" fill="#e6c56a"/>
+<text x="340" y="612" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="8" fill="#e6c56a">L'OURS</text>
+</svg>

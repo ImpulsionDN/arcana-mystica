@@ -1,0 +1,19 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg"><title>Emblème du serpent totem</title><desc>Un serpent en courbe élégante, en lignes dorées sur fond nocturne étoilé.</desc>
+<defs><clipPath id="disc"><circle cx="340" cy="340" r="300"/></clipPath></defs>
+<circle cx="340" cy="340" r="300" fill="#141026"/>
+<g clip-path="url(#disc)">
+<circle cx="340" cy="330" r="150" fill="none" stroke="#3a3060" stroke-width="1"/>
+<circle cx="470" cy="180" r="70" fill="#1d1838"/><circle cx="448" cy="168" r="70" fill="#141026"/>
+<circle cx="180" cy="150" r="2.5" fill="#d9b45a"/><circle cx="230" cy="110" r="1.8" fill="#d9b45a"/><circle cx="150" cy="230" r="2" fill="#d9b45a"/><circle cx="540" cy="300" r="2.2" fill="#d9b45a"/><circle cx="520" cy="420" r="1.6" fill="#d9b45a"/><circle cx="200" cy="500" r="2" fill="#d9b45a"/><circle cx="480" cy="500" r="1.8" fill="#d9b45a"/><circle cx="130" cy="360" r="1.6" fill="#d9b45a"/><circle cx="340" cy="90" r="2" fill="#d9b45a"/>
+</g>
+<circle cx="340" cy="340" r="300" fill="none" stroke="#d9b45a" stroke-width="2"/>
+<circle cx="340" cy="340" r="288" fill="none" stroke="#8a6d2f" stroke-width="0.8"/>
+<g fill="none" stroke="#e6c56a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M340 268 C296 286 292 336 332 356 C380 380 384 428 342 448 C316 460 292 452 288 428"/>
+<path d="M340 268 C352 260 360 250 358 238 C356 230 348 226 340 230 C332 226 324 230 322 238 C320 250 328 260 340 268 Z"/>
+<path d="M340 230 L340 214"/><path d="M340 214 L333 205"/><path d="M340 214 L347 205"/>
+<path d="M320 320 L308 314"/><path d="M328 344 L316 342"/><path d="M356 372 L368 366"/><path d="M360 400 L372 400"/>
+</g>
+<circle cx="332" cy="242" r="3.5" fill="#e6c56a"/><circle cx="348" cy="242" r="3.5" fill="#e6c56a"/>
+<text x="340" y="612" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="8" fill="#e6c56a">LE SERPENT</text>
+</svg>
