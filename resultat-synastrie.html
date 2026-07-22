@@ -129,6 +129,7 @@
   var loading = document.getElementById('loading');
   var erreur = document.getElementById('erreur');
   var resultat = document.getElementById('resultat');
+  var sessionId = new URLSearchParams(window.location.search).get('session_id') || '';
 
   if(!raw){
     loading.style.display='none';
@@ -199,7 +200,7 @@
       fetch(WORKER_URL, {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(data)
+        body: JSON.stringify(Object.assign({}, data, { session_id: sessionId }))
       }).then(function(r){ return r.json(); }).then(function(res){
         if(res.ok){
           emailStatus.textContent = '✅ Une copie a bien été envoyée à ' + data.email;

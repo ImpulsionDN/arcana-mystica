@@ -178,6 +178,12 @@
 
 <script>
   // === À BRANCHER : collez ici votre lien de paiement Stripe (laisser vide tant qu'il n'est pas prêt) ===
+  // IMPORTANT — à régler une fois dans le Dashboard Stripe (Payment Links → ce lien → Confirmation
+  // page → "Redirect customers to your website"), PAS dans ce fichier :
+  //   https://oracle-arcana.fr/resultat-synastrie.html?session_id={CHECKOUT_SESSION_ID}
+  // Stripe remplace automatiquement {CHECKOUT_SESSION_ID} par l'identifiant réel de la session au
+  // moment de la redirection. Sans ce réglage, resultat-synastrie.html ne recevra jamais de
+  // session_id et le Worker sécurisé refusera d'envoyer le rapport.
   const STRIPE_URL = "https://buy.stripe.com/4gMaEPfVg3M26badu2dZ60b";
 
   function fillDates(prefix){
