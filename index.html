@@ -852,6 +852,12 @@ window.syShow=function(k,el){
       .reve-rapport h3{font-family:'Playfair Display';color:var(--gold-deep);font-size:1.6rem;margin-bottom:1.2rem;text-align:center}
       .reve-rapport .corps p{margin:0 0 1rem;color:var(--ink);font-size:1.1rem;line-height:1.75}
       .reve-rapport .corps strong{color:var(--gold-deep);font-family:'Playfair Display';font-weight:600}
+      .reve-rapport .corps em{font-style:italic;color:var(--ink-soft)}
+      .reve-rapport .corps h2.reve-h1{font-family:'Playfair Display';font-weight:600;color:var(--gold-deep);font-size:1.5rem;text-align:left;margin:1.6rem 0 .8rem;line-height:1.3}
+      .reve-rapport .corps h3.reve-h2{font-family:'Playfair Display';font-weight:500;color:var(--gold-deep);font-size:1.25rem;text-align:left;margin:1.4rem 0 .6rem;line-height:1.3}
+      .reve-rapport .corps h4.reve-h3{font-family:'Playfair Display';font-weight:500;color:var(--gold-deep);font-size:1.08rem;text-align:left;margin:1.1rem 0 .5rem;line-height:1.3}
+      .reve-rapport .corps .reve-sep{text-align:center;color:var(--gold);font-size:1.05rem;margin:1.5rem 0;letter-spacing:.5rem}
+      .reve-rapport .corps>*:first-child{margin-top:0}
       .reve-rapport .rload{text-align:center;color:var(--ink-soft);font-style:italic;padding:1rem 0;line-height:1.8}
     </style>
 
@@ -1076,13 +1082,26 @@ window.syShow=function(k,el){
 </div>
 <script>
 window.REVES={
-  chute:{symb:"La Chute",txt:"Rêver que vous tombez dans le vide évoque une perte de contrôle ou d'appui dans votre vie éveillée. Ce n'est pas un mauvais présage&nbsp;: c'est souvent le signe qu'un changement demande à être accueilli, même s'il vous déstabilise. Votre inconscient vous invite à lâcher prise sur ce que vous ne pouvez plus retenir. Qu'est-ce qui, dans votre vie actuelle, vous donne cette sensation de ne plus rien maîtriser&nbsp;?"},
-  poursuite:{symb:"La Poursuite",txt:"Être poursuivi(e) dans un rêve traduit souvent une situation, une émotion ou une responsabilité que vous cherchez à fuir dans la réalité. Ce qui vous pourchasse n'est peut-être pas une menace, mais une part de vous-même qui réclame d'être regardée en face. Plus vous courez, plus elle s'accroche, jusqu'à ce que vous choisissiez de vous retourner. De quoi, ou de qui, essayez-vous de prendre de la distance en ce moment&nbsp;?"},
-  eau:{symb:"L'Eau",txt:"L'eau, dans les rêves, est le miroir de vos émotions profondes. Une eau calme reflète une paix intérieure retrouvée, tandis qu'une eau agitée ou trouble parle d'un trouble émotionnel encore mal identifié. Ce songe vous invite à plonger, sans crainte, vers ce que vous ressentez vraiment. Quelle émotion, ces derniers temps, cherche à remonter à la surface&nbsp;?"},
+  chute:{symb:"La Chute",txt:"Le symbole de la chute révèle un sentiment de perte de contrôle, ou la peur de lâcher prise dans un domaine de votre vie. Tomber en rêve, ce n'est pas échouer&nbsp;: c'est souvent le signe que quelque chose en vous cherche à se libérer d'un appui devenu trop rigide. Votre inconscient vous invite peut-être à accepter de ne pas tout maîtriser. Dans quel domaine de votre vie ressentez-vous, en ce moment, que le sol se dérobe un peu sous vos pieds&nbsp;?"},
+  poursuite:{symb:"La Poursuite",txt:"Être poursuivi(e) en rêve met en scène quelque chose que vous fuyez dans la vie éveillée — une émotion, une décision, une vérité. Ce qui vous poursuit n'est presque jamais un ennemi&nbsp;: c'est une part de vous qui demande à être regardée en face. Le soulagement vient souvent le jour où l'on se retourne. Qu'est-ce que vous évitez d'affronter en ce moment, et qui continue de vous rattraper&nbsp;?"},
+  eau:{symb:"L'Eau",txt:"L'eau est le miroir de vos émotions et de votre inconscient. Selon qu'elle est calme ou agitée, claire ou trouble, elle révèle l'état de votre monde intérieur. Rêver d'eau, c'est souvent que vos émotions cherchent à circuler, à être ressenties plutôt que retenues. Dans quel état était l'eau de votre rêve — et cela ressemble-t-il à votre météo intérieure du moment&nbsp;?"},
+  mer:{symb:"La Mer",txt:"La mer, vaste et profonde, symbolise l'inconscient et le monde des émotions. Rêver de la mer reflète souvent votre état intérieur&nbsp;: une mer calme évoque la sérénité et l'harmonie, tandis qu'une mer agitée trahit des tensions ou des sentiments contradictoires que vous n'osez pas affronter. Ses profondeurs représentent ce qui reste caché en vous — désirs enfouis, souvenirs anciens, intuitions. Contempler l'horizon marin annonce fréquemment un désir de liberté ou un besoin de prendre du recul. Ce rêve vous invite à écouter vos émotions et à accueillir ce qui monte des profondeurs plutôt qu'à le repousser."},
+  noyade:{symb:"La Noyade",txt:"La noyade traduit un sentiment de submersion émotionnelle&nbsp;: vous vous sentez peut-être dépassé par une situation, une responsabilité ou des émotions trop intenses pour être contenues. Ce rêve met en lumière une perte de contrôle et le besoin urgent de reprendre pied. Se débattre dans l'eau signale une lutte intérieure, tandis que se laisser couler peut refléter une forme de résignation ou d'épuisement. Loin d'être un présage funeste, il vous alerte&nbsp;: il est temps de demander de l'aide, d'alléger votre charge et de retrouver un espace où respirer."},
+  feu:{symb:"Le Feu",txt:"Le feu incarne la passion, la transformation et l'énergie vitale, mais aussi la colère et le danger. Un feu maîtrisé annonce un élan créateur, un désir ardent ou une force intérieure prête à se manifester. Un incendie dévorant, à l'inverse, révèle des émotions incontrôlées — colère, jalousie, ou une situation qui vous consume. Le feu détruit pour mieux renouveler&nbsp;: ce rêve marque souvent une période de changement profond, la fin d'un cycle et la naissance d'un autre. Il vous invite à canaliser cette énergie plutôt que de la laisser vous embraser."},
+  tempete:{symb:"La Tempête",txt:"La tempête reflète un bouleversement intérieur ou un conflit imminent. Vents violents, éclairs et vagues déchaînées traduisent des émotions refoulées qui cherchent enfin à s'exprimer. Ce rêve survient souvent dans les périodes de crise ou de grande incertitude, lorsque vous sentez que les événements vous échappent. Mais la tempête, aussi violente soit-elle, finit toujours par passer&nbsp;: elle purifie l'air et laisse place au calme. Ce songe vous rappelle que les épreuves actuelles sont passagères et qu'une éclaircie se prépare."},
+  inondation:{symb:"L'Inondation",txt:"L'inondation symbolise un débordement émotionnel&nbsp;: des sentiments longtemps contenus finissent par tout envahir. Voir l'eau monter et recouvrir ce qui vous entoure traduit l'impression d'être submergé par le stress, le chagrin ou des souvenirs douloureux. Ce rêve signale que vous ne parvenez plus à contenir ce qui vous habite. Pourtant, l'eau qui déborde fertilise aussi la terre&nbsp;: une fois le trop-plein évacué, un renouveau devient possible. Il vous encourage à exprimer ce que vous retenez avant que la pression ne devienne trop forte."},
+  neige:{symb:"La Neige",txt:"La neige évoque la pureté, le silence et une forme d'apaisement, mais aussi la froideur et l'isolement. Un paysage enneigé et paisible annonce une période de calme intérieur, un recommencement, une page blanche à écrire. À l'inverse, une neige glaçante ou une tempête de neige peut traduire un sentiment de solitude, des émotions gelées ou une distance affective. La neige recouvre le monde pour mieux le transformer&nbsp;: ce rêve vous invite à la patience, au repos, et à laisser mûrir en silence ce qui germera au printemps."},
+  pluie:{symb:"La Pluie",txt:"La pluie symbolise la libération émotionnelle et le renouveau. Rêver de pluie douce annonce souvent un apaisement, des larmes qui soulagent, ou la fin d'une période difficile&nbsp;: c'est le nettoyage nécessaire avant l'éclaircie. Une pluie battante ou orageuse, en revanche, peut refléter de la tristesse ou une accumulation de contrariétés. L'eau qui tombe du ciel nourrit la terre et annonce la croissance&nbsp;: ce rêve vous rappelle qu'après les larmes vient la renaissance, et que ce qui semble morose prépare en réalité un cycle fécond."},
   dents:{symb:"Les Dents qui tombent",txt:"Rêver que vos dents tombent est l'un des songes les plus fréquents&nbsp;: il touche souvent à la peur de perdre le contrôle, son image, ou sa capacité à s'exprimer. Ce n'est presque jamais littéral, c'est un cri silencieux de votre confiance en vous. Ce rêve peut aussi accompagner une période de transition ou de changement d'identité. Où, dans votre vie, avez-vous l'impression de perdre un peu de votre assurance&nbsp;?"},
   vol:{symb:"Le Vol",txt:"Voler dans un rêve est souvent l'un des plus beaux messages de l'inconscient&nbsp;: celui d'une liberté retrouvée ou désirée. Il peut signaler que vous êtes prêt(e) à vous élever au-dessus d'une situation qui vous pesait. La sensation de légèreté ressentie en vol reflète une force intérieure encore sous-estimée. Vers quoi, ou vers qui, aimeriez-vous prendre votre envol aujourd'hui&nbsp;?"},
-  mort:{symb:"La Mort symbolique",txt:"Rêver de la mort n'annonce presque jamais une fin réelle&nbsp;: elle symbolise une transformation profonde, la clôture d'un chapitre pour en ouvrir un autre. Ce songe accompagne souvent une renaissance intérieure, un passage d'une version de vous-même vers une autre. Ce qui « meurt » dans le rêve laisse toujours la place à quelque chose de neuf. Quelle partie de votre vie sentez-vous prête à se transformer&nbsp;?"},
-  examen:{symb:"L'Examen",txt:"Rêver de passer un examen, surtout non préparé, révèle une peur d'être jugé(e) ou de ne pas être à la hauteur d'une attente, la vôtre ou celle des autres. Ce songe ressurgit souvent lors d'une échéance importante ou d'une remise en question personnelle. Il ne mesure pas votre valeur réelle, mais la pression que vous vous imposez. Quelle situation, en ce moment, vous donne l'impression d'être évalué(e)&nbsp;?"},
+  mort:{symb:"La Mort symbolique",txt:"Rêver de mort est l'un des symboles les plus mal compris, et pourtant l'un des plus positifs. Il annonce rarement une fin réelle&nbsp;: il parle de transformation, de fin d'un cycle, d'une renaissance qui se prépare. Une version de vous s'achève pour laisser place à une autre. Quelle page de votre vie êtes-vous, peut-être, en train de tourner&nbsp;?"},
+  examen:{symb:"L'Examen",txt:"Rêver d'un examen — être en retard, ne pas être prêt(e), échouer — traduit une peur d'être jugé(e) ou de ne pas être à la hauteur. Ce rêve visite souvent ceux qui sont exigeants envers eux-mêmes. Il révèle une pression intérieure plus qu'une menace réelle. Dans quel domaine avez-vous le sentiment, en ce moment, d'être «&nbsp;testé(e)&nbsp;» ou de devoir prouver votre valeur&nbsp;?"},
+  retard:{symb:"Être en retard",txt:"Courir après le temps en rêve, rater un train, arriver trop tard, traduit une angoisse de manquer quelque chose d'important — une occasion, un tournant, un moment de votre vie. Ce rêve parle souvent d'un décalage entre là où vous êtes et là où vous croyez «&nbsp;devoir&nbsp;» être. Y a-t-il un rendez-vous avec vous-même que vous repoussez sans cesse&nbsp;?"},
+  nudite_public:{symb:"Nudité en public",txt:"Se retrouver nu(e) devant les autres révèle une peur d'être vu(e) tel(le) que vous êtes vraiment, sans masque ni protection. C'est le rêve de la vulnérabilité et de la peur du jugement. Mais il porte aussi une invitation&nbsp;: celle d'oser être authentique. Où, dans votre vie, avez-vous peur de montrer votre vrai visage&nbsp;?"},
+  perdre:{symb:"Se perdre",txt:"Errer sans retrouver son chemin, dans une ville ou un lieu inconnu, reflète un moment de doute sur votre direction de vie. Vous cherchez peut-être un repère, un sens, une réponse. Se perdre en rêve précède souvent une clarté nouvelle. Quelle décision ou quel carrefour vous laisse, en ce moment, sans boussole&nbsp;?"},
+  enfermement:{symb:"Enfermement",txt:"Rêver d'être enfermé(e), coincé(e), incapable de sortir, traduit un sentiment de blocage — une situation, une relation ou un schéma dont vous ne voyez pas l'issue. La bonne nouvelle&nbsp;: ce rêve signale que votre inconscient a déjà identifié la prison, première étape pour en sortir. Qu'est-ce qui, dans votre vie, vous donne cette impression de tourner en rond&nbsp;?"},
+  guerre:{symb:"Guerre",txt:"Rêver de guerre, de conflit ou de combat met en scène une tension intérieure&nbsp;: deux parts de vous qui s'affrontent, un choix déchirant, une lutte que vous menez. Ce rêve n'annonce pas un danger extérieur, mais un conflit à pacifier en vous. Quelles deux forces contraires vous tiraillent, en ce moment, dans une direction opposée&nbsp;?"},
+  accident:{symb:"Accident",txt:"Rêver d'un accident exprime une peur de perdre le contrôle, ou l'appréhension d'un changement brutal. Ce n'est pas une prémonition&nbsp;: c'est votre inconscient qui exprime une inquiétude, souvent pour vous inviter à ralentir et à écouter un signal que vous négligez. Y a-t-il, dans votre vie, un domaine où vous allez peut-être trop vite pour vous&nbsp;?"},
   serpent:{symb:"Le Serpent",txt:"Le serpent est un symbole ancien et ambivalent&nbsp;: il représente à la fois la peur, la tentation, et la guérison ou le renouveau. Selon son attitude dans votre rêve, il peut signaler une menace latente ou, au contraire, une transformation salvatrice en cours. Il vous invite à regarder ce qui, chez vous, cherche à muer. Ce serpent vous semblait-il menaçant, ou simplement présent&nbsp;?"},
   maison:{symb:"La Maison",txt:"La maison, dans les rêves, représente votre propre psychisme&nbsp;: chaque pièce, chaque étage, chaque porte fermée évoque une facette de vous-même. Découvrir une pièce inconnue signale souvent une partie de votre personnalité encore inexplorée. Ce songe vous invite à l'introspection, pièce après pièce. Quelle pièce de ce rêve vous a le plus marqué(e), et pourquoi&nbsp;?"},
   bebe:{symb:"Le Bébé",txt:"Rêver d'un bébé évoque rarement une grossesse littérale&nbsp;: il symbolise un nouveau projet, une idée fragile ou une part de vous-même qui demande à naître et à être protégée. Ce songe accompagne souvent les débuts d'un chemin encore incertain mais plein de promesses. Prendre soin du bébé dans le rêve reflète la façon dont vous prenez soin de ce projet naissant. Quelle nouvelle idée, ou quel nouveau projet, essayez-vous de faire grandir en ce moment&nbsp;?"}
@@ -1273,10 +1292,33 @@ window.lancerPaiementReve=function(){
 function reveEscapeHtml(s){
   return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
+function reveInline(s){
+  return s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/\*([^*]+)\*/g,"<em>$1</em>");
+}
 function reveFormatRapport(text){
-  var safe=reveEscapeHtml(text).replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
-  var paras=safe.split(/\n{2,}/); if(paras.length<2) paras=safe.split(/\n/);
-  return paras.map(function(p){ p=p.trim(); return p?("<p>"+p.replace(/\n/g,"<br>")+"</p>"):""; }).join("");
+  var lignes=reveEscapeHtml(text).split(/\r?\n/);
+  var blocs=[], tampon=[];
+  function vider(){
+    if(tampon.length){
+      var joint=tampon.join('<br>');
+      if(joint.trim()) blocs.push('<p>'+joint+'</p>');
+      tampon=[];
+    }
+  }
+  lignes.forEach(function(brute){
+    var ligne=brute.trim();
+    if(ligne===''){ vider(); return; }
+    if(/^-{3,}$/.test(ligne)){ vider(); blocs.push('<div class="reve-sep">✦</div>'); return; }
+    var h3=ligne.match(/^###\s+(.*)$/);
+    if(h3){ vider(); blocs.push('<h4 class="reve-h3">'+reveInline(h3[1])+'</h4>'); return; }
+    var h2=ligne.match(/^##\s+(.*)$/);
+    if(h2){ vider(); blocs.push('<h3 class="reve-h2">'+reveInline(h2[1])+'</h3>'); return; }
+    var h1=ligne.match(/^#\s+(.*)$/);
+    if(h1){ vider(); blocs.push('<h2 class="reve-h1">'+reveInline(h1[1])+'</h2>'); return; }
+    tampon.push(reveInline(ligne));
+  });
+  vider();
+  return blocs.join('');
 }
 function reveChargerRapportPaye(){
   var params=new URLSearchParams(window.location.search);
