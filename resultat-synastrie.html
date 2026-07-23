@@ -95,12 +95,12 @@
 
   <div id="loading">
     <div class="spin"></div>
-    <p>Calcul de votre synastrie en cours…</p>
+    <p>Vérification de votre paiement et calcul de votre synastrie…</p>
   </div>
 
   <div id="erreur">
     <h3>Résultat introuvable</h3>
-    <p>Nous n'avons pas retrouvé vos informations. Cela arrive si cette page a été ouverte directement, sans passer par une commande.</p>
+    <p>Nous n'avons pas pu vérifier votre paiement ou retrouver vos informations. Cela peut arriver si cette page a été ouverte directement sans passer par une commande, ou si le paiement n'a pas abouti.</p>
     <p style="margin-top:14px"><a href="synastrie.html">← Retourner à la page de commande</a></p>
   </div>
 
@@ -125,49 +125,53 @@
   const WORKER_URL = "https://synastrie-passerelle.dni-business44.workers.dev";
 
 (function(){
-  var raw = localStorage.getItem('oa_synastrie');
   var loading = document.getElementById('loading');
   var erreur = document.getElementById('erreur');
   var resultat = document.getElementById('resultat');
   var sessionId = new URLSearchParams(window.location.search).get('session_id') || '';
 
-  if(!raw){
+  if(!sessionId || !WORKER_URL){
     loading.style.display='none';
     erreur.style.display='block';
     return;
   }
 
-  var data;
-  try{ data = JSON.parse(raw); }catch(e){ data = null; }
-  if(!data || !data.p1n || !data.p2n){
-    loading.style.display='none';
-    erreur.style.display='block';
-    return;
+  function portraitHTML(prenom, signe, cv){
+    return '<div class="portrait">'+
+      '<div class="prenom">'+prenom+'</div>'+
+      '<div class="signe">'+signe.nom+' · '+signe.element+'</div>'+
+      '<h4>☀ Signe solaire</h4><p>'+signe.soleil+'</p>'+
+      '<h4>♥ En amour</h4><p>'+signe.amour+'</p>'+
+      '<h4>✦ Chemin de vie</h4>'+
+      '<span class="cv-num">'+cv+'</span><span style="font-size:14.5px;color:var(--ink-soft)">'+CHEMIN_VIE[cv]+'</span>'+
+      '</div>';
   }
 
-  setTimeout(function(){
-    var s1 = getSigne(parseInt(data.p1j), parseInt(data.p1m));
-    var s2 = getSigne(parseInt(data.p2j), parseInt(data.p2m));
-    var cv1 = cheminDeVie(parseInt(data.p1j), parseInt(data.p1m), parseInt(data.p1a));
-    var cv2 = cheminDeVie(parseInt(data.p2j), parseInt(data.p2m), parseInt(data.p2a));
+  // Le Worker vérifie le paiement auprès de Stripe, lit les prénoms/dates
+  // dans les custom_fields de la session, envoie l'email, et renvoie ces
+  // mêmes données pour l'affichage ci-dessous.
+  fetch(WORKER_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ session_id: sessionId })
+  }).then(function(r){ return r.json(); }).then(function(data){
+    if(!data.ok){
+      loading.style.display='none';
+      erreur.style.display='block';
+      return;
+    }
+
+    var s1 = getSigne(data.p1j, data.p1m);
+    var s2 = getSigne(data.p2j, data.p2m);
+    var cv1 = cheminDeVie(data.p1j, data.p1m, data.p1a);
+    var cv2 = cheminDeVie(data.p2j, data.p2m, data.p2a);
     var compat = compatElements(s1.element, s2.element);
+    var compatNum = compatNumero(cv1, cv2);
 
     document.getElementById('sousTitre').textContent = data.p1n + ' & ' + data.p2n + ' — le fruit de vos deux ciels de naissance, révélé.';
 
-    function portraitHTML(prenom, signe, cv){
-      return '<div class="portrait">'+
-        '<div class="prenom">'+prenom+'</div>'+
-        '<div class="signe">'+signe.nom+' · '+signe.element+'</div>'+
-        '<h4>☀ Signe solaire</h4><p>'+signe.soleil+'</p>'+
-        '<h4>♥ En amour</h4><p>'+signe.amour+'</p>'+
-        '<h4>✦ Chemin de vie</h4>'+
-        '<span class="cv-num">'+cv+'</span><span style="font-size:14.5px;color:var(--ink-soft)">'+CHEMIN_VIE[cv]+'</span>'+
-        '</div>';
-    }
     document.getElementById('duoPortraits').innerHTML =
       portraitHTML(data.p1n, s1, cv1) + portraitHTML(data.p2n, s2, cv2);
-
-    var compatNum = compatNumero(cv1, cv2);
 
     document.getElementById('coupleSection').innerHTML =
       '<div class="couple-sub">'+
@@ -193,27 +197,13 @@
     loading.style.display='none';
     resultat.style.display='block';
 
-    // Envoi automatique de l'email via le Worker Cloudflare (Resend)
     var emailStatus = document.getElementById('emailStatus');
     document.getElementById('emailDest').textContent = data.email;
-    if(WORKER_URL){
-      fetch(WORKER_URL, {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(Object.assign({}, data, { session_id: sessionId }))
-      }).then(function(r){ return r.json(); }).then(function(res){
-        if(res.ok){
-          emailStatus.textContent = '✅ Une copie a bien été envoyée à ' + data.email;
-        } else {
-          emailStatus.textContent = '⚠️ L\'email n\'a pas pu être envoyé, mais votre résultat reste affiché ci-dessus — pensez à l\'enregistrer.';
-        }
-      }).catch(function(){
-        emailStatus.textContent = '⚠️ L\'email n\'a pas pu être envoyé, mais votre résultat reste affiché ci-dessus — pensez à l\'enregistrer.';
-      });
-    } else {
-      emailStatus.style.display='none';
-    }
-  }, 900);
+    emailStatus.textContent = '✅ Une copie a bien été envoyée à ' + data.email;
+  }).catch(function(){
+    loading.style.display='none';
+    erreur.style.display='block';
+  });
 })();
 </script>
 </body>

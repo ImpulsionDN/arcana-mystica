@@ -2,29 +2,41 @@
 
 const SIGNES = [
   {nom:"Bélier", debut:[3,21], fin:[4,19], element:"Feu",
-    soleil:"Vous êtes animé(e) d'une énergie pionnière : vous aimez initier, oser, foncer là où d'autres hésitent. Votre franchise et votre courage inspirent votre entourage, même si votre impatience naturelle vous pousse parfois à vouloir tout, tout de suite. Votre force est là : dans cet élan qui ne demande qu'à être canalisé vers de grands projets."},
+    soleil:"Vous êtes animé(e) d'une énergie pionnière : vous aimez initier, oser, foncer là où d'autres hésitent. Votre franchise et votre courage inspirent votre entourage, même si votre impatience naturelle vous pousse parfois à vouloir tout, tout de suite. Votre force est là : dans cet élan qui ne demande qu'à être canalisé vers de grands projets.",
+    amour:"En amour, vous aimez conquérir plus qu'être conquis(e). La déclaration franche et l'élan spontané vous ressemblent bien plus que la stratégie de séduction. Une fois engagé(e), votre loyauté est totale, à condition que la flamme reste vivante."},
   {nom:"Taureau", debut:[4,20], fin:[5,20], element:"Terre",
-    soleil:"Vous incarnez la stabilité, la sensualité et la persévérance. Ce que vous construisez, vous le construisez pour durer. Votre attachement au confort, à la beauté et aux plaisirs simples de la vie n'est pas un caprice : c'est votre façon d'honorer l'existence. Votre patience est une force rare dans un monde pressé."},
+    soleil:"Vous incarnez la stabilité, la sensualité et la persévérance. Ce que vous construisez, vous le construisez pour durer. Votre attachement au confort, à la beauté et aux plaisirs simples de la vie n'est pas un caprice : c'est votre façon d'honorer l'existence. Votre patience est une force rare dans un monde pressé.",
+    amour:"En amour, vous cherchez la sécurité et la sensualité avant tout. Vous n'aimez pas à la légère, mais quand c'est le cas, c'est pour construire quelque chose qui dure. La fidélité et la présence sont votre langage d'amour."},
   {nom:"Gémeaux", debut:[5,21], fin:[6,20], element:"Air",
-    soleil:"Curieux(se) et vif(ve) d'esprit, vous butinez les idées, les rencontres et les expériences avec un appétit inépuisable. Votre don pour les mots et votre adaptabilité sont vos plus grands atouts. Votre esprit a besoin de mouvement autant que de matière à penser : offrez-lui de la diversité, il vous le rendra en créativité."},
+    soleil:"Curieux(se) et vif(ve) d'esprit, vous butinez les idées, les rencontres et les expériences avec un appétit inépuisable. Votre don pour les mots et votre adaptabilité sont vos plus grands atouts. Votre esprit a besoin de mouvement autant que de matière à penser : offrez-lui de la diversité, il vous le rendra en créativité.",
+    amour:"En amour, c'est d'abord la tête qui doit être séduite : sans complicité intellectuelle et sans rire partagé, rien ne se passe vraiment. Vous avez besoin de variété et de conversation pour que la flamme reste vive."},
   {nom:"Cancer", debut:[6,21], fin:[7,22], element:"Eau",
-    soleil:"Votre sensibilité est une boussole : vous ressentez les atmosphères, protégez ceux que vous aimez, et créez du foyer partout où vous passez. Votre mémoire affective est immense, et votre intuition, précieuse. Ce que le monde perçoit parfois comme de la vulnérabilité est en réalité une profondeur de cœur rare."},
+    soleil:"Votre sensibilité est une boussole : vous ressentez les atmosphères, protégez ceux que vous aimez, et créez du foyer partout où vous passez. Votre mémoire affective est immense, et votre intuition, précieuse. Ce que le monde perçoit parfois comme de la vulnérabilité est en réalité une profondeur de cœur rare.",
+    amour:"En amour, vous donnez tout, sans compter, dès que la confiance est là. Le foyer et la famille sont au cœur de votre vision du couple. Votre sensibilité a besoin d'être rassurée régulièrement pour s'épanouir."},
   {nom:"Lion", debut:[7,23], fin:[8,22], element:"Feu",
-    soleil:"Vous êtes fait(e) pour rayonner. Votre générosité, votre créativité et votre besoin d'être reconnu(e) ne sont pas de la vanité : c'est le feu qui vous pousse à donner le meilleur de vous-même et à illuminer ceux qui vous entourent. Votre cœur est grand, et votre loyauté, indéfectible."},
+    soleil:"Vous êtes fait(e) pour rayonner. Votre générosité, votre créativité et votre besoin d'être reconnu(e) ne sont pas de la vanité : c'est le feu qui vous pousse à donner le meilleur de vous-même et à illuminer ceux qui vous entourent. Votre cœur est grand, et votre loyauté, indéfectible.",
+    amour:"En amour, vous aimez avec générosité et panache, souvent de façon spectaculaire. Vous avez besoin d'admiration et de gestes visibles. En retour, votre loyauté est sans faille."},
   {nom:"Vierge", debut:[8,23], fin:[9,22], element:"Terre",
-    soleil:"Votre sens du détail et votre volonté d'être utile sont précieux : vous voyez ce que d'autres ne voient pas, et vous savez transformer le chaos en ordre. Votre exigence envers vous-même est grande — apprenez à la doser avec autant de bienveillance que vous en offrez aux autres."},
+    soleil:"Votre sens du détail et votre volonté d'être utile sont précieux : vous voyez ce que d'autres ne voient pas, et vous savez transformer le chaos en ordre. Votre exigence envers vous-même est grande — apprenez à la doser avec autant de bienveillance que vous en offrez aux autres.",
+    amour:"En amour, vous montrez votre attachement par les actes plus que par les mots : un service rendu vaut mille déclarations. Vous avez besoin de sentir que la relation progresse concrètement pour vous sentir en sécurité."},
   {nom:"Balance", debut:[9,23], fin:[10,22], element:"Air",
-    soleil:"Votre quête d'harmonie et de justice guide vos choix. Vous avez un sens esthétique raffiné et un talent naturel pour la diplomatie. Votre besoin de relation et d'équilibre n'est pas une faiblesse : c'est ce qui vous rend capable de créer du lien là où d'autres créent de la division."},
+    soleil:"Votre quête d'harmonie et de justice guide vos choix. Vous avez un sens esthétique raffiné et un talent naturel pour la diplomatie. Votre besoin de relation et d'équilibre n'est pas une faiblesse : c'est ce qui vous rend capable de créer du lien là où d'autres créent de la division.",
+    amour:"En amour, vous êtes fait(e) pour la relation à deux — le couple est presque une nécessité pour vous. Charme et diplomatie sont vos outils naturels de séduction, et l'harmonie prime sur tout."},
   {nom:"Scorpion", debut:[10,23], fin:[11,21], element:"Eau",
-    soleil:"Votre intensité est votre signature : vous ressentez tout en profondeur, et vous avez un instinct rare pour percevoir ce qui se cache sous la surface. Votre pouvoir de transformation — de vous-même comme des situations — est immense. Ce que l'on prend parfois pour du mystère est en réalité une force de régénération peu commune."},
+    soleil:"Votre intensité est votre signature : vous ressentez tout en profondeur, et vous avez un instinct rare pour percevoir ce qui se cache sous la surface. Votre pouvoir de transformation — de vous-même comme des situations — est immense. Ce que l'on prend parfois pour du mystère est en réalité une force de régénération peu commune.",
+    amour:"En amour, vous ne faites rien à moitié : la fusion, l'intensité et la loyauté absolue sont votre marque. La confiance se mérite, mais une fois acquise, votre engagement est total."},
   {nom:"Sagittaire", debut:[11,22], fin:[12,21], element:"Feu",
-    soleil:"Votre soif de sens et d'horizons larges vous pousse à explorer, apprendre, voyager — que ce soit à travers le monde ou à travers les idées. Votre optimisme et votre franchise sont contagieux. Vous avez besoin de liberté comme d'autres ont besoin d'air : offrez-vous-en, votre joie de vivre en dépend."},
+    soleil:"Votre soif de sens et d'horizons larges vous pousse à explorer, apprendre, voyager — que ce soit à travers le monde ou à travers les idées. Votre optimisme et votre franchise sont contagieux. Vous avez besoin de liberté comme d'autres ont besoin d'air : offrez-vous-en, votre joie de vivre en dépend.",
+    amour:"En amour, vous avez besoin de liberté et d'aventure partagée — un couple qui s'enferme dans la routine vous étouffe. Votre franchise cache une générosité de cœur sincère et un vrai désir de grandir à deux."},
   {nom:"Capricorne", debut:[12,22], fin:[1,19], element:"Terre",
-    soleil:"Votre discipline et votre ambition tranquille vous permettent de construire, pierre après pierre, ce que d'autres abandonnent en route. Votre sens des responsabilités est grand, et votre patience finit toujours par porter ses fruits. Derrière votre sérieux se cache souvent un humour discret que seuls les proches connaissent."},
+    soleil:"Votre discipline et votre ambition tranquille vous permettent de construire, pierre après pierre, ce que d'autres abandonnent en route. Votre sens des responsabilités est grand, et votre patience finit toujours par porter ses fruits. Derrière votre sérieux se cache souvent un humour discret que seuls les proches connaissent.",
+    amour:"En amour, vous avancez lentement mais sûrement : la confiance se construit avec le temps, jamais dans la précipitation. Une fois l'engagement pris, il est sérieux et durable."},
   {nom:"Verseau", debut:[1,20], fin:[2,18], element:"Air",
-    soleil:"Votre originalité et votre indépendance d'esprit vous rendent précieux(se) : vous voyez le monde sous un angle différent, et cette différence est votre plus grande richesse. Votre engagement pour des causes plus grandes que vous-même révèle un idéalisme sincère. Vous êtes fait(e) pour innover, pas pour suivre."},
+    soleil:"Votre originalité et votre indépendance d'esprit vous rendent précieux(se) : vous voyez le monde sous un angle différent, et cette différence est votre plus grande richesse. Votre engagement pour des causes plus grandes que vous-même révèle un idéalisme sincère. Vous êtes fait(e) pour innover, pas pour suivre.",
+    amour:"En amour, vous avez besoin d'un(e) partenaire qui soit aussi un(e) ami(e) proche, avec qui partager des idées autant que des sentiments. L'indépendance reste précieuse même en couple."},
   {nom:"Poissons", debut:[2,19], fin:[3,20], element:"Eau",
-    soleil:"Votre sensibilité et votre imagination sont sans limites : vous ressentez le monde à travers un voile poétique qui vous permet de créer, de compatir et de rêver plus grand que la réalité ne le permet parfois. Votre intuition est un don rare — apprenez à lui faire confiance autant qu'à votre raison."}
+    soleil:"Votre sensibilité et votre imagination sont sans limites : vous ressentez le monde à travers un voile poétique qui vous permet de créer, de compatir et de rêver plus grand que la réalité ne le permet parfois. Votre intuition est un don rare — apprenez à lui faire confiance autant qu'à votre raison.",
+    amour:"En amour, vous vous fondez complètement dans la relation, parfois jusqu'à en perdre vos propres contours. Votre romantisme et votre empathie sont sans limites — gardez un peu d'ancrage pour ne pas vous oublier."}
 ];
 
 function getSigne(jour, mois){
@@ -80,4 +92,18 @@ const ELEMENT_COMPAT = {
 function compatElements(e1, e2){
   const key1 = e1+"-"+e2, key2 = e2+"-"+e1;
   return ELEMENT_COMPAT[key1] || ELEMENT_COMPAT[key2];
+}
+
+/* Compatibilité numérologique (écart entre chemins de vie) */
+function numeroEquiv(n){ return n===11?2:(n===22?4:(n===33?6:n)); }
+const NUMERO_COMPAT_BANDES = [
+  {max:0, score:90, texte:"Vous partagez la même vibration de fond : une vision de la vie et des priorités très proches, qui crée une compréhension mutuelle presque instantanée."},
+  {max:2, score:78, texte:"Vos chemins de vie sont proches : assez semblables pour se comprendre facilement, assez différents pour continuer à s'apprendre l'un l'autre."},
+  {max:4, score:66, texte:"Vos chemins de vie demandent un vrai effort de traduction mutuelle : vos priorités de fond ne sont pas les mêmes, mais cette différence peut devenir une vraie richesse si vous apprenez à l'accueillir."},
+  {max:99, score:56, texte:"Vos chemins de vie sont très contrastés : vos moteurs profonds diffèrent nettement. C'est un vrai défi de couple, mais aussi une formidable occasion de grandir au contact d'une façon de vivre très différente de la vôtre."}
+];
+function compatNumero(n1, n2){
+  const diff = Math.abs(numeroEquiv(n1) - numeroEquiv(n2));
+  for(const b of NUMERO_COMPAT_BANDES){ if(diff<=b.max) return b; }
+  return NUMERO_COMPAT_BANDES[NUMERO_COMPAT_BANDES.length-1];
 }

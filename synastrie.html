@@ -52,27 +52,12 @@
   .rec span{font-size:13px; color:var(--ink-soft)}
   @media(max-width:640px){.receive{grid-template-columns:1fr 1fr}}
 
-  .form{max-width:640px; margin:40px auto 0; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:34px 34px 30px; box-shadow:0 12px 34px rgba(120,95,40,.10)}
+  .form{max-width:640px; margin:40px auto 0; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:34px 34px 30px; box-shadow:0 12px 34px rgba(120,95,40,.10); text-align:center}
   .form h2{font-family:var(--display); font-weight:600; font-size:30px; color:var(--ink); text-align:center; margin-bottom:6px}
   .form .intro{text-align:center; font-size:14px; color:var(--ink-soft); margin-bottom:24px}
-  .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
-  @media(max-width:600px){.duo{grid-template-columns:1fr}}
-  .person{border:1px solid var(--line); border-radius:16px; padding:18px 16px; background:#fffefb}
-  .person h4{font-family:var(--display); font-size:18px; color:var(--rose); margin-bottom:12px; text-align:center}
-  .field{margin-bottom:14px}
-  .field label{display:block; font-weight:700; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:8px}
-  input[type=text], input[type=email]{width:100%; font-family:var(--sans); font-size:16px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); outline:none; transition:border-color .2s}
-  input:focus, select:focus{border-color:var(--gold)}
-  .row{display:flex; gap:8px; flex-wrap:wrap}
-  .row select{flex:1; min-width:75px; font-family:var(--sans); font-size:14px; padding:12px 8px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; outline:none}
-  .fieldmail{margin-top:22px}
-  .hint{font-size:12.5px; color:var(--ink-soft); margin-top:8px; line-height:1.4}
-  .btn{width:100%; margin-top:18px; font-family:var(--sans); font-weight:700; font-size:17px; letter-spacing:.4px; color:#FBF6EA; border:none; cursor:pointer; padding:17px 28px; border-radius:40px; background:linear-gradient(180deg,#c98ba5,#8a4d63); box-shadow:0 10px 24px rgba(138,77,99,.28); transition:filter .2s, transform .2s}
+  .btn{display:inline-block; width:100%; margin-top:18px; font-family:var(--sans); font-weight:700; font-size:17px; letter-spacing:.4px; color:#FBF6EA; text-decoration:none; text-align:center; border:none; cursor:pointer; padding:17px 28px; border-radius:40px; background:linear-gradient(180deg,#c98ba5,#8a4d63); box-shadow:0 10px 24px rgba(138,77,99,.28); transition:filter .2s, transform .2s}
   .btn:hover{filter:brightness(1.06); transform:translateY(-2px)}
   .secure{text-align:center; font-size:13px; color:var(--ink-soft); margin-top:14px}
-  .msg{margin-top:16px; padding:14px 16px; border-radius:12px; font-size:14px; line-height:1.5; display:none}
-  .msg.err{display:block; background:#fbeaf0; color:#8a3b5e; border:1px solid #e6c2d2}
-  .msg.ok{display:block; background:#eef5ee; color:#3a6a52; border:1px solid #cfe4d2}
 
   .faq{max-width:620px; margin:34px auto 0}
   .faq h3{font-family:var(--display); font-size:26px; color:var(--ink); text-align:center; margin-bottom:16px; font-weight:600}
@@ -114,56 +99,21 @@
     <div class="rec"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><b>Reçu par email</b><span>en document PDF</span></div>
   </div>
 
+  <!--
+    IMPORTANT — à régler une fois dans le Dashboard Stripe (Payment Links → ce lien), PAS dans ce fichier :
+    1) Confirmation page → "Redirect customers to your website" :
+         https://oracle-arcana.fr/resultat-synastrie.html?session_id={CHECKOUT_SESSION_ID}
+       Stripe remplace automatiquement {CHECKOUT_SESSION_ID} par l'identifiant réel de la session.
+    2) Custom fields (Collect additional information) : 8 champs à créer, un par donnée
+       (p1_prenom, p1_jour, p1_mois, p1_annee, p2_prenom, p2_jour, p2_mois, p2_annee).
+       Sans ces réglages, resultat-synastrie.html et le Worker sécurisé ne pourront pas
+       fonctionner : pas de session_id, pas de données à lire.
+  -->
   <div class="form">
-    <h2>Vos deux dates de naissance</h2>
-    <p class="intro">Une seule donnée par personne : votre date de naissance suffit à révéler vos signes et leur alliance.</p>
-
-    <div class="duo">
-      <div class="person">
-        <h4>✦ Personne 1</h4>
-        <div class="field"><label>Prénom</label><input type="text" id="p1_prenom" placeholder="Prénom"></div>
-        <div class="field"><label>Date de naissance</label>
-          <div class="row">
-            <select id="p1_jour"><option value="" selected disabled>Jour</option></select>
-            <select id="p1_mois">
-              <option value="" selected disabled>Mois</option>
-              <option value="1">Janv.</option><option value="2">Févr.</option><option value="3">Mars</option>
-              <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
-              <option value="7">Juil.</option><option value="8">Août</option><option value="9">Sept.</option>
-              <option value="10">Oct.</option><option value="11">Nov.</option><option value="12">Déc.</option>
-            </select>
-            <select id="p1_annee"><option value="" selected disabled>Année</option></select>
-          </div>
-        </div>
-      </div>
-      <div class="person">
-        <h4>✦ Personne 2</h4>
-        <div class="field"><label>Prénom</label><input type="text" id="p2_prenom" placeholder="Prénom"></div>
-        <div class="field"><label>Date de naissance</label>
-          <div class="row">
-            <select id="p2_jour"><option value="" selected disabled>Jour</option></select>
-            <select id="p2_mois">
-              <option value="" selected disabled>Mois</option>
-              <option value="1">Janv.</option><option value="2">Févr.</option><option value="3">Mars</option>
-              <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
-              <option value="7">Juil.</option><option value="8">Août</option><option value="9">Sept.</option>
-              <option value="10">Oct.</option><option value="11">Nov.</option><option value="12">Déc.</option>
-            </select>
-            <select id="p2_annee"><option value="" selected disabled>Année</option></select>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field fieldmail">
-      <label>Email (pour recevoir votre synastrie)</label>
-      <input type="email" id="email" placeholder="vous@exemple.fr">
-    </div>
-
-    <button class="btn" onclick="order()">Commander notre synastrie — 19 €</button>
-    <p style="text-align:center; font-size:13px; color:#7c7365; margin-top:10px;">À l'étape suivante (paiement sécurisé Stripe), il vous sera à nouveau demandé vos deux dates de naissance — c'est normal, cela nous permet de vérifier vos informations avant de préparer votre document.</p>
+    <h2>Recevez votre synastrie</h2>
+    <p class="intro">Vous allez être redirigé(e) vers notre partenaire de paiement sécurisé Stripe, où vous renseignerez les prénoms et dates de naissance nécessaires à votre synastrie.</p>
+    <a class="btn" href="https://buy.stripe.com/4gMaEPfVg3M26badu2dZ60b">Commander notre synastrie — 19 €</a>
     <div class="secure">Paiement sécurisé · Résultat instantané à l'écran</div>
-    <div class="msg" id="msg"></div>
   </div>
 
   <div class="faq">
@@ -176,47 +126,5 @@
   <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
 </div>
 
-<script>
-  // === À BRANCHER : collez ici votre lien de paiement Stripe (laisser vide tant qu'il n'est pas prêt) ===
-  // IMPORTANT — à régler une fois dans le Dashboard Stripe (Payment Links → ce lien → Confirmation
-  // page → "Redirect customers to your website"), PAS dans ce fichier :
-  //   https://oracle-arcana.fr/resultat-synastrie.html?session_id={CHECKOUT_SESSION_ID}
-  // Stripe remplace automatiquement {CHECKOUT_SESSION_ID} par l'identifiant réel de la session au
-  // moment de la redirection. Sans ce réglage, resultat-synastrie.html ne recevra jamais de
-  // session_id et le Worker sécurisé refusera d'envoyer le rapport.
-  const STRIPE_URL = "https://buy.stripe.com/4gMaEPfVg3M26badu2dZ60b";
-
-  function fillDates(prefix){
-    const j=document.getElementById(prefix+'_jour');
-    for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;j.appendChild(o);}
-    const yy=document.getElementById(prefix+'_annee');
-    for(let y=2012;y>=1940;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
-  }
-  fillDates('p1'); fillDates('p2');
-
-  function order(){
-    const msg=document.getElementById('msg');
-    const email=document.getElementById('email').value.trim();
-    const p1n=document.getElementById('p1_prenom').value.trim();
-    const p2n=document.getElementById('p2_prenom').value.trim();
-    const p1j=document.getElementById('p1_jour').value, p1m=document.getElementById('p1_mois').value, p1a=document.getElementById('p1_annee').value;
-    const p2j=document.getElementById('p2_jour').value, p2m=document.getElementById('p2_mois').value, p2a=document.getElementById('p2_annee').value;
-
-    if(!email || !/.+@.+\..+/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre synastrie."; return; }
-    if(!p1n || !p2n){ msg.className='msg err'; msg.textContent="Merci d'indiquer les deux prénoms."; return; }
-    if(!p1j || !p1m || !p1a){ msg.className='msg err'; msg.textContent="Merci d'indiquer la date de naissance complète de la Personne 1."; return; }
-    if(!p2j || !p2m || !p2a){ msg.className='msg err'; msg.textContent="Merci d'indiquer la date de naissance complète de la Personne 2."; return; }
-
-    const data = { email, p1n, p1j, p1m, p1a, p2n, p2j, p2m, p2a };
-    localStorage.setItem('oa_synastrie', JSON.stringify(data));
-
-    if(STRIPE_URL){
-      window.location.href = STRIPE_URL + (STRIPE_URL.includes('?')?'&':'?') + 'prefilled_email=' + encodeURIComponent(email);
-    } else {
-      // En attendant la création du lien Stripe : accès direct au résultat pour test
-      window.location.href = 'resultat-synastrie.html';
-    }
-  }
-</script>
 </body>
 </html>
