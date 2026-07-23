@@ -68,10 +68,6 @@
   .analyse h4{font-family:var(--display); font-weight:600; font-size:16px; color:var(--gold-deep); margin:20px 0 8px}
   .analyse p{font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin:0 0 12px}
 
-  .synth{margin-top:28px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 28px}
-  .synth h3{font-family:var(--display); font-size:22px; color:var(--ink); margin-bottom:10px}
-  .synth p{font-size:14.5px; line-height:1.65; color:var(--ink-soft)}
-
   .actions{text-align:center; margin-top:34px}
   .actions button, .actions a{display:inline-block; font-family:var(--sans); font-weight:700; font-size:14px; letter-spacing:.3px; color:var(--gold-deep); background:#fff; border:1px solid var(--gold); border-radius:40px; padding:12px 26px; text-decoration:none; cursor:pointer; margin:6px}
   .actions button:hover, .actions a:hover{background:var(--gold-light)}
@@ -100,7 +96,7 @@
 
   <div id="loading">
     <div class="spin"></div>
-    <p>Vérification de votre paiement et rédaction de votre analyse personnalisée… cela peut prendre jusqu'à 30 secondes.</p>
+    <p>Vérification de votre paiement et rédaction de votre analyse personnalisée… cela peut prendre jusqu'à une minute.</p>
   </div>
 
   <div id="erreur">
@@ -113,7 +109,6 @@
     <div class="duo" id="duoPortraits"></div>
     <div class="couple" id="coupleSection"></div>
     <div class="analyse" id="analyseSection"></div>
-    <div class="synth" id="synthSection"></div>
 
     <div class="actions">
       <button onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button>
@@ -194,15 +189,6 @@
 
     document.getElementById('analyseSection').innerHTML =
       '<h3>Votre analyse de couple</h3>' + (data.analyseHTML || '');
-
-    var cvClose = (cv1===cv2);
-    var cvTexte = cvClose
-      ? "Vous partagez le même chemin de vie ("+cv1+") : une vision profonde de l'existence en commun, un vrai socle de compréhension mutuelle."
-      : "Vos chemins de vie ("+cv1+" et "+cv2+") sont différents, ce qui est une richesse : chacun apporte à l'autre une perspective qu'il n'aurait pas seul(e). C'est souvent dans cette complémentarité que les couples grandissent le plus.";
-
-    document.getElementById('synthSection').innerHTML =
-      '<h3>En synthèse</h3>'+
-      '<p>'+data.p1n+' ('+s1.nom+') et '+data.p2n+' ('+s2.nom+') forment une alliance '+(compat.score>=80?'particulièrement harmonieuse':(compat.score>=65?'équilibrée, avec de beaux ajustements à faire':'riche en contrastes, à apprivoiser avec dialogue'))+'. '+cvTexte+' Rappelez-vous : aucune combinaison n’est jamais figée — c’est ce que vous en faites, ensemble, qui compte le plus.</p>';
 
     loading.style.display='none';
     resultat.style.display='block';
