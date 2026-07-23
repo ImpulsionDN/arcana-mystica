@@ -63,6 +63,11 @@
   .couple .elements{font-family:var(--display); font-size:18px; color:var(--ink); margin:12px 0 10px}
   .couple p{font-size:14px; line-height:1.6; color:var(--ink-soft); text-align:left; margin:0}
 
+  .analyse{margin-top:32px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:30px 28px}
+  .analyse h3{font-family:var(--display); font-size:24px; color:var(--ink); margin-bottom:16px; text-align:center}
+  .analyse h4{font-family:var(--display); font-weight:600; font-size:16px; color:var(--gold-deep); margin:20px 0 8px}
+  .analyse p{font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin:0 0 12px}
+
   .synth{margin-top:28px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 28px}
   .synth h3{font-family:var(--display); font-size:22px; color:var(--ink); margin-bottom:10px}
   .synth p{font-size:14.5px; line-height:1.65; color:var(--ink-soft)}
@@ -95,7 +100,7 @@
 
   <div id="loading">
     <div class="spin"></div>
-    <p>Vérification de votre paiement et calcul de votre synastrie…</p>
+    <p>Vérification de votre paiement et rédaction de votre analyse personnalisée… cela peut prendre jusqu'à 30 secondes.</p>
   </div>
 
   <div id="erreur">
@@ -107,6 +112,7 @@
   <div id="resultat">
     <div class="duo" id="duoPortraits"></div>
     <div class="couple" id="coupleSection"></div>
+    <div class="analyse" id="analyseSection"></div>
     <div class="synth" id="synthSection"></div>
 
     <div class="actions">
@@ -147,9 +153,10 @@
       '</div>';
   }
 
-  // Le Worker vérifie le paiement auprès de Stripe, lit les prénoms/dates
-  // dans les custom_fields de la session, envoie l'email, et renvoie ces
-  // mêmes données pour l'affichage ci-dessous.
+  // Le Worker vérifie le paiement auprès de Stripe, décode les prénoms/dates
+  // depuis client_reference_id, fait rédiger l'analyse par IA (avec repli
+  // statique automatique en cas d'échec), envoie l'email, et renvoie les
+  // mêmes données + l'analyse (déjà en HTML) pour l'affichage ci-dessous.
   fetch(WORKER_URL, {
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -184,6 +191,9 @@
         '<div class="elements">Chemin '+cv1+' &amp; '+cv2+'</div>'+
         '<p>'+compatNum.texte+'</p>'+
       '</div>';
+
+    document.getElementById('analyseSection').innerHTML =
+      '<h3>Votre analyse de couple</h3>' + (data.analyseHTML || '');
 
     var cvClose = (cv1===cv2);
     var cvTexte = cvClose
