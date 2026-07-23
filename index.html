@@ -65,7 +65,7 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.88);backdrop-f
 .nav-links a:hover::after{right:0}
 .nav-links a.active{color:var(--gold-deep)}
 .nav-links a.active::after{right:0}
-.badge-free{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;font-family:'Playfair Display';font-size:.6rem;letter-spacing:.12em;padding:.18rem .5rem;border-radius:20px;margin-left:.35rem;vertical-align:middle;text-transform:uppercase;animation:pulse 2.4s ease-in-out infinite}
+.nav-price{margin-left:auto;padding-left:1.2rem;font-size:.8rem;font-weight:600;color:var(--gold-deep);white-space:nowrap}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,145,73,.4)}50%{box-shadow:0 0 0 6px rgba(184,145,73,0)}}
 .burger{display:none;font-size:1.6rem;color:var(--gold-deep);background:none;border:none;cursor:pointer}
 @media(max-width:880px){
@@ -362,25 +362,28 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <div class="nav-group">
         <span class="nav-trigger">Tirages gratuits <span class="caret">▾</span></span>
         <div class="nav-drop">
-          <a data-page="accueil" onclick="go('oracle')">Tirage 3 lames<span class="badge-free">Gratuit</span></a>
-          <a data-page="ouinon" onclick="go('ouinon')">Oui / Non<span class="badge-free">Gratuit</span></a>
-          <a href="heures-miroirs.html">Heures Miroirs<span class="badge-free">Gratuit</span></a>
-          <a data-page="synchronicites" onclick="go('synchronicites')">Synchronicités<span class="badge-free">Gratuit</span></a>
-          <a href="nombres-angeliques.html">Nombres Angéliques<span class="badge-free">Gratuit</span></a>
-          <a data-page="reves" onclick="go('reves')">Interprétation des rêves<span class="badge-free">Gratuit</span></a>
-          <a href="astrologie.html">Astrologie<span class="badge-free">Gratuit</span></a>
-          <a data-page="totem" onclick="go('totem')">Animal Totem<span class="badge-free">Gratuit</span></a>
-        </div>
-      </div>
-      <div class="nav-group">
-        <span class="nav-trigger">Lectures <span class="caret">▾</span></span>
-        <div class="nav-drop">
+          <a data-page="accueil" onclick="go('oracle')">Tirage 3 lames</a>
+          <a data-page="ouinon" onclick="go('ouinon')">Oui / Non</a>
+          <a href="heures-miroirs.html">Heures Miroirs</a>
+          <a data-page="synchronicites" onclick="go('synchronicites')">Synchronicités</a>
+          <a href="nombres-angeliques.html">Nombres Angéliques</a>
+          <a data-page="reves" onclick="go('reves')">Interprétation des rêves</a>
+          <a href="astrologie.html">Astrologie</a>
+          <a data-page="totem" onclick="go('totem')">Animal Totem</a>
           <a data-page="numerologie" onclick="go('numerologie')">Numérologie</a>
-          <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité</a>
+          <a data-page="compatibilite" onclick="go('compatibilite')">Compatibilité des prénoms</a>
           <a data-page="angeologie" onclick="go('angeologie')">Angéologie</a>
         </div>
       </div>
-      <a data-page="roue" onclick="go('roue')">Le Tirage des Lunes</a>
+      <div class="nav-group">
+        <span class="nav-trigger">Lectures complètes <span class="caret">▾</span></span>
+        <div class="nav-drop">
+          <a href="synastrie.html">Compatibilité amoureuse<span class="nav-price">13,99 €</span></a>
+          <a data-page="reves" onclick="go('reves')">Interprétation des rêves<span class="nav-price">7,99 €</span></a>
+          <a href="theme-astral.html">Thème astral complet<span class="nav-price">17 €</span></a>
+          <a data-page="roue" onclick="go('roue')">Le Tirage des Lunes<span class="nav-price">dès 14,99 €</span></a>
+        </div>
+      </div>
       <a data-page="consultations" onclick="go('consultations')">Consultation de l'Oracle</a>
       <a data-page="avisfaq" class="nav-min" onclick="go('avisfaq')">FAQ</a>
     </div>
@@ -653,14 +656,14 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
   <div class="wrap">
     <div class="section-hd">
       <div class="eyebrow" style="color:var(--rose)">Le test le plus demandé</div>
-      <h2>Compatibilité amoureuse</h2>
+      <h2>Compatibilité des prénoms</h2>
       <p>Vos deux prénoms vibrent-ils à l'unisson&nbsp;? Découvrez votre taux d'affinité en un instant.</p>
     </div>
     <div class="panel compat-feat" style="margin-top:3rem">
       <div class="heart">♥</div>
       <div class="section-hd" style="margin-bottom:1.2rem">
         <div class="eyebrow" style="color:var(--rose)">Le test le plus demandé</div>
-        <h2 style="font-size:1.9rem">Compatibilité amoureuse des prénoms</h2>
+        <h2 style="font-size:1.9rem">Compatibilité des prénoms</h2>
         <p>Vos deux prénoms vibrent-ils à l'unisson ? Découvrez votre taux d'affinité en un instant.</p>
       </div>
       <div class="frow">
@@ -671,8 +674,8 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     </div>
     <div class="result-box" id="c_result"></div>
     <div class="cta-band" id="c_cta_synastrie" style="display:none">
-      <div class="ct"><b>Envie d'aller plus loin, tous les deux ?</b><span>Votre synastrie complète croise vos signes, vos éléments et votre numérologie de couple.</span></div>
-      <button class="btn btn-gold" onclick="window.location.href='synastrie.html'">Recevoir notre synastrie complète →</button>
+      <div class="ct"><b>Envie d'aller plus loin, tous les deux ?</b><span>Votre compatibilité complète croise vos signes, vos éléments et votre numérologie de couple.</span></div>
+      <button class="btn btn-gold" onclick="window.location.href='synastrie.html'">Recevoir notre compatibilité complète →</button>
     </div>
     <div class="cta-band">
       <div class="ct"><b>Envie d'aller plus loin à deux ?</b><span>Une guidance personnalisée analyse votre relation en consultation privée.</span></div>
@@ -1626,7 +1629,7 @@ function totemReveal(){
       <div class="avis"><div class="stars">★★★★★</div><div class="txt">"L'analyse de mon chemin de vie correspond exactement à qui je suis. Le portrait numérologique complet était bien plus détaillé que ce à quoi je m'attendais."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#8f9bd0,#4a4d7a)">N</div><div class="meta"><b>Nathalie P.</b><span>Bilan numérologique</span></div></div></div>
       <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Apprendre le nom de mon ange gardien et son domaine de protection m'a beaucoup apaisée. Un site doux, élégant et respectueux, ça fait du bien."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#b59ad0,#6d4d9a)">K</div><div class="meta"><b>Karine M.</b><span>Angéologie</span></div></div></div>
       <div class="avis"><div class="stars">★★★★☆</div><div class="txt">"Consultation sérieuse et bienveillante, sans jamais chercher à faire peur pour me faire revenir. Le délai de mise en relation a été un peu long, mais l'échange en valait la peine."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d0a87a,#9a6a45)">J</div><div class="meta"><b>Julien D.</b><span>Consultation privée</span></div></div></div>
-      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"On a testé la compatibilité de nos prénoms avec mon compagnon, juste pour rire… et finalement ça a lancé une vraie discussion sur notre couple. Étonnamment juste."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#c98ba5,#8a4d63)">V</div><div class="meta"><b>Valérie T.</b><span>Compatibilité amoureuse</span></div></div></div>
+      <div class="avis"><div class="stars">★★★★★</div><div class="txt">"On a testé la compatibilité de nos prénoms avec mon compagnon, juste pour rire… et finalement ça a lancé une vraie discussion sur notre couple. Étonnamment juste."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#c98ba5,#8a4d63)">V</div><div class="meta"><b>Valérie T.</b><span>Compatibilité des prénoms</span></div></div></div>
       <div class="avis"><div class="stars">★★★★★</div><div class="txt">"Céleste a une écoute rare. Je suis ressortie de la consultation apaisée et avec des pistes concrètes. Je recommande sans hésiter."</div><div class="who"><div class="ini" style="background:linear-gradient(135deg,#d9be86,#9a7838)">C</div><div class="meta"><b>Céline G.</b><span>Consultation · Amour</span></div></div></div>
     </div>
   </div>
@@ -1678,7 +1681,7 @@ function totemReveal(){
     <div class="fl">
       <a onclick="go('oracle')">Oracle</a>
       <a onclick="go('numerologie')">Numérologie</a>
-      <a onclick="go('compatibilite')">Compatibilité</a>
+      <a onclick="go('compatibilite')">Compatibilité des prénoms</a>
       <a onclick="go('angeologie')">Angéologie</a>
       <a href="heures-miroirs.html">Heures Miroirs</a>
       <a onclick="go('consultations')">Consultation de l'Oracle</a>
