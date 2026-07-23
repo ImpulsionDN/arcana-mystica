@@ -100,7 +100,7 @@
     <div class="eyebrow">Compatibilité · Version complète</div>
     <h1>Votre Synastrie Amoureuse Complète</h1>
     <p class="sub">Vos deux signes, vos deux énergies, croisés et interprétés pour révéler ce qui vous unit.</p>
-    <div class="price">19 €<small>Document complet · paiement unique</small></div>
+    <div class="price">13,99 €<small>Document complet · paiement unique</small></div>
   </section>
 
   <div class="banner"><img src="hero_banner.png" alt="Oracle Arcana"></div>
@@ -172,7 +172,7 @@
       <input type="email" id="email" placeholder="vous@exemple.fr">
     </div>
 
-    <button class="btn" onclick="order()">Commander notre synastrie — 19 €</button>
+    <button class="btn" onclick="order()">Commander notre synastrie — 13,99 €</button>
     <div class="secure">Paiement sécurisé · Résultat instantané à l'écran</div>
     <div class="msg" id="msg"></div>
   </div>
@@ -189,9 +189,8 @@
 
 <script>
   // === À BRANCHER : collez ici votre lien de paiement Stripe (laisser vide tant qu'il n'est pas prêt) ===
-  // ⚠️ LIEN DE TEST — remettre le lien live une fois le test validé :
-  // https://buy.stripe.com/4gMaEPfVg3M26badu2dZ60b
-  const STRIPE_URL = "https://buy.stripe.com/test_7sY3cn6j82Mc790bLucMM00";
+  // Lien LIVE — Synastrie Amoureuse à 13,99 € (l'ancien lien à 19 € est désactivé côté Stripe).
+  const STRIPE_URL = "https://buy.stripe.com/eVq28jaAW4Q68ji3TsdZ60c";
 
   function fillDates(prefix){
     const j=document.getElementById(prefix+'_jour');
