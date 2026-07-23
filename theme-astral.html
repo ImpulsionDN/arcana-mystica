@@ -201,7 +201,7 @@
     const noheure=document.getElementById('noheure').checked;
     const h=document.getElementById('heure').value, mi=document.getElementById('minute').value;
 
-    if(!email || !/.+@.+\..+/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre thème."; return; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre thème."; return; }
     if(!d || !mo || !a){ msg.className='msg err'; msg.textContent="Merci d'indiquer votre date de naissance complète (jour, mois, année)."; return; }
     if(!noheure && (h==='' || mi==='')){ msg.className='msg err'; msg.textContent="Indiquez votre heure de naissance, ou cochez « Je ne connais pas mon heure exacte »."; return; }
     if(!ville){ msg.className='msg err'; msg.textContent="Merci d'indiquer votre ville / commune de naissance."; return; }

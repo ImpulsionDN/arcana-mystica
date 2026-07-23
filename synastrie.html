@@ -220,7 +220,7 @@
     const p1j=document.getElementById('p1_jour').value, p1m=document.getElementById('p1_mois').value, p1a=document.getElementById('p1_annee').value;
     const p2j=document.getElementById('p2_jour').value, p2m=document.getElementById('p2_mois').value, p2a=document.getElementById('p2_annee').value;
 
-    if(!email || !/.+@.+\..+/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre synastrie."; return; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre synastrie."; return; }
     if(!p1n || !p2n){ msg.className='msg err'; msg.textContent="Merci d'indiquer les deux prénoms."; return; }
     if(p1n.length>20 || p2n.length>20){ msg.className='msg err'; msg.textContent="Chaque prénom doit faire 20 caractères maximum."; return; }
     if(!p1j || !p1m || !p1a){ msg.className='msg err'; msg.textContent="Merci d'indiquer la date de naissance complète de la Personne 1."; return; }
