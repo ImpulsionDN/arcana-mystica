@@ -699,8 +699,8 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     </div>
     <div class="result-box" id="a_result"></div>
     <div class="cta-band">
-      <div class="ct"><b>Recevez le message complet de votre ange</b><span>Domaines de protection, prière et invocation dédiées.</span></div>
-      <button class="btn btn-gold" onclick="openModal('Message Angélique','La guidance de votre ange gardien',12.99)">Recevoir · 12,99 €</button>
+      <div class="ct"><b>Envie d'aller plus loin ?</b></div>
+      <button class="btn btn-gold" onclick="go('etudes')">Découvrez nos études complètes →</button>
     </div>
   </div>
 </section>
@@ -2457,9 +2457,7 @@ var PAY = {
     "_default": "https://buy.stripe.com/fZueV510m5UaarqahQdZ604",   /* bouton "Recevoir mon tirage IA complet" */
     "Oracle Essentiel":    "",
     "Consultation Privée": "",
-    "Grand Bilan Annuel":  "",
-    "Bilan Numérologique": "",
-    "Message Angélique":   ""
+    "Grand Bilan Annuel":  ""
   }
 };
 function payLinkFor(titre){
@@ -2541,53 +2539,18 @@ function lancerGuidanceIA(){
     "Tu écris en français, en tutoiement chaleureux mais respectueux. "+
     "Reste positive et responsabilisante, sans rien prédire de médical, juridique ou financier de façon catégorique, et sans faire peur. "+
     "N'utilise pas de listes à puces : écris en paragraphes fluides avec, si utile, des intertitres courts.";
-  var usr, t=titre.toLowerCase();
-  if(t.indexOf("ang")>=0){
-    // Message Angélique — lecture longue et très développée (produit à 12,99 €)
-    sys+=" Tu es ici spécialiste de l'angéologie des 72 anges gardiens issue de la tradition kabbalistique.";
-    usr="Rédige le MESSAGE ANGÉLIQUE COMPLET et très développé d'un consultant. "+
-      (nom?("Prénom : "+nom+". "):"")+
-      "Détermine d'abord, à partir des éléments fournis, le ton d'une guidance angélique personnelle. "+
-      (question?("Sa question : "+question+". "):"Aucune question précise : propose une guidance angélique générale sur son moment de vie. ")+
-      "Structure la lecture en 5 parties avec des intertitres : "+
-      "1) La présence de ton ange (qui il est, l'énergie qu'il porte) ; "+
-      "2) Le domaine de vie qu'il éclaire en ce moment ; "+
-      "3) Son message pour toi, développé et incarné ; "+
-      "4) Comment reconnaître ses signes au quotidien (intuitions, synchronicités, heures miroirs) ; "+
-      "5) Un petit rituel d'invocation pas à pas et une phrase de protection à répéter. "+
-      "Longueur : 450 à 650 mots. Termine par un encouragement chaleureux.";
-  } else if(t.indexOf("num")>=0){
-    sys+=" Tu es ici spécialiste de la numérologie (chemin de vie, expression, année personnelle).";
-    usr="Rédige un bilan numérologique commenté et personnalisé. "+(nom?("Prénom : "+nom+". "):"")+
-      (question?("Axe souhaité : "+question+". "):"")+
-      "Parle du tempérament, des forces, du défi de l'année en cours et d'un conseil concret. 300 à 400 mots, paragraphes fluides.";
-  } else {
-    sys+=" Tu donnes une guidance inspirée de l'Oracle de Belline et de la cartomancie.";
-    usr="Formule \""+titre+"\". "+(nom?("Prénom : "+nom+". "):"")+
-      (question?("Question du consultant : "+question):"Le consultant n'a pas précisé de question : propose une guidance générale sur son moment de vie.")+
-      " Structure en 3 paragraphes (situation ressentie, message des lames, conseil et ouverture). 220 à 300 mots. Termine par une phrase d'encouragement.";
-  }
+  var usr;
+  sys+=" Tu donnes une guidance inspirée de l'Oracle de Belline et de la cartomancie.";
+  usr="Formule \""+titre+"\". "+(nom?("Prénom : "+nom+". "):"")+
+    (question?("Question du consultant : "+question):"Le consultant n'a pas précisé de question : propose une guidance générale sur son moment de vie.")+
+    " Structure en 3 paragraphes (situation ressentie, message des lames, conseil et ouverture). 220 à 300 mots. Termine par une phrase d'encouragement.";
 
-  var maxTok=(t.indexOf("ang")>=0)?1600:1000;
+  var maxTok=1000;
 
-  // Texte de secours développé, par formule (si l'IA n'est pas joignable)
-  var SECOURS;
-  if(t.indexOf("ang")>=0){
-    SECOURS="Ton ange gardien veille sur toi en ce moment, et sa présence se fait plus douce que tu ne l'imagines.\n\n"+
-      "La présence de ton ange — Il porte une énergie de protection et d'apaisement. Là où le doute s'installe, il vient déposer une certitude tranquille : tu n'avances pas seul(e).\n\n"+
-      "Le domaine qu'il éclaire — En ce moment, son attention se porte sur ton équilibre intérieur et tes liens les plus chers. Il t'invite à ralentir, à écouter ce qui compte vraiment pour toi.\n\n"+
-      "Son message — Aie confiance dans le chemin parcouru. Les épreuves d'hier ont nourri une force que tu portes désormais en toi. Ce qui se prépare est plus lumineux que ce que tu crains.\n\n"+
-      "Reconnaître ses signes — Une plume, une intuition soudaine, une rencontre qui tombe à point, ou ces heures miroirs que tu croises sans le vouloir : autant de clins d'œil discrets. Apprends à les remarquer.\n\n"+
-      "Pour l'invoquer — Offre-toi un instant de calme, respire profondément, et formule en pensée : « Je t'accueille, veille sur mon chemin. » Sa réponse viendra, à sa manière, au bon moment.";
-  } else if(t.indexOf("num")>=0){
-    SECOURS="Vos nombres dessinent un tempérament riche, fait d'élan et de réflexion à la fois.\n\n"+
-      "Vous avancez avec une belle capacité à rebondir : là où d'autres s'arrêtent, vous trouvez une porte. Votre défi de l'année est d'oser poser vos limites et de ne pas vous disperser.\n\n"+
-      "Le conseil des nombres : choisissez une ou deux priorités et tenez-les. C'est en concentrant votre énergie que vous récolterez le plus. Faites confiance à votre rythme.";
-  } else {
-    SECOURS="Les lames vous accompagnent aujourd'hui avec bienveillance.\n\n"+
-      "Le passé a posé des bases solides, le présent vous invite à la confiance, et l'avenir s'ouvre sur une période plus sereine. Les obstacles que vous percevez ne sont que passagers.\n\n"+
-      "Avancez pas à pas, en écoutant votre intuition : elle vous guide bien. Le meilleur reste à venir.";
-  }
+  // Texte de secours développé (si l'IA n'est pas joignable)
+  var SECOURS="Les lames vous accompagnent aujourd'hui avec bienveillance.\n\n"+
+    "Le passé a posé des bases solides, le présent vous invite à la confiance, et l'avenir s'ouvre sur une période plus sereine. Les obstacles que vous percevez ne sont que passagers.\n\n"+
+    "Avancez pas à pas, en écoutant votre intuition : elle vous guide bien. Le meilleur reste à venir.";
 
   var done=false;
   function afficherGuidance(texte){
