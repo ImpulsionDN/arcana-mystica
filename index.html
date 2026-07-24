@@ -200,6 +200,8 @@ section{padding:4.5rem 0;position:relative;scroll-margin-top:80px}
 .offre li::before{content:"✓";color:var(--gold-deep);font-weight:700;font-size:.95rem;margin-top:.05rem}
 .offre .price{font-family:'Playfair Display';font-size:2.6rem;line-height:1;color:var(--gold-deep);margin-bottom:.1rem}
 .offre .pn{font-size:.84rem;color:var(--ink-soft);margin-bottom:1.1rem}
+.etudes-hook{display:flex;justify-content:center;gap:2.2rem;flex-wrap:wrap;margin:0 0 2.6rem;font-size:.92rem;color:var(--ink-soft)}
+.etudes-hook span{display:inline-flex;align-items:center;gap:.45rem}
 
 /* TRUST */
 .trust{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2.4rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -379,9 +381,11 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         <span class="nav-trigger">Nos études <span class="caret">▾</span></span>
         <div class="nav-drop">
           <a data-page="reves" onclick="go('reves')">Interprétation des rêves<span class="nav-price">7,99 €</span></a>
+          <a data-page="numerologie" onclick="go('numerologie')">Bilan numérologique<span class="nav-price">9,99 €</span></a>
           <a href="synastrie.html">Compatibilité amoureuse<span class="nav-price">13,99 €</span></a>
           <a data-page="roue" onclick="go('roue')">Le Tirage des Lunes<span class="nav-price">dès 14,99 €</span></a>
           <a href="theme-astral.html">Thème astral complet<span class="nav-price">17 €</span></a>
+          <a data-page="etudes" onclick="go('etudes')" style="border-top:1px solid var(--line);margin-top:.3rem;padding-top:.75rem;font-weight:600;color:var(--gold-deep)">Voir toutes nos études →</a>
         </div>
       </div>
       <a data-page="avisfaq" class="nav-min" onclick="go('avisfaq')">FAQ</a>
@@ -631,19 +635,14 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     </div>
     <div class="panel">
       <div class="frow">
-        <div class="field"><label>Prénom</label><input id="n_prenom" placeholder="Prénom"></div>
+        <div class="field"><label>Prénom</label><input id="n_prenom" maxlength="20" placeholder="Prénom"></div>
         <div class="field"><label>Nom</label><input id="n_nom" placeholder="Nom"></div>
       </div>
       <div class="field"><label>Date de naissance</label><div class="dgroup" id="n_naiss"><select class="dsel" data-part="j" aria-label="Jour"><option value="">Jour</option></select><select class="dsel" data-part="m" aria-label="Mois"><option value="">Mois</option></select><select class="dsel" data-part="y" aria-label="Année"><option value="">Année</option></select></div></div>
       <div style="text-align:center"><button class="btn btn-gold" onclick="calculNum()">Révéler mes nombres</button></div>
     </div>
     <div class="result-box" id="n_result"></div>
-    <div class="cta-band">
-      <div class="ct"><b>Approfondissez votre portrait chiffré</b><span>Un bilan numérologique complet, commenté et personnalisé.</span></div>
-      <button class="btn btn-gold" onclick="openModal('Bilan Numérologique','Votre portrait chiffré complet',24.99)">Réserver · 24,99 €</button>
-    </div>
-
-
+    <div class="result-box" id="num_rapport"></div>
   </div>
 </section>
 
@@ -677,8 +676,8 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <button class="btn btn-gold" onclick="window.location.href='synastrie.html'">Recevoir notre compatibilité complète →</button>
     </div>
     <div class="cta-band">
-      <div class="ct"><b>Envie d'aller plus loin à deux ?</b><span>Une guidance personnalisée analyse votre relation en consultation privée.</span></div>
-      <button class="btn btn-gold" onclick="go('roue')">Recevoir mon tirage IA complet →</button>
+      <div class="ct"><b>Envie d'aller plus loin ?</b></div>
+      <button class="btn btn-gold" onclick="go('etudes')">Découvrez nos études complètes →</button>
     </div>
   </div>
 </section>
@@ -782,8 +781,8 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     </div>
     <div class="sy-result" id="sy_result"></div>
     <div class="sy-cta">
-      <p>Un signe vous trouble, ou revient sans cesse ? Une consultation privée en éclaire le sens, relié à votre histoire.</p>
-      <button class="btn btn-gold" onclick="go('roue')">Recevoir mon tirage IA complet &rarr;</button>
+      <p>Envie d'aller plus loin ?</p>
+      <button class="btn btn-gold" onclick="go('etudes')">Découvrez nos études complètes &rarr;</button>
     </div>
   </div>
 </section>
@@ -1571,7 +1570,7 @@ function totemReveal(){
     '<img src="'+t.img+'" alt="'+t.nom+'">'+
     '<h3>'+t.nom+'</h3>'+
     t.desc+
-    '<div class="totem-cta"><button class="btn btn-gold" onclick="go(\'roue\')">Recevoir mon tirage IA complet &rarr;</button></div>';
+    '<div class="totem-cta"><p>Envie d\'aller plus loin ?</p><button class="btn btn-gold" onclick="go(\'etudes\')">Découvrez nos études complètes &rarr;</button></div>';
   box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'center'});
 }
@@ -1610,6 +1609,59 @@ function totemReveal(){
     </div>
 
     <div class="concentre" style="max-width:780px;margin-top:3rem;text-align:left;font-style:normal">« Les tirages et lectures proposés sur Oracle Arcana sont générés par une intelligence artificielle. Ils sont proposés à titre de divertissement et d'accompagnement personnel, et ne constituent en aucun cas un avis médical, juridique, psychologique ou financier. Aucun voyant humain n'intervient dans ces lectures. »</div>
+  </div>
+</section>
+</div>
+<div class="page" id="page-etudes">
+<section class="bg2" id="etudes">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Nos études</div>
+      <h2>Nos rapports complets</h2>
+      <p>Des lectures approfondies, rédigées sur mesure par l'Oracle Arcana à partir de vos informations.</p>
+    </div>
+    <div class="etudes-hook">
+      <span>⚡ Livraison immédiate</span>
+      <span>✎ Rédigé sur mesure</span>
+      <span>✓ Sans inscription</span>
+    </div>
+    <div class="offres">
+      <div class="offre">
+        <div class="ic">✧</div>
+        <h3>Interprétation des rêves</h3>
+        <div class="desc">Décrivez votre rêve et recevez un rapport complet en 8 sections — symboles, message émotionnel, amour, travail et conseils concrets — rédigé par IA rien que pour vous.</div>
+        <div class="price">7,99 €</div><div class="pn">paiement unique · sans abonnement</div>
+        <button class="btn btn-gold" style="width:100%" onclick="go('reves')">Découvrir →</button>
+      </div>
+      <div class="offre">
+        <div class="ic">✳</div>
+        <h3>Bilan numérologique</h3>
+        <div class="desc">Vos 5 nombres clés déjà calculés, approfondis en une analyse longue et personnalisée — portrait d'ensemble, forces, défis, amour, vocation et grands cycles de vie.</div>
+        <div class="price">9,99 €</div><div class="pn">paiement unique · résultat instantané à l'écran</div>
+        <button class="btn btn-gold" style="width:100%" onclick="go('numerologie')">Découvrir →</button>
+      </div>
+      <div class="offre">
+        <div class="ic">♥</div>
+        <h3>Compatibilité amoureuse</h3>
+        <div class="desc">Vos deux dates de naissance croisées : signes, éléments et chemins de vie, puis une analyse de couple en 7 sections — portraits, communication, points de friction et conseils concrets.</div>
+        <div class="price">13,99 €</div><div class="pn">paiement unique · résultat instantané à l'écran</div>
+        <button class="btn btn-gold" style="width:100%" onclick="window.location.href='synastrie.html'">Découvrir →</button>
+      </div>
+      <div class="offre">
+        <div class="ic">☾</div>
+        <h3>Le Tirage des Lunes</h3>
+        <div class="desc">Une lame de l'Oracle de Belline tirée pour chacun de vos prochains mois (3, 6 ou 12), avec une lecture personnalisée qui relie chaque mois à une progression d'ensemble.</div>
+        <div class="price">dès 14,99 €</div><div class="pn">3 formules disponibles</div>
+        <button class="btn btn-gold" style="width:100%" onclick="go('roue')">Découvrir →</button>
+      </div>
+      <div class="offre">
+        <div class="ic">✦</div>
+        <h3>Thème astral complet</h3>
+        <div class="desc">Votre ascendant, vos planètes en signes et maisons, les 12 maisons et les aspects majeurs entre astres — une interprétation longue et personnalisée, reçue par email.</div>
+        <div class="price">17 €</div><div class="pn">paiement unique · document reçu par email</div>
+        <button class="btn btn-gold" style="width:100%" onclick="window.location.href='theme-astral.html'">Découvrir →</button>
+      </div>
+    </div>
   </div>
 </section>
 </div>
@@ -1701,7 +1753,7 @@ function totemReveal(){
 
 <script>
 /* ============ NAVIGATION ============ */
-var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,reves:1,totem:1,consultations:1,journal:1,avisfaq:1};
+var PAGES={accueil:1,ouinon:1,roue:1,numerologie:1,compatibilite:1,angeologie:1,heures:1,synchronicites:1,reves:1,totem:1,consultations:1,etudes:1,journal:1,avisfaq:1};
 function setActiveNav(id){
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-page')===id);
@@ -2041,9 +2093,100 @@ function calculNum(){
   var coherence=(chemin===expr)?"votre chemin de vie et votre expression portent le m\u00eame nombre\u00a0: vous \u00eates pleinement align\u00e9(e), ce que vous \u00eates au fond et ce que vous montrez ne font qu\'un.":(intime===expr)?"votre nombre intime et votre expression co\u00efncident\u00a0: vous \u00eates une personne transparente, vos aspirations profondes se lisent directement dans votre attitude.":"vos nombres sont vari\u00e9s, signe d\'une personnalit\u00e9 riche et nuanc\u00e9e\u00a0: une part de vous (le chemin de vie "+chemin+") trace la route, tandis que votre cœur ("+intime+") et votre image ("+expr+") apportent leurs propres couleurs.";
   html+='<p>En r\u00e9unissant ces cinq vibrations, un fil se dessine\u00a0: '+coherence+' Votre chemin de vie '+chemin+' fixe le cap, votre expression '+expr+' colore la fa\u00e7on de l\'incarner, votre nombre intime '+intime+' en est le moteur secret, et votre r\u00e9alisation '+real+' montre par o\u00f9 passer. \u00c0 court terme, votre ann\u00e9e '+anPerso+' indique le rythme \u00e0 adopter d\u00e8s maintenant.</p>';
   html+='<p style="font-style:italic;color:var(--ink-soft);margin-top:.6rem">La num\u00e9rologie \u00e9claire des tendances, jamais un destin fig\u00e9\u00a0: ces nombres sont des cl\u00e9s de lecture pour mieux vous conna\u00eetre et choisir en conscience.</p>';
+  window.__numData={pn:pn.slice(0,20),cv:chemin,ex:expr,it:intime,re:real,ap:anPerso};
+  html+='<div class="offres"><div class="offre feat">'+
+    '<div class="offre-badge">Bilan complet</div>'+
+    '<div class="ic">\u2733</div><h3>Votre bilan num\u00e9rologique complet</h3>'+
+    '<div class="desc">Allez plus loin que vos 5 nombres\u00a0: une analyse longue et personnalis\u00e9e, r\u00e9dig\u00e9e par IA \u00e0 partir de votre portrait chiffr\u00e9.</div>'+
+    '<ul><li>Portrait d\'ensemble et coh\u00e9rence de vos nombres</li><li>Forces, talents et d\u00e9fis \u00e0 travailler</li><li>Amour, vocation et grands cycles de vie</li><li>Conseils concrets pour votre ann\u00e9e en cours</li></ul>'+
+    '<div class="price">9,99 \u20ac</div><div class="pn">paiement unique \u00b7 sans abonnement</div>'+
+    '<button class="btn btn-gold" style="width:100%" onclick="lancerPaiementNumerologie()">Recevoir mon bilan complet &rarr;</button>'+
+    '<div class="hint" id="num_pay_warn" style="text-align:center;color:var(--rose);margin-top:.8rem;display:none"></div>'+
+  '</div></div>';
   var box=document.getElementById('n_result');box.innerHTML=html;box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'center'});
 }
+
+// === À BRANCHER : lien de paiement Stripe du Bilan Numérologique (9,99 €) ===
+var NUM_STRIPE_URL = "";
+
+// Encode une chaîne (accents compris) en base64url SANS padding, via un passage
+// explicite par UTF-8 (TextEncoder) : btoa() seul échoue sur les caractères non-ASCII.
+function numToBase64Url(str){
+  var bytes=new TextEncoder().encode(str);
+  var binary='';
+  bytes.forEach(function(b){binary+=String.fromCharCode(b);});
+  var b64=btoa(binary);
+  return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+
+// Les 5 nombres transitent par client_reference_id (comme la Compatibilité),
+// jamais par sessionStorage : le Worker les relit depuis la session Stripe
+// vérifiée, ce qui fonctionne même si le paiement se termine sur un autre appareil.
+window.lancerPaiementNumerologie=function(){
+  var d=window.__numData;
+  var warn=document.getElementById('num_pay_warn');
+  if(!d||!d.pn){
+    if(warn){warn.textContent="Merci de renseigner vos informations avant de recevoir votre bilan complet.";warn.style.display='block';}
+    return;
+  }
+  if(!NUM_STRIPE_URL){
+    if(warn){warn.textContent="Le paiement n'est pas encore disponible pour cette offre.";warn.style.display='block';}
+    return;
+  }
+  if(warn) warn.style.display='none';
+  var payload={pn:d.pn,cv:d.cv,ex:d.ex,it:d.it,re:d.re,ap:d.ap};
+  var encoded=numToBase64Url(JSON.stringify(payload));
+  if(encoded.length>200||!/^[A-Za-z0-9_-]+$/.test(encoded)){
+    if(warn){warn.textContent="Une erreur technique empêche la préparation de votre commande. Merci de réessayer ou de nous contacter.";warn.style.display='block';}
+    return;
+  }
+  window.location.href=NUM_STRIPE_URL+(NUM_STRIPE_URL.indexOf('?')>=0?'&':'?')+'client_reference_id='+encoded;
+};
+
+// Après paiement, seul le session_id revient dans l'URL : le Worker relit les
+// 5 nombres depuis session.client_reference_id, jamais depuis ce navigateur.
+function numChargerRapportPaye(){
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('num_paye')!=='1'||!params.get('session_id')) return;
+  var sessionId=params.get('session_id');
+  if(typeof go==='function') go('numerologie');
+  var box=document.getElementById('num_rapport');
+  if(!box) return;
+  box.classList.add('show');
+  box.innerHTML='<div class="reve-rapport"><div class="rload">✧ Votre bilan se prépare…<br>Cela peut prendre 10 à 20 secondes.</div></div>';
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+  fetch('https://arcana-numerologie.dni-business44.workers.dev',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_id:sessionId})
+  }).then(function(r){
+    return r.text().then(function(t){
+      var j=null; try{ j=JSON.parse(t); }catch(e){}
+      return {ok:r.ok, j:j};
+    });
+  }).then(function(res){
+    if(res.ok && res.j && res.j.report){
+      box.innerHTML=
+        '<div class="reve-rapport"><h3>Votre bilan numérologique complet</h3>'+
+        '<div class="corps">'+reveFormatRapport(res.j.report)+'</div>'+
+        '<div class="concentre" style="margin-top:1.6rem;font-size:.96rem">« Ce rapport est généré par une intelligence artificielle, à titre de divertissement et d\'accompagnement personnel. »</div>'+
+        '</div>';
+    } else {
+      box.innerHTML=
+        '<div class="reve-rapport"><h3>Un instant d\'imprévu…</h3>'+
+        '<div class="corps"><p>Nous n\'avons pas pu générer votre bilan pour le moment. Si votre paiement a bien été effectué, réessayez dans quelques instants, ou contactez notre support en précisant l\'adresse e-mail utilisée pour le paiement.</p></div></div>';
+    }
+  }).catch(function(){
+    box.innerHTML=
+      '<div class="reve-rapport"><h3>Un instant d\'imprévu…</h3>'+
+      '<div class="corps"><p>Une erreur de connexion nous empêche d\'afficher votre bilan. Réessayez dans quelques instants, ou contactez notre support si le problème persiste.</p></div></div>';
+  }).then(function(){
+    if(history.replaceState) history.replaceState(null,'', window.location.pathname+'#numerologie');
+  });
+}
+if(document.readyState!=='loading'){ numChargerRapportPaye(); } else { document.addEventListener('DOMContentLoaded', numChargerRapportPaye); }
+
 var AFFINITES={
   1:{1:80,2:60,3:75,4:55,5:85,6:65,7:90,8:50,9:70},
   2:{1:60,2:85,3:65,4:80,5:55,6:90,7:60,8:75,9:70},
