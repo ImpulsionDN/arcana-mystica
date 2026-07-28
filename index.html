@@ -2237,7 +2237,7 @@ window.inscrireHoroscope=function(){
   }).then(function(res){
     if(res.ok && res.j && res.j.ok){
       msg.style.color='var(--gold-deep)';
-      msg.textContent="Merci ! Votre inscription est confirmée — vous recevrez votre horoscope "+(res.j.signe?('('+res.j.signe+') '):'')+"chaque matin.";
+      msg.textContent="Merci ! Votre inscription est confirmée — vous recevrez votre horoscope "+(res.j.signe?('('+res.j.signe+') '):'')+"chaque matin. Pensez à vérifier vos spams et à ajouter horoscope@oracle-arcana.fr à vos contacts pour ne rien manquer.";
     } else {
       msg.style.color='var(--rose)';
       msg.textContent=(res.j&&res.j.error)?res.j.error:"Une erreur empêche votre inscription pour le moment. Réessayez dans quelques instants.";
