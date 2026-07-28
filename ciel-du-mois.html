@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre Ciel du Mois — Oracle Arcana</title>
+<meta name="description" content="Votre guidance astrologique personnalisée pour les 30 prochains jours : amour, travail, énergie et conseil de l'Oracle, à partir de votre date de naissance. Reçue par email. Oracle Arcana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf6ef; --ink:#2a2218; --ink-soft:#6b5f4d;
+    --gold:#b89149; --gold-deep:#9a7838; --gold-light:#d9be86;
+    --line:rgba(184,145,73,.25); --card:#fffdf9; --card-tint:#fbf1e2; --rose:#a8587a;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Nunito Sans','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--sans); color:var(--ink-soft);
+    background:
+      radial-gradient(1100px 620px at 78% -8%, #fbe6d4 0%, rgba(251,230,212,0) 55%),
+      radial-gradient(820px 560px at 8% 10%, #f6e6ea 0%, rgba(246,230,234,0) 50%),
+      linear-gradient(180deg,#fdf6ea,#faf6ef);
+    min-height:100vh}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px}
+
+  nav.top{position:sticky; top:0; z-index:10; background:rgba(250,246,239,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:74px; max-width:1080px; margin:0 auto; padding:0 24px}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:4px; color:var(--ink); text-decoration:none; font-weight:600}
+  .logo b{color:var(--gold-deep); font-weight:600}
+  .menu{display:flex; gap:26px; font-size:15px; color:var(--ink-soft); font-weight:600}
+  .menu a{color:var(--ink-soft); text-decoration:none; transition:color .2s}
+  .menu a:hover{color:var(--gold-deep)}
+  .menu .sep{color:var(--gold); opacity:.55}
+  @media(max-width:760px){.menu{display:none}}
+
+  .hero{text-align:center; padding:54px 0 8px}
+  .eyebrow{font-weight:700; font-size:13px; letter-spacing:5px; color:var(--gold-deep); text-transform:uppercase; margin-bottom:16px}
+  h1{font-family:var(--display); font-weight:600; font-size:clamp(40px,6.5vw,66px); line-height:1.05; color:var(--ink)}
+  .sub{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,23px); color:var(--ink-soft); margin:16px auto 0; max-width:600px; line-height:1.5}
+  .price{display:inline-block; margin-top:22px; font-family:var(--display); font-weight:600; font-size:34px; color:var(--gold-deep)}
+  .price small{font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:1px; color:var(--ink-soft); text-transform:uppercase; display:block; margin-top:2px}
+
+  .receive{margin:36px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .rec{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 18px; text-align:center; box-shadow:0 6px 18px rgba(120,95,40,.06)}
+  .rec svg{width:30px; height:30px; stroke:var(--gold-deep); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; margin-bottom:8px}
+  .rec b{display:block; font-family:var(--display); font-size:19px; color:var(--ink); font-weight:600; line-height:1.15}
+  .rec span{font-size:13px; color:var(--ink-soft)}
+  @media(max-width:640px){.receive{grid-template-columns:1fr 1fr}}
+
+  .form{max-width:620px; margin:40px auto 0; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:34px 34px 30px; box-shadow:0 12px 34px rgba(120,95,40,.10)}
+  .form h2{font-family:var(--display); font-weight:600; font-size:30px; color:var(--ink); text-align:center; margin-bottom:6px}
+  .form .intro{text-align:center; font-size:14px; color:var(--ink-soft); margin-bottom:24px}
+  .field{margin-bottom:18px}
+  .field label{display:block; font-weight:700; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:8px}
+  .field .opt{text-transform:none; font-weight:600; color:var(--ink-soft); letter-spacing:0}
+  input[type=text], input[type=email]{width:100%; font-family:var(--sans); font-size:16px; padding:13px 16px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); outline:none; transition:border-color .2s}
+  input:focus, select:focus{border-color:var(--gold)}
+  .row{display:flex; gap:10px; flex-wrap:wrap}
+  .row select{flex:1; min-width:90px; font-family:var(--sans); font-size:15px; padding:13px 12px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; outline:none}
+  .row.villepays input:first-child{flex:2}
+  .hint{font-size:12.5px; color:var(--ink-soft); margin-top:8px; line-height:1.4}
+  .btn{width:100%; margin-top:8px; font-family:var(--sans); font-weight:700; font-size:17px; letter-spacing:.4px; color:#FBF6EA; border:none; cursor:pointer; padding:17px 28px; border-radius:40px; background:linear-gradient(180deg,#cba653,#98762f); box-shadow:0 10px 24px rgba(154,120,56,.28); transition:filter .2s, transform .2s}
+  .btn:hover{filter:brightness(1.06); transform:translateY(-2px)}
+  .secure{text-align:center; font-size:13px; color:var(--ink-soft); margin-top:14px}
+  .msg{margin-top:16px; padding:14px 16px; border-radius:12px; font-size:14px; line-height:1.5; display:none}
+  .msg.err{display:block; background:#fbeaf0; color:#8a3b5e; border:1px solid #e6c2d2}
+  .msg.ok{display:block; background:#eef5ee; color:#3a6a52; border:1px solid #cfe4d2}
+
+  .faq{max-width:620px; margin:34px auto 0}
+  .faq h3{font-family:var(--display); font-size:26px; color:var(--ink); text-align:center; margin-bottom:16px; font-weight:600}
+  .qa{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:10px}
+  .qa b{font-family:var(--display); font-size:19px; color:var(--gold-deep)}
+  .qa p{font-size:14px; color:var(--ink-soft); margin-top:4px; line-height:1.5}
+
+  footer{text-align:center; padding:44px 0 50px; margin-top:50px; color:var(--ink-soft); opacity:.75; font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="nav-in">
+  <a href="index.html" class="logo"><b>ORACLE</b> ARCANA</a>
+  <div class="menu">
+    <a href="index.html">Tirages gratuits</a><span class="sep">·</span>
+    <a href="astrologie.html">Astrologie</a><span class="sep">·</span>
+    <a href="index.html#consultations">Consultations</a><span class="sep">·</span>
+    <a href="index.html#avisfaq">FAQ</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Astrologie · Guidance mensuelle</div>
+    <h1>Votre Ciel du Mois</h1>
+    <p class="sub">Votre guidance personnalisée pour les 30 prochains jours, rédigée sur mesure et envoyée par email.</p>
+    <div class="price">12,99 €<small>Rapport complet · paiement unique</small></div>
+  </section>
+
+  <div class="receive">
+    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><b>Votre signe solaire</b><span>point de départ de la lecture</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/></svg><b>30 jours</b><span>de guidance personnalisée</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4 7 4c2 0 3.5 1.2 5 3 1.5-1.8 3-3 5-3 4 0 6.5 4.5 4.5 8.5C19 16.65 12 21 12 21z"/></svg><b>Amour & travail</b><span>et votre rapport à l'argent</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg><b>Énergie & bien-être</b><span>le rythme du mois</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 12h6M9 15h4"/></svg><b>Conseil de l'Oracle</b><span>une piste concrète</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><b>Reçu par email</b><span>et affiché à l'écran</span></div>
+  </div>
+
+  <div class="form">
+    <h2>Vos informations</h2>
+    <p class="intro">Seule votre date de naissance est indispensable : l'heure et le lieu sont facultatifs, mais affinent subtilement votre lecture.</p>
+
+    <div class="field">
+      <label>Prénom <span class="opt">(facultatif)</span></label>
+      <input type="text" id="prenom" maxlength="20" placeholder="Votre prénom">
+    </div>
+
+    <div class="field">
+      <label>Email (pour recevoir votre Ciel du Mois)</label>
+      <input type="email" id="email" placeholder="vous@exemple.fr">
+    </div>
+
+    <div class="field">
+      <label>Date de naissance</label>
+      <div class="row">
+        <select id="jour"><option value="" selected disabled>Jour</option></select>
+        <select id="mois">
+          <option value="" selected disabled>Mois</option>
+          <option value="1">Janvier</option><option value="2">Février</option><option value="3">Mars</option>
+          <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
+          <option value="7">Juillet</option><option value="8">Août</option><option value="9">Septembre</option>
+          <option value="10">Octobre</option><option value="11">Novembre</option><option value="12">Décembre</option>
+        </select>
+        <select id="annee"><option value="" selected disabled>Année</option></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Heure de naissance <span class="opt">(facultatif)</span></label>
+      <div class="row">
+        <select id="heure"><option value="" selected>Heure</option></select>
+        <select id="minute"><option value="" selected>Minute</option></select>
+      </div>
+      <div class="hint">Si vous ne la connaissez pas, laissez simplement ce champ vide.</div>
+    </div>
+
+    <div class="field">
+      <label>Lieu de naissance <span class="opt">(facultatif)</span></label>
+      <div class="row villepays">
+        <input type="text" id="ville" maxlength="30" placeholder="Ville / commune">
+        <input type="text" id="pays" maxlength="20" placeholder="Pays">
+      </div>
+      <div class="hint">Ces informations restent facultatives : votre lecture reste complète sans elles.</div>
+    </div>
+
+    <button class="btn" onclick="order()">Commander mon Ciel du Mois — 12,99 €</button>
+    <div class="secure">Paiement sécurisé · Résultat à l'écran + copie par email</div>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div class="faq">
+    <h3>Questions fréquentes</h3>
+    <div class="qa"><b>Pourquoi l'heure et le lieu sont-ils facultatifs ?</b><p>Votre Ciel du Mois s'appuie sur votre signe solaire et sur la période à venir : une lecture déjà riche et pertinente à partir de la seule date de naissance. L'heure et le lieu, quand vous les connaissez, permettent simplement d'affiner encore le ton de la lecture.</p></div>
+    <div class="qa"><b>Sous quel délai vais-je le recevoir ?</b><p>Votre rapport s'affiche automatiquement à l'écran juste après votre paiement, et une copie vous est envoyée par email dans la foulée.</p></div>
+    <div class="qa"><b>Mes données sont-elles protégées ?</b><p>Vos informations ne servent qu'à établir votre Ciel du Mois et à vous l'envoyer. Elles ne sont ni revendues, ni partagées.</p></div>
+  </div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+
+<script>
+  // Lien LIVE — Votre Ciel du Mois à 12,99 €.
+  const STRIPE_URL = "https://buy.stripe.com/bJe14f4cy5UagPO4XwdZ60e";
+
+  const j=document.getElementById('jour');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;j.appendChild(o);}
+  const yy=document.getElementById('annee');
+  const nowY=new Date().getFullYear();
+  for(let y=nowY-10;y>=1915;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  const hh=document.getElementById('heure');
+  for(let h=0;h<24;h++){const o=document.createElement('option');o.value=h;o.textContent=(h<10?'0'+h:h)+' h';hh.appendChild(o);}
+  const mm=document.getElementById('minute');
+  for(let m=0;m<60;m++){const o=document.createElement('option');o.value=m;o.textContent=(m<10?'0'+m:m);mm.appendChild(o);}
+
+  function pad2(n){ n = String(n); return n.length<2 ? '0'+n : n; }
+
+  // Encode une chaîne (accents compris) en base64url SANS padding, via un passage
+  // explicite par UTF-8 (TextEncoder) : btoa() seul échoue sur les caractères non-ASCII.
+  function toBase64Url(str){
+    const bytes = new TextEncoder().encode(str);
+    let binary = '';
+    bytes.forEach(function(b){ binary += String.fromCharCode(b); });
+    const b64 = btoa(binary);
+    return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  }
+
+  function order(){
+    const msg=document.getElementById('msg');
+    const email=document.getElementById('email').value.trim();
+    const prenom=document.getElementById('prenom').value.trim();
+    const d=document.getElementById('jour').value, mo=document.getElementById('mois').value, a=document.getElementById('annee').value;
+    const h=document.getElementById('heure').value, mi=document.getElementById('minute').value;
+    const ville=document.getElementById('ville').value.trim();
+    const pays=document.getElementById('pays').value.trim();
+
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.className='msg err'; msg.textContent="Merci d'indiquer un email valide pour recevoir votre Ciel du Mois."; return; }
+    if(!d || !mo || !a){ msg.className='msg err'; msg.textContent="Merci d'indiquer votre date de naissance complète (jour, mois, année)."; return; }
+
+    // Heure : les deux sélecteurs doivent être renseignés ensemble, ou vides tous les deux.
+    const heureTxt = (h!=='' && mi!=='') ? (pad2(h)+':'+pad2(mi)) : '';
+    if((h!=='') !== (mi!=='')){ msg.className='msg err'; msg.textContent="Merci d'indiquer l'heure ET la minute, ou de laisser les deux champs vides."; return; }
+
+    const payload = { pn: prenom, d: a+pad2(mo)+pad2(d), h: heureTxt, v: ville, p: pays };
+    const encoded = toBase64Url(JSON.stringify(payload));
+
+    // Garde-fou : le paramètre client_reference_id de Stripe n'accepte que des
+    // caractères alphanumériques, tirets et underscores, sur 200 caractères max.
+    // Toute valeur non conforme serait silencieusement ignorée par Stripe.
+    if(encoded.length > 200 || !/^[A-Za-z0-9_-]+$/.test(encoded)){
+      msg.className='msg err';
+      msg.textContent="Une erreur technique empêche la préparation de votre commande. Merci de réessayer ou de nous contacter.";
+      return;
+    }
+
+    if(STRIPE_URL){
+      const url = STRIPE_URL
+        + (STRIPE_URL.includes('?') ? '&' : '?')
+        + 'prefilled_email=' + encodeURIComponent(email)
+        + '&client_reference_id=' + encoded;
+      window.location.href = url;
+    } else {
+      // En attendant la création du lien Stripe : accès direct au résultat pour test
+      window.location.href = 'resultat-ciel-du-mois.html';
+    }
+  }
+</script>
+</body>
+</html>
