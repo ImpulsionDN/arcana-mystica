@@ -2237,7 +2237,7 @@ window.inscrireHoroscope=function(){
   }).then(function(res){
     if(res.ok && res.j && res.j.ok){
       msg.style.color='var(--gold-deep)';
-      msg.textContent="Merci ! Un email de confirmation vient de vous être envoyé — cliquez sur le lien qu'il contient pour recevoir votre horoscope "+(res.j.signe?('('+res.j.signe+') '):'')+"chaque matin.";
+      msg.textContent="Merci ! Votre inscription est confirmée — vous recevrez votre horoscope "+(res.j.signe?('('+res.j.signe+') '):'')+"chaque matin.";
     } else {
       msg.style.color='var(--rose)';
       msg.textContent=(res.j&&res.j.error)?res.j.error:"Une erreur empêche votre inscription pour le moment. Réessayez dans quelques instants.";
