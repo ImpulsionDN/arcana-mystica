@@ -69,7 +69,7 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.88);backdrop-f
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,145,73,.4)}50%{box-shadow:0 0 0 6px rgba(184,145,73,0)}}
 .burger{display:none;font-size:1.6rem;color:var(--gold-deep);background:none;border:none;cursor:pointer}
 @media(max-width:880px){
-  .nav-links{position:fixed;inset:76px 0 0 0;flex-direction:column;background:var(--bg);padding:1.5rem;border-bottom:1px solid var(--line);display:none;gap:1.2rem;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .nav-links{position:fixed;top:76px;left:0;right:0;height:calc(100vh - 76px);height:calc(100dvh - 76px);flex-direction:column;background:var(--bg);padding:1.5rem;border-bottom:1px solid var(--line);display:none;gap:1.2rem;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .nav-links.open{display:flex}
   .burger{display:block}
   .nav-group{flex-direction:column;align-items:flex-start;align-self:auto;width:100%}
