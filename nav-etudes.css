@@ -16,3 +16,29 @@
 .nav-drop a{display:flex;align-items:center;justify-content:space-between;gap:10px;white-space:nowrap;padding:10px 14px;border-radius:8px;color:var(--ink);font-size:14px;text-decoration:none}
 .nav-drop a:hover{background:rgba(184,145,73,.08);color:var(--gold-deep)}
 .nav-price{margin-left:auto;padding-left:1rem;font-size:12px;font-weight:600;color:var(--gold-deep);white-space:nowrap}
+
+/* ============================================================
+   Menu mobile (bouton injecté par nav-mobile.js).
+   .burger est masqué par défaut (desktop) et réapparaît ci-dessous
+   sous 760px, seuil déjà utilisé par .menu{display:none} dans le
+   <style> de chaque page produit.
+   .menu devient ici le panneau mobile lui-même (déjà rempli par
+   nav-etudes.js / nav-tirages.js) : aucune donnée dupliquée.
+   IMPORTANT : hauteur en height:calc(100vh/100dvh - 74px), jamais
+   bottom:0/inset — nav.top a un backdrop-filter, ce qui en fait le
+   containing block de tout descendant position:fixed ; bottom:0 s'y
+   calculerait alors par rapport à la hauteur de nav.top (~74px) et
+   non du viewport, réduisant le panneau à une bande quasi nulle
+   (bug déjà rencontré et corrigé ce jour sur le menu mobile de
+   l'accueil — cf. .nav-links dans index.html).
+   ============================================================ */
+.burger{display:none;font-size:1.5rem;color:var(--gold-deep);background:none;border:none;cursor:pointer}
+@media(max-width:760px){
+  .burger{display:block}
+  .menu{position:fixed;top:74px;left:0;right:0;height:calc(100vh - 74px);height:calc(100dvh - 74px);flex-direction:column;align-items:flex-start;gap:1.1rem;background:var(--bg);padding:1.5rem;border-bottom:1px solid var(--line);display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .menu.open{display:flex}
+  .nav-group{flex-direction:column;align-items:flex-start;width:100%}
+  .nav-trigger{color:var(--gold-deep);font-weight:600;margin-bottom:.2rem}
+  .nav-drop{position:static;transform:none;display:block;border:none;box-shadow:none;background:transparent;padding:0 0 0 .9rem;min-width:0}
+  .sep{display:none}
+}
