@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Votre Thème Astral Complet — Oracle Arcana</title>
-<meta name="description" content="Commandez votre thème astral complet et personnalisé : ascendant, planètes, maisons astrologiques et interprétation détaillée, à partir de votre date, heure et lieu de naissance. Reçu par email. Oracle Arcana.">
+<meta name="description" content="Commandez votre thème astral complet et personnalisé : signe solaire, élément, planète maîtresse et ascendant réellement calculé (naissances en France), en une interprétation longue et personnalisée. Reçu par email. Oracle Arcana.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -96,17 +96,14 @@
   <section class="hero">
     <div class="eyebrow">Astrologie · Version complète</div>
     <h1>Votre Thème Astral Complet</h1>
-    <p class="sub">Votre carte du ciel personnalisée, longuement interprétée et envoyée par email.</p>
-    <div class="price">17 €<small>Document complet · paiement unique</small></div>
+    <p class="sub">Votre signe, votre élément, votre planète maîtresse et votre ascendant réellement calculé, longuement interprétés.</p>
+    <div class="price">14,99 €<small>Portrait complet · paiement unique</small></div>
   </section>
 
   <div class="receive">
-    <div class="rec"><svg viewBox="0 0 24 24"><path d="M3 18h18M12 18a6 6 0 0 0-6-6M12 18a6 6 0 0 1 6-6M12 8V4M12 4l-2 2M12 4l2 2"/></svg><b>Votre Ascendant</b><span>et le milieu du ciel</span></div>
-    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><circle cx="12" cy="3" r="1.4" fill="currentColor" stroke="none"/><circle cx="21" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg><b>Les planètes</b><span>en signes & maisons</span></div>
-    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg><b>Les 12 maisons</b><span>les domaines de vie</span></div>
-    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7.7 8.3 16.3 16M16.3 8.3 7.7 16M8 7h8"/></svg><b>Les aspects</b><span>majeurs entre astres</span></div>
-    <div class="rec"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 12h6M9 15h4"/></svg><b>Interprétation</b><span>longue & personnalisée</span></div>
-    <div class="rec"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><b>Reçu par email</b><span>en document PDF</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><circle cx="12" cy="3" r="1.4" fill="currentColor" stroke="none"/><circle cx="21" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg><b>Signe & éléments</b><span>votre planète maîtresse</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M3 18h18M12 18a6 6 0 0 0-6-6M12 18a6 6 0 0 1 6-6M12 8V4M12 4l-2 2M12 4l2 2"/></svg><b>Votre Ascendant</b><span>calcul réel, naissances en France</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><b>Portrait complet</b><span>reçu par email et à l'écran</span></div>
   </div>
 
   <div class="form">
@@ -145,7 +142,7 @@
         <select id="minute"><option value="" selected disabled>Minute</option></select>
       </div>
       <label class="check"><input type="checkbox" id="noheure" onchange="toggleHeure()"> Je ne connais pas mon heure exacte</label>
-      <div class="hint">L'heure détermine votre ascendant et vos maisons. Sans elle, on utilise 12:00 et l'analyse sera partielle (comme le recommandent les astrologues).</div>
+      <div class="hint">L'heure détermine votre ascendant. Sans elle, nous n'approximons jamais : votre portrait se basera sur votre signe, votre élément et votre planète maîtresse uniquement, sans ascendant calculé.</div>
     </div>
 
     <div class="field">
@@ -157,16 +154,15 @@
       <div class="hint">La commune sert à déterminer la latitude et la longitude, essentielles au calcul de l'ascendant et des maisons.</div>
     </div>
 
-    <button class="btn" onclick="order()">Commander mon thème astral — 17 €</button>
-    <p style="text-align:center; font-size:13px; color:#7c7365; margin-top:10px;">À l'étape suivante (paiement sécurisé Stripe), il vous sera à nouveau demandé votre date/heure et votre ville de naissance — c'est normal, cela nous permet de vérifier vos informations avant de préparer votre thème.</p>
-    <div class="secure">Paiement sécurisé · Livraison par email sous 24 h</div>
+    <button class="btn" onclick="order()">Commander mon thème astral — 14,99 €</button>
+    <div class="secure">Paiement sécurisé · Résultat à l'écran + email</div>
     <div class="msg" id="msg"></div>
   </div>
 
   <div class="faq">
     <h3>Questions fréquentes</h3>
-    <div class="qa"><b>Je ne connais pas mon heure de naissance ?</b><p>Cochez la case prévue : nous utiliserons 12:00. Votre thème sera établi, mais l'ascendant et les maisons resteront approximatifs. Vous pouvez retrouver votre heure exacte sur votre acte de naissance intégral (mairie de naissance).</p></div>
-    <div class="qa"><b>Sous quel délai vais-je le recevoir ?</b><p>Votre thème astral complet vous est envoyé par email sous 24 heures, en document PDF que vous pourrez conserver.</p></div>
+    <div class="qa"><b>Je ne connais pas mon heure de naissance ?</b><p>Cochez la case prévue : votre thème sera établi sur votre signe, votre élément et votre planète maîtresse, sans ascendant calculé — nous n'approximons jamais une heure inconnue. Vous pouvez retrouver votre heure exacte sur votre acte de naissance intégral (mairie de naissance).</p></div>
+    <div class="qa"><b>Sous quel délai vais-je le recevoir ?</b><p>Votre thème astral complet s'affiche automatiquement à l'écran juste après votre paiement, et une copie vous est envoyée par email dans la foulée.</p></div>
     <div class="qa"><b>Mes données sont-elles protégées ?</b><p>Vos informations ne servent qu'à établir votre thème et à vous l'envoyer. Elles ne sont ni revendues, ni partagées.</p></div>
   </div>
 
@@ -174,8 +170,8 @@
 </div>
 
 <script>
-  // === À BRANCHER : collez ici votre lien de paiement Stripe (laisser vide tant qu'il n'est pas prêt) ===
-  const STRIPE_URL = "https://buy.stripe.com/5kQcMXgZk5Ua6ba0HgdZ60a";
+  // Lien LIVE — Thème astral complet à 14,99 €.
+  const STRIPE_URL = "https://buy.stripe.com/00w7sD10m4Q6arq4XwdZ60f";
 
   const j=document.getElementById('jour');
   for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;j.appendChild(o);}
@@ -193,11 +189,26 @@
     if(off){document.getElementById('heure').value='';document.getElementById('minute').value='';}
   }
 
+  function pad2(n){ n = String(n); return n.length<2 ? '0'+n : n; }
+
+  // Encode une chaîne (accents compris) en base64url SANS padding, via un passage
+  // explicite par UTF-8 (TextEncoder) : btoa() seul échoue sur les caractères non-ASCII.
+  // Même mécanisme que ciel-du-mois.html / synastrie.html.
+  function toBase64Url(str){
+    const bytes = new TextEncoder().encode(str);
+    let binary = '';
+    bytes.forEach(function(b){ binary += String.fromCharCode(b); });
+    const b64 = btoa(binary);
+    return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  }
+
   function order(){
     const msg=document.getElementById('msg');
+    const prenom=document.getElementById('prenom').value.trim();
     const email=document.getElementById('email').value.trim();
     const d=document.getElementById('jour').value, mo=document.getElementById('mois').value, a=document.getElementById('annee').value;
     const ville=document.getElementById('ville').value.trim();
+    const pays=document.getElementById('pays').value.trim();
     const noheure=document.getElementById('noheure').checked;
     const h=document.getElementById('heure').value, mi=document.getElementById('minute').value;
 
@@ -206,16 +217,33 @@
     if(!noheure && (h==='' || mi==='')){ msg.className='msg err'; msg.textContent="Indiquez votre heure de naissance, ou cochez « Je ne connais pas mon heure exacte »."; return; }
     if(!ville){ msg.className='msg err'; msg.textContent="Merci d'indiquer votre ville / commune de naissance."; return; }
 
-    const heureTxt = noheure ? '12:00 (approx.)' : ((h<10?'0'+h:h)+':'+(mi<10?'0'+mi:mi));
-    // Données prêtes à être transmises au paiement / au calcul du thème
-    const data = { email, jour:d, mois:mo, annee:a, heure:heureTxt, ville, pays:document.getElementById('pays').value.trim() };
+    // Heure réellement inconnue -> chaîne vide (jamais un "12:00" fictif) :
+    // le Worker sait qu'une heure vide signifie "pas d'ascendant calculable",
+    // conformément au principe d'honnêteté du produit (pas d'approximation
+    // silencieuse). L'ascendant réel n'est de toute façon calculé que pour
+    // les naissances en France (Option A).
+    const heureTxt = noheure ? '' : (pad2(h)+':'+pad2(mi));
+
+    const payload = { pn: prenom, d: a+pad2(mo)+pad2(d), h: heureTxt, v: ville, p: pays };
+    const encoded = toBase64Url(JSON.stringify(payload));
+
+    // Garde-fou : le paramètre client_reference_id de Stripe n'accepte que des
+    // caractères alphanumériques, tirets et underscores, sur 200 caractères max.
+    if(encoded.length > 200 || !/^[A-Za-z0-9_-]+$/.test(encoded)){
+      msg.className='msg err';
+      msg.textContent="Une erreur technique empêche la préparation de votre commande. Merci de réessayer ou de nous contacter.";
+      return;
+    }
 
     if(STRIPE_URL){
-      // Redirection vers le paiement Stripe (email pré-rempli)
-      window.location.href = STRIPE_URL + (STRIPE_URL.includes('?')?'&':'?') + 'prefilled_email=' + encodeURIComponent(email);
+      const url = STRIPE_URL
+        + (STRIPE_URL.includes('?') ? '&' : '?')
+        + 'prefilled_email=' + encodeURIComponent(email)
+        + '&client_reference_id=' + encoded;
+      window.location.href = url;
     } else {
       msg.className='msg ok';
-      msg.textContent="Merci "+(document.getElementById('prenom').value.trim()||'')+" ! Vos informations sont bien enregistrées. Le paiement en ligne sera activé très prochainement — votre thème vous sera alors envoyé par email.";
+      msg.textContent="Merci "+(prenom||'')+" ! Vos informations sont bien enregistrées. Le paiement en ligne sera activé très prochainement — votre thème vous sera alors envoyé par email.";
     }
   }
 </script>
