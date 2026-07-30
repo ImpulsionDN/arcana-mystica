@@ -47,14 +47,11 @@
     var menu = document.querySelector('nav.top .menu');
     if (!menu) return;
 
-    // Repère le lien FAQ (dernier élément de ces menus) pour insérer
-    // "Nos études" juste avant, comme sur l'accueil.
     var liens = menu.querySelectorAll('a');
-    var faq = null;
+    var tirages = null;
     for (var i = 0; i < liens.length; i++) {
-      var href = liens[i].getAttribute('href') || '';
-      if (href.indexOf('avisfaq') !== -1 || liens[i].textContent.trim() === 'FAQ') {
-        faq = liens[i];
+      if (liens[i].textContent.trim() === 'Tirages gratuits') {
+        tirages = liens[i];
         break;
       }
     }
@@ -63,17 +60,27 @@
     wrapper.innerHTML = construireMenuHTML();
     var groupe = wrapper.firstElementChild;
 
-    var sep = document.createElement('span');
-    sep.className = 'sep';
-    sep.textContent = '·';
+    var sepApres = document.createElement('span');
+    sepApres.className = 'sep';
+    sepApres.textContent = '·';
 
-    if (faq && faq.parentNode === menu) {
-      menu.insertBefore(sep, faq);
-      menu.insertBefore(groupe, faq);
+    if (tirages && tirages.parentNode === menu) {
+      // Insère "Nos études" juste après "Tirages gratuits" (et son séparateur
+      // existant, laissé en place), suivi d'un nouveau séparateur avant le
+      // lien suivant (Astrologie).
+      var sepExistant = tirages.nextElementSibling;
+      var reference = (sepExistant && sepExistant.classList.contains('sep'))
+        ? sepExistant.nextElementSibling
+        : tirages.nextElementSibling;
+      menu.insertBefore(groupe, reference);
+      menu.insertBefore(sepApres, reference);
     } else {
-      // Repli : si aucun lien FAQ n'est trouvé, on ajoute simplement à la fin.
-      menu.appendChild(sep);
-      menu.appendChild(groupe);
+      // Repli : si "Tirages gratuits" n'est pas trouvé, on ajoute simplement en tête.
+      var sepAvant = document.createElement('span');
+      sepAvant.className = 'sep';
+      sepAvant.textContent = '·';
+      menu.insertBefore(sepAvant, menu.firstChild);
+      menu.insertBefore(groupe, menu.firstChild);
     }
   }
 
