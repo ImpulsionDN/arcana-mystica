@@ -1,0 +1,18 @@
+/* ============================================================
+   ORACLE ARCANA — Style du menu déroulant "Nos études" partagé
+   (injecté par nav-etudes.js sur les pages produit autonomes).
+   Réutilise les variables --gold / --gold-deep / --ink / --ink-soft /
+   --line / --card déjà définies dans le :root de chaque page produit
+   (synastrie.html, theme-astral.html, ciel-du-mois.html, astrologie.html)
+   — mêmes noms de variables partout, donc aucune adaptation nécessaire.
+   ============================================================ */
+
+.nav-group{position:relative;display:inline-flex;align-items:center}
+.nav-trigger{cursor:pointer;color:var(--ink-soft);font-weight:600;text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:4px}
+.nav-trigger:hover{color:var(--gold-deep)}
+.nav-trigger .caret{font-size:10px;color:var(--gold)}
+.nav-drop{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:230px;display:none;z-index:70;box-shadow:0 14px 36px rgba(154,120,56,.18)}
+.nav-group:hover .nav-drop{display:block}
+.nav-drop a{display:flex;align-items:center;justify-content:space-between;gap:10px;white-space:nowrap;padding:10px 14px;border-radius:8px;color:var(--ink);font-size:14px;text-decoration:none}
+.nav-drop a:hover{background:rgba(184,145,73,.08);color:var(--gold-deep)}
+.nav-price{margin-left:auto;padding-left:1rem;font-size:12px;font-weight:600;color:var(--gold-deep);white-space:nowrap}
