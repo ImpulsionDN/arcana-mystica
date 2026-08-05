@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="horoscope-widget.css">
+<script src="horoscope-widget.js"></script>
 <style>
   :root{
     --cream:#FAF5E9; --card:#FFFFFF; --card-hover:#F4ECD9;
@@ -95,6 +97,12 @@
   </section>
 
   <div class="grid" id="grid"></div>
+
+  <div style="text-align:center;margin:2.5rem 0;padding-top:2rem;border-top:1px solid var(--line)">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;color:var(--gold-deep);font-size:1.3rem;margin-bottom:1.2rem">Reçois ta guidance chaque matin</h3>
+    <div id="nombres-horoscope-form"></div>
+  </div>
+  <script>insererFormulaireHoroscope('nombres-horoscope-form', {idPrefix:'hw_nombres'});</script>
 
   <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
 </div>
