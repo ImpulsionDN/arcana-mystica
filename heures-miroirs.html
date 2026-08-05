@@ -6,6 +6,8 @@
 <title>Heures Miroirs — Oracle Arcana</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="horoscope-widget.css">
+<script src="horoscope-widget.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -350,6 +352,10 @@ footer{background:var(--bg3);border-top:1px solid var(--bordor);padding:2.5rem c
       <div class="md-text" id="mdText"></div>
       <div class="md-extra" id="mdExtra"></div>
       <div class="md-ange" id="mdAnge"></div>
+      <div id="mdHoroscope" style="display:none;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--bordor)">
+        <div style="text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:var(--or2);margin-bottom:1.3rem">Reçois ta guidance chaque matin</div>
+        <div id="horoscope-form-miroir"></div>
+      </div>
     </div>
   </div>
 </div>

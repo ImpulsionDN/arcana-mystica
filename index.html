@@ -354,6 +354,8 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 @media(max-width:860px){.oah-hero-in{grid-template-columns:1fr;text-align:center;padding:38px 0 42px}.oah-h1{font-size:44px}.oah-lead{margin-left:auto;margin-right:auto}.oah-btns{justify-content:center}.oah-art{order:-1;margin-bottom:16px}.oah-art svg{max-width:280px}}
 @media(max-width:560px){.oah-grid{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="horoscope-widget.css">
+<script src="horoscope-widget.js"></script>
 
 </head>
 <body>
@@ -1734,16 +1736,11 @@ function totemReveal(){
       <h2>Votre horoscope quotidien gratuit</h2>
       <p>Un message personnalisé selon votre signe, envoyé chaque matin. Gratuit, sans engagement, désinscription en un clic.</p>
     </div>
-    <div class="panel" style="max-width:480px;margin:0 auto">
-      <div class="field"><label>Email</label><input type="email" id="h_email" placeholder="vous@exemple.fr"></div>
-      <div class="field"><label>Date de naissance</label><div class="dgroup" id="h_naiss"><select class="dsel" data-part="j" aria-label="Jour"><option value="">Jour</option></select><select class="dsel" data-part="m" aria-label="Mois"><option value="">Mois</option></select><select class="dsel" data-part="y" aria-label="Année"><option value="">Année</option></select></div></div>
-      <div style="text-align:center"><button class="btn btn-gold" id="h_btn" onclick="inscrireHoroscope()">Recevoir mon horoscope gratuit</button></div>
-      <div id="h_msg" style="display:none;margin-top:1rem;text-align:center;font-size:.92rem"></div>
-    </div>
-    <p class="note" style="text-align:center;margin-top:1.2rem;font-size:.82rem;color:var(--ink-soft)">Vos données ne servent qu'à vous envoyer votre horoscope quotidien. Désinscription possible à tout moment depuis chaque email reçu.</p>
+    <div id="horoscope-form"></div>
   </div>
 </section>
 </div>
+<script>insererFormulaireHoroscope('horoscope-form');</script>
 <div class="page" id="page-avisfaq">
 <section class="bg2" id="avis">
   <div class="wrap">
@@ -2265,50 +2262,6 @@ function numChargerRapportPaye(){
   });
 }
 if(document.readyState!=='loading'){ numChargerRapportPaye(); } else { document.addEventListener('DOMContentLoaded', numChargerRapportPaye); }
-
-var HOROSCOPE_WORKER_URL = "https://arcana-horoscope-inscription.dni-business44.workers.dev";
-window.inscrireHoroscope=function(){
-  var msg=document.getElementById('h_msg');
-  var btn=document.getElementById('h_btn');
-  var email=(document.getElementById('h_email').value||"").trim();
-  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    msg.style.display='block';msg.style.color='var(--rose)';
-    msg.textContent="Merci d'indiquer un email valide.";
-    return;
-  }
-  var naissance=getDateValue('h_naiss');
-  if(!naissance){
-    msg.style.display='block';msg.style.color='var(--rose)';
-    msg.textContent="Merci d'indiquer votre date de naissance.";
-    return;
-  }
-  msg.style.display='block';msg.style.color='var(--ink-soft)';
-  msg.textContent="Inscription en cours…";
-  if(btn) btn.disabled=true;
-  fetch(HOROSCOPE_WORKER_URL,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email:email,naissance:naissance})
-  }).then(function(r){
-    return r.text().then(function(t){
-      var j=null; try{ j=JSON.parse(t); }catch(e){}
-      return {ok:r.ok, j:j};
-    });
-  }).then(function(res){
-    if(res.ok && res.j && res.j.ok){
-      msg.style.color='var(--gold-deep)';
-      msg.textContent="Merci ! Votre inscription est confirmée — vous recevrez votre horoscope "+(res.j.signe?('('+res.j.signe+') '):'')+"chaque matin. Pensez à vérifier vos spams et à ajouter horoscope@oracle-arcana.fr à vos contacts pour ne rien manquer.";
-    } else {
-      msg.style.color='var(--rose)';
-      msg.textContent=(res.j&&res.j.error)?res.j.error:"Une erreur empêche votre inscription pour le moment. Réessayez dans quelques instants.";
-    }
-  }).catch(function(){
-    msg.style.color='var(--rose)';
-    msg.textContent="Une erreur de connexion empêche votre inscription. Réessayez dans quelques instants.";
-  }).then(function(){
-    if(btn) btn.disabled=false;
-  });
-};
 
 var AFFINITES={
   1:{1:80,2:60,3:75,4:55,5:85,6:65,7:90,8:50,9:70},

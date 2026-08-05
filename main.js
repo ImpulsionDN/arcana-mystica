@@ -1016,6 +1016,19 @@ function afficherMiroir(h){
   document.getElementById('mdText').innerHTML=data.texte;
   document.getElementById('mdAnge').innerHTML='Ange associé : <strong>'+data.ange+'</strong>';
 
+  var horoBlock=document.getElementById('mdHoroscope');
+  if(horoBlock){
+    if(h==='21h21'){
+      horoBlock.style.display='block';
+      if(typeof insererFormulaireHoroscope==='function' && !horoBlock.dataset.injecte){
+        insererFormulaireHoroscope('horoscope-form-miroir');
+        horoBlock.dataset.injecte='1';
+      }
+    } else {
+      horoBlock.style.display='none';
+    }
+  }
+
   var flashEl=document.getElementById('mdFlash');
   if(flashEl){
     if(data.flash){flashEl.textContent=data.flash;flashEl.style.display='block';}
