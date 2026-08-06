@@ -77,7 +77,7 @@
 <div class="stage">
   <div class="pin" id="pin">
     <div class="pin-inner">
-      <div class="pin-label">Nombres Angéliques</div>
+      <div class="pin-label" id="pinLabel">Nombres Angéliques</div>
 
       <div class="pin-mid">
         <div class="pin-ornament">✦</div>
@@ -109,20 +109,73 @@
     ["999","Accomplissement"]
   ];
 
+  /* Heure + ange associé, repris tels quels de la donnée HEURES_MIROIRS de main.js */
+  var HEURES_MIROIR = [
+    ["00h00","Vehuhiah"],["01h01","Jeliel"],["02h02","Sitael"],["03h03","Elemiah"],
+    ["04h04","Mahasiah"],["05h05","Lelahel"],["06h06","Achaiah"],["07h07","Cahethel"],
+    ["08h08","Haziel"],["09h09","Aladiah"],["10h10","Lauviah"],["11h11","Hahaiah"],
+    ["12h12","Iezalel"],["13h13","Mebahel"],["14h14","Hariel"],["15h15","Hekamiah"],
+    ["16h16","Lauviah II"],["17h17","Caliel"],["18h18","Leuviah"],["19h19","Pahaliah"],
+    ["20h20","Nelkhael"],["21h21","Yeiayel"],["22h22","Melahel"],["23h23","Haheuiah"]
+  ];
+  var HEURES_INVERSE = [
+    ["10h01","Achaiah"],["12h21","Iezalel"],["13h31","Mebahel"],["14h41","Hariel"],
+    ["15h51","Hekamiah"],["20h02","Nelkhael"],["21h12","Yeiayel"],["23h32","Haheuiah"],
+    ["01h10","Jeliel"],["02h20","Sitael"],["03h30","Elemiah"],["04h40","Mahasiah"],
+    ["05h50","Lelahel"]
+  ];
+
   var select = document.getElementById('numSelect');
-  NOMBRES.forEach(function(n){
-    var opt = document.createElement('option');
-    opt.value = n[0];
-    opt.textContent = n[0] + ' — ' + n[1];
-    select.appendChild(opt);
-  });
-  select.value = '111';
+
+  function ajouterGroupe(label, liste, prefixeValeur){
+    var group = document.createElement('optgroup');
+    group.label = label;
+    liste.forEach(function(item){
+      var opt = document.createElement('option');
+      opt.value = prefixeValeur + item[0];
+      opt.textContent = item[0] + ' — ' + item[1];
+      group.appendChild(opt);
+    });
+    select.appendChild(group);
+  }
+
+  ajouterGroupe('Nombres angéliques', NOMBRES, 'num:');
+  ajouterGroupe('Heures miroirs', HEURES_MIROIR, 'miroir:');
+  ajouterGroupe('Heures inversées', HEURES_INVERSE, 'inverse:');
+  select.value = 'num:111';
+
+  /* Taille de base du grand affichage : pleine taille pour les nombres (111, 222…),
+     volontairement plus modeste pour les heures (21h21…) afin que l'ange associé et
+     l'accroche gardent leur place et respirent — l'heure ne doit pas écraser la carte. */
+  var TAILLE_BASE = {num:420, miroir:230, inverse:230};
+
+  /* Filet de sécurité : si malgré la taille de base le texte dépasse le cadre
+     (cas limite), on réduit encore pour qu'il tienne toujours. */
+  function ajusterTaille(tailleBase){
+    var el = document.getElementById('pinNumber');
+    var maxLargeur = 820;
+    el.style.fontSize = tailleBase + 'px';
+    var largeur = el.getBoundingClientRect().width;
+    if(largeur > maxLargeur){
+      el.style.fontSize = (tailleBase * (maxLargeur / largeur)) + 'px';
+    }
+  }
 
   function majEpingle(){
-    var choix = NOMBRES.find(function(n){ return n[0] === select.value; });
+    var val = select.value;
+    var deuxPoints = val.indexOf(':');
+    var type = val.slice(0, deuxPoints);
+    var cle = val.slice(deuxPoints + 1);
+
+    var source = type === 'num' ? NOMBRES : (type === 'miroir' ? HEURES_MIROIR : HEURES_INVERSE);
+    var choix = source.find(function(item){ return item[0] === cle; });
     if(!choix) return;
+
+    var labels = {num:'Nombres Angéliques', miroir:'Heure Miroir', inverse:'Heure Inversée'};
+    document.getElementById('pinLabel').textContent = labels[type];
     document.getElementById('pinNumber').textContent = choix[0];
     document.getElementById('pinKey').textContent = choix[1];
+    ajusterTaille(TAILLE_BASE[type]);
   }
   select.addEventListener('change', majEpingle);
   majEpingle();
