@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nombre Angélique 333 — Signification | Oracle Arcana</title>
+<meta name="description" content="Vous voyez le nombre 333 partout ? Découvrez sa signification complète : guidance, présence de vos guides, et le message que vos anges gardiens cherchent à vous transmettre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Nunito+Sans:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="horoscope-widget.css">
+<script src="horoscope-widget.js"></script>
+<style>
+  :root{
+    --cream:#FAF5E9; --card:#FFFFFF; --card-hover:#F4ECD9;
+    --gold:#A8833B; --gold-deep:#8C6E2C; --gold-soft:#C9A24B;
+    --brown:#5B5140; --ink:#3C3322; --line:rgba(168,131,59,.28);
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--display); color:var(--brown);
+    background:radial-gradient(120% 70% at 50% -5%, #FFFDF6 0%, var(--cream) 55%);
+    min-height:100vh; position:relative}
+  .wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px}
+
+  /* Header */
+  header{display:flex; align-items:center; justify-content:space-between; padding:26px 0 18px; border-bottom:1px solid var(--line)}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:3px; color:var(--ink)}
+  .logo b{color:var(--gold); font-weight:600}
+  nav{display:flex; gap:30px; font-size:18px; color:var(--gold); flex-wrap:wrap; font-family:var(--display)}
+  nav a{color:var(--gold); text-decoration:none; transition:color .25s}
+  nav a:hover{color:var(--gold-deep)}
+  nav a.current{color:var(--gold-deep); font-weight:600}
+  @media(max-width:760px){nav{display:none}}
+
+  /* Badge GRATUIT */
+  .badge{display:inline-block; font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:1.5px;
+    color:#FBF6EA; background:var(--gold-deep); padding:5px 15px; border-radius:20px; text-transform:uppercase; vertical-align:middle}
+
+  /* Hero du nombre */
+  .num-hero{text-align:center; padding:70px 0 20px}
+  .eyebrow{font-family:var(--sans); font-size:13px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:20px}
+  .num-big{font-family:'Nunito Sans','Helvetica Neue',Arial,sans-serif; font-weight:700; font-size:clamp(90px,18vw,160px); color:var(--gold); line-height:1}
+  .num-key{font-family:var(--sans); font-size:14px; letter-spacing:4px; color:var(--gold-deep); text-transform:uppercase; margin-top:10px}
+  .num-divider{width:60px; height:1px; background:var(--gold); opacity:.5; margin:28px auto}
+  .num-msg{font-family:var(--display); font-style:italic; font-size:clamp(19px,2.6vw,25px); line-height:1.7; color:var(--ink); max-width:640px; margin:0 auto}
+
+  /* Bloc horoscope */
+  .horo-block{text-align:center; margin:3.5rem 0 2.5rem; padding-top:2rem; border-top:1px solid var(--line)}
+  .horo-block h3{font-family:var(--display); font-weight:500; font-style:italic; color:var(--gold-deep); font-size:1.3rem; margin-bottom:1.2rem}
+
+  /* Maillage interne */
+  .more-link{text-align:center; padding:0 0 60px}
+  .more-link a{font-family:var(--sans); font-size:13px; letter-spacing:1px; color:var(--gold-deep); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; transition:color .2s, border-color .2s}
+  .more-link a:hover{color:var(--gold); border-color:var(--gold)}
+
+  footer{text-align:center; padding:30px 0 50px; color:var(--brown); opacity:.7; font-family:var(--sans); font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+  @media(prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html" style="text-decoration:none"><div class="logo"><b>ORACLE</b> ARCANA</div></a>
+    <nav>
+      <a href="index.html">Tirages gratuits</a>
+      <a href="index.html">Lectures</a>
+      <a href="index.html#roue">Le Tirage des Lunes</a>
+      <a href="index.html#consultations">Consultations</a>
+      <a href="index.html#avisfaq">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="num-hero">
+    <div class="eyebrow">Nombre Angélique <span class="badge">Gratuit</span></div>
+    <div class="num-big">333</div>
+    <div class="num-key">Guidance</div>
+    <div class="num-divider"></div>
+    <p class="num-msg">« Le 333 annonce la présence rapprochée de tes guides : tu n'avances pas seul. Ils t'encouragent à exprimer ta créativité, ta voix et ta vérité, sans plus te censurer. Ose te montrer tel que tu es : ta voie est juste, et elle est soutenue. »</p>
+  </section>
+
+  <div class="horo-block">
+    <h3>Reçois ta guidance chaque matin</h3>
+    <div id="nombre333-horoscope-form"></div>
+  </div>
+  <script>insererFormulaireHoroscope('nombre333-horoscope-form', {idPrefix:'hw_333'});</script>
+
+  <div class="more-link">
+    <a href="nombres-angeliques.html">Découvrir tous les nombres angéliques →</a>
+  </div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+</body>
+</html>

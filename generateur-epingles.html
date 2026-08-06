@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur d'épingles Pinterest — Oracle Arcana (outil interne)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Nunito+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF5E9; --card:#FFFFFF;
+    --gold:#A8833B; --gold-deep:#8C6E2C; --gold-soft:#C9A24B;
+    --brown:#5B5140; --ink:#3C3322; --line:rgba(168,131,59,.28);
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--display); color:var(--brown); background:#e9e2d2; min-height:100vh}
+
+  /* Barre de contrôle (hors épingle, ne fait pas partie de la capture) */
+  .controls{position:sticky; top:0; z-index:10; background:var(--ink); color:#FBF6EA; padding:18px 24px;
+    display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; font-family:var(--sans);
+    box-shadow:0 4px 14px rgba(0,0,0,.15)}
+  .controls label{font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--gold-soft)}
+  .controls select{font-family:var(--sans); font-size:15px; padding:8px 14px; border-radius:8px; border:1px solid var(--gold);
+    background:#fff; color:var(--ink); cursor:pointer}
+  .controls .hint{font-size:12px; color:#cbbfa0; letter-spacing:.3px}
+
+  /* Zone de défilement pour l'épingle */
+  .stage{padding:50px 20px; display:flex; justify-content:center}
+
+  /* L'ÉPINGLE — exactement 1000 x 1500px, c'est le cadre à capturer */
+  .pin{width:1000px; height:1500px; position:relative; overflow:hidden; flex-shrink:0;
+    background:
+      radial-gradient(140% 70% at 50% -10%, #FFFDF6 0%, var(--cream) 60%);
+    box-shadow:0 30px 80px rgba(60,45,20,.25);
+  }
+  .pin::before{content:""; position:absolute; inset:36px; border:1.5px solid var(--line); pointer-events:none}
+  .pin::after{content:""; position:absolute; inset:48px; border:1px solid var(--line); opacity:.5; pointer-events:none}
+
+  .pin-inner{position:relative; z-index:1; height:100%; display:flex; flex-direction:column; align-items:center;
+    justify-content:space-between; padding:110px 70px 80px; text-align:center}
+
+  .pin-label{font-family:var(--sans); font-size:22px; font-weight:500; letter-spacing:9px; color:var(--gold);
+    text-transform:uppercase}
+
+  .pin-mid{display:flex; flex-direction:column; align-items:center}
+  .pin-ornament{font-size:26px; color:var(--gold-soft); letter-spacing:14px; margin-bottom:36px}
+  .pin-number{font-family:'Nunito Sans','Helvetica Neue',Arial,sans-serif; font-weight:800; font-size:420px;
+    color:var(--gold); line-height:1; text-shadow:0 6px 30px rgba(140,110,44,.18)}
+  .pin-key{font-family:var(--sans); font-size:34px; font-weight:500; letter-spacing:10px; color:var(--gold-deep);
+    text-transform:uppercase; margin-top:26px}
+  .pin-divider{width:110px; height:1.5px; background:var(--gold); opacity:.55; margin:40px auto}
+  .pin-tagline{font-family:var(--display); font-style:italic; font-size:40px; line-height:1.5; color:var(--ink);
+    max-width:760px}
+
+  .pin-footer{display:flex; flex-direction:column; align-items:center; gap:14px}
+  .pin-url{font-family:var(--sans); font-size:22px; letter-spacing:3px; color:var(--gold-deep)}
+  .pin-logo{font-family:var(--display); font-size:30px; letter-spacing:5px; color:var(--ink)}
+  .pin-logo b{color:var(--gold); font-weight:600}
+
+  @media(max-width:1080px){
+    .stage{transform-origin:top center}
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <label for="numSelect">Nombre à afficher</label>
+  <select id="numSelect"></select>
+  <span class="hint">Capturez le cadre crème ci-dessous (1000 × 1500 px) pour Pinterest</span>
+</div>
+
+<div class="stage">
+  <div class="pin" id="pin">
+    <div class="pin-inner">
+      <div class="pin-label">Nombres Angéliques</div>
+
+      <div class="pin-mid">
+        <div class="pin-ornament">✦</div>
+        <div class="pin-number" id="pinNumber">111</div>
+        <div class="pin-key" id="pinKey">Manifestation</div>
+        <div class="pin-divider"></div>
+        <div class="pin-tagline">Ton ange te parle.<br>Vois sa signification.</div>
+      </div>
+
+      <div class="pin-footer">
+        <div class="pin-url">oracle-arcana.fr</div>
+        <div class="pin-logo"><b>ORACLE</b> ARCANA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var NOMBRES = [
+    ["000","Renouveau"],
+    ["111","Manifestation"],
+    ["222","Harmonie"],
+    ["333","Guidance"],
+    ["444","Protection"],
+    ["555","Changement"],
+    ["666","Recentrage"],
+    ["777","Chance"],
+    ["888","Abondance"],
+    ["999","Accomplissement"]
+  ];
+
+  var select = document.getElementById('numSelect');
+  NOMBRES.forEach(function(n){
+    var opt = document.createElement('option');
+    opt.value = n[0];
+    opt.textContent = n[0] + ' — ' + n[1];
+    select.appendChild(opt);
+  });
+  select.value = '111';
+
+  function majEpingle(){
+    var choix = NOMBRES.find(function(n){ return n[0] === select.value; });
+    if(!choix) return;
+    document.getElementById('pinNumber').textContent = choix[0];
+    document.getElementById('pinKey').textContent = choix[1];
+  }
+  select.addEventListener('change', majEpingle);
+  majEpingle();
+</script>
+</body>
+</html>
