@@ -48,6 +48,14 @@
   .num-msg p{margin-bottom:.9em}
   .num-msg p:last-child{margin-bottom:0}
 
+  /* Encarts En amour / Numérologie / Écho du Tarot */
+  .encarts{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:900px; margin:40px auto 0; text-align:left}
+  .encart{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 18px}
+  .encart h4{font-family:var(--sans); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:10px}
+  .encart .encart-sub{font-family:var(--display); font-style:italic; color:var(--gold); font-size:15px; margin-bottom:6px}
+  .encart p{font-family:var(--display); font-size:14.5px; line-height:1.62; color:var(--brown)}
+  @media(max-width:760px){.encarts{grid-template-columns:1fr}}
+
   /* Bloc horoscope */
   .horo-block{text-align:center; margin:3.5rem 0 2.5rem; padding-top:2rem; border-top:1px solid var(--line)}
   .horo-block h3{font-family:var(--display); font-weight:500; font-style:italic; color:var(--gold-deep); font-size:1.3rem; margin-bottom:1.2rem}
@@ -77,10 +85,16 @@
   <section class="num-hero">
     <div class="eyebrow">Heure Miroir <span class="badge">Gratuit</span></div>
     <div class="num-big">11h11</div>
-    <div class="num-key">Hahaiah</div>
+    <div class="num-key">Ange associé : Hahaiah</div>
     <div class="num-divider"></div>
     <div class="num-msg"><p>11h11 est l'heure miroir par excellence, la plus connue et la plus puissante. Elle représente un portail spirituel, une connexion directe avec les forces célestes. Lorsque vous voyez 11h11, l'univers vous dit clairement : il vous entend.</p><p>C'est un signe fort que vos anges gardiens sont présents à vos côtés. Vos pensées et vos intentions ont une puissance décuplée. Utilisez ce moment sacré pour émettre vos intentions les plus positives et les plus sincères.</p></div>
   </section>
+
+  <div class="encarts">
+    <div class="encart"><h4>💕 En amour</h4><p>En amour, 11h11 est le signe d'une connexion vibratoire rare — beaucoup y voient l'empreinte d'une âme sœur ou d'un lien karmique. Faites un vœu sincère concernant votre vie sentimentale : cette heure porte une force de manifestation exceptionnelle.</p></div>
+    <div class="encart"><h4>🔢 Numérologie</h4><p class="encart-sub">Nombre 11 (maître)</p><p>Nombre maître de l'intuition et de l'inspiration — un pont direct vers le monde spirituel.</p></div>
+    <div class="encart"><h4>🃏 Écho du Tarot</h4><p class="encart-sub">La Force</p><p>Le courage doux, la maîtrise par la douceur plutôt que par la contrainte.</p></div>
+  </div>
 
   <div class="horo-block">
     <h3>Reçois ta guidance chaque matin</h3>

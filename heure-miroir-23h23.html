@@ -48,6 +48,14 @@
   .num-msg p{margin-bottom:.9em}
   .num-msg p:last-child{margin-bottom:0}
 
+  /* Encarts En amour / Numérologie / Écho du Tarot */
+  .encarts{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:900px; margin:40px auto 0; text-align:left}
+  .encart{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 18px}
+  .encart h4{font-family:var(--sans); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:10px}
+  .encart .encart-sub{font-family:var(--display); font-style:italic; color:var(--gold); font-size:15px; margin-bottom:6px}
+  .encart p{font-family:var(--display); font-size:14.5px; line-height:1.62; color:var(--brown)}
+  @media(max-width:760px){.encarts{grid-template-columns:1fr}}
+
   /* Bloc horoscope */
   .horo-block{text-align:center; margin:3.5rem 0 2.5rem; padding-top:2rem; border-top:1px solid var(--line)}
   .horo-block h3{font-family:var(--display); font-weight:500; font-style:italic; color:var(--gold-deep); font-size:1.3rem; margin-bottom:1.2rem}
@@ -77,10 +85,16 @@
   <section class="num-hero">
     <div class="eyebrow">Heure Miroir <span class="badge">Gratuit</span></div>
     <div class="num-big">23h23</div>
-    <div class="num-key">Haheuiah</div>
+    <div class="num-key">Ange associé : Haheuiah</div>
     <div class="num-divider"></div>
     <div class="num-msg"><p>23h23 est une heure de transformation spirituelle profonde. Elle marque la fin de la journée et vous invite à faire le bilan, à lâcher prise sur ce qui ne sert plus votre évolution et votre bonheur.</p><p>Un nouveau vous est en train d'émerger. Accueillez cette transformation avec gratitude et confiance absolue en la sagesse de votre chemin de vie.</p></div>
   </section>
+
+  <div class="encarts">
+    <div class="encart"><h4>💕 En amour</h4><p>23h23 suggère qu'une personne que vous aimez a besoin de vous en ce moment, sans oser vous l'avouer ouvertement. Un mot tendre de votre part, envoyé sans attendre qu'on vous le demande, pourrait faire toute la différence.</p></div>
+    <div class="encart"><h4>🔢 Numérologie</h4><p class="encart-sub">Nombre 5</p><p>Le mouvement, la liberté, le changement qui libère et fait grandir.</p></div>
+    <div class="encart"><h4>🃏 Écho du Tarot</h4><p>Cette heure dépasse les 22 arcanes majeurs — elle porte sa propre puissance, au-delà du Tarot classique.</p></div>
+  </div>
 
   <div class="horo-block">
     <h3>Reçois ta guidance chaque matin</h3>
