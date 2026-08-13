@@ -25,6 +25,7 @@
   var PRODUITS = [
     { nom: "Interprétation des rêves", prix: "7,99 €", href: "index.html#reves" },
     { nom: "Bilan numérologique", prix: "9,99 €", href: "index.html#numerologie" },
+    { nom: "Votre Année Personnelle", prix: "9,99 €", href: "annee-personnelle.html" },
     { nom: "Votre Ciel du Mois", prix: "12,99 €", href: "ciel-du-mois.html" },
     { nom: "Compatibilité amoureuse", prix: "13,99 €", href: "synastrie.html" },
     { nom: "Thème astral complet", prix: "14,99 €", href: "theme-astral.html" },
