@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre Human Design — Oracle Arcana</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf6ef; --ink:#2a2218; --ink-soft:#6b5f4d;
+    --gold:#b89149; --gold-deep:#9a7838; --gold-light:#d9be86;
+    --line:rgba(184,145,73,.25); --card:#fffdf9; --rose:#a8587a;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Nunito Sans','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--sans); color:var(--ink-soft);
+    background:
+      radial-gradient(1100px 620px at 78% -8%, #fbe6d4 0%, rgba(251,230,212,0) 55%),
+      radial-gradient(820px 560px at 8% 10%, #f6e6ea 0%, rgba(246,230,234,0) 50%),
+      linear-gradient(180deg,#fdf6ea,#faf6ef);
+    min-height:100vh}
+  .wrap{max-width:780px; margin:0 auto; padding:0 24px 60px}
+  nav.top{position:sticky; top:0; z-index:10; background:rgba(250,246,239,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:center; height:70px; max-width:1080px; margin:0 auto; padding:0 24px}
+  .logo{font-family:var(--display); font-size:26px; letter-spacing:4px; color:var(--ink); text-decoration:none; font-weight:600}
+  .logo b{color:var(--gold-deep)}
+
+  .hero{text-align:center; padding:44px 0 8px}
+  .eyebrow{font-weight:700; font-size:13px; letter-spacing:5px; color:var(--gold-deep); text-transform:uppercase; margin-bottom:14px}
+  h1{font-family:var(--display); font-weight:600; font-size:clamp(32px,5.5vw,48px); line-height:1.1; color:var(--ink)}
+  .sub{font-family:var(--display); font-style:italic; font-size:19px; color:var(--ink-soft); margin:14px auto 0; max-width:560px}
+
+  #loading{text-align:center; padding:60px 0}
+  #loading .spin{width:44px;height:44px;border:3px solid var(--line);border-top-color:var(--gold-deep);border-radius:50%;margin:0 auto 18px;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  #erreur{display:none; max-width:560px; margin:40px auto; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:30px; text-align:center}
+  #erreur h3{font-family:var(--display); font-size:24px; color:var(--ink); margin-bottom:10px}
+  #erreur a{color:var(--gold-deep); font-weight:700}
+
+  #resultat{display:none}
+
+  .entete{margin-top:38px; background:linear-gradient(160deg,rgba(184,145,73,.10),rgba(168,88,122,.08)); border:1px solid var(--gold); border-radius:22px; padding:30px 28px; text-align:center}
+  .entete .type{font-family:var(--display); font-size:32px; color:var(--ink); font-weight:600}
+  .entete .periode{font-size:12.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gold-deep); margin-top:8px}
+
+  .rapport{margin-top:32px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:12px 28px 30px}
+  .rapport h3{font-family:var(--display); font-weight:600; font-size:18px; color:var(--gold-deep); margin:22px 0 10px; text-align:left}
+  .rapport p{font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin:0 0 12px}
+  .rapport svg{display:block; max-width:100%; height:auto}
+
+  .actions{text-align:center; margin-top:34px}
+  .actions button, .actions a{display:inline-block; font-family:var(--sans); font-weight:700; font-size:14px; letter-spacing:.3px; color:var(--gold-deep); background:#fff; border:1px solid var(--gold); border-radius:40px; padding:12px 26px; text-decoration:none; cursor:pointer; margin:6px}
+  .actions button:hover, .actions a:hover{background:var(--gold-light)}
+  .note{text-align:center; font-size:12.5px; color:var(--ink-soft); margin-top:18px; opacity:.8}
+
+  footer{text-align:center; padding:40px 0; margin-top:40px; color:var(--ink-soft); opacity:.7; font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+
+  @media print{
+    nav, .actions, .note{display:none !important}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="nav-in">
+  <a href="index.html" class="logo"><b>ORACLE</b> ARCANA</a>
+</div></nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Human Design · Rapport complet</div>
+    <h1>Votre Human Design</h1>
+    <p class="sub" id="sousTitre">Votre carte et votre interprétation personnalisée.</p>
+  </section>
+
+  <div id="loading">
+    <div class="spin"></div>
+    <p>La rédaction de votre rapport Human Design est en cours, cela peut prendre jusqu'à trois minutes. Merci de ne pas fermer cette page.</p>
+  </div>
+
+  <div id="erreur">
+    <h3>Résultat introuvable</h3>
+    <p>Nous n'avons pas pu vérifier votre paiement ou retrouver vos informations. Cela peut arriver si cette page a été ouverte directement sans passer par une commande, ou si le paiement n'a pas abouti.</p>
+    <p style="margin-top:14px"><a href="human-design.html">← Retourner à la page de commande</a></p>
+  </div>
+
+  <div id="resultat">
+    <div class="entete">
+      <div class="type" id="entType"></div>
+      <div class="periode" id="entPeriode"></div>
+    </div>
+
+    <div class="rapport">
+      <div id="rapportCorps"></div>
+    </div>
+
+    <div class="actions">
+      <button onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button>
+      <a href="index.html">Retour à l'accueil</a>
+    </div>
+    <p class="note">📧 Une copie de votre rapport vous a également été envoyée par email.</p>
+  </div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+</div>
+
+<script>
+  // === URL du Worker Cloudflare arcana-human-design ===
+  const WORKER_URL = "https://arcana-human-design.dni-business44.workers.dev";
+
+  // Mêmes tables de réaccentuation que sur human-design.html : les chaînes
+  // internes renvoyées par le Worker sont volontairement sans accents.
+  const NOMS_TYPE = { "Manifesteur":"Manifesteur", "Generateur":"Générateur", "Generateur Manifestant":"Générateur Manifestant", "Projecteur":"Projecteur", "Reflecteur":"Réflecteur" };
+  const NOMS_AUTORITE = {
+    "Emotionnelle (Plexus Solaire)":"Émotionnelle (Plexus Solaire)", "Sacrale":"Sacrale", "Splenique":"Splénique",
+    "Ego (manifestee)":"Ego (manifestée)", "Auto-projetee":"Auto-projetée", "Ego (projetee)":"Ego (projetée)",
+    "Mentale (environnementale)":"Mentale (environnementale)", "Lunaire":"Lunaire"
+  };
+
+(function(){
+  var loading = document.getElementById('loading');
+  var erreur = document.getElementById('erreur');
+  var resultat = document.getElementById('resultat');
+  var sessionId = new URLSearchParams(window.location.search).get('session_id') || '';
+
+  if(!sessionId || !WORKER_URL){
+    loading.style.display='none';
+    erreur.style.display='block';
+    return;
+  }
+
+  // Le Worker vérifie le paiement auprès de Stripe, décode les informations
+  // de naissance depuis client_reference_id, recalcule tout (Type, Autorité,
+  // Profil, Centres, Canaux, Croix d'Incarnation), fait rédiger le rapport
+  // par IA (avec repli statique automatique en cas d'échec), envoie l'email,
+  // et renvoie rapportCompletHTML déjà assemblé (logo + BodyGraph coloré +
+  // les 7 parties) -- prêt à injecter tel quel, sans recalcul côté page.
+  fetch(WORKER_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ session_id: sessionId })
+  }).then(function(r){ return r.json(); }).then(function(data){
+    if(!data.ok){
+      loading.style.display='none';
+      erreur.style.display='block';
+      return;
+    }
+
+    var titreSous = data.prenom
+      ? (data.prenom + ' — votre carte et votre interprétation personnalisée.')
+      : 'Votre carte et votre interprétation personnalisée.';
+    document.getElementById('sousTitre').textContent = titreSous;
+
+    var typeLisible = NOMS_TYPE[data.type] || data.type;
+    var autoriteLisible = NOMS_AUTORITE[data.autorite] || data.autorite;
+    document.getElementById('entType').textContent = typeLisible + (data.prenom ? (' · ' + data.prenom) : '');
+    document.getElementById('entPeriode').textContent = 'Autorité ' + autoriteLisible + ' · Profil ' + data.profil;
+
+    document.getElementById('rapportCorps').innerHTML = data.rapportCompletHTML || data.rapportHTML || '';
+
+    loading.style.display='none';
+    resultat.style.display='block';
+  }).catch(function(){
+    loading.style.display='none';
+    erreur.style.display='block';
+  });
+})();
+</script>
+</body>
+</html>

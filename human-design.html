@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre Human Design — Oracle Arcana</title>
+<meta name="description" content="Votre carte Human Design : Type, Stratégie, Autorité intérieure, Profil, Centres, Canaux et Croix d'Incarnation, calculés à partir des positions astronomiques exactes de votre naissance. Oracle Arcana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav-etudes.css">
+<style>
+  :root{
+    --bg:#faf6ef; --ink:#2a2218; --ink-soft:#6b5f4d;
+    --gold:#b89149; --gold-deep:#9a7838; --gold-light:#d9be86;
+    --line:rgba(184,145,73,.25); --card:#fffdf9; --card-tint:#fbf1e2; --rose:#a8587a;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Nunito Sans','Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:var(--sans); color:var(--ink-soft);
+    background:
+      radial-gradient(1100px 620px at 78% -8%, #fbe6d4 0%, rgba(251,230,212,0) 55%),
+      radial-gradient(820px 560px at 8% 10%, #f6e6ea 0%, rgba(246,230,234,0) 50%),
+      linear-gradient(180deg,#fdf6ea,#faf6ef);
+    min-height:100vh}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px}
+
+  nav.top{position:sticky; top:0; z-index:10; background:rgba(250,246,239,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:74px; max-width:1080px; margin:0 auto; padding:0 24px}
+  .logo{font-family:var(--display); font-size:27px; letter-spacing:4px; color:var(--ink); text-decoration:none; font-weight:600}
+  .logo b{color:var(--gold-deep); font-weight:600}
+  .menu{display:flex; gap:26px; font-size:15px; color:var(--ink-soft); font-weight:600}
+  .menu a{color:var(--ink-soft); text-decoration:none; transition:color .2s}
+  .menu a:hover{color:var(--gold-deep)}
+  .menu .sep{color:var(--gold); opacity:.55}
+  @media(max-width:760px){.menu{display:none}}
+
+  .hero{text-align:center; padding:54px 0 8px}
+  .eyebrow{font-weight:700; font-size:13px; letter-spacing:5px; color:var(--gold-deep); text-transform:uppercase; margin-bottom:16px}
+  h1{font-family:var(--display); font-weight:600; font-size:clamp(40px,6.5vw,66px); line-height:1.05; color:var(--ink)}
+  .sub{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,23px); color:var(--ink-soft); margin:16px auto 0; max-width:620px; line-height:1.5}
+  .price{display:inline-block; margin-top:22px; font-family:var(--display); font-weight:600; font-size:34px; color:var(--gold-deep)}
+  .price small{font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:1px; color:var(--ink-soft); text-transform:uppercase; display:block; margin-top:2px}
+
+  .receive{margin:36px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .rec{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 18px; text-align:center; box-shadow:0 6px 18px rgba(120,95,40,.06)}
+  .rec svg{width:30px; height:30px; stroke:var(--gold-deep); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; margin-bottom:8px}
+  .rec b{display:block; font-family:var(--display); font-size:19px; color:var(--ink); font-weight:600; line-height:1.15}
+  .rec span{font-size:13px; color:var(--ink-soft)}
+  @media(max-width:640px){.receive{grid-template-columns:1fr 1fr}}
+
+  .form{max-width:620px; margin:40px auto 0; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:34px 34px 30px; box-shadow:0 12px 34px rgba(120,95,40,.10)}
+  .form h2{font-family:var(--display); font-weight:600; font-size:30px; color:var(--ink); text-align:center; margin-bottom:6px}
+  .form .intro{text-align:center; font-size:14px; color:var(--ink-soft); margin-bottom:24px}
+  .field{margin-bottom:18px; position:relative}
+  .field label{display:block; font-weight:700; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:8px}
+  .field .opt{text-transform:none; font-weight:600; color:var(--ink-soft); letter-spacing:0}
+  input[type=text], input[type=email]{width:100%; font-family:var(--sans); font-size:16px; padding:13px 16px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); outline:none; transition:border-color .2s}
+  input:focus, select:focus{border-color:var(--gold)}
+  .row{display:flex; gap:10px; flex-wrap:wrap}
+  .row select{flex:1; min-width:90px; font-family:var(--sans); font-size:15px; padding:13px 12px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; outline:none}
+  .hint{font-size:12.5px; color:var(--ink-soft); margin-top:8px; line-height:1.4}
+  .btn{width:100%; margin-top:8px; font-family:var(--sans); font-weight:700; font-size:17px; letter-spacing:.4px; color:#FBF6EA; border:none; cursor:pointer; padding:17px 28px; border-radius:40px; background:linear-gradient(180deg,#cba653,#98762f); box-shadow:0 10px 24px rgba(154,120,56,.28); transition:filter .2s, transform .2s}
+  .btn:hover{filter:brightness(1.06); transform:translateY(-2px)}
+  .btn:disabled{opacity:.65; cursor:default; transform:none}
+  .btn.secondaire{background:none; border:1px solid var(--gold); color:var(--gold-deep); box-shadow:none}
+  .btn.secondaire:hover{background:var(--gold-light); filter:none}
+  .secure{text-align:center; font-size:13px; color:var(--ink-soft); margin-top:14px}
+  .msg{margin-top:16px; padding:14px 16px; border-radius:12px; font-size:14px; line-height:1.5; display:none}
+  .msg.err{display:block; background:#fbeaf0; color:#8a3b5e; border:1px solid #e6c2d2}
+  .msg.ok{display:block; background:#eef5ee; color:#3a6a52; border:1px solid #cfe4d2}
+
+  /* Autocomplétion du lieu de naissance */
+  .ville-wrap{position:relative}
+  .suggestions{position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid var(--line); border-radius:12px; margin-top:6px; box-shadow:0 14px 32px rgba(120,95,40,.16); max-height:250px; overflow-y:auto; z-index:30; display:none}
+  .suggestions div{padding:11px 16px; font-size:14.5px; color:var(--ink); cursor:pointer; border-bottom:1px solid var(--line)}
+  .suggestions div:last-child{border-bottom:none}
+  .suggestions div:hover{background:var(--card-tint)}
+  .suggestions div.vide{color:var(--ink-soft); font-style:italic; cursor:default}
+  .suggestions div.vide:hover{background:none}
+
+  /* Carte gratuite */
+  .carte-gratuite{display:none; margin-top:34px; background:linear-gradient(160deg,rgba(184,145,73,.10),rgba(168,88,122,.08)); border:1px solid var(--gold); border-radius:22px; padding:32px 28px; text-align:center}
+  .carte-gratuite .eyebrow{margin-bottom:10px}
+  .carte-gratuite .type{font-family:var(--display); font-size:32px; color:var(--ink); font-weight:600}
+  .carte-gratuite .sous{font-size:13px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--gold-deep); margin-top:8px}
+  .carte-gratuite .grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-top:22px; text-align:left}
+  .carte-gratuite .item{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .carte-gratuite .item .label{font-size:10.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gold-deep)}
+  .carte-gratuite .item .val{font-family:var(--display); font-size:16.5px; color:var(--ink); margin-top:4px; line-height:1.35}
+
+  /* Offre payante */
+  .offre{display:none; margin-top:40px}
+  .offre h2{font-family:var(--display); font-weight:600; font-size:30px; color:var(--ink); text-align:center}
+  .offre .sub2{text-align:center; font-size:14.5px; color:var(--ink-soft); margin:10px auto 0; max-width:520px; line-height:1.55}
+  .offre .parties{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:26px 0}
+  .offre .partie{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .offre .partie b{display:block; font-family:var(--display); color:var(--ink); font-size:16px; font-weight:600; margin-bottom:2px}
+  .offre .partie span{font-size:12.5px; color:var(--ink-soft)}
+  @media(max-width:600px){.offre .parties{grid-template-columns:1fr}}
+  .apercu-bg{text-align:center; margin:30px 0}
+  .apercu-bg svg{max-width:210px; width:100%; height:auto}
+  .apercu-bg .legende{font-size:12px; color:var(--ink-soft); margin-top:10px; font-style:italic}
+  .transparence{font-size:13px; color:var(--ink-soft); text-align:center; margin:22px auto 0; max-width:520px; line-height:1.6; font-style:italic}
+
+  .faq{max-width:620px; margin:40px auto 0}
+  .faq h3{font-family:var(--display); font-size:26px; color:var(--ink); text-align:center; margin-bottom:16px; font-weight:600}
+  .qa{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:10px}
+  .qa b{font-family:var(--display); font-size:19px; color:var(--gold-deep)}
+  .qa p{font-size:14px; color:var(--ink-soft); margin-top:4px; line-height:1.5}
+
+  footer{text-align:center; padding:34px 0 8px; margin-top:50px; color:var(--ink-soft); opacity:.75; font-size:12px; letter-spacing:2px; border-top:1px solid var(--line)}
+  .mentions{text-align:center; padding:0 0 44px; color:var(--ink-soft); opacity:.55; font-size:11px; letter-spacing:.4px}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="nav-in">
+  <a href="index.html" class="logo"><b>ORACLE</b> ARCANA</a>
+  <div class="menu">
+    <a href="index.html">Tirages gratuits</a><span class="sep">·</span>
+    <a href="astrologie.html">Astrologie</a><span class="sep">·</span>
+    <a href="index.html#consultations">Consultations</a><span class="sep">·</span>
+    <a href="index.html#avisfaq">FAQ</a>
+  </div>
+</div></nav>
+<script src="nav-etudes.js"></script>
+<script src="nav-tirages.js"></script>
+<script src="nav-mobile.js"></script>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Human Design · Rapport de personnalité</div>
+    <h1>Votre Human Design</h1>
+    <p class="sub">Une carte énergétique unique, née de votre date, heure et lieu de naissance exacts — pour comprendre votre Type, votre Stratégie et la façon dont vous êtes fait·e pour décider.</p>
+    <div class="price">19,99 €<small>Rapport complet · paiement unique</small></div>
+  </section>
+
+  <div class="receive">
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4 7 4c2 0 3.5 1.2 5 3 1.5-1.8 3-3 5-3 4 0 6.5 4.5 4.5 8.5C19 16.65 12 21 12 21z"/></svg><b>Type & Stratégie</b><span>votre façon naturelle d'agir</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><b>Autorité intérieure</b><span>comment décider juste</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L21 9l-4.9 4.3L17.5 21 12 17.6 6.5 21l1.4-7.7L3 9l6.1-.7z"/></svg><b>Profil</b><span>votre rôle relationnel</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></svg><b>Centres & Canaux</b><span>ce qui est stable en vous</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="8"/></svg><b>Croix d'Incarnation</b><span>le thème de votre vie</span></div>
+    <div class="rec"><svg viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 13l2 2 4-4"/></svg><b>Pistes concrètes</b><span>pour vous déconditionner</span></div>
+  </div>
+
+  <div class="form">
+    <h2>Vos informations de naissance</h2>
+    <p class="intro">Ces informations permettent de calculer votre carte à partir des positions astronomiques exactes de votre naissance.</p>
+
+    <div class="field">
+      <label>Prénom <span class="opt">(facultatif)</span></label>
+      <input type="text" id="prenom" maxlength="20" placeholder="Votre prénom">
+    </div>
+
+    <div class="field">
+      <label>Email (pour recevoir votre rapport complet)</label>
+      <input type="email" id="email" placeholder="vous@exemple.fr">
+    </div>
+
+    <div class="field">
+      <label>Date de naissance</label>
+      <div class="row">
+        <select id="jour"><option value="" selected disabled>Jour</option></select>
+        <select id="mois">
+          <option value="" selected disabled>Mois</option>
+          <option value="1">Janvier</option><option value="2">Février</option><option value="3">Mars</option>
+          <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
+          <option value="7">Juillet</option><option value="8">Août</option><option value="9">Septembre</option>
+          <option value="10">Octobre</option><option value="11">Novembre</option><option value="12">Décembre</option>
+        </select>
+        <select id="annee"><option value="" selected disabled>Année</option></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Heure de naissance</label>
+      <div class="row">
+        <select id="heure"><option value="" selected disabled>Heure</option></select>
+        <select id="minute"><option value="" selected disabled>Minute</option></select>
+      </div>
+      <div class="hint">L'heure exacte change parfois le résultat. Vous la trouverez sur votre acte de naissance, ou en la demandant à la mairie de votre lieu de naissance.</div>
+    </div>
+
+    <div class="field ville-wrap">
+      <label>Ville de naissance</label>
+      <input type="text" id="ville" maxlength="60" placeholder="Commencez à taper le nom de votre ville…" autocomplete="off">
+      <div class="suggestions" id="suggestions"></div>
+      <div class="hint">Choisissez votre ville dans la liste qui apparaît, pour lever toute ambiguïté entre villes homonymes.</div>
+    </div>
+
+    <button class="btn" id="btnGratuit" onclick="voirCarteGratuite()">Voir ma carte gratuite</button>
+    <div class="secure">Gratuit · sans engagement · résultat immédiat</div>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div class="carte-gratuite" id="carteGratuite">
+    <div class="eyebrow">Votre carte gratuite</div>
+    <div class="type" id="cgType">—</div>
+    <div class="sous" id="cgSous">—</div>
+    <div class="grille">
+      <div class="item"><div class="label">Centres définis</div><div class="val" id="cgCentres">—</div></div>
+      <div class="item"><div class="label">Canaux définis</div><div class="val" id="cgCanaux">—</div></div>
+    </div>
+  </div>
+
+  <div class="offre" id="offre">
+    <h2>Votre rapport complet</h2>
+    <p class="sub2">Ce que vous venez de voir n'est qu'un aperçu. Le rapport complet approfondit chacun de ces points, en 7 parties rédigées pour vous, avec votre BodyGraph illustré en couleur.</p>
+
+    <div class="parties">
+      <div class="partie"><b>1. Type & Stratégie</b><span>votre nature et la façon d'agir qui vous réussit</span></div>
+      <div class="partie"><b>2. Autorité intérieure</b><span>comment reconnaître une décision juste pour vous</span></div>
+      <div class="partie"><b>3. Profil</b><span>le rôle que vous jouez naturellement avec les autres</span></div>
+      <div class="partie"><b>4. Centres définis & non définis</b><span>ce qui est stable en vous, ce qui est ouvert</span></div>
+      <div class="partie"><b>5. Canaux</b><span>les circuits qui structurent votre énergie</span></div>
+      <div class="partie"><b>6. Croix d'Incarnation</b><span>le thème de fond de votre vie</span></div>
+      <div class="partie"><b>7. Pistes de déconditionnement</b><span>des exemples concrets pour vivre votre design</span></div>
+    </div>
+
+    <div class="apercu-bg">
+      <svg viewBox="0 0 851.41 1309.4" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif" role="img" aria-label="Exemple de BodyGraph Human Design">
+<rect x="0" y="0" width="851.41" height="1309.4" fill="#fffdf9"/>
+<line x1="420.72" y1="128.5" x2="420.72" y2="216.76" stroke="#9a7838" stroke-width="5" stroke-linecap="round" />
+<line x1="383.23" y1="152.59" x2="383.23" y2="228.81" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="458.2" y1="128.5" x2="458.2" y2="216.76" stroke="#9a7838" stroke-width="5" stroke-linecap="round" />
+<line x1="383.23" y1="262.2" x2="383.23" y2="416.55" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="458.2" y1="263.62" x2="458.2" y2="404.5" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="420.72" y1="324.96" x2="420.72" y2="404.5" stroke="#9a7838" stroke-width="5" stroke-linecap="round" />
+<line x1="362.37" y1="447.19" x2="30.37" y2="918.59" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="62.56" y1="939.26" x2="362.37" y2="494.88" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="362.37" y1="494.88" x2="345.46" y2="691.18" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="362.37" y1="494.88" x2="363.54" y2="978.96" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="363.54" y1="978.96" x2="345.46" y2="691.18" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="62.56" y1="939.26" x2="345.46" y2="691.18" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="62.56" y1="939.26" x2="363.54" y2="978.96" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="554.09" y1="820.41" x2="95.73" y2="957.5" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="383.23" y1="651.18" x2="383.23" y2="540.43" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="420.77" y1="616.25" x2="420.66" y2="540.43" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="458.2" y1="651.18" x2="458.2" y2="540.43" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="383.23" y1="734.94" x2="383.23" y2="942.96" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="420.66" y1="766.51" x2="420.66" y2="942.96" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="458.2" y1="734.94" x2="458.2" y2="942.96" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="492.62" y1="699.73" x2="580.15" y2="794.36" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="604.08" y1="770.42" x2="479.09" y2="510.07" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="748.23" y1="957.5" x2="638" y2="820.41" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="479.09" y1="476.45" x2="781.39" y2="939.26" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="479.09" y1="442.41" x2="813.63" y2="918.59" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="363.54" y1="1025.14" x2="131.37" y2="976.97" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="95.73" y1="994.02" x2="363.37" y2="1202.51" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="62.56" y1="1012.88" x2="363.37" y2="1238.64" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="30.37" y1="1031.73" x2="363.37" y2="1274.88" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="383.23" y1="1060.36" x2="383.23" y2="1171.48" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="420.66" y1="1048.31" x2="420.66" y2="1171.48" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="458.2" y1="1048.31" x2="458.2" y2="1171.48" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="476.37" y1="1025.14" x2="712.58" y2="976.97" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="478.07" y1="1190.47" x2="748.23" y2="994.02" stroke="#9a7838" stroke-width="5" stroke-linecap="round" />
+<line x1="478.07" y1="1238.64" x2="781.39" y2="1012.88" stroke="#e2dbc9" stroke-width="1.4" />
+<line x1="478.07" y1="1274.88" x2="813.63" y2="1031.73" stroke="#e2dbc9" stroke-width="1.4" />
+<path d="M420.37,355.14a5.44,5.44,0,0,1-4.73-2.69L335.92,218.14a5.49,5.49,0,0,1,1.89-7.53,5.57,5.57,0,0,1,2.84-.78l159.5.82a5.51,5.51,0,0,1,4.7,8.32L425.12,352.49A5.48,5.48,0,0,1,420.37,355.14Z" fill="#5b8c3a" stroke="#3f6428" stroke-width="2.5" />
+<path d="M340.59,156.62a5.48,5.48,0,0,1-4.68-8.32L414,17.86a5.49,5.49,0,0,1,7.54-1.9,5.64,5.64,0,0,1,1.86,1.84l81.12,131.34a5.5,5.5,0,0,1-4.68,8.39Z" fill="#d9a017" stroke="#a3760d" stroke-width="2.5" />
+<path d="M831.56,1063.92a5.48,5.48,0,0,1-2.68-.71L685,982.36a5.5,5.5,0,0,1-2.11-7.49h0a5.48,5.48,0,0,1,2-2l145.71-86.2a5.18,5.18,0,0,1,2.79-.78,5.51,5.51,0,0,1,5.51,5.51v.06l-1.78,167A5.53,5.53,0,0,1,831.56,1063.92Z" fill="#7a5230" stroke="#54381f" stroke-width="2.5" />
+<path d="M15.53,1063.92a5.53,5.53,0,0,1-5.5-5.45l-1.78-167a5.31,5.31,0,0,1,1.57-3.91,5.52,5.52,0,0,1,3.94-1.66,5.39,5.39,0,0,1,2.79.78l145.71,86.2a5.49,5.49,0,0,1,1.94,7.52h0a5.48,5.48,0,0,1-2,2l-144,80.85A5.61,5.61,0,0,1,15.53,1063.92Z" fill="#fffdf9" stroke="#c9bda0" stroke-width="2.5" />
+<path d="M349.37,558.45a6,6,0,0,1-6-6l.68-148a6,6,0,0,1,6-6L491.4,399a6,6,0,0,1,6,6l-.67,148a6,6,0,0,1-6,6Z" fill="#7a5230" stroke="#54381f" stroke-width="2.5" />
+<path d="M348.86,1078.19a5.5,5.5,0,0,1-5.48-5.52L344,930.26a5.5,5.5,0,0,1,5.5-5.48l142.43.56a5.5,5.5,0,0,1,5.48,5.52l-.57,142.41a5.54,5.54,0,0,1-5.5,5.48Z" fill="#fffdf9" stroke="#c9bda0" stroke-width="2.5" />
+<path d="M348.86,1295.7a5.43,5.43,0,0,1-3.88-1.62,5.49,5.49,0,0,1-1.6-3.9l.57-135.56a5.5,5.5,0,0,1,5.5-5.48l142.43.57a5.5,5.5,0,0,1,5.48,5.52l-.57,135.56a5.54,5.54,0,0,1-5.5,5.48Z" fill="#7a5230" stroke="#54381f" stroke-width="2.5" />
+<path d="M420,795.51a6.4,6.4,0,0,1-4.58-1.9l-95.86-96.68a6.48,6.48,0,0,1,0-9.13l96.69-95.92a6.46,6.46,0,0,1,9.12,0l95.9,96.72a6.48,6.48,0,0,1,0,9.12l-96.69,95.93A6.48,6.48,0,0,1,420,795.51Z" fill="#fffdf9" stroke="#c9bda0" stroke-width="2.5" />
+<path d="M527.17,838.36a6.76,6.76,0,0,1-4.73-11.54l78.29-78.14a6.66,6.66,0,0,1,4.76-2,6.75,6.75,0,0,1,5.5,2.83l56.48,79A6.76,6.76,0,0,1,662,839.19Z" fill="#fffdf9" stroke="#c9bda0" stroke-width="2.5" />
+      </svg>
+      <div class="legende">Exemple illustratif de BodyGraph coloré — le vôtre reflètera votre propre carte.</div>
+    </div>
+
+    <button class="btn" onclick="acheterRapport()">Débloquer mon rapport complet — 19,99 €</button>
+    <div class="secure">Paiement sécurisé · Résultat à l'écran + copie par email</div>
+    <p class="transparence">Votre carte repose sur les positions astronomiques réelles de votre naissance ; l'interprétation qui l'accompagne est rédigée avec l'assistance d'une intelligence artificielle, pour une lecture à la fois précise et disponible à tout moment.</p>
+  </div>
+
+  <div class="faq">
+    <h3>Questions fréquentes</h3>
+    <div class="qa"><b>Pourquoi l'heure et le lieu de naissance sont-ils obligatoires ?</b><p>Contrairement à l'astrologie solaire, le Human Design est très sensible à l'heure exacte : quelques minutes d'écart peuvent changer votre Type ou votre Profil. C'est pourquoi nous vous demandons une heure et un lieu précis plutôt qu'une valeur approximative.</p></div>
+    <div class="qa"><b>Qui rédige mon rapport ?</b><p>Votre carte (Type, Autorité, Profil, Centres, Canaux, Croix d'Incarnation) est calculée à partir des positions astronomiques exactes de votre naissance — aucune approximation. L'interprétation qui l'accompagne, elle, est rédigée avec l'assistance d'une intelligence artificielle, guidée par nos textes de référence en Human Design, pour vous offrir une lecture fluide et personnalisée à tout moment.</p></div>
+    <div class="qa"><b>Sous quel délai vais-je recevoir mon rapport complet ?</b><p>Votre rapport s'affiche automatiquement à l'écran juste après votre paiement, et une copie vous est envoyée par email dans la foulée.</p></div>
+    <div class="qa"><b>Mes données sont-elles protégées ?</b><p>Vos informations ne servent qu'à établir votre carte et votre rapport, et à vous les envoyer. Elles ne sont ni revendues, ni partagées.</p></div>
+  </div>
+
+  <footer>ORACLE ARCANA — Voyance &amp; cartomancie · à but de guidance et de divertissement</footer>
+  <div class="mentions">Données de localisation : GeoNames.org, sous licence CC-BY 4.0</div>
+</div>
+
+<script>
+  // === URL du lien Stripe pour Human Design — à renseigner une fois le lien créé ===
+  const STRIPE_URL = "https://buy.stripe.com/aFa9ALfVggyO1UUgGedZ60h";
+
+  const WORKER_URL = "https://arcana-human-design.dni-business44.workers.dev";
+
+  const j=document.getElementById('jour');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;j.appendChild(o);}
+  const yy=document.getElementById('annee');
+  const nowY=new Date().getFullYear();
+  for(let y=nowY-10;y>=1915;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  const hh=document.getElementById('heure');
+  for(let h=0;h<24;h++){const o=document.createElement('option');o.value=h;o.textContent=(h<10?'0'+h:h)+' h';hh.appendChild(o);}
+  const mm=document.getElementById('minute');
+  for(let m=0;m<60;m++){const o=document.createElement('option');o.value=m;o.textContent=(m<10?'0'+m:m);mm.appendChild(o);}
+
+  function pad2(n){ n = String(n); return n.length<2 ? '0'+n : n; }
+
+  // Encode une chaîne (accents compris) en base64url SANS padding, via un passage
+  // explicite par UTF-8 (TextEncoder) : btoa() seul échoue sur les caractères non-ASCII.
+  function toBase64Url(str){
+    const bytes = new TextEncoder().encode(str);
+    let binary = '';
+    bytes.forEach(function(b){ binary += String.fromCharCode(b); });
+    const b64 = btoa(binary);
+    return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ---- Autocomplétion du lieu de naissance ----
+  // Interroge la route de recherche du Worker (lecture seule, sans mot de
+  // passe) et stocke l'objet complet {nom, admin1, pays, latitude, longitude,
+  // fuseau} du candidat choisi -- jamais du texte libre à réinterpréter.
+  let villeSelectionnee = null;
+  let candidatsActuels = [];
+  let minuteurRecherche = null;
+  const inputVille = document.getElementById('ville');
+  const suggestionsBox = document.getElementById('suggestions');
+
+  inputVille.addEventListener('input', function(){
+    villeSelectionnee = null;
+    const q = inputVille.value.trim();
+    clearTimeout(minuteurRecherche);
+    if(q.length < 2){ suggestionsBox.style.display='none'; suggestionsBox.innerHTML=''; return; }
+    minuteurRecherche = setTimeout(function(){ chercherVilles(q); }, 300);
+  });
+
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.ville-wrap')) suggestionsBox.style.display='none';
+  });
+
+  function chercherVilles(q){
+    fetch(WORKER_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ recherche: q })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      candidatsActuels = (data.ok && data.resultats) ? data.resultats : [];
+      if(!candidatsActuels.length){
+        suggestionsBox.innerHTML = '<div class="vide">Aucune ville trouvée</div>';
+        suggestionsBox.style.display='block';
+        return;
+      }
+      suggestionsBox.innerHTML = candidatsActuels.map(function(c, i){
+        const detail = [c.admin1, c.pays].filter(Boolean).join(', ');
+        return '<div data-i="'+i+'">' + escapeHtml(c.nom) + (detail ? ', <span style="color:var(--ink-soft)">' + escapeHtml(detail) + '</span>' : '') + '</div>';
+      }).join('');
+      suggestionsBox.style.display='block';
+      Array.from(suggestionsBox.querySelectorAll('div[data-i]')).forEach(function(el){
+        el.addEventListener('click', function(){
+          const c = candidatsActuels[parseInt(el.getAttribute('data-i'),10)];
+          villeSelectionnee = c;
+          inputVille.value = c.nom + (c.admin1 ? ', ' + c.admin1 : '') + ', ' + c.pays;
+          suggestionsBox.style.display='none';
+        });
+      });
+    })
+    .catch(function(){ suggestionsBox.style.display='none'; });
+  }
+  // ---- Fin autocomplétion ----
+
+  // Noms d'affichage accentués -- les chaînes internes renvoyées par le
+  // Worker sont volontairement sans accents (comparaisons exactes côté
+  // serveur) ; on les réaccentue ici uniquement pour l'affichage.
+  const NOMS_CENTRES = { Tete:'Tête', Ajna:'Ajna', Gorge:'Gorge', G:'G', Coeur:'Cœur', Sacral:'Sacral', PlexusSolaire:'Plexus Solaire', Racine:'Racine', Rate:'Rate' };
+  const NOMS_TYPE = { "Manifesteur":"Manifesteur", "Generateur":"Générateur", "Generateur Manifestant":"Générateur Manifestant", "Projecteur":"Projecteur", "Reflecteur":"Réflecteur" };
+  const NOMS_AUTORITE = {
+    "Emotionnelle (Plexus Solaire)":"Émotionnelle (Plexus Solaire)", "Sacrale":"Sacrale", "Splenique":"Splénique",
+    "Ego (manifestee)":"Ego (manifestée)", "Auto-projetee":"Auto-projetée", "Ego (projetee)":"Ego (projetée)",
+    "Mentale (environnementale)":"Mentale (environnementale)", "Lunaire":"Lunaire"
+  };
+
+  function validerFormulaire(){
+    const email = document.getElementById('email').value.trim();
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      return { ok:false, erreur:"Merci d'indiquer un email valide pour recevoir votre rapport complet." };
+    }
+    const jVal=document.getElementById('jour').value, moVal=document.getElementById('mois').value, aVal=document.getElementById('annee').value;
+    if(!jVal || !moVal || !aVal){
+      return { ok:false, erreur:"Merci d'indiquer votre date de naissance complète (jour, mois, année)." };
+    }
+    const hVal=document.getElementById('heure').value, miVal=document.getElementById('minute').value;
+    if(hVal==='' || miVal===''){
+      return { ok:false, erreur:"Merci d'indiquer votre heure de naissance (heure et minute)." };
+    }
+    if(!villeSelectionnee){
+      return { ok:false, erreur:"Merci de choisir votre ville de naissance dans la liste de suggestions." };
+    }
+    return { ok:true, data:{
+      prenom: document.getElementById('prenom').value.trim(),
+      email: email,
+      annee: parseInt(aVal,10), mois: parseInt(moVal,10), jour: parseInt(jVal,10),
+      heure: parseInt(hVal,10), minute: parseInt(miVal,10),
+      latitude: villeSelectionnee.latitude, longitude: villeSelectionnee.longitude, fuseau: villeSelectionnee.fuseau
+    }};
+  }
+
+  function voirCarteGratuite(){
+    const msg = document.getElementById('msg');
+    msg.className = 'msg';
+    const v = validerFormulaire();
+    if(!v.ok){ msg.className='msg err'; msg.textContent=v.erreur; return; }
+
+    const btn = document.getElementById('btnGratuit');
+    btn.disabled = true; btn.textContent = 'Calcul en cours…';
+
+    fetch(WORKER_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        latitude: v.data.latitude, longitude: v.data.longitude, fuseau: v.data.fuseau,
+        annee: v.data.annee, mois: v.data.mois, jour: v.data.jour, heure: v.data.heure, minute: v.data.minute
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      btn.disabled=false; btn.textContent='Voir ma carte gratuite';
+      if(!data.ok){
+        msg.className='msg err';
+        msg.textContent="Une erreur est survenue lors du calcul de votre carte. Vérifiez vos informations et réessayez.";
+        return;
+      }
+      afficherCarteGratuite(data);
+      document.getElementById('offre').style.display='block';
+      document.getElementById('carteGratuite').scrollIntoView({ behavior:'smooth', block:'start' });
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='Voir ma carte gratuite';
+      msg.className='msg err';
+      msg.textContent="Impossible de contacter le serveur. Merci de réessayer.";
+    });
+  }
+
+  function afficherCarteGratuite(data){
+    document.getElementById('carteGratuite').style.display='block';
+    document.getElementById('cgType').textContent = NOMS_TYPE[data.type] || data.type;
+    document.getElementById('cgSous').textContent = 'Autorité ' + (NOMS_AUTORITE[data.autorite] || data.autorite) + ' · Profil ' + data.profil;
+    const centres = (data.detail && data.detail.centresDefinis) || [];
+    const canaux = (data.detail && data.detail.canauxDefinis) || [];
+    document.getElementById('cgCentres').textContent = centres.length ? centres.map(function(c){ return NOMS_CENTRES[c] || c; }).join(', ') : 'Aucun';
+    document.getElementById('cgCanaux').textContent = canaux.length ? canaux.join(', ') : 'Aucun';
+  }
+
+  function acheterRapport(){
+    const msg = document.getElementById('msg');
+    const v = validerFormulaire();
+    if(!v.ok){ msg.className='msg err'; msg.textContent=v.erreur; window.scrollTo({top:0, behavior:'smooth'}); return; }
+
+    const payload = {
+      pn: v.data.prenom,
+      d: v.data.annee + pad2(v.data.mois) + pad2(v.data.jour),
+      h: pad2(v.data.heure) + ':' + pad2(v.data.minute),
+      lat: v.data.latitude, lon: v.data.longitude, tz: v.data.fuseau
+    };
+    const encoded = toBase64Url(JSON.stringify(payload));
+
+    // Garde-fou : le paramètre client_reference_id de Stripe n'accepte que des
+    // caractères alphanumériques, tirets et underscores, sur 200 caractères max.
+    if(encoded.length > 200 || !/^[A-Za-z0-9_-]+$/.test(encoded)){
+      msg.className='msg err';
+      msg.textContent="Une erreur technique empêche la préparation de votre commande. Merci de réessayer ou de nous contacter.";
+      return;
+    }
+
+    if(STRIPE_URL){
+      const url = STRIPE_URL
+        + (STRIPE_URL.includes('?') ? '&' : '?')
+        + 'prefilled_email=' + encodeURIComponent(v.data.email)
+        + '&client_reference_id=' + encoded;
+      window.location.href = url;
+    } else {
+      // En attendant la création du lien Stripe : accès direct au résultat pour test
+      window.location.href = 'resultat-human-design.html';
+    }
+  }
+</script>
+</body>
+</html>
