@@ -29,7 +29,8 @@
     { nom: "Votre Ciel du Mois", prix: "12,99 €", href: "ciel-du-mois.html" },
     { nom: "Compatibilité amoureuse", prix: "13,99 €", href: "synastrie.html" },
     { nom: "Thème astral complet", prix: "14,99 €", href: "theme-astral.html" },
-    { nom: "Le Tirage des Lunes", prix: "dès 14,99 €", href: "index.html#roue" }
+    { nom: "Le Tirage des Lunes", prix: "dès 14,99 €", href: "index.html#roue" },
+    { nom: "Votre Human Design", prix: "19,99 €", href: "human-design.html" }
   ];
 
   function construireMenuHTML() {
