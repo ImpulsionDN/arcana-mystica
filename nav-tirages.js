@@ -26,6 +26,7 @@
 (function () {
   var TIRAGES = [
     { nom: "Tirage 3 lames", href: "index.html#accueil" },
+    { nom: "Tirages d'oracles", href: "tirages-oracles.html" },
     { nom: "Oui / Non", href: "index.html#ouinon" },
     { nom: "Heures Miroirs", href: "heures-miroirs.html" },
     { nom: "Synchronicités", href: "index.html#synchronicites" },

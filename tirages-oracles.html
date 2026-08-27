@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4 tirages d'oracle expliqués — fiche gratuite | Oracle Arcana</title>
+<meta name="description" content="Apprends les tirages de l'Oracle Belline, de l'Oracle Gé, de l'Oracle de la Triade et de l'Oracle des Miroirs : positions, méthode et astuces. Reçois la fiche imprimable gratuite.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="4 tirages d'oracle expliqués — fiche gratuite">
+<meta property="og:description" content="Belline, Gé, Triade, Miroirs : le schéma de chaque tirage, les positions et les astuces. Fiche imprimable gratuite.">
+<meta property="og:url" content="https://oracle-arcana.fr/tirages-oracles.html">
+<meta property="og:image" content="https://oracle-arcana.fr/epingle_belline_creme-or.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marcellus&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchemin:#FBF7EF; --sable:#F1E7D4; --encre:#2E2519; --encre-soft:#4A3E2C;
+    --or:#B4894A; --or-clair:#CBA968; --or-pale:#E7D6B4; --ligne:#E2D4B8;
+    --foil:linear-gradient(135deg,#9C7636 0%,#CBA968 42%,#8A6A3A 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--parchemin);color:var(--encre);font-family:'Mulish',sans-serif;
+    font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12;letter-spacing:.01em}
+  .eyebrow{font-family:'Marcellus',serif;letter-spacing:.34em;text-transform:uppercase;
+    font-size:.72rem;color:var(--or)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+  a{color:inherit}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:40;background:rgba(251,247,239,.9);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--ligne)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:'Marcellus',serif;letter-spacing:.3em;font-size:1.02rem;
+    text-transform:uppercase;background:var(--foil);-webkit-background-clip:text;
+    background-clip:text;color:transparent}
+  .nav{display:flex;gap:26px;font-size:.82rem;letter-spacing:.06em}
+  .nav a{color:var(--encre-soft);text-decoration:none;transition:color .2s}
+  .nav a:hover{color:var(--or)}
+  @media(max-width:680px){.nav{display:none}}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+    padding:74px 26px 64px}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.3rem);margin:.3em 0 .28em}
+  .hero p.lead{font-size:1.12rem;color:var(--encre-soft);max-width:30em;margin-bottom:26px}
+  .rule{width:56px;height:2px;background:var(--foil);margin:20px 0}
+  .hero-cards{position:relative;height:360px}
+  .fan{position:absolute;left:50%;top:50%;width:120px;height:172px;margin:-86px 0 0 -60px;
+    border-radius:12px;background:var(--encre);border:2px solid var(--or-clair);
+    box-shadow:0 18px 40px rgba(46,37,25,.28)}
+  .fan::after{content:'';position:absolute;inset:6px;border:1px solid rgba(203,169,104,.5);border-radius:8px}
+  .fan .glyph{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+    text-align:center;font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--or-clair)}
+  .fan.f1{transform:rotate(-16deg) translateX(-72px)}
+  .fan.f2{transform:rotate(0deg);z-index:2}
+  .fan.f3{transform:rotate(16deg) translateX(72px)}
+  @media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero-cards{display:none}}
+
+  /* email capture */
+  .capture{background:var(--encre);color:var(--parchemin);border-radius:16px;
+    padding:26px 26px 28px;box-shadow:0 16px 40px rgba(46,37,25,.22);max-width:440px}
+  .capture .k{font-family:'Marcellus',serif;letter-spacing:.22em;text-transform:uppercase;
+    font-size:.66rem;color:var(--or-clair)}
+  .capture h3{color:var(--parchemin);font-size:1.6rem;margin:.2em 0 .5em}
+  .capture p{font-size:.92rem;color:#E6D9C3;margin-bottom:16px}
+  .field{display:flex;gap:9px;flex-wrap:wrap}
+  .field input[type=email]{flex:1;min-width:180px;padding:13px 15px;border-radius:9px;
+    border:1px solid #5a4c37;background:#3a2f20;color:#fff;font-family:inherit;font-size:.95rem}
+  .field input[type=email]::placeholder{color:#b6a583}
+  .btn{border:none;cursor:pointer;padding:13px 22px;border-radius:9px;font-family:'Mulish',sans-serif;
+    font-weight:700;letter-spacing:.02em;font-size:.95rem;background:var(--foil);color:#2b2113;
+    transition:transform .15s, box-shadow .2s}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(180,137,74,.45)}
+  .capture small{display:block;margin-top:11px;color:#b6a583;font-size:.76rem}
+
+  /* section shell */
+  section.oracle{padding:64px 0;border-top:1px solid var(--ligne)}
+  .o-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  .o-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--or-clair);
+    line-height:1}
+  .o-head h2{font-size:clamp(2rem,4vw,2.9rem)}
+  .o-spread{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--or)}
+  .o-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-top:26px}
+  .o-grid.rev{direction:rtl}.o-grid.rev>*{direction:ltr}
+  .struct{color:var(--encre-soft);font-size:1.02rem;margin-bottom:20px}
+  .pos{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .pos li{display:flex;gap:13px}
+  .pin{flex:none;width:26px;height:26px;border-radius:50%;background:var(--encre);color:var(--parchemin);
+    display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:1rem;border:1px solid var(--or)}
+  .pos b{font-weight:700;font-size:.98rem}
+  .pos div span{display:block;color:var(--encre-soft);font-size:.9rem}
+  .tip{margin-top:22px;background:var(--sable);border:1px solid var(--ligne);border-left:3px solid var(--or);
+    border-radius:10px;padding:15px 17px}
+  .tip b{color:var(--or);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+    font-family:'Marcellus',serif;display:block;margin-bottom:5px}
+  .tip p{font-size:.9rem;color:var(--encre-soft)}
+  @media(max-width:780px){.o-grid{grid-template-columns:1fr}.o-grid.rev{direction:ltr}}
+
+  /* spread diagrams (signature) */
+  .spread{background:radial-gradient(120% 120% at 50% 30%,#fff 0%,var(--sable) 100%);
+    border:1px solid var(--ligne);border-radius:14px;padding:26px 14px;display:flex;
+    justify-content:center;align-items:center;min-height:330px}
+  .card{width:74px;height:106px;border-radius:9px;background:var(--encre);
+    border:2px solid var(--or);position:relative;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 18px rgba(46,37,25,.2)}
+  .card::after{content:'';position:absolute;inset:5px;border:1px solid rgba(203,169,104,.55);border-radius:6px}
+  .card span{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.9rem;color:var(--parchemin)}
+  .cardwrap{display:flex;flex-direction:column;align-items:center;gap:7px}
+  .plabel{font-family:'Marcellus',serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--or)}
+  .cross{display:grid;grid-template-columns:repeat(3,auto);grid-template-rows:repeat(3,auto);
+    gap:14px 26px;justify-items:center;align-items:center}
+  .cross .c-top{grid-column:2;grid-row:1}.cross .c-left{grid-column:1;grid-row:2}
+  .cross .c-mid{grid-column:2;grid-row:2}.cross .c-right{grid-column:3;grid-row:2}
+  .cross .c-bot{grid-column:2;grid-row:3}
+  .triangle{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;
+    gap:20px 40px;justify-items:center}
+  .triangle .t-top{grid-column:1 / span 2;grid-row:1}
+  .row3{display:flex;gap:22px}
+
+  /* mid CTA */
+  .midcta{background:var(--encre);color:var(--parchemin);padding:60px 0}
+  .midcta .wrap{display:grid;grid-template-columns:1fr auto;gap:34px;align-items:center}
+  .midcta h2{color:var(--parchemin);font-size:clamp(1.8rem,3.6vw,2.6rem)}
+  .midcta p{color:#E6D9C3;max-width:34em;margin-top:8px}
+  @media(max-width:780px){.midcta .wrap{grid-template-columns:1fr}}
+
+  footer{padding:40px 0 48px;border-top:1px solid var(--ligne);text-align:center}
+  footer .brand{font-size:.95rem}
+  footer p{font-size:.78rem;color:var(--encre-soft);margin-top:10px}
+  footer .mini{font-size:.72rem;color:#a99b80;margin-top:14px;max-width:44em;margin-inline:auto}
+
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+  .js .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}}
+  /* method */
+  .method{padding:64px 0;border-top:1px solid var(--ligne)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
+  .step{background:var(--sable);border:1px solid var(--ligne);border-radius:12px;padding:22px 20px}
+  .step .sn{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;background:var(--encre);
+    border:1px solid var(--or);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;margin-bottom:12px}
+  .step h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;margin-bottom:6px}
+  .step p{font-size:.92rem;color:var(--encre-soft)}
+  @media(max-width:780px){.steps{grid-template-columns:1fr}}
+  /* bridge to product */
+  .bridge{padding:64px 0;border-top:1px solid var(--ligne)}
+  .bridge-card{background:radial-gradient(140% 140% at 15% 10%,#3a2e1c 0%,var(--encre) 60%);
+    color:var(--parchemin);border:1px solid var(--or);border-radius:18px;padding:40px 34px 42px;
+    text-align:center;box-shadow:0 20px 50px rgba(46,37,25,.25)}
+  .bridge-card h2{color:var(--parchemin);font-size:clamp(1.9rem,4vw,2.7rem);margin:.3em 0 .4em}
+  .bridge-card p{color:#E6D9C3;max-width:40em;margin:0 auto 26px}
+  .bridge-card .btn{font-size:1.02rem;padding:15px 30px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#top" class="brand">Oracle Arcana</a>
+    <nav class="nav">
+      <a href="#belline">Belline</a>
+      <a href="#miroirs">Miroirs</a>
+      <a href="#triade">Triade</a>
+      <a href="#ge">Gé</a>
+      <a href="#methode">Méthode</a>
+      <a href="#fiche">La fiche</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Cartomancie · guidance</span>
+      <h1>Quatre tirages d'oracle, expliqués pas à pas.</h1>
+      <p class="lead">Belline, Gé, Triade, Miroirs. Pour chaque oracle : le schéma de la disposition, le sens de chaque position et les astuces qui font une lecture juste. Reçois la fiche imprimable, gratuite.</p>
+      <div class="rule"></div>
+      <div class="capture" id="fiche">
+        <span class="k">Fiche gratuite</span>
+        <h3>Reçois les 4 tirages</h3>
+        <p>Une fiche imprimable par oracle, directement dans ta boîte mail.</p>
+        <form class="field" id="signup" novalidate>
+          <!-- Branché sur le Worker arcana-tirages-oracles (worker-tirages-oracles.js) :
+               il ajoute le contact à la liste Brevo dédiée ; l'envoi du PDF est fait
+               par une automation Brevo (dashboard), déclenchée par l'entrée dans cette liste. -->
+          <input type="email" name="email" placeholder="ton@email.fr" required aria-label="Adresse email">
+          <button type="submit" class="btn">Recevoir la fiche</button>
+        </form>
+        <small>Zéro spam. Désinscription en un clic.</small>
+        <small id="msg" style="display:none;color:var(--or-clair)"></small>
+      </div>
+    </div>
+    <div class="hero-cards" aria-hidden="true">
+      <div class="fan f1"><div class="glyph">☾</div></div>
+      <div class="fan f3"><div class="glyph">✶</div></div>
+      <div class="fan f2"><div class="glyph">☉</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BELLINE ============ -->
+<section class="oracle" id="belline">
+  <div class="wrap reveal">
+    <div class="o-head"><span class="o-num">I</span><h2>Oracle Belline</h2><span class="o-spread">La croix planétaire</span></div>
+    <div class="o-grid">
+      <div>
+        <p class="struct">53 cartes réparties en 7 familles de 7 rattachées aux planètes (Soleil, Lune, Mercure, Vénus, Mars, Jupiter, Saturne), plus quelques cartes spéciales dont la Carte Bleue. Idéal pour une question ciblée.</p>
+        <ul class="pos">
+          <li><span class="pin">1</span><div><b>Le cœur de la question</b><span>L'énergie dominante, ce dont il s'agit vraiment.</span></div></li>
+          <li><span class="pin">2</span><div><b>La racine</b><span>Ce qui vient du passé et a préparé la situation.</span></div></li>
+          <li><span class="pin">3</span><div><b>Le présent</b><span>Ce qui agit maintenant, l'influence en cours.</span></div></li>
+          <li><span class="pin">4</span><div><b>L'avenir proche</b><span>Vers quoi la situation évolue.</span></div></li>
+          <li><span class="pin">5</span><div><b>Le conseil</b><span>La clé pour agir, l'attitude à privilégier.</span></div></li>
+        </ul>
+        <div class="tip"><b>La force du Belline</b><p>Repère les planètes dominantes du tirage : beaucoup de Saturne annonce épreuves et patience ; Jupiter, chance et expansion ; Vénus, les affaires de cœur ; Mars, tensions ou action. La Carte Bleue est un signe de protection très favorable.</p></div>
+      </div>
+      <div class="spread"><div class="cross">
+        <div class="cardwrap c-top"><span class="plabel">Présent</span><div class="card"><span>3</span></div></div>
+        <div class="cardwrap c-left"><div class="card"><span>2</span></div><span class="plabel">Racine</span></div>
+        <div class="cardwrap c-mid"><div class="card"><span>1</span></div><span class="plabel">Cœur</span></div>
+        <div class="cardwrap c-right"><div class="card"><span>4</span></div><span class="plabel">Avenir</span></div>
+        <div class="cardwrap c-bot"><div class="card"><span>5</span></div><span class="plabel">Conseil</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MIROIRS ============ -->
+<section class="oracle" id="miroirs">
+  <div class="wrap reveal">
+    <div class="o-head"><span class="o-num">II</span><h2>Oracle des Miroirs</h2><span class="o-spread">Les 3 miroirs</span></div>
+    <div class="o-grid rev">
+      <div>
+        <p class="struct">53 cartes autonomes (image + mot-clé), avec une influence planétaire en toile de fond. Un oracle très introspectif : chaque carte agit comme un miroir intérieur.</p>
+        <ul class="pos">
+          <li><span class="pin">1</span><div><b>Ce que je vis</b><span>Mon reflet actuel, la situation telle qu'elle se présente.</span></div></li>
+          <li><span class="pin">2</span><div><b>Ce que je ne vois pas encore</b><span>Ce qui est caché, à comprendre ou à transformer.</span></div></li>
+          <li><span class="pin">3</span><div><b>Vers quoi j'évolue</b><span>L'issue possible si je prends conscience du 2e miroir.</span></div></li>
+        </ul>
+        <div class="tip"><b>Astuce</b><p>Lis ce tirage comme un dialogue avec toi-même. Méthode du jeu : coupe de la main gauche, retourne les deux paquets de droite à gauche (tendance générale), puis tire tes 3 cartes.</p></div>
+      </div>
+      <div class="spread"><div class="row3">
+        <div class="cardwrap"><div class="card"><span>1</span></div><span class="plabel">Reflet</span></div>
+        <div class="cardwrap"><div class="card"><span>2</span></div><span class="plabel">Le caché</span></div>
+        <div class="cardwrap"><div class="card"><span>3</span></div><span class="plabel">Évolution</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRIADE ============ -->
+<section class="oracle" id="triade">
+  <div class="wrap reveal">
+    <div class="o-head"><span class="o-num">III</span><h2>Oracle de la Triade</h2><span class="o-spread">Le triangle</span></div>
+    <div class="o-grid">
+      <div>
+        <p class="struct">57 cartes numérotées, d'Alpha (1) à Oméga (57), créées en 1992 par Dominike Duplaa. Une structure ternaire traverse tout le jeu : le triangle en est le tirage signature.</p>
+        <ul class="pos">
+          <li><span class="pin">1</span><div><b>La situation</b><span>Le connu, le concret, ce que tu vis consciemment.</span></div></li>
+          <li><span class="pin">2</span><div><b>L'influence cachée</b><span>Le défi, ce qui agit en coulisse.</span></div></li>
+          <li><span class="pin">3</span><div><b>Le message</b><span>La synthèse, la réponse, la voie à suivre.</span></div></li>
+        </ul>
+        <div class="tip"><b>Deux astuces</b><p>Pour dater, additionne les numéros des cartes et ramène le total à un mois ou un délai. Si Alpha ou Oméga apparaît, elle marque un vrai commencement ou un aboutissement.</p></div>
+      </div>
+      <div class="spread"><div class="triangle">
+        <div class="cardwrap t-top"><span class="plabel">Message</span><div class="card"><span>3</span></div></div>
+        <div class="cardwrap"><div class="card"><span>1</span></div><span class="plabel">Situation</span></div>
+        <div class="cardwrap"><div class="card"><span>2</span></div><span class="plabel">Caché</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GÉ ============ -->
+<section class="oracle" id="ge">
+  <div class="wrap reveal">
+    <div class="o-head"><span class="o-num">IV</span><h2>Oracle Gé</h2><span class="o-spread">La croix en 5 cartes</span></div>
+    <div class="o-grid rev">
+      <div>
+        <p class="struct">61 cartes aux images concrètes du quotidien, créées par Gérard Barbier (1991). La croix à 5 cartes est sa méthode reine : universelle et directe.</p>
+        <ul class="pos">
+          <li><span class="pin">1</span><div><b>La situation présente</b><span>Le contexte, l'état d'esprit actuel.</span></div></li>
+          <li><span class="pin">2</span><div><b>Ce qui aide</b><span>Les atouts, les soutiens, les opportunités.</span></div></li>
+          <li><span class="pin">3</span><div><b>Ce qui freine</b><span>Les obstacles, les risques, les résistances.</span></div></li>
+          <li><span class="pin">4</span><div><b>L'évolution probable</b><span>La tendance si rien ne change.</span></div></li>
+          <li><span class="pin">5</span><div><b>La synthèse</b><span>Le cœur du tirage et le conseil.</span></div></li>
+        </ul>
+        <div class="tip"><b>Trois réflexes Gé</b><p>La position prime sur la carte. Une carte Saison date le résultat (la saison, ou environ trois mois). Tiens compte de la tonalité de chaque carte : positive, neutre ou négative.</p></div>
+      </div>
+      <div class="spread"><div class="cross">
+        <div class="cardwrap c-top"><span class="plabel">Atouts</span><div class="card"><span>2</span></div></div>
+        <div class="cardwrap c-left"><div class="card"><span>1</span></div><span class="plabel">Situation</span></div>
+        <div class="cardwrap c-mid"><div class="card"><span>5</span></div><span class="plabel">Synthèse</span></div>
+        <div class="cardwrap c-right"><div class="card"><span>4</span></div><span class="plabel">Évolution</span></div>
+        <div class="cardwrap c-bot"><div class="card"><span>3</span></div><span class="plabel">Freins</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section class="method" id="methode">
+  <div class="wrap reveal">
+    <span class="eyebrow">Bien débuter</span>
+    <h2 style="font-size:clamp(2rem,4vw,2.9rem);margin-top:6px">Comment lire une carte</h2>
+    <p class="struct" style="max-width:46em">Une carte ne se lit jamais seule. Son sens naît de trois niveaux qui se répondent. Prends-les dans l'ordre, puis résume en une phrase.</p>
+    <div class="steps">
+      <div class="step"><span class="sn">1</span><h4>L'image d'abord</h4><p>Regarde le dessin et note ta première impression, ton ressenti immédiat. C'est le thème de la carte, avant toute théorie.</p></div>
+      <div class="step"><span class="sn">2</span><h4>La position ensuite</h4><p>La même carte ne dit pas la même chose selon sa place. En « conseil » elle guide, en « obstacle » elle met en garde : la position oriente le sens.</p></div>
+      <div class="step"><span class="sn">3</span><h4>Les voisines enfin</h4><p>Une carte se nuance par celles qui l'entourent : une lame difficile s'adoucit près d'une carte lumineuse, une bonne nouvelle se tempère près d'une carte de prudence.</p></div>
+    </div>
+    <div class="tip" style="margin-top:24px"><b>La synthèse</b><p>Termine en résumant le tirage en une phrase simple, en tenant compte de la tonalité générale : plutôt positive, neutre ou négative. C'est cette phrase que tu retiens.</p></div>
+  </div>
+</section>
+
+<section class="midcta">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--or-clair)">Prêt à tirer</span>
+      <h2>Garde les 4 tirages sous la main.</h2>
+      <p>Reçois la fiche imprimable, une page par oracle, avec le schéma, les positions et les astuces. Gratuit.</p>
+    </div>
+    <a href="#fiche" class="btn" style="align-self:center">Recevoir la fiche</a>
+  </div>
+</section>
+
+<!-- ============ PONT PRODUIT ============ -->
+<section class="bridge" id="amour">
+  <div class="wrap reveal">
+    <div class="bridge-card">
+      <span class="eyebrow" style="color:var(--or)">Aller plus loin</span>
+      <h2>Et si tu regardais les 12 prochains mois ?</h2>
+      <p>Le tirage éclaire l'instant présent. Tes Prévisions Amour vont plus loin : mois par mois, ce que les transits réels de Vénus, Mars et Jupiter annoncent pour ta vie amoureuse. Un rapport personnalisé, à partir de ta seule date de naissance.</p>
+      <!-- Remplace l'URL par le lien réel de ta page produit Prévisions Amour 12 mois -->
+      <a class="btn" href="https://oracle-arcana.fr/previsions-amour.html">Découvrir mes Prévisions Amour — 13,99 €</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:'Marcellus',serif;letter-spacing:.3em;text-transform:uppercase">Oracle Arcana</div>
+    <p>oracle-arcana.fr</p>
+    <p class="mini">Ces oracles éclairent des tendances et aident à décider en conscience. Ils ne figent pas l'avenir.</p>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // Inscription à la liste Brevo dédiée via le Worker arcana-tirages-oracles.
+  // === À BRANCHER : URL du Worker Cloudflare une fois déployé ===
+  const WORKER_URL = "https://arcana-tirages-oracles.dni-business44.workers.dev";
+  const f=document.getElementById('signup');
+  if(f){f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    const msg=document.getElementById('msg');
+    const btn=f.querySelector('button[type=submit]');
+    const email=(f.email.value||'').trim();
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      msg.style.display='block'; msg.style.color='#E6A6A6';
+      msg.textContent="Merci d'indiquer un email valide.";
+      return;
+    }
+    btn.disabled=true;
+    msg.style.display='block'; msg.style.color='var(--or-clair)';
+    msg.textContent='Inscription en cours…';
+    fetch(WORKER_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email})
+    }).then(function(r){ return r.json(); }).then(function(data){
+      btn.disabled=false;
+      if(data && data.ok){
+        msg.style.color='var(--or-clair)';
+        msg.textContent='Merci ! Vérifie ta boîte mail (et tes spams) pour récupérer ta fiche.';
+        f.reset();
+      } else {
+        msg.style.color='#E6A6A6';
+        msg.textContent=(data && data.erreur) ? data.erreur : "Une erreur empêche l'inscription. Réessaie dans quelques instants.";
+      }
+    }).catch(function(){
+      btn.disabled=false;
+      msg.style.color='#E6A6A6';
+      msg.textContent="Une erreur de connexion empêche l'inscription. Réessaie dans quelques instants.";
+    });
+  });}
+</script>
+</body>
+</html>
