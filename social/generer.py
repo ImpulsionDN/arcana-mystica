@@ -183,6 +183,8 @@ def rendre(s):
         pg.evaluate("document.fonts.ready")
         pg.wait_for_timeout(800)
         pg.screenshot(path=sortie)
+        # TikTok refuse le PNG : copie JPEG utilisée comme média pour les trois réseaux
+        pg.screenshot(path=sortie[:-4] + ".jpg", type="jpeg", quality=92)
         b.close()
     os.remove(tmp)
     return sortie
@@ -209,7 +211,7 @@ def main():
         if s["id"] not in faits:
             break
     s["image_locale"] = rendre(s)
-    s["image_url"] = f"{SITE}/social/visuels/{s['id']}.png"
+    s["image_url"] = f"{SITE}/social/visuels/{s['id']}.jpg"
     s["accroche"] = s["accroche"].replace("<br>", " ")
     print(json.dumps(s, ensure_ascii=False, indent=1))
 
