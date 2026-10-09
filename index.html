@@ -2710,79 +2710,21 @@ function doPay(){
   }
 }
 
-/* Génère une guidance personnalisée via l'IA, puis l'affiche (tchat) ou confirme l'envoi (e-mail) */
+/* Guidance gratuite : un texte général, affiché tout de suite. Aucun appel à un service externe et aucun e-mail envoyé.
+   (Une vraie guidance personnalisée envoyée par e-mail reste à construire : voir POINTS-OUVERTS.md.) */
 function lancerGuidanceIA(){
-  var titre=curOffer.titre;
-  var nom=(document.getElementById('m_name')&&document.getElementById('m_name').value||"").trim();
-  var mail=(document.getElementById('m_mail')&&document.getElementById('m_mail').value||"").trim();
-  var question=(document.getElementById('m_q')&&document.getElementById('m_q').value||"").trim();
-  var parTchat=(canal==='Tchat');
-
-  document.getElementById('modalContent').innerHTML=
-    '<div class="pay-success"><div class="ck">\u2727</div>'+
-    '<h3>Votre guidance se prépare\u2026</h3>'+
-    '<div class="sub">'+(nom?nom+', les':'Les')+' lames se mettent en place pour vous. Quelques instants\u2026</div>'+
-    '<div id="ia_zone" style="margin-top:1rem;text-align:left;white-space:pre-wrap;line-height:1.6"></div>'+
-    '<div id="ia_loader" style="text-align:center;color:var(--gold-deep);font-size:1.6rem;margin:.6rem 0">\u2727</div></div>';
-
-  var sys="Tu es Séraphine, médium virtuelle d'Arcana, douce, bienveillante et nuancée. "+
-    "Tu écris en français, en tutoiement chaleureux mais respectueux. "+
-    "Reste positive et responsabilisante, sans rien prédire de médical, juridique ou financier de façon catégorique, et sans faire peur. "+
-    "N'utilise pas de listes à puces : écris en paragraphes fluides avec, si utile, des intertitres courts.";
-  var usr;
-  sys+=" Tu donnes une guidance inspirée de l'Oracle de Belline et de la cartomancie.";
-  usr="Formule \""+titre+"\". "+(nom?("Prénom : "+nom+". "):"")+
-    (question?("Question du consultant : "+question):"Le consultant n'a pas précisé de question : propose une guidance générale sur son moment de vie.")+
-    " Structure en 3 paragraphes (situation ressentie, message des lames, conseil et ouverture). 220 à 300 mots. Termine par une phrase d'encouragement.";
-
-  var maxTok=1000;
-
-  // Texte de secours développé (si l'IA n'est pas joignable)
-  var SECOURS="Les lames vous accompagnent aujourd'hui avec bienveillance.\n\n"+
+  var TEXTE="Les lames vous accompagnent aujourd'hui avec bienveillance.\n\n"+
     "Le passé a posé des bases solides, le présent vous invite à la confiance, et l'avenir s'ouvre sur une période plus sereine. Les obstacles que vous percevez ne sont que passagers.\n\n"+
     "Avancez pas à pas, en écoutant votre intuition : elle vous guide bien. Le meilleur reste à venir.";
 
-  var done=false;
-  function afficherGuidance(texte){
-    if(done)return; done=true;
-    var loader=document.getElementById('ia_loader'); if(loader)loader.style.display='none';
-    var head=document.querySelector('#modalContent h3'); if(head)head.textContent='Votre guidance'+(nom?(', '+nom):'')+' \u2727';
-    var sub=document.querySelector('#modalContent .sub');
-    if(parTchat){
-      if(sub)sub.innerHTML='Voici le message des lames, rien que pour vous\u00a0:';
-      var z=document.getElementById('ia_zone'); if(z)z.textContent=texte;
-    } else {
-      if(sub)sub.innerHTML='Votre lecture détaillée a été préparée'+(mail?(' et envoyée à <strong>'+mail+'</strong>'):'')+'. Vous la recevrez par e-mail dans quelques minutes.';
-      var z2=document.getElementById('ia_zone'); if(z2)z2.textContent='';
-    }
-    var c=document.getElementById('modalContent');
-    c.innerHTML+='<button class="btn btn-outline" style="width:100%;margin-top:1rem" onclick="closeModal()">Fermer</button>'+
-      '<div class="pay-note">Guidance générée automatiquement \u00b7 voir nos mentions légales</div>';
-  }
-
-  // Sécurité : si rien ne répond sous 12 s, on affiche le texte de secours
-  var secu=setTimeout(function(){afficherGuidance(SECOURS);},12000);
-
-  fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      model:"claude-sonnet-4-20250514",
-      max_tokens:maxTok,
-      system:sys,
-      messages:[{role:"user",content:usr}]
-    })
-  }).then(function(r){
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    return r.json();
-  }).then(function(data){
-    clearTimeout(secu);
-    var texte=(data&&data.content?data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join("\n"):"")||SECOURS;
-    afficherGuidance(texte);
-  }).catch(function(){
-    clearTimeout(secu);
-    afficherGuidance(SECOURS);
-  });
+  document.getElementById('modalContent').innerHTML=
+    '<div class="pay-success"><div class="ck">\u2727</div>'+
+    '<h3>Le message des lames \u2727</h3>'+
+    '<div class="sub">Voici un message général, le même pour tout le monde\u00a0: il n\u2019est pas écrit pour vous en particulier, et aucun e-mail n\u2019est envoyé.</div>'+
+    '<div id="ia_zone" style="margin-top:1rem;text-align:left;white-space:pre-wrap;line-height:1.6"></div>'+
+    '<button class="btn btn-outline" style="width:100%;margin-top:1rem" onclick="closeModal()">Fermer</button>'+
+    '<div class="pay-note">Message général, non personnalisé \u00b7 voir nos mentions légales</div></div>';
+  var zone=document.getElementById('ia_zone'); if(zone)zone.textContent=TEXTE;
 }
 
 function closeModal(){modalBg.classList.remove('open');}
