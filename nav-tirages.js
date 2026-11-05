@@ -28,6 +28,7 @@
     { nom: "Tirage 3 lames", href: "index.html#accueil" },
     { nom: "Tirages d'oracles", href: "tirages-oracles.html" },
     { nom: "Tirage amour", href: "tirage-amour.html" },
+    { nom: "Tirage 2027", href: "tirage-2027.html" },
     { nom: "Oui / Non", href: "index.html#ouinon" },
     { nom: "Heures Miroirs", href: "heures-miroirs.html" },
     { nom: "Synchronicités", href: "index.html#synchronicites" },
