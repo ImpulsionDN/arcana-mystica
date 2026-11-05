@@ -130,9 +130,9 @@ section{padding:4.5rem 0;position:relative;scroll-margin-top:80px}
 .tcard-inner{position:relative;width:100%;height:100%;transition:transform .85s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
 .tcard.flipped .tcard-inner{transform:rotateY(180deg)}
 .tcard-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.9rem;text-align:center;overflow:hidden}
-.tcard-back{background:linear-gradient(160deg,#fffdf9,#f1e6cf);border:1px solid var(--gold);box-shadow:inset 0 0 24px rgba(184,145,73,.18)}
-.tcard-back .pos{font-family:'Playfair Display';font-size:.62rem;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase;margin-top:.8rem}
-.tcard-back svg{opacity:.85}
+.tcard-back{background:#1f2140 url(images/lames/dos.jpg) center/cover no-repeat;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(31,33,64,.25);justify-content:flex-end;padding:0}
+.tcard-back .pos{font-family:'Playfair Display';font-size:.62rem;letter-spacing:.18em;color:#f3e3bd;text-transform:uppercase;width:100%;padding:.45rem .2rem;background:rgba(20,22,48,.72);border-top:1px solid rgba(201,163,92,.6)}
+
 .tcard-front{background:linear-gradient(170deg,#fffdf9,#fbf3df);border:2px solid var(--ac,#9a7838);transform:rotateY(180deg);box-shadow:inset 0 0 24px rgba(184,145,73,.22)}
 .lnum{display:block;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;opacity:.7;font-weight:500;margin-bottom:.1em}
 .tcard-front .cname{font-family:'Playfair Display';font-size:.92rem;color:var(--gold-deep);margin:.4rem 0 .2rem;letter-spacing:.02em}
@@ -365,6 +365,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 <link rel="stylesheet" href="horoscope-widget.css">
 <script src="horoscope-widget.js"></script>
 
+<link rel="preload" as="image" href="images/lames/dos.jpg">
 </head>
 <body>
 
@@ -680,7 +681,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
 .on-spread{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin:0 auto 1rem;max-width:640px}
 .on-pick{position:relative;width:86px;height:126px}
 .on-pick-back,.on-pick-face{position:absolute;inset:0;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .45s ease,transform .35s ease}
-.on-pick-back{cursor:pointer;background:linear-gradient(160deg,#f3ece0,#e7dcc6);border:1px solid var(--gold);color:var(--gold-deep);font-size:1.5rem;box-shadow:0 4px 14px rgba(154,120,56,.15)}
+.on-pick-back{cursor:pointer;background:#1f2140 url(images/lames/dos.jpg) center/cover no-repeat;border:1px solid var(--gold);color:transparent;font-size:0;box-shadow:0 4px 14px rgba(154,120,56,.15)}
 .on-pick-back:hover{transform:translateY(-5px);box-shadow:0 10px 22px rgba(154,120,56,.22)}
 .on-pick-face{background:var(--card);border:1px solid var(--line);opacity:0;padding:.4rem;pointer-events:none}
 .on-pick.on-revealed .on-pick-back{opacity:0;pointer-events:none}
@@ -2035,7 +2036,7 @@ function tirer(){
     var ast=ASTRES[l.astre]||ASTRES.maitresse;
     var svgCol=l.svg.replace('stroke="#9a7838"','stroke="'+ast.c+'"');
     c.innerHTML='<div class="tcard-inner">'+
-      '<div class="tcard-face tcard-back">'+svgCard('<circle cx="32" cy="32" r="14"/><path d="M32 8 L32 18 M32 46 L32 56 M8 32 L18 32 M46 32 L56 32"/>')+'<div class="pos">'+POSITIONS[i]+'</div></div>'+
+      '<div class="tcard-face tcard-back"><div class="pos">'+POSITIONS[i]+'</div></div>'+
       '<div class="tcard-face tcard-front tcard-illu" style="--ac:'+ast.c+';--ac2:'+ast.c2+'">'+l.svg+'<div class="cpos">'+POSITIONS[i]+'</div><div class="cname">'+l.nom+'</div></div>'+
       '</div>';
     row.appendChild(c);
@@ -2676,7 +2677,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()
     picks=[]; drawing=true; pool=[];
     while(pool.length<9){ var r=Math.floor(Math.random()*LAMES.length); if(pool.indexOf(r)<0) pool.push(r); }
     curQ=(document.getElementById("onQuestion").value||"").trim();
-    var backs=pool.map(function(idx,k){ return `<div class="on-pick" data-k="${k}" onclick="pickCard(this)"><div class="on-pick-back">✦</div><div class="on-pick-face"></div></div>`; }).join("");
+    var backs=pool.map(function(idx,k){ return `<div class="on-pick" data-k="${k}" onclick="pickCard(this)"><div class="on-pick-back"></div><div class="on-pick-face"></div></div>`; }).join("");
     var qh=curQ?`<div class="on-q">« ${curQ} »</div>`:"";
     document.getElementById("onResult").innerHTML=qh+`<div class="on-instruct">Concentrez-vous sur votre question, puis choisissez <b>3 lames</b>.</div><div class="on-spread">${backs}</div>`;
   };
@@ -2760,7 +2761,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()
 .lune-svg .lame-img{width:72px;margin:0 auto}
 .lunes-strip-svg .lame-img{width:72px;margin:0 auto}
 .lunes-strip-item{width:112px}
-@media(max-width:560px){#o_cards{gap:6px!important;flex-wrap:nowrap!important}.tcard{width:78px;height:176px}.tcard-front.tcard-illu{padding:4px 4px 6px}.tcard-front.tcard-illu .cname{font-size:.64rem}.tcard-front.tcard-illu .cpos{font-size:.52rem;letter-spacing:.1em}}
+@media(max-width:560px){#o_cards{gap:6px!important;flex-wrap:nowrap!important}.tcard{width:78px;height:176px}.tcard-front.tcard-illu{padding:4px 4px 6px}.tcard-front.tcard-illu .cname{font-size:.64rem}.tcard-front.tcard-illu .cpos{font-size:.52rem;letter-spacing:.1em}.tcard-back .pos{font-size:.5rem;letter-spacing:.08em}}
 </style>
 <script>
 (function(){
