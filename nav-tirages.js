@@ -26,7 +26,7 @@
 (function () {
   var TIRAGES = [
     { nom: "Tirage 3 lames", href: "index.html#accueil" },
-    { nom: "Tirages d'oracles", href: "tirages-oracles.html" },
+    { nom: "Les 5 tirages Arcana", href: "tirages-oracles.html" },
     { nom: "Tirage amour", href: "tirage-amour.html" },
     { nom: "Tirage 2027", href: "tirage-2027.html" },
     { nom: "Oui / Non", href: "index.html#ouinon" },
