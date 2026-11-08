@@ -46,3 +46,36 @@ footer .logo span{color:#E8D2B5!important}
 .oah-c-copper{--a:#9C5B32!important;--t:#F3E1D2!important}
 .oah-c-slate{--a:#5B4632!important;--t:#ECE2D4!important}
 .oah-c-olive{--a:#7D7A3A!important;--t:#EEECD0!important}
+
+/* ===== Lumière et reflets (style « Inner Peace ») ===== */
+/* Bandeau d'accueil : rayons de lumière dorée et halo qui respire */
+.oah-hero{isolation:isolate}
+.oah-hero::before{content:"";position:absolute;inset:-20% -10% -10% 30%;z-index:-1;pointer-events:none;
+  background:repeating-conic-gradient(from 200deg at 70% 20%,rgba(255,214,150,.16) 0deg 4deg,rgba(255,214,150,0) 4deg 13deg);
+  -webkit-mask:radial-gradient(60% 70% at 70% 30%,#000 0,transparent 75%);mask:radial-gradient(60% 70% at 70% 30%,#000 0,transparent 75%);
+  filter:blur(2px);animation:oaRayons 18s linear infinite;transform-origin:70% 20%}
+.oah-hero::after{content:"";position:absolute;width:620px;height:620px;right:6%;top:50%;transform:translateY(-50%);z-index:-1;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,196,110,.45) 0,rgba(232,140,40,.18) 38%,rgba(232,140,40,0) 70%);animation:oaSouffle 6s ease-in-out infinite}
+@keyframes oaRayons{to{transform:rotate(8deg)}}
+@keyframes oaSouffle{0%,100%{opacity:.75;transform:translateY(-50%) scale(1)}50%{opacity:1;transform:translateY(-50%) scale(1.06)}}
+/* Titres en or reflété */
+.oah-hero .oah-h1{background:linear-gradient(100deg,#F4D9A0 0%,#FFF1CF 22%,#E7B97A 40%,#F4D9A0 55%,#FFF4D6 70%,#D9A35A 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent!important;animation:oaReflet 7s ease-in-out infinite;text-shadow:none}
+.oah-hero .oah-h1 em{background:linear-gradient(100deg,#F0A848,#FFD58A 45%,#E08A2E);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+@keyframes oaReflet{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* Boutons : reflet qui passe */
+.oah-btn-gold,.btn-gold{position:relative;overflow:hidden}
+.oah-btn-gold::after,.btn-gold::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;
+  background:linear-gradient(105deg,transparent,rgba(255,248,230,.55),transparent);transform:skewX(-20deg);animation:oaBalaye 4.5s ease-in-out infinite}
+@keyframes oaBalaye{0%,60%{left:-60%}100%{left:130%}}
+/* Cartes : lumière douce en haut et reflet au survol */
+.oah-card{position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 14px 34px rgba(90,55,25,.12)!important}
+.oah-card::after{content:"";position:absolute;top:-30%;left:-80%;width:50%;height:160%;pointer-events:none;
+  background:linear-gradient(105deg,transparent,rgba(255,236,200,.45),transparent);transform:skewX(-18deg);transition:left .9s ease}
+.oah-card:hover::after{left:140%}
+.oah-card:hover{box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 20px 44px rgba(184,100,30,.22)!important}
+/* Fond général : touches de lumière ambrée */
+body::before{background:radial-gradient(circle at 12% 18%,rgba(232,160,74,.16),transparent 42%),radial-gradient(circle at 88% 70%,rgba(244,217,160,.22),transparent 46%),radial-gradient(circle at 50% 110%,rgba(213,133,31,.10),transparent 50%)!important;opacity:1!important}
+@media (prefers-reduced-motion:reduce){.oah-hero::before,.oah-hero::after,.oah-hero .oah-h1,.oah-btn-gold::after,.btn-gold::after{animation:none}}
+/* Titres de sections : or profond reflété */
+.oah-sec-hd h2,.oah-sec-hd .oah-h2{background:linear-gradient(100deg,#5A3E2B 0%,#A8652A 35%,#D5851F 50%,#A8652A 65%,#5A3E2B 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:oaReflet 9s ease-in-out infinite}
