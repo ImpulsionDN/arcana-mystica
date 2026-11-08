@@ -1,0 +1,48 @@
+/* Thème chaud Oracle Arcana : noyer, ambre, or champagne, beige crème, vert sauge.
+   Chargé en dernier sur chaque page : redéfinit les variables de couleur communes. */
+:root{
+  --bg:#F5E9D7; --cream:#F5E9D7; --bg-2:#EADAC2; --bg2:#EADAC2;
+  --card:#FBF3E6; --card-hover:#F7E8D2; --card-tint:#F3E2C8;
+  --ink:#3A2819; --brown:#5B4632; --ink-soft:#6E5640;
+  --gold:#A8652A; --gold-deep:#874E1C; --gold-soft:#D5851F; --gold-light:#E7B97A;
+  --line:rgba(168,101,42,.28);
+  --rose:#B5453A; --green:#6F8F55;
+  --shadow:0 14px 40px rgba(58,40,25,.14);
+}
+body{background-color:var(--bg)}
+nav{background:rgba(245,233,215,.92)!important}
+footer{background:#2A1C12!important;color:#E8D2B5!important;border-top:1px solid rgba(244,217,160,.25)!important}
+footer a{color:#F4D9A0!important}
+footer h3,footer h4,footer .brand,footer strong{color:#F4D9A0!important}
+::selection{background:#E7B97A;color:#2A1C12}
+
+/* Accueil : bandeau sombre noyer avec halo ambré */
+.oah-hero{background:radial-gradient(900px 560px at 72% 40%,rgba(213,133,31,.38) 0,rgba(213,133,31,0) 62%),linear-gradient(180deg,#2A1C12 0%,#3A2819 60%,#5A3E2B 100%)!important}
+.oah-eyebrow{color:#E7B97A!important}
+.oah-hero .oah-h1{color:#F4D9A0!important}
+.oah-h1 em{color:#E8A04A!important}
+.oah-hero .oah-lead{color:#E8D2B5!important}
+.oah-hero .oah-reassure{color:#D9C2A0!important}
+.oah-hero .oah-reassure b{color:#F4D9A0!important}
+.oah-btn-gold,.btn-gold{background:linear-gradient(180deg,#E39A3B,#B8641E)!important;color:#FFF6E6!important;box-shadow:0 10px 24px rgba(184,100,30,.35)!important}
+.oah-hero .oah-btn-outline{border-color:#F4D9A0!important;color:#F4D9A0!important}
+.oah-btn-outline{border-color:var(--gold)!important;color:var(--gold-deep)!important}
+.oah-eyebrow,.oah-sec-hd .oah-eyebrow{color:var(--gold)}
+footer .logo{color:#F4D9A0!important}
+footer .logo span{color:#E8D2B5!important}
+.oah-soon-badge{background:#B8641E!important}
+
+/* Cartes de l'accueil : familles de teintes chaudes (ambre, terre cuite, sauge, noyer, prune douce) */
+.oah-c-gold{--a:#A8652A!important;--t:#F6E4C8!important}
+.oah-c-violet{--a:#7A4E5E!important;--t:#F1E0DC!important}
+.oah-c-green{--a:#6F8F55!important;--t:#E8EDD8!important}
+.oah-c-rose{--a:#B5453A!important;--t:#F6DFD6!important}
+.oah-c-amber{--a:#C8792C!important;--t:#F8E4C6!important}
+.oah-c-blue{--a:#5B4632!important;--t:#EDE1D0!important}
+.oah-c-indigo{--a:#6E4A3A!important;--t:#F0E2D6!important}
+.oah-c-plum{--a:#8A4B3C!important;--t:#F3E0D6!important}
+.oah-c-corail{--a:#B8503F!important;--t:#F8DED6!important}
+.oah-c-teal{--a:#6F8F55!important;--t:#E6ECD6!important}
+.oah-c-copper{--a:#9C5B32!important;--t:#F3E1D2!important}
+.oah-c-slate{--a:#5B4632!important;--t:#ECE2D4!important}
+.oah-c-olive{--a:#7D7A3A!important;--t:#EEECD0!important}
