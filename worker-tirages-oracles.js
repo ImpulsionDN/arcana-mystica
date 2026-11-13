@@ -1,6 +1,6 @@
 // =====================================================================
 // Worker Cloudflare — arcana-tirages-oracles
-// Aimant gratuit : « 4 tirages d'oracle expliqués » — tirages-oracles.html
+// Aimant gratuit : « Les 5 tirages Arcana » — tirages-oracles.html
 //
 // NOTE DE TRANSPARENCE : comme pour worker-previsions-amour.js, il n'existe
 // dans ce dépôt aucun Worker/formulaire Brevo réutilisable à copier — le

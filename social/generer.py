@@ -62,8 +62,8 @@ GRATUITS = [
     ("angeologie", "Angéologie", "Quel est ton", "ange gardien ?",
      ["Selon ta date de naissance,<br>reçois son message.", "Il veille sur toi depuis ta naissance.<br>Découvre son nom."],
      "Anges Gardiens", "✦", False),
-    ("tirages-oracles", "Fiche gratuite", "4 tirages", "d'oracle expliqués",
-     ["Oracle Arcana, Gé, Triade, Miroirs :<br>la fiche imprimable offerte.", "Apprends à tirer les cartes<br>comme une pro."],
+    ("tirages-oracles", "Fiche gratuite", "Les 5 tirages", "Arcana expliqués",
+     ["Les tirages de L'Oracle Arcana :<br>la fiche imprimable offerte.", "Apprends à tirer les cartes<br>de L'Oracle Arcana."],
      "Cartes & Tirages", "✦", False),
 ]
 

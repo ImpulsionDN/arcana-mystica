@@ -22,6 +22,8 @@ sur Instagram (oracle_arcana), Pinterest et TikTok (Oracle Arcana · Voyance), v
    Attendre 3 minutes le déploiement GitHub Pages.
 4. **Légende.** Écrire une légende en français, à partir du champ `sujet` de la fiche :
    - accroche forte en première ligne, 3 à 5 lignes au total, ton chaleureux et mystique, jamais alarmiste ;
+   - ne parler que de L'Oracle Arcana et de ses 5 tirages (tirages-oracles.html) : ne jamais citer d'autres oracles
+     ou d'autres tirages (Belline, Gé, Triade, Miroirs, Lenormand, etc.) ;
    - aucune promesse de résultat (santé, argent, amour garanti) ; rester dans la guidance et le symbolique ;
    - un appel à l'action vers oracle-arcana.fr (« lien dans la bio » pour Instagram) ;
    - une question aux abonnés pour susciter les commentaires ;
