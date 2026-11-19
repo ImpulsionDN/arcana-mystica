@@ -209,7 +209,6 @@
   <div class="box" id="formBox">
     <h2>Prépare ton tirage</h2>
     <p class="intro">Installe-toi au calme et pense à l'année qui vient.</p>
-    <div class="field"><label for="pMoi">Ton prénom</label><input id="pMoi" type="text" maxlength="30" autocomplete="given-name" placeholder="Ex. : Claire"></div>
     <div class="field">
       <span class="lab">Ce qui compte le plus pour toi en 2027</span>
       <div class="chips" id="chips">
@@ -240,7 +239,7 @@
     <p>Le moment idéal se situe entre la mi-novembre et la fin janvier, quand on fait le bilan de l'année écoulée et qu'on pose ses intentions pour la suivante. Fais-le une seule fois, au calme : le premier tirage est celui qui compte. Garde l'image de ta roue et relis ton mois à chaque début de mois.</p>
 
     <h2>Questions fréquentes</h2>
-    <details><summary>Le tirage 2027 est-il vraiment gratuit ?</summary><p>Oui, entièrement : les treize lames et toute la lecture sont offertes, sans inscription. Ton prénom sert seulement à personnaliser la lecture à l'écran et l'image à télécharger.</p></details>
+    <details><summary>Le tirage 2027 est-il vraiment gratuit ?</summary><p>Oui, entièrement : les treize lames et toute la lecture sont offertes, sans inscription. Aucun nom ni prénom n'est demandé : rien n'est enregistré.</p></details>
     <details><summary>Que signifie la lame de l'année ?</summary><p>C'est le fil rouge de ton année 2027 : l'énergie qui colore les douze mois. Les lames des mois précisent ensuite les temps forts et les périodes plus calmes.</p></details>
     <details><summary>Que faire d'un mois de vigilance ?</summary><p>Un mois de vigilance n'est pas un mauvais mois : c'est une période où il vaut mieux ralentir, vérifier, éviter les décisions précipitées. Le connaître à l'avance permet de s'y préparer.</p></details>
     <details><summary>Puis-je garder mon tirage ?</summary><p>Oui : à la fin de la lecture, le bouton « Télécharger mon année 2027 » crée une image de ta roue avec tes treize lames, à garder ou à partager.</p></details>
@@ -278,8 +277,6 @@
     });
   });
   $("go").addEventListener("click", function(){
-    etat.moi = cap($("pMoi").value);
-    if (!etat.moi){ $("err").textContent = "Indique ton prénom pour personnaliser la lecture."; $("pMoi").focus(); return; }
     if (!etat.dom){ $("err").textContent = "Choisis ce qui compte le plus pour toi."; return; }
     demarrer();
   });
@@ -377,7 +374,7 @@
 
   function lire(){
     var t = etat.tirees, an = t[0], mois = t.slice(1), h = "";
-    h += '<div class="lec-titre">L\'année 2027 de '+esc(etat.moi)+'</div>';
+    h += '<div class="lec-titre">Ton année 2027</div>';
     h += '<div class="lec-q">Lecture '+DOM[etat.dom].nom+'</div>';
     // Lame de l'année
     var champ = DOM[etat.dom].champ;
@@ -443,7 +440,7 @@
       g.strokeStyle = "#b89149"; g.lineWidth = 3; g.strokeRect(24,24,W-48,H-48); g.lineWidth = 1; g.strokeRect(34,34,W-68,H-68);
       g.textAlign = "center"; g.fillStyle = "#4f5584"; g.font = '700 22px "Nunito Sans", sans-serif'; g.fillText("O R A C L E   A R C A N A", W/2, 96);
       g.fillStyle = "#2a2218"; g.font = '600 66px "Cormorant Garamond", Georgia, serif'; g.fillText("Mon année 2027", W/2, 170);
-      g.fillStyle = "#9a7838"; g.font = 'italic 500 36px "Cormorant Garamond", Georgia, serif'; g.fillText(etat.moi + " · sous les lunes", W/2, 218);
+      g.fillStyle = "#9a7838"; g.font = 'italic 500 36px "Cormorant Garamond", Georgia, serif'; g.fillText("sous les lunes de L'Oracle Arcana", W/2, 218);
       var cx = W/2, cy = 705, R = 372, cw = 100, ch = 150;
       g.strokeStyle = "rgba(184,145,73,.6)"; g.lineWidth = 2; g.beginPath(); g.arc(cx, cy, R, 0, Math.PI*2); g.stroke();
       function dess(img, x, y, w, hh){ g.save(); g.shadowColor = "rgba(60,45,20,.25)"; g.shadowBlur = 12; g.shadowOffsetY = 4; g.fillStyle = "#fff"; g.fillRect(x-w/2, y-hh/2, w, hh); g.restore(); if (img) g.drawImage(img, x-w/2, y-hh/2, w, hh); g.strokeStyle = "#b89149"; g.lineWidth = 2; g.strokeRect(x-w/2, y-hh/2, w, hh); }
@@ -457,7 +454,7 @@
       g.fillStyle = "#2a2218"; g.font = 'italic 500 30px "Cormorant Garamond", Georgia, serif'; g.fillText(etat.tirees[0].nom, cx, cy + 184);
       g.fillStyle = "#6b5f4d"; g.font = '700 24px "Nunito Sans", sans-serif'; g.fillText("Fais ton tirage gratuit sur oracle-arcana.fr", W/2, H - 70);
       cv.toBlob(function(blob){
-        var nom = "mon-annee-2027-" + etat.moi.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-") + ".png";
+        var nom = "mon-annee-2027-oracle-arcana.png";
         var fichier = null; try { fichier = new File([blob], nom, {type:"image/png"}); } catch(e){}
         if (fichier && navigator.canShare && navigator.canShare({files:[fichier]})){
           navigator.share({files:[fichier], title:"Mon année 2027", text:"Mon tirage 2027 sur oracle-arcana.fr"}).catch(function(){});

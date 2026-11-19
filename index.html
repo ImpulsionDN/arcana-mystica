@@ -381,6 +381,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
           <a data-page="accueil" onclick="go('oracle')">Tirage 3 lames</a>
           <a href="tirages-oracles.html">Les 5 tirages Arcana</a>
           <a href="tirage-amour.html">Tirage amour</a>
+          <a href="tirage-cle.html">Le Nœud et la Clé</a>
           <a href="tirage-2027.html">Tirage 2027</a>
           <a data-page="ouinon" onclick="go('ouinon')">Oui / Non</a>
           <a href="heures-miroirs.html">Heures Miroirs</a>
@@ -467,6 +468,11 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
         <div class="oah-ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
         <h3>Tirage amour</h3><p>Le Pont des cœurs : 5 lames pour lire votre relation.</p>
         <div class="oah-arrow">Faire mon tirage →</div>
+      </a>
+      <a class="oah-card oah-c-copper" href="tirage-cle.html">
+        <div class="oah-ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg></div>
+        <h3>Le Nœud et la Clé</h3><p>Battez, coupez : ce qui vous bloque et ce qui vous libère.</p>
+        <div class="oah-arrow">Couper le jeu →</div>
       </a>
       <a class="oah-card oah-c-indigo" href="tirage-2027.html">
         <div class="oah-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M14.5 8.5a4 4 0 1 0 0 7 4.6 4.6 0 0 1 0-7z"/></svg></div>
@@ -613,19 +619,13 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
     <div class="section-hd">
       <div class="eyebrow">Sans inscription · Offert</div>
       <h2>L'Oracle Arcana</h2>
-      <p>Renseignez votre identité, concentrez-vous, puis laissez les lames parler.</p>
+      <p>Concentrez-vous sur votre question, puis laissez les lames parler. Votre date de naissance, facultative, adapte simplement la lecture à votre âge.</p>
     </div>
     <div class="ornament">✦ ☽ ✦</div>
     <div class="panel" id="oraclePanel">
-      <div class="frow">
-        <div class="field"><label>Prénom</label><input id="o_prenom" placeholder="Votre prénom"></div>
-        <div class="field"><label>Nom</label><input id="o_nom" placeholder="Votre nom"></div>
+      <div class="frow" style="grid-template-columns:1fr;max-width:420px;margin:0 auto">
+        <div class="field"><label>Date de naissance (facultatif)</label><div class="dgroup" id="o_naiss"><select class="dsel" data-part="j" aria-label="Jour"><option value="">Jour</option></select><select class="dsel" data-part="m" aria-label="Mois"><option value="">Mois</option></select><select class="dsel" data-part="y" aria-label="Année"><option value="">Année</option></select></div></div>
       </div>
-      <div class="frow">
-        <div class="field"><label>Date de naissance</label><div class="dgroup" id="o_naiss"><select class="dsel" data-part="j" aria-label="Jour"><option value="">Jour</option></select><select class="dsel" data-part="m" aria-label="Mois"><option value="">Mois</option></select><select class="dsel" data-part="y" aria-label="Année"><option value="">Année</option></select></div></div>
-        <div class="field"><label>Heure de naissance (si connue)</label><input id="o_heure" type="time"></div>
-      </div>
-      <div class="field"><label>Lieu de naissance (si connu)</label><input id="o_lieu" placeholder="Ville, pays"></div>
       <div class="concentre">Fermez les yeux quelques instants. Respirez profondément et concentrez-vous intensément sur la question qui habite votre cœur. Lorsque vous êtes prêt(e), tirez les lames.</div>
       <div style="text-align:center"><button class="btn btn-gold" id="o_btn" onclick="tirer()">Je suis prêt(e) — Consulter l'Oracle</button></div>
       <div class="cards-row" id="o_cards" style="display:none"></div>
@@ -828,8 +828,7 @@ footer .legal{font-size:.84rem;opacity:.8;max-width:640px;margin:0 auto;line-hei
       <p>Chaque date de naissance correspond à l'un des 72 anges gardiens.</p>
     </div>
     <div class="panel">
-      <div class="frow">
-        <div class="field"><label>Prénom</label><input id="a_prenom" placeholder="Prénom"></div>
+      <div class="frow" style="grid-template-columns:1fr;max-width:420px;margin:0 auto">
         <div class="field"><label>Date de naissance</label><div class="dgroup" id="a_naiss"><select class="dsel" data-part="j" aria-label="Jour"><option value="">Jour</option></select><select class="dsel" data-part="m" aria-label="Mois"><option value="">Mois</option></select><select class="dsel" data-part="y" aria-label="Année"><option value="">Année</option></select></div></div>
       </div>
       <div style="text-align:center"><button class="btn btn-gold" onclick="calculAnge()">Découvrir mon ange gardien</button></div>
@@ -1734,7 +1733,7 @@ function totemReveal(){
       <div class="rub" style="cursor:default">
         <div class="ic">✦</div>
         <h3>Adapté à votre prénom et à votre âge</h3>
-        <p>Les lames sont tirées au hasard pour vous. Les textes sont rédigés à l'avance : seuls votre prénom et votre âge (si vous indiquez votre date de naissance) les adaptent.</p>
+        <p>Les lames sont tirées au hasard pour vous. Les textes sont rédigés à l'avance : seul votre âge, si vous indiquez votre date de naissance, les adapte. Aucun nom ni prénom n'est demandé.</p>
       </div>
       <div class="rub" style="cursor:default">
         <div class="ic">🕊</div>
@@ -2037,9 +2036,6 @@ function notify(msg){
 var POSITIONS=["Passé","Présent","Avenir"];
 var tirage=[];
 function tirer(){
-  var prenom=(document.getElementById('o_prenom').value||"").trim();
-  var naiss=getDateValue('o_naiss');
-  if(!prenom){notify("Merci d'indiquer votre prénom avant le tirage.");return;}
   var pool=LAMES.slice().sort(function(){return Math.random()-0.5;});
   tirage=pool.slice(0,3);
   var row=document.getElementById('o_cards');
@@ -2073,14 +2069,13 @@ function vocabAge(age){
   return {vie:"votre jeune chemin",act:"vos études, vos premiers projets et vos rencontres",ouv:"Tout est encore ouvert : c'est le temps de la construction."};
 }
 function afficherInterpretation(){
-  var prenom=(document.getElementById('o_prenom').value||"").trim();
   var age=ageDepuis(getDateValue('o_naiss'));
   var v=vocabAge(age);
   var ageTxt=(age!==null)?(" ("+age+" ans)"):"";
   var dom=['amour','travail','sante'];
   var travLbl=(age!==null&&age>=62)?'Activit\u00e9 & projets':'Travail & projets';
   var domLbl={amour:'En amour',travail:travLbl,sante:'\u00c9nergie & sant\u00e9'};
-  var html='<p style="font-style:italic;margin-bottom:1.4rem">Bienvenue '+prenom+ageTxt+'. Prenez le temps de lire chaque lame\u00a0: ensemble, elles dessinent le fil de '+v.vie+'.</p>';
+  var html='<p style="font-style:italic;margin-bottom:1.4rem">Prenez le temps de lire chaque lame\u00a0: ensemble, elles dessinent le fil de '+v.vie+'.</p>';
   tirage.forEach(function(l,i){
     html+='<div class="lame-block">';
     html+='<strong>'+POSITIONS[i]+'\u00a0\u2014 Lame '+l.num+'\u00a0\u00b7 '+l.nom+'</strong>';
@@ -2110,7 +2105,7 @@ function afficherInterpretation(){
     t1="Votre tirage est en \u00e9quilibre. "+nm(tirage[0])+", "+nmin(tirage[1])+" et "+nmin(tirage[2])+" se r\u00e9pondent sans pencher d'un c\u00f4t\u00e9 ni de l'autre\u00a0: tout reste \u00e0 \u00e9crire selon vos choix.";
     t2="\u00c0 vous de faire pencher la balance par vos d\u00e9cisions conscientes des prochaines semaines. "+v.ouv;
   }
-  html+='<div class="synth">'+bleueNote+'<p>'+t1+'</p><p style="margin-top:.8rem">'+t2+'</p><p style="margin-top:.8rem;font-style:italic">Pour aller plus loin, '+prenom+', le Tirage des Lunes tire une lame de l\u2019Oracle Arcana pour chacun de vos prochains mois.</p></div>';
+  html+='<div class="synth">'+bleueNote+'<p>'+t1+'</p><p style="margin-top:.8rem">'+t2+'</p><p style="margin-top:.8rem;font-style:italic">Pour aller plus loin, le Tirage des Lunes tire une lame de l\u2019Oracle Arcana pour chacun de vos prochains mois.</p></div>';
   document.getElementById('o_interp').innerHTML=html;
   document.getElementById('o_reset').style.display='inline-flex';
   document.getElementById('o_cta').style.display='flex';
@@ -2458,7 +2453,6 @@ var ANGES=[
 ["Haiaiel",3,11,3,15,"le courage et la protection des justes"],["Mumiah",3,16,3,20,"la renaissance et l'accomplissement"]
 ];
 function calculAnge(){
-  var prenom=document.getElementById('a_prenom').value;
   var naiss=getDateValue('a_naiss');
   if(!naiss){notify("Merci d'indiquer votre date de naissance.");return;}
   var d=naiss.split("-");var mois=parseInt(d[1],10),jour=parseInt(d[2],10);
@@ -2470,7 +2464,6 @@ function calculAnge(){
     else{if(val>=debut||val<=fin){ange=a;break;}}
   }
   if(!ange)ange=ANGES[0];
-  var nom=(normalise(prenom))?prenom:"Cher consultant";
   var MOISN=['','janvier','f\u00e9vrier','mars','avril','mai','juin','juillet','ao\u00fbt','septembre','octobre','novembre','d\u00e9cembre'];
   var periode='du '+ange[2]+' '+MOISN[ange[1]]+' au '+ange[4]+' '+MOISN[ange[3]];
   function h4a(t){return '<h4 style="font-family:\'Playfair Display\';color:var(--gold-deep);font-weight:500;margin:1.4rem 0 .4rem">'+t+'</h4>';}
@@ -2478,7 +2471,7 @@ function calculAnge(){
   box.innerHTML='<div style="text-align:center"><div style="font-size:2rem;color:var(--gold);margin-bottom:.5rem">\u2641</div>'+
     '<h3 style="font-family:\'Playfair Display\';color:var(--gold-deep);font-size:1.9rem;margin-bottom:.4rem">'+ange[0]+'</h3>'+
     '<div class="l" style="letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;font-family:\'Playfair Display\';margin-bottom:1.2rem">Votre ange gardien</div></div>'+
-    '<p>'+nom+', votre ange gardien est <strong style="color:var(--gold-deep)">'+ange[0]+'</strong>, le gardien de '+ange[5]+'. Il r\u00e8gne sur la p\u00e9riode allant '+periode+', celle de votre naissance\u00a0: c\'est lui qui vous a accueilli(e) \u00e0 votre premier souffle et qui vous accompagne depuis.</p>'+
+    '<p>Votre ange gardien est <strong style="color:var(--gold-deep)">'+ange[0]+'</strong>, le gardien de '+ange[5]+'. Il r\u00e8gne sur la p\u00e9riode allant '+periode+', celle de votre naissance\u00a0: c\'est lui qui vous a accueilli(e) \u00e0 votre premier souffle et qui vous accompagne depuis.</p>'+
     h4a('La tradition des 72 anges')+
     '<p>L\'ang\u00e9ologie, h\u00e9rit\u00e9e de la Kabbale, enseigne que 72 anges (ou g\u00e9nies) se partagent le cercle de l\'ann\u00e9e, chacun veillant sur une p\u00e9riode d\'environ cinq jours. Bien plus qu\'un simple gardien, votre ange repr\u00e9sente une \u00e9nergie, une qualit\u00e9 d\'\u00e2me que vous portez en germe et que vous \u00eates invit\u00e9(e) \u00e0 d\u00e9velopper tout au long de votre vie. On dit que celui qui na\u00eet sous sa r\u00e9gence en re\u00e7oit naturellement les vertus.</p>'+
     h4a('Le domaine o\u00f9 '+ange[0]+' vous soutient')+

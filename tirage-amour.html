@@ -172,10 +172,6 @@
   <div class="box" id="formBox">
     <h2>Préparez votre tirage</h2>
     <p class="intro">Pensez à la personne et à la relation qui vous occupent, puis répondez simplement.</p>
-    <div class="row2">
-      <div class="field"><label for="pMoi">Votre prénom</label><input id="pMoi" type="text" maxlength="30" autocomplete="given-name" placeholder="Ex. : Claire"></div>
-      <div class="field"><label for="pAutre">Son prénom <span style="text-transform:none;letter-spacing:0;font-weight:600;color:var(--ink-soft)">(facultatif)</span></label><input id="pAutre" type="text" maxlength="30" placeholder="Ex. : Julien"></div>
-    </div>
     <div class="field">
       <span class="lab">Votre situation</span>
       <div class="chips" id="chips">
@@ -215,8 +211,7 @@
     <p>Évitez de refaire le tirage plusieurs fois de suite pour la même question : le premier tirage est celui qui compte. Laissez passer quelques jours avant d'interroger à nouveau l'oracle.</p>
 
     <h2>Questions fréquentes</h2>
-    <details><summary>Le tirage amour est-il vraiment gratuit ?</summary><p>Oui. Le Pont des cœurs est entièrement gratuit, immédiat et sans inscription. Votre prénom sert seulement à personnaliser la lecture à l'écran : rien n'est enregistré.</p></details>
-    <details><summary>Faut-il connaître le prénom de l'autre personne ?</summary><p>Non, c'est facultatif. Indiquez-le si vous voulez une lecture plus personnelle ; sinon, l'oracle parle simplement de « l'autre ».</p></details>
+    <details><summary>Le tirage amour est-il vraiment gratuit ?</summary><p>Oui. Le Pont des cœurs est entièrement gratuit, immédiat et sans inscription. Aucun nom ni prénom n'est demandé : rien n'est enregistré.</p></details>
     <details><summary>Puis-je faire ce tirage si je suis célibataire ?</summary><p>Oui : choisissez « Une attirance » et pensez à la personne qui vous attire. Les lames décrivent alors un lien encore à naître.</p></details>
     <details><summary>Quelle différence avec le tirage Oui / Non ?</summary><p>Le tirage <a href="index.html#ouinon">Oui / Non</a> donne une tendance rapide à une question fermée. Le Pont des cœurs analyse la relation dans son ensemble, en cinq points.</p></details>
     <details><summary>D'où viennent les lames ?</summary><p>Ce sont les 44 lames de L'Oracle Arcana : quatre lames maîtresses et quatre familles lunaires de dix lames (Nouvelle Lune, Lune croissante, Pleine Lune, Lune décroissante). Elles sont présentées dans la page <a href="tirages-oracles.html">Les 5 tirages Arcana</a>.</p></details>
@@ -262,8 +257,7 @@
   });
 
   $("go").addEventListener("click", function(){
-    etat.moi = cap($("pMoi").value); etat.autre = cap($("pAutre").value); etat.q = $("question").value.trim();
-    if (!etat.moi){ $("err").textContent = "Indiquez votre prénom pour personnaliser la lecture."; $("pMoi").focus(); return; }
+    etat.q = $("question").value.trim();
     if (!etat.sit){ $("err").textContent = "Choisissez votre situation."; return; }
     demarrer();
   });
@@ -294,7 +288,7 @@
   function majConsigne(){
     var n = 5 - etat.tirees.length;
     $("consigne").innerHTML = n > 0
-      ? (etat.tirees.length === 0 ? "Concentrez-vous sur "+(etat.autre ? esc(etat.autre) : "cette relation")+"…" : "Encore "+n+" lame"+(n>1?"s":"")+"…")+
+      ? (etat.tirees.length === 0 ? "Concentrez-vous sur "+"cette relation"+"…" : "Encore "+n+" lame"+(n>1?"s":"")+"…")+
         '<small>Choisissez '+n+' lame'+(n>1?'s':'')+' dans le jeu, sans réfléchir.</small>'
       : "Vos lames se révèlent…";
   }
@@ -322,11 +316,11 @@
     debut:     {nom:"cette relation naissante",evo:"Pour cette relation naissante, "},
     attirance: {nom:"ce lien encore à naître", evo:"Pour ce lien encore à naître, "}
   };
-  function nomAutre(maj){ return etat.autre ? esc(etat.autre) : (maj ? "L'autre personne" : "l'autre personne"); }
+  function nomAutre(maj){ return maj ? "L'autre personne" : "l'autre personne"; }
 
   function intro(p, l){
-    var v = l.val, m = esc(etat.moi);
-    if (p === 0) return v>0 ? m+", votre cœur est ouvert et disponible. " : v<0 ? m+", une réserve ou une blessure vous retient. " : m+", vous êtes partagé(e) entre l'élan et la prudence. ";
+    var v = l.val;
+    if (p === 0) return v>0 ? "Votre cœur est ouvert et disponible. " : v<0 ? "Une réserve ou une blessure vous retient. " : "Vous êtes partagé(e) entre l'élan et la prudence. ";
     if (p === 1) return v>0 ? nomAutre(true)+" porte une énergie tournée vers vous. " : v<0 ? nomAutre(true)+" traverse une période de doute ou de retrait. " : nomAutre(true)+" hésite encore et garde ses sentiments pour soi. ";
     if (p === 2) return v>0 ? "Le pont entre vous est solide. " : v<0 ? "Le lien est fragilisé, mais il existe bien. " : "Le lien est réel, encore en train de se définir. ";
     if (p === 3) return v>0 ? "Le défi est léger : cette lame est favorable, l'obstacle vient surtout de vos peurs. " : v<0 ? "C'est le point sensible du tirage. " : "Un nœud demande de la patience. ";
@@ -371,8 +365,8 @@
   }
 
   function accord(a, b){
-    var m = esc(etat.moi), o = nomAutre(false);
-    if (a.astre === b.astre) return "Vos deux lames appartiennent à la même famille ("+ASTRES[a.astre].nom+") : "+m+" et "+o+", vous êtes en phase et vivez ce moment au même rythme.";
+    var o = nomAutre(false);
+    if (a.astre === b.astre) return "Vos deux lames appartiennent à la même famille ("+ASTRES[a.astre].nom+") : l'autre personne et vous êtes en phase et vivez ce moment au même rythme.";
     if (a.val - b.val === 2) return "Vous avancez plus vite que "+o+" : votre élan est réel, mais l'autre a besoin de temps. Ne brusquez rien.";
     if (b.val - a.val === 2) return o.charAt(0).toUpperCase()+o.slice(1)+" semble plus disponible que vous en ce moment : écoutez ce qui vous retient.";
     return "Vos énergies sont différentes mais compatibles : chacun apporte au lien ce qui manque à l'autre.";
@@ -387,7 +381,7 @@
     var t = etat.tirees, h = "";
     var total = t.reduce(function(s, l){ return s + l.val; }, 0);
     var cl = climat(total), ph = phase(t);
-    h += '<div class="lec-titre">Le Pont des cœurs de '+esc(etat.moi)+(etat.autre ? ' et '+esc(etat.autre) : '')+'</div>';
+    h += '<div class="lec-titre">Votre Pont des cœurs</div>';
     if (etat.q) h += '<div class="lec-q">« '+esc(etat.q)+' »</div>';
     t.forEach(function(l, p){
       h += '<div class="pos"><img src="'+imgSrc(l)+'" alt="'+esc(l.nom)+'"><div>'+
